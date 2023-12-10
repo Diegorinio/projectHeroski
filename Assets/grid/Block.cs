@@ -26,12 +26,12 @@ public class Block : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (playerCharacter.isCharacter && isActive)
+        if (turnbaseScript.isSelected && isActive)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = turnbaseScript.selectedGameObject;
             Vector3 gObj = gameObject.transform.position;
             player.transform.position = new Vector3(gObj.x, gObj.y, gObj.z - 2);
-            player.GetComponent<playerCharacter>().disableClickable();
+            player.GetComponent<characterController>().disableClickable();
         }
         else
         {

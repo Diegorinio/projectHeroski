@@ -39,7 +39,7 @@ public class gridManager : MonoBehaviour
                 var worldPos = Camera.main.ScreenToWorldPoint(screenPoint);
                 //var spawnTile = Instantiate(_tilePreset, new Vector2(x + firstPosX, y + firstPosY), Quaternion.identity);
                 var spawnTile = Instantiate(_tilePreset, new Vector2(worldPos.x+firstPosX,worldPos.y+firstPosY), Quaternion.identity);
-                spawnTile.name = $"Tile {x} {y}";
+                spawnTile.name = $"Tile{x}{y}";
                 spawnTile.transform.SetParent(gameObject.transform);
                 firstPosY += 1.2f;
                 gridMap.Add(spawnTile);

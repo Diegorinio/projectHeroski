@@ -15,9 +15,9 @@ public class guiScript : MonoBehaviour
     {
     }
 
-    public  void chuj()
+    public  void initializeGui()
     {
-        heroName.text = playerCharacter.selectedGameObject.transform.name;
+        heroName.text = turnbaseScript.selectedGameObject.transform.name;
         unsetAttacks();
         setAttacks();
     }
@@ -26,40 +26,20 @@ public class guiScript : MonoBehaviour
     {
         // int id = 0;
         // unsetAttacks();
-        attackBtns[0].GetComponentInChildren<Text>().text=playerCharacter.selectedGameObject.GetComponent<Role>().attacks[0];
-        attackBtns[1].GetComponentInChildren<Text>().text=playerCharacter.selectedGameObject.GetComponent<Role>().attacks[1];
-        GameObject enemyFound = playerCharacter.selectedGameObject.GetComponent<playerCharacter>().targetEnemy;
+        attackBtns[0].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacks[0];
+        attackBtns[1].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacks[1];
+        GameObject enemyFound = turnbaseScript.selectedGameObject.GetComponent<characterController>().targetEnemy;
         if(enemyFound!=null){
-            Role selectedRole = playerCharacter.selectedGameObject.GetComponent<Role>();
+            Role selectedRole = turnbaseScript.selectedGameObject.GetComponent<Role>();
             Enemy enemy = enemyFound.GetComponent<Enemy>();
             attackBtns[0].onClick.AddListener(()=>selectedRole.dealDamageTo(enemy,0));
             attackBtns[1].onClick.AddListener(()=>selectedRole.dealDamageTo(enemy,1));
         }
-        // foreach(Button btn in attackBtns)
-        // {
-        //     btn.GetComponentInChildren<Text>().text = playerCharacter.selectedGameObject.GetComponent<Role>().attacks[id];
-        //     GameObject enemyFound = playerCharacter.selectedGameObject.GetComponent<playerCharacter>().targetEnemy;
-        //     Debug.Log(enemyFound);
-        //     if (enemyFound)
-        //     {
-        //         Role selectedRole = playerCharacter.selectedGameObject.GetComponent<Role>();
-        //         Enemy enemy = enemyFound.GetComponent<Enemy>();
-        //         // Debug.Log($"Mozliwy damage: {damage}");
-        //          Debug.Log($"ajdi before: {id}");
-        //         btn.onClick.AddListener(()=>selectedRole.dealDamageTo(enemy,id));
-        //          Debug.Log($"ajdi after: {id}");
-        //         btn.GetComponentInChildren<Text>().text = selectedRole.getAttack(id).ToString();
-        //         // Debug.Log($"ajdi: {id}");
-        //     }
-        //     Debug.Log($"ajdi: {id}");
-        //     id++;
-        // }
     }
     public void unsetAttacks(){
         foreach(Button btn in attackBtns)
         {
             btn.GetComponentInChildren<Text>().text = "";
-            GameObject enemyFound = playerCharacter.selectedGameObject.GetComponent<playerCharacter>().targetEnemy;
             btn.onClick.RemoveAllListeners();
         }
     }

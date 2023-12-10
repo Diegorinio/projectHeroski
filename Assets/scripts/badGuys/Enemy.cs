@@ -10,14 +10,21 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int hp;
     [SerializeField]
-    private int dist;
-    [SerializeField]
     private string[] bossAttacks = new string[2];
     [SerializeField]
     private Slider hpSlider;
+    [SerializeField]
+    Sprite enemySprite;
+    [SerializeField]
+    public GameObject target;
+    [SerializeField]
+    public GameObject tileDetector;
     public void Awake()
     {
         Camera.main.GetComponent<guiScript>().bossName.text = bossName;
+        gameObject.GetComponent<SpriteRenderer>().sprite = enemySprite;
+        tileDetector = gameObject.transform.Find("tileDetector").gameObject;
+        tileDetector.SetActive(false);
     }
     public void Start()
     {
