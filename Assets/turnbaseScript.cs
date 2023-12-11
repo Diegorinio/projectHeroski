@@ -27,8 +27,14 @@ public class turnbaseScript : MonoBehaviour
     void Update()
     {
         selectedCheck=isSelected;
-        if(!selectedGameObject)
+        if (!selectedGameObject)
+        {
             quequeHeroes[turn].GetComponent<characterController>().selectHero();
+        }
+        if (selectedGameObject.GetComponent<Enemy>())
+        {
+            selectedGameObject.GetComponent<enemyAI>().moveToRandomDirecion();
+        }
     }
     public int getTurn(){
         return turn;
@@ -36,7 +42,7 @@ public class turnbaseScript : MonoBehaviour
     public void nextTurn(){
         isSelected=false;
         selectedGameObject=null;
-        if(turn==quequeHeroes.Count-2){
+        if(turn==quequeHeroes.Count-1){
             turn=0;
         }
         else{

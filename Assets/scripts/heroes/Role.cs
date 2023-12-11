@@ -4,9 +4,15 @@ using UnityEngine;
 
 public abstract class Role : MonoBehaviour
 {
-    public abstract void Awake();
+    [SerializeField]
+    private Sprite heroSprite;
+    public virtual void Awake()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = heroSprite;
+    }
     public string roleName;
     public int damage;
+    [SerializeField]
     public int gridDistance;
     public string[] attacks = new string[2];
     [SerializeField]

@@ -6,9 +6,10 @@ public class Knight : Role
 {
     public override void Awake()
     {
+        base.Awake();
         roleName = "Knight";
         damage = 50;
-        gridDistance = 2;
+        gridDistance = 6;
     }
 
     public override int Attack1()

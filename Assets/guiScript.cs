@@ -32,9 +32,14 @@ public class guiScript : MonoBehaviour
         if(enemyFound!=null){
             Role selectedRole = turnbaseScript.selectedGameObject.GetComponent<Role>();
             Enemy enemy = enemyFound.GetComponent<Enemy>();
-            attackBtns[0].onClick.AddListener(()=>selectedRole.dealDamageTo(enemy,0));
-            attackBtns[1].onClick.AddListener(()=>selectedRole.dealDamageTo(enemy,1));
+            attackBtns[0].onClick.AddListener(()=>setAttack(selectedRole,enemy,0));
+            attackBtns[1].onClick.AddListener(()=>setAttack(selectedRole,enemy,1));
         }
+    }
+    public void setAttack(Role role,Enemy enemy,int id)
+    {
+        role.dealDamageTo(enemy, id);
+        turnbaseScript.selectedGameObject.GetComponent<characterController>().disableClickable();
     }
     public void unsetAttacks(){
         foreach(Button btn in attackBtns)

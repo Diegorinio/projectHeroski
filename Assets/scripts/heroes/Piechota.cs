@@ -9,7 +9,7 @@ public class Pichota : Role
     {
         roleName="Piechota";
         damage=0;
-        gridDistance=12;
+        gridDistance=16;
     }
 
     // public void Start(){

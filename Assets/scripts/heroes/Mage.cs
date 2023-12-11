@@ -8,7 +8,7 @@ public class Mage : Role
     {
         roleName = "Mag";
         damage = 80;
-        gridDistance = 2;
+        gridDistance = 10;
     }
 
     public override int Attack1()

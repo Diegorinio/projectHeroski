@@ -21,10 +21,9 @@ public class enemyTileDetector : MonoBehaviour
         {
             if (!gameObject.GetComponentInParent<characterController>().targetEnemy)
             {
-                //Debug.Log($"second detector: {collision.gameObject.tag}");
                 enemyMarked = collision.gameObject;
                 gameObject.GetComponentInParent<characterController>().targetEnemy = collision.gameObject;
-                gameObject.GetComponentInParent<enemyAI>().moveToRandomDirecion();
+                //gameObject.GetComponentInParent<enemyAI>().moveToRandomDirecion();
             }
         }
     }

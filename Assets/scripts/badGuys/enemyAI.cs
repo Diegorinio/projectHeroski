@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class enemyAI : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class enemyAI : MonoBehaviour
     }
     public void changeColliders(List<Collider2D> colliders)
     {
-        _colliders = colliders;
+        //colliders = colliders.GroupBy(c => c.name).Select(d => d.First()).ToList();
+        resetColliders();
+        _colliders = colliders.GroupBy(c => c.name).Select(d => d.First()).ToList();
     }
     public void resetColliders()
     {
@@ -26,8 +29,9 @@ public class enemyAI : MonoBehaviour
     }
     public void moveToRandomDirecion()
     {
-        resetColliders();
-       
-        gameObject.transform.position = _colliders[(Random.Range(1, _colliders.Count-1))].transform.position;
+        int id = Random.Range(0, _colliders.Count - 1);
+        Debug.Log($"moves list size {_colliders.Count} wybor id: {id}");
+        gameObject.transform.position = _colliders[(Random.Range(0, _colliders.Count - 1))].transform.position;
+        gameObject.GetComponent<characterController>().disableClickable();
     }
 }

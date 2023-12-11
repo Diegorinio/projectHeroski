@@ -12,6 +12,7 @@ public class gridManager : MonoBehaviour
     [SerializeField]
     private Transform _camera;
     [SerializeField] float offsetX, offsetY;
+    [SerializeField] float spacer;
     // Start is called before the first frame update
     List<Tile> gridMap = new List<Tile>();
     void Start()
@@ -41,11 +42,11 @@ public class gridManager : MonoBehaviour
                 var spawnTile = Instantiate(_tilePreset, new Vector2(worldPos.x+firstPosX,worldPos.y+firstPosY), Quaternion.identity);
                 spawnTile.name = $"Tile{x}{y}";
                 spawnTile.transform.SetParent(gameObject.transform);
-                firstPosY += 1.2f;
+                firstPosY += spacer;
                 gridMap.Add(spawnTile);
             }
             firstPosY = 0;
-            firstPosX += 1.2f;
+            firstPosX += spacer;
         }
         GameObject[] heroes = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject hero in heroes)
