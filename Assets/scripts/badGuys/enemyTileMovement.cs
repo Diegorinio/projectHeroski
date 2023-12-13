@@ -21,7 +21,7 @@ public class enemyTileMovement : MonoBehaviour
             //Debug.Log("o boze o kurwa");
             GameObject colliderPlatform = collision.gameObject;
             //colliderPlatform.GetComponent<SpriteRenderer>().color = Color.red;
-            colliderPlatform.GetComponent<Block>().isActive = true;
+            colliderPlatform.GetComponent<Tile>().isActive = true;
                 colliders.Add(collision);
         }
         gameObject.GetComponentInParent<enemyAI>().changeColliders(colliders);
@@ -33,7 +33,7 @@ public class enemyTileMovement : MonoBehaviour
             //Debug.Log("o boze o kurwa");
             GameObject colliderPlatform = collision.gameObject;
             //colliderPlatform.GetComponent<SpriteRenderer>().color = Color.red;
-            colliderPlatform.GetComponent<Block>().isActive = false;
+            colliderPlatform.GetComponent<Tile>().isActive = false;
         }
     }
 
@@ -42,7 +42,7 @@ public class enemyTileMovement : MonoBehaviour
         for (int x = 0; x < colliders.Count; x++)
         {
             colliders[x].GetComponent<SpriteRenderer>().color = Color.white;
-            colliders[x].GetComponent<Block>().isActive = false;
+            colliders[x].GetComponent<Tile>().isActive = false;
         }
     }
 

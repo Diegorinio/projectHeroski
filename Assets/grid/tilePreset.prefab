@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3443178912554325632}
   - component: {fileID: 6678813531492661852}
   - component: {fileID: 7392068716861724943}
-  - component: {fileID: 3979967957486949462}
   - component: {fileID: 1931652895918199878}
   m_Layer: 0
   m_Name: tilePreset
@@ -100,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05f79533abbc0ed4c9a123b6dfe66b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+  isTaken: 0
 --- !u!61 &7392068716861724943
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,19 +146,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0185981, y: 1.031862}
   m_EdgeRadius: 0
---- !u!114 &3979967957486949462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4790864152848747073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3632f9bad17464e9b30658b3cb3caf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
 --- !u!61 &1931652895918199878
 BoxCollider2D:
   m_ObjectHideFlags: 0
