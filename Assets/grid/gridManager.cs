@@ -52,7 +52,6 @@ public class gridManager : MonoBehaviour
         foreach(GameObject hero in heroes)
         {
             hero.transform.position = gridMap[Random.Range(0,8)].transform.position;
-            hero.transform.tag = "Untagged";
         }
         Debug.Log("ttt");
         //_camera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f,-10);

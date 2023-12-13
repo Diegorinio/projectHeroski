@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class Role : MonoBehaviour
 {
-    [SerializeField]
-    private Sprite heroSprite;
+    // [SerializeField]
+    // private Sprite heroSprite;
     public virtual void Awake()
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = heroSprite;
+        // gameObject.GetComponent<SpriteRenderer>().sprite = heroSprite;
     }
     public string roleName;
     public int damage;
@@ -25,6 +25,9 @@ public abstract class Role : MonoBehaviour
     }
     public int getAttack(int id){
         return attackDmgs[id];
+    }
+    public int getRandomAttack(){
+        return attackDmgs[Random.Range(0,attackDmgs.Length-1)];
     }
     public void dealDamageTo(Enemy enemy, int _atkID){
         // Debug.Log($"attack id: {_atkID}");

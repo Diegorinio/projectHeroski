@@ -17,7 +17,9 @@ public class guiScript : MonoBehaviour
 
     public  void initializeGui()
     {
-        heroName.text = turnbaseScript.selectedGameObject.transform.name;
+        if(turnbaseScript.IsHeroTurn()){
+            heroName.text = turnbaseScript.selectedGameObject.GetComponent<Hero>().getHeroName();
+        }
         unsetAttacks();
         setAttacks();
     }

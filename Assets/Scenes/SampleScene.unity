@@ -234,6 +234,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4790864152848747073, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1323845622}
+    - targetCorrespondingSourceObject: {fileID: 4790864152848747073, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1323845625}
   m_SourcePrefab: {fileID: 100100000, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
 --- !u!1 &278057615
 GameObject:
@@ -248,6 +251,7 @@ GameObject:
   - component: {fileID: 278057619}
   - component: {fileID: 278057620}
   - component: {fileID: 278057621}
+  - component: {fileID: 278057622}
   m_Layer: 0
   m_Name: rycerz
   m_TagString: Player
@@ -380,7 +384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819e7cb5cefcfee408bd8eb332bed0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroSprite: {fileID: -1296829879, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
   roleName: 
   damage: 0
   gridDistance: 0
@@ -404,6 +407,20 @@ MonoBehaviour:
   isSelected: 0
   tileDetector: {fileID: 0}
   targetEnemy: {fileID: 0}
+--- !u!114 &278057622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278057615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1422a004cdc82d84dbb2dfa70c0650cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroSprite: {fileID: -1296829879, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
+  heroName: Gracz 3
 --- !u!1 &333722208
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +604,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4790864152848747073, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2082182549}
+    - targetCorrespondingSourceObject: {fileID: 4790864152848747073, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2082182552}
   m_SourcePrefab: {fileID: 100100000, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -1195,8 +1215,8 @@ Transform:
   m_GameObject: {fileID: 596609194}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.9, y: -0.89, z: -5.047364}
-  m_LocalScale: {x: 0.4513, y: 0.3649, z: 1}
+  m_LocalPosition: {x: 5.93, y: -0.89, z: -5.047364}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1199727723}
@@ -1311,7 +1331,6 @@ MonoBehaviour:
   - test
   hpSlider: {fileID: 1803196967}
   enemySprite: {fileID: -1122784792, guid: 550f6f74cdf7642419abfdaef471d613, type: 3}
-  target: {fileID: 0}
   tileDetector: {fileID: 1199727722}
 --- !u!114 &596609202
 MonoBehaviour:
@@ -1325,7 +1344,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e31323ebfee204999a61d239cf32a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colliders: []
+  _collidersMovement: []
+  _collidersCharacters: []
+  assignedEnemy: {fileID: 0}
 --- !u!114 &596609203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,7 +1359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa68efadecbfb74196d81a2f41cbe2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroSprite: {fileID: 0}
   roleName: 
   damage: 0
   gridDistance: 4
@@ -1609,7 +1629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4790864152848747073, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4790864152848747073, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
       propertyPath: m_TagString
@@ -1639,6 +1659,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4790864152848747073, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1199727731}
+    - targetCorrespondingSourceObject: {fileID: 4790864152848747073, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1199727735}
   m_SourcePrefab: {fileID: 100100000, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
 --- !u!1 &1111487930
 GameObject:
@@ -1810,6 +1833,7 @@ GameObject:
   - component: {fileID: 1180390044}
   - component: {fileID: 1180390045}
   - component: {fileID: 1180390047}
+  - component: {fileID: 1180390048}
   m_Layer: 0
   m_Name: mag
   m_TagString: Player
@@ -1942,7 +1966,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa68efadecbfb74196d81a2f41cbe2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroSprite: {fileID: -1155796564, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
   roleName: 
   damage: 0
   gridDistance: 0
@@ -1966,6 +1989,20 @@ MonoBehaviour:
   isSelected: 0
   tileDetector: {fileID: 0}
   targetEnemy: {fileID: 0}
+--- !u!114 &1180390048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180390040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1422a004cdc82d84dbb2dfa70c0650cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroSprite: {fileID: -1155796564, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
+  heroName: Gracz 2
 --- !u!1 &1195370491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,7 +2094,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199727722}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bc34cbeb5391ec4a82527e12092826c, type: 3}
   m_Name: 
@@ -2070,11 +2107,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199727722}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 257b774c2cad9634fae8a9481ab99de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1199727735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199727722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a87c658d2a46947bc6d5ff5668a518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectedMColliders: []
+  detectedCharacterColliders: []
+  aI: {fileID: 0}
 --- !u!1 &1261915424 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1718554470623465798, guid: 87159ecfaee68b641bef37dfb3a6443b, type: 3}
@@ -2171,7 +2223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227924c0259b9c34bb3741afe035b72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroSprite: {fileID: 0}
   roleName: 
   damage: 0
   gridDistance: 0
@@ -2213,7 +2264,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323845610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94dde5e43678f8d4e83422959a108604, type: 3}
   m_Name: 
@@ -2226,11 +2277,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323845610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6e8e201ca1c5314ba04ff535603e6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMarked: {fileID: 0}
+--- !u!114 &1323845625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323845610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84accdffc69822045b9073a76b25bd98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectedMColliders: []
+  detectedCharacterColliders: []
 --- !u!1 &1363497524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2467,6 +2533,7 @@ GameObject:
   - component: {fileID: 1543805768}
   - component: {fileID: 1543805772}
   - component: {fileID: 1543805774}
+  - component: {fileID: 1543805775}
   m_Layer: 0
   m_Name: piechota
   m_TagString: Player
@@ -2599,7 +2666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227924c0259b9c34bb3741afe035b72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroSprite: {fileID: 448876172, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
   roleName: Piechota
   damage: 0
   gridDistance: 0
@@ -2623,6 +2689,20 @@ MonoBehaviour:
   isSelected: 0
   tileDetector: {fileID: 0}
   targetEnemy: {fileID: 0}
+--- !u!114 &1543805775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1543805767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1422a004cdc82d84dbb2dfa70c0650cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroSprite: {fileID: 448876172, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
+  heroName: Gracz 1
 --- !u!1 &1670223308
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,7 +3223,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082182534}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 94dde5e43678f8d4e83422959a108604, type: 3}
   m_Name: 
@@ -3156,11 +3236,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082182534}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6e8e201ca1c5314ba04ff535603e6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMarked: {fileID: 0}
+--- !u!114 &2082182552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082182534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84accdffc69822045b9073a76b25bd98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectedMColliders: []
+  detectedCharacterColliders: []
 --- !u!4 &958384693997478347 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3281404708235997960, guid: 87159ecfaee68b641bef37dfb3a6443b, type: 3}
@@ -3173,11 +3268,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1261915424}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6e8e201ca1c5314ba04ff535603e6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMarked: {fileID: 0}
+--- !u!114 &958384693997478359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261915424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84accdffc69822045b9073a76b25bd98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectedMColliders: []
+  detectedCharacterColliders: []
 --- !u!1001 &5313429278246296528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3186,6 +3296,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 278057618}
     m_Modifications:
+    - target: {fileID: 750020033516469469, guid: 87159ecfaee68b641bef37dfb3a6443b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1718554470623465798, guid: 87159ecfaee68b641bef37dfb3a6443b, type: 3}
       propertyPath: m_Name
       value: tileDetector
@@ -3250,6 +3364,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1718554470623465798, guid: 87159ecfaee68b641bef37dfb3a6443b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 958384693997478353}
+    - targetCorrespondingSourceObject: {fileID: 1718554470623465798, guid: 87159ecfaee68b641bef37dfb3a6443b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 958384693997478359}
   m_SourcePrefab: {fileID: 100100000, guid: 87159ecfaee68b641bef37dfb3a6443b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

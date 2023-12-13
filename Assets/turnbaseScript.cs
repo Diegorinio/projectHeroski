@@ -23,17 +23,15 @@ public class turnbaseScript : MonoBehaviour
         quequeHeroes.AddRange(findPlayer);
     }
 
+    void Start(){
+        setTurn();
+    }
     // Update is called once per frame
     void Update()
     {
         selectedCheck=isSelected;
-        if (!selectedGameObject)
-        {
-            quequeHeroes[turn].GetComponent<characterController>().selectHero();
-        }
-        if (selectedGameObject.GetComponent<Enemy>())
-        {
-            selectedGameObject.GetComponent<enemyAI>().moveToRandomDirecion();
+        if(!IsHeroTurn()){
+            selectedGameObject.GetComponent<enemyAI>().randomAction();
         }
     }
     public int getTurn(){
@@ -47,6 +45,21 @@ public class turnbaseScript : MonoBehaviour
         }
         else{
             turn++;
+        }
+        setTurn();
+    }
+
+    public static bool IsHeroTurn(){
+        // if(selectedGameObject.GetComponent<Enemy>()){
+        //     return false;
+        // }
+        return selectedGameObject.GetComponent<Hero>();
+    }
+
+    public void setTurn(){
+        if (!selectedGameObject)
+        {
+            quequeHeroes[turn].GetComponent<characterController>().selectHero();
         }
     }
 }

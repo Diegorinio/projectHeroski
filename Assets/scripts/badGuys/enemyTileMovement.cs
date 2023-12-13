@@ -20,11 +20,10 @@ public class enemyTileMovement : MonoBehaviour
         {
             //Debug.Log("o boze o kurwa");
             GameObject colliderPlatform = collision.gameObject;
-            //colliderPlatform.GetComponent<SpriteRenderer>().color = Color.red;
             colliderPlatform.GetComponent<Tile>().isActive = true;
                 colliders.Add(collision);
         }
-        gameObject.GetComponentInParent<enemyAI>().changeColliders(colliders);
+        // gameObject.GetComponentInParent<enemyAI>().changeColliders(colliders);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

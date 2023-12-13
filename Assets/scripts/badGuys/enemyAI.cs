@@ -6,9 +6,14 @@ using System.Linq;
 public class enemyAI : MonoBehaviour
 {
     [SerializeField]
-    private List<Collider2D> _colliders = new List<Collider2D>();
+    private List<Collider2D> _collidersMovement = new List<Collider2D>();
+    [SerializeField]
+    private List<Collider2D> _collidersCharacters = new List<Collider2D>();
+    [SerializeField]
+    private Enemy assignedEnemy;
     void Start()
     {
+        assignedEnemy=gameObject.GetComponent<Enemy>();
         //gameObject.transform.position = _colliders[(Random.Range(0, _colliders.Count))].transform.position;
     }
 
@@ -17,21 +22,55 @@ public class enemyAI : MonoBehaviour
     {
         //gameObject.transform.position = _colliders[(Random.Range(0, _colliders.Count))].transform.position;
     }
-    public void changeColliders(List<Collider2D> colliders)
+    public void changeCollidersMovement(List<Collider2D> colliders)
     {
         //colliders = colliders.GroupBy(c => c.name).Select(d => d.First()).ToList();
-        resetColliders();
-        _colliders = colliders.GroupBy(c => c.name).Select(d => d.First()).ToList();
+        _collidersMovement.Clear();
+        _collidersMovement = colliders.GroupBy(c => c.name).Select(d => d.First()).ToList();
+    }
+    public void changeCollidersCharacters(List<Collider2D> colliders){
+        _collidersCharacters.Clear();
+        _collidersCharacters=colliders.GroupBy(c=>c.name).Select(d=>d.First()).ToList();
     }
     public void resetColliders()
     {
-        _colliders.Clear();
+        _collidersMovement.Clear();
+    }
+
+    public void randomAction(){
+        if(_collidersCharacters.Count>0){
+                    int r = Random.Range(0,2);
+        Debug.Log($"enemyAI selected action {r}");
+        switch (r){
+            case 0:
+            moveToRandomDirecion();
+            break;
+            case 1:
+            attackDamageToRandomPlayer();
+            break;
+        }
+        }
+        else{
+            moveToRandomDirecion();
+        }
     }
     public void moveToRandomDirecion()
     {
-        int id = Random.Range(0, _colliders.Count - 1);
-        Debug.Log($"moves list size {_colliders.Count} wybor id: {id}");
-        gameObject.transform.position = _colliders[(Random.Range(0, _colliders.Count - 1))].transform.position;
+        if(_collidersMovement.Count>0){
+        int id = Random.Range(0, _collidersMovement.Count - 1);
+        Debug.Log($"moves list size {_collidersMovement.Count} wybor id: {id}");
+        // gameObject.transform.position = _collidersMovement[id].transform.position;
+        gameObject.transform.position = _collidersMovement[id].transform.position;
         gameObject.GetComponent<characterController>().disableClickable();
+        }
+    }
+    public void attackDamageToRandomPlayer(){
+        if(_collidersCharacters.Count>0){
+        int id=Random.Range(0,_collidersCharacters.Count-1);
+        Hero selectedHero=_collidersCharacters[id].GetComponent<Hero>();
+        assignedEnemy.dealDamageTo(selectedHero);
+        gameObject.GetComponent<characterController>().disableClickable();
+        }
+
     }
 }

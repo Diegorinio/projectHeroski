@@ -16,8 +16,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     Sprite enemySprite;
     [SerializeField]
-    public GameObject target;
-    [SerializeField]
     public GameObject tileDetector;
     public void Awake()
     {
@@ -44,9 +42,10 @@ public class Enemy : MonoBehaviour
         throw new System.NotImplementedException();
     }
 
-    public void dealDamageTo(Role enemy)
+    public void dealDamageTo(Hero hero)
     {
-        throw new System.NotImplementedException();
+        int dmg = gameObject.GetComponent<Role>().getRandomAttack();
+        hero.getHit(dmg);
     }
     public void getHit(int dmg)
     {

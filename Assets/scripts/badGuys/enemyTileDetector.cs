@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyTileDetector : MonoBehaviour
 {
-
+    private List<Collider2D> colliders = new List<Collider2D>();
     public GameObject enemyMarked;
     void Start()
     {
@@ -17,7 +17,7 @@ public class enemyTileDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<characterController>())
+        if (collision.CompareTag("Player"))
         {
             if (!gameObject.GetComponentInParent<characterController>().targetEnemy)
             {
@@ -26,6 +26,13 @@ public class enemyTileDetector : MonoBehaviour
                 //gameObject.GetComponentInParent<enemyAI>().moveToRandomDirecion();
             }
         }
+        else if (collision.gameObject.CompareTag("platform"))
+        {
+            GameObject colliderPlatform = collision.gameObject;
+            colliderPlatform.GetComponent<Tile>().isActive = true;
+            colliders.Add(collision);
+        }
+        // gameObject.GetComponentInParent<enemyAI>().changeColliders(colliders);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -33,6 +40,11 @@ public class enemyTileDetector : MonoBehaviour
         {
             enemyMarked = null;
             gameObject.GetComponentInParent<characterController>().targetEnemy = null;
+        }
+        else if (collision.gameObject.CompareTag("platform"))
+        {
+            GameObject colliderPlatform = collision.gameObject;
+            colliderPlatform.GetComponent<Tile>().isActive = false;
         }
     }
 
@@ -42,10 +54,15 @@ public class enemyTileDetector : MonoBehaviour
     }
     private void OnDisable()
     {
-        //for (int x = 0; x < colliders.Count; x++)
-        //{
-        //    colliders[x].GetComponent<SpriteRenderer>().color = Color.white;
-        //    colliders[x].GetComponent<Block>().isActive = false;
-        //}
+        for (int x = 0; x < colliders.Count; x++)
+        {
+            colliders[x].GetComponent<SpriteRenderer>().color = Color.white;
+            colliders[x].GetComponent<Tile>().isActive = false;
+        }
+    }
+
+    public List<Collider2D> getColliders()
+    {
+        return colliders;
     }
 }

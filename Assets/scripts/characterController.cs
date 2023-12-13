@@ -36,12 +36,12 @@ public class characterController : MonoBehaviour
         turnbaseScript.isSelected=true;
         turnbaseScript.selectedGameObject = gameObject;
         tileDetector.SetActive(true);
+        // gameObject.GetComponent<Hero>().
         Camera.main.GetComponent<guiScript>().initializeGui();
 }
 public void disableClickable(){
     tileDetector.SetActive(false);
     turnbaseScript script = GameObject.FindObjectOfType<turnbaseScript>();
     script.nextTurn();
-    turnbaseScript.isSelected=false;
 }
 }
