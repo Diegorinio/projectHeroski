@@ -51,7 +51,8 @@ public class gridManager : MonoBehaviour
         GameObject[] heroes = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject hero in heroes)
         {
-            hero.transform.position = gridMap[Random.Range(0,8)].transform.position;
+            Vector3 nPos = gridMap[Random.Range(0,9)].transform.position;
+            hero.transform.position = new Vector3(nPos.x,nPos.y,hero.transform.position.z);
         }
         Debug.Log("ttt");
         //_camera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f,-10);
