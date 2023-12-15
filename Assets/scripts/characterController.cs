@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class characterController : MonoBehaviour
 {
     // public static GameObject selectedGameObject;
-    [SerializeField]
-    private GameObject selectedG;
-    [SerializeField]
-    bool isSelected;
+    // [SerializeField]
+    // private GameObject selectedG;
+    // [SerializeField]
+    // bool isSelected;
     [SerializeField]
     private GameObject tileDetector;
     public GameObject targetEnemy;

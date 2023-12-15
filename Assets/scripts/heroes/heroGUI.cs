@@ -12,10 +12,16 @@ public class heroGUI : MonoBehaviour
     [SerializeField]
     private  Text eventText;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         assignedHero=gameObject.GetComponent<Hero>();
+        Debug.Log($"{assignedHero.getHeroName()} init");
+        GameObject heroCanvas = gameObject.transform.Find("hero_canvas").gameObject;
+        assignedHero=gameObject.GetComponent<Hero>();
+        hpSlider=heroCanvas.transform.Find("hpSlider").GetComponent<Slider>();
+        eventText=heroCanvas.transform.Find("eventText").GetComponent<Text>();
         hpSlider.maxValue=assignedHero.getHealth();
+        Debug.Log($"{assignedHero.getHeroName()} init end");
     }
 
     // Update is called once per frame

@@ -12,9 +12,6 @@ public class Hero : MonoBehaviour
     [SerializeField]
     private string heroName;
     [SerializeField]
-    private Slider hpSlider;
-    [SerializeField]
-    private  Text eventText;
     private heroGUI _gui;
     public void Awake(){
         _gui=gameObject.GetComponent<heroGUI>();
@@ -46,14 +43,5 @@ public class Hero : MonoBehaviour
         health-=dmg;
         Debug.Log($"{this.name} otrzymal {dmg}");
         }
-    }
-    // public void setUpGUI(){
-    //     hpSlider.maxValue=health;
-    // }
-
-    IEnumerator showGuiEvent(float time){
-        eventText.enabled=true;
-        yield return new WaitForSeconds(time);
-        eventText.enabled=false;
     }
 }

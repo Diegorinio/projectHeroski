@@ -10,11 +10,9 @@ public class Pichota : Role
         roleName="Piechota";
         damage=0;
         gridDistance=16;
+        attacks[0]="cios z potylicy w kostke";
+        attacks[1]="aura miecza";
     }
-
-    // public void Start(){
-    //     Debug.Log($"Pierdolona piechota: {damage}, {getAttack(0)}, {getAttack(1)}");
-    // }
 
     public override int Attack1()
     {

@@ -49,15 +49,17 @@ public class Detector : MonoBehaviour
         else if (collider.gameObject.CompareTag("Enemy"))
         {
             markedCharacter= null;
-
-            gameObject.GetComponentInParent<characterController>().targetEnemy = null;
+            assignedCharacterController.targetEnemy=null;
         }
     }
     private void OnDisable()
     {
+        //tutaj wyskakuje blad, nie wiem co jest ale cos jest. Ale bez tego nie zmeinia koloru wiec nie wiem 
+        if(detectedMColliders.Count>0){
         foreach(Collider2D coll in detectedMColliders){
-            coll.GetComponent<SpriteRenderer>().color=Color.white;
+            // coll.GetComponent<SpriteRenderer>().color=Color.white;
             coll.GetComponent<Tile>().isActive=false;
+        }
         }
     }
 }

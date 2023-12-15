@@ -9,6 +9,8 @@ public class Mage : Role
         roleName = "Mag";
         damage = 80;
         gridDistance = 10;
+        attacks[0]="lodowy podmuch ";
+        attacks[1]="cios z karata";
     }
 
     public override int Attack1()

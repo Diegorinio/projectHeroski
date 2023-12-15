@@ -10,6 +10,8 @@ public class Knight : Role
         roleName = "Knight";
         damage = 50;
         gridDistance = 6;
+        attacks[0]="wir miecza";
+        attacks[1]="Z calej epy!";
     }
 
     public override int Attack1()
