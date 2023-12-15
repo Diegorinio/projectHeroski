@@ -40,7 +40,8 @@ public class turnbaseScript : MonoBehaviour
     public void nextTurn(){
         isSelected=false;
         selectedGameObject=null;
-        if(turn==quequeHeroes.Count-1){
+        Debug.Log($"Queque heroes size: {quequeHeroes.Count} and id is {turn}");
+        if(turn>=quequeHeroes.Count-1){
             turn=0;
         }
         else{
@@ -61,5 +62,9 @@ public class turnbaseScript : MonoBehaviour
         {
             quequeHeroes[turn].GetComponent<characterController>().selectHero();
         }
+    }
+
+    public void removeFromQueque(GameObject gObj){
+        quequeHeroes.Remove(gObj);
     }
 }

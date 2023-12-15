@@ -35,6 +35,7 @@ public class enemyAI : MonoBehaviour
     public void resetColliders()
     {
         _collidersMovement.Clear();
+        _collidersCharacters.Clear();
     }
 
     public void randomAction(){
@@ -60,7 +61,8 @@ public class enemyAI : MonoBehaviour
         int id = Random.Range(0, _collidersMovement.Count - 1);
         Debug.Log($"moves list size {_collidersMovement.Count} wybor id: {id}");
         // gameObject.transform.position = _collidersMovement[id].transform.position;
-        gameObject.transform.position = _collidersMovement[id].transform.position;
+        Transform rndCollider = _collidersMovement[id].transform;
+        gameObject.transform.position = new Vector3(rndCollider.position.x,rndCollider.position.y,gameObject.transform.position.z);
         gameObject.GetComponent<characterController>().disableClickable();
         }
     }
@@ -73,4 +75,5 @@ public class enemyAI : MonoBehaviour
         }
 
     }
+
 }

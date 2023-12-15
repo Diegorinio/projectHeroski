@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroSprite: {fileID: -1296829879, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
-  health: 150
+  health: 1
   heroName: Gracz 3
   hpSlider: {fileID: 1648481889}
 --- !u!1 &333722208
@@ -2703,7 +2703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroSprite: {fileID: -1155796564, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
-  health: 150
+  health: 1
   heroName: Gracz 2
   hpSlider: {fileID: 948112483}
 --- !u!1 &1195370491
@@ -2716,6 +2716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1195370493}
   - component: {fileID: 1195370492}
+  - component: {fileID: 1195370494}
   m_Layer: 0
   m_Name: controllers
   m_TagString: Untagged
@@ -2753,6 +2754,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195370494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195370491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912b95494cf4b7048aa57cae5528d40c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroes:
+  - {fileID: 1180390040}
+  - {fileID: 1543805767}
+  - {fileID: 278057615}
 --- !u!1 &1199727722 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4790864152848747073, guid: 3f8a82f359d51cb4e89887d7a94fc86d, type: 3}
@@ -3017,11 +3034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c1b230ae9612f45a06e2f746648a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  block: {fileID: 1059956116759675800, guid: 98c3288c1733be242a2a652eaf4f40c3, type: 3}
-  blockRef: {fileID: 595194772}
-  width: 10
-  height: 6
-  gridMap: []
 --- !u!4 &1309722351
 Transform:
   m_ObjectHideFlags: 0
@@ -3608,7 +3620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heroSprite: {fileID: 448876172, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
-  health: 150
+  health: 1
   heroName: Gracz 1
   hpSlider: {fileID: 948112483}
 --- !u!1 &1607840070

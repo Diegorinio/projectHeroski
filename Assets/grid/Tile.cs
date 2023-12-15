@@ -32,7 +32,7 @@ public class Tile : MonoBehaviour
         {
             GameObject player = turnbaseScript.selectedGameObject;
             Vector3 gObj = gameObject.transform.position;
-            player.transform.position = new Vector3(gObj.x, gObj.y, gObj.z - 2);
+            player.transform.position = new Vector3(gObj.x, gObj.y, player.transform.position.z);
             isActive = false;
             isTaken = true;
             player.GetComponent<characterController>().disableClickable();

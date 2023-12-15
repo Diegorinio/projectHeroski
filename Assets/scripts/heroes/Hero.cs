@@ -27,8 +27,16 @@ public class Hero : MonoBehaviour
     }
 
     public void getHit(int dmg){
+        if((health-dmg)<=0){
+            health=0;
+            GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
+            gameObject.SetActive(false);
+            this.enabled=false;
+        }
+        else{
         health-=dmg;
         Debug.Log($"{this.name} otrzymal {dmg}");
+        }
     }
 
     public void setUpGUI(){

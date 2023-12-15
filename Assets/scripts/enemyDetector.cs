@@ -23,8 +23,11 @@ public class enemyDetector : Detector{
     // }
     [SerializeField]
     private enemyAI aI;
-    private void Start(){
+    private void Awake()
+    {
         aI = gameObject.GetComponentInParent<enemyAI>();
+    }
+    private void Start(){
     }
     public override void OnTriggerEnter2D(Collider2D collider){
         if(collider.gameObject.CompareTag("platform")){
@@ -34,8 +37,8 @@ public class enemyDetector : Detector{
         }
         else if(collider.gameObject.GetComponent<Hero>()){
             // if(!assignedCharacterController.targetEnemy){
-            assignedCharacterController.targetEnemy=collider.gameObject;
-            markedCharacter=collider.gameObject;
+            // assignedCharacterController.targetEnemy=collider.gameObject;
+            // markedCharacter=collider.gameObject;
             Camera.main.GetComponent<guiScript>().initializeGui();
             detectedCharacterColliders.Add(collider);
             // }
@@ -43,6 +46,7 @@ public class enemyDetector : Detector{
         // Debug.Log($"Detected movement colliders : {detectedMColliders.Count}");
         aI.changeCollidersMovement(detectedMColliders);
         aI.changeCollidersCharacters(detectedCharacterColliders);
+        Debug.Log($"detected characters: {detectedCharacterColliders.Count}");
     }
 
     public override void OnTriggerExit2D(Collider2D collider){
@@ -55,9 +59,13 @@ public class enemyDetector : Detector{
         }
         else if (collider.gameObject.GetComponent<Hero>())
         {
-            markedCharacter= null;
-            assignedCharacterController.targetEnemy=null;
+            // markedCharacter= null;
+            // assignedCharacterController.targetEnemy=null;
             gameObject.GetComponentInParent<characterController>().targetEnemy = null;
+            detectedCharacterColliders=new List<Collider2D>();
+            detectedCharacterColliders=new List<Collider2D>();
+            aI.resetColliders();
         }
+        aI.resetColliders();
     }
 }
