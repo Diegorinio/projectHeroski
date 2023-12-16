@@ -14,7 +14,7 @@ public class turnbaseScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-       GameObject[] findPlayer = GameObject.FindGameObjectsWithTag("Player");
+       GameObject[] findPlayer = mainPlayer.teamHeroes.ToArray();
             foreach (GameObject o in findPlayer)
             {
                 quequeHeroes.Add(o);

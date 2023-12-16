@@ -13,6 +13,11 @@ public class Hero : MonoBehaviour
     private string heroName;
     [SerializeField]
     private heroGUI _gui;
+
+    public Hero(string name,int health){
+        heroName=name;
+        this.health=health;
+    }
     public void Awake(){
         _gui=gameObject.GetComponent<heroGUI>();
         gameObject.GetComponent<SpriteRenderer>().sprite=heroSprite;
@@ -23,6 +28,13 @@ public class Hero : MonoBehaviour
         // hpSlider.value=health;
     }
 
+    public void setHeroName(string name){
+        heroName=name;
+    }
+
+    public void setHeroHealth(int hp){
+        health=hp;
+    }
     public string getHeroName(){
         return heroName;
     }
@@ -43,5 +55,10 @@ public class Hero : MonoBehaviour
         health-=dmg;
         Debug.Log($"{this.name} otrzymal {dmg}");
         }
+    }
+
+    public override string ToString()
+    {
+        return $"Hero name: {heroName}";
     }
 }

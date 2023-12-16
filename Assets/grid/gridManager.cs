@@ -48,11 +48,14 @@ public class gridManager : MonoBehaviour
             firstPosY = 0;
             firstPosX += spacer;
         }
-        GameObject[] heroes = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] heroes = mainPlayer.teamHeroes.ToArray();
+        Debug.Log($"heroes size {heroes.Length}");
         foreach(GameObject hero in heroes)
         {
+            hero.transform.parent=null;
             Vector3 nPos = gridMap[Random.Range(0,9)].transform.position;
-            hero.transform.position = new Vector3(nPos.x,nPos.y,hero.transform.position.z);
+            hero.transform.position = new Vector3(nPos.x,nPos.y,-1);
+            hero.SetActive(true);
         }
         Debug.Log("ttt");
         //_camera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f,-10);

@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 1544754471039651848}
   - component: {fileID: 2722730260028655676}
   - component: {fileID: 7296653975935808273}
-  - component: {fileID: 5879991203543869503}
   - component: {fileID: 7779613001770424922}
-  - component: {fileID: 750020033516469469}
   m_Layer: 0
   m_Name: tileDetector
   m_TagString: Untagged
@@ -179,18 +177,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0079203, y: 0.99735993}
   m_EdgeRadius: 0
---- !u!114 &5879991203543869503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718554470623465798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6e8e201ca1c5314ba04ff535603e6bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &7779613001770424922
 Rigidbody2D:
   serializedVersion: 4
@@ -218,16 +204,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &750020033516469469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718554470623465798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94dde5e43678f8d4e83422959a108604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyMarked: {fileID: 0}

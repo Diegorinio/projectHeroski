@@ -11,8 +11,9 @@ public class mainPlayer : MonoBehaviour
     // Start is called before the first frame update
 
     void Awake(){
+        DontDestroyOnLoad(this);
         teamHeroes=heroes;
-        Debug.Log(teamHeroes[0].GetComponent<Hero>().getHeroName());
+        // Debug.Log(teamHeroes[0].GetComponent<Hero>().getHeroName());
     }
     void Start()
     {
@@ -23,5 +24,10 @@ public class mainPlayer : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public static void addToTeam(GameObject teamMember){
+        Debug.Log($"added to team new hero {teamMember.GetComponent<Hero>().getHeroName()} with class {teamMember.GetComponent<Role>().roleName}");
+        teamHeroes.Add(teamMember);
     }
 }
