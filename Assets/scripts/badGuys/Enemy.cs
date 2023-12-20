@@ -56,4 +56,11 @@ public class Enemy : MonoBehaviour
     public string getClassType(){
         return this.GetType().ToString();
     }
+
+    public void OnMouseDown(){
+        Debug.Log($"enemy selected {bossName}");
+        if(turnbaseScript.selectedGameObject.GetComponent<Hero>()){
+            turnbaseScript.selectedGameObject.GetComponent<characterController>().hitToSelectedTarget(this.gameObject);
+        }
+    }
 }

@@ -31,11 +31,12 @@ public class Tile : MonoBehaviour
         if (turnbaseScript.isSelected && isActive)
         {
             GameObject player = turnbaseScript.selectedGameObject;
-            Vector3 gObj = gameObject.transform.position;
-            player.transform.position = new Vector3(gObj.x, gObj.y, player.transform.position.z);
+            // Vector3 gObj = gameObject.transform.position;
+            // player.transform.position = new Vector3(gObj.x, gObj.y, player.transform.position.z);
+            player.GetComponent<characterController>().characterMove(gameObject.transform);
             isActive = false;
             isTaken = true;
-            player.GetComponent<characterController>().disableClickable();
+            // player.GetComponent<characterController>().disableClickable();
         }
         else
         {

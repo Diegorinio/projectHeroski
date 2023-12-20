@@ -8,7 +8,7 @@ public class enemyAI : MonoBehaviour
     [SerializeField]
     private List<Collider2D> _collidersMovement = new List<Collider2D>();
     [SerializeField]
-    private List<Collider2D> _collidersCharacters = new List<Collider2D>();
+    private List<GameObject> _collidersCharacters = new List<GameObject>();
     [SerializeField]
     private Enemy assignedEnemy;
     void Start()
@@ -28,7 +28,7 @@ public class enemyAI : MonoBehaviour
         _collidersMovement.Clear();
         _collidersMovement = colliders.GroupBy(c => c.name).Select(d => d.First()).ToList();
     }
-    public void changeCollidersCharacters(List<Collider2D> colliders){
+    public void changeCollidersCharacters(List<GameObject> colliders){
         _collidersCharacters.Clear();
         _collidersCharacters=colliders.GroupBy(c=>c.name).Select(d=>d.First()).ToList();
     }
@@ -62,8 +62,9 @@ public class enemyAI : MonoBehaviour
         Debug.Log($"moves list size {_collidersMovement.Count} wybor id: {id}");
         // gameObject.transform.position = _collidersMovement[id].transform.position;
         Transform rndCollider = _collidersMovement[id].transform;
-        gameObject.transform.position = new Vector3(rndCollider.position.x,rndCollider.position.y,gameObject.transform.position.z);
-        gameObject.GetComponent<characterController>().disableClickable();
+        // gameObject.transform.position = new Vector3(rndCollider.position.x,rndCollider.position.y,gameObject.transform.position.z);
+        gameObject.GetComponent<characterController>().characterMove(rndCollider);
+        // gameObject.GetComponent<characterController>().disableClickable();
         }
     }
     public void attackDamageToRandomPlayer(){

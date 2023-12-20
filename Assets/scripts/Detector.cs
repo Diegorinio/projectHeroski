@@ -10,7 +10,7 @@ public class Detector : MonoBehaviour
     public List<Collider2D> detectedCharacterColliders;
     [SerializeField]
     public GameObject markedCharacter{get;set;}
-    public characterController assignedCharacterController{get;set;}
+    public characterController assignedCharacterController;
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,6 +32,7 @@ public class Detector : MonoBehaviour
         else if(collider.gameObject.CompareTag("Enemy")){
             if(!assignedCharacterController.targetEnemy){
             assignedCharacterController.targetEnemy=collider.gameObject;
+            assignedCharacterController.addToTargets(collider.gameObject);
             markedCharacter=collider.gameObject;
             Camera.main.GetComponent<guiScript>().initializeGui();
             }
@@ -50,6 +51,7 @@ public class Detector : MonoBehaviour
         {
             markedCharacter= null;
             assignedCharacterController.targetEnemy=null;
+            assignedCharacterController.clearTargets();
         }
     }
     private void OnDisable()

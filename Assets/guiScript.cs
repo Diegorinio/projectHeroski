@@ -9,7 +9,6 @@ public class guiScript : MonoBehaviour
     public Text heroName;
     public Button[] attackBtns;
     public Text bossName;
-    private bool isHero=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,12 +29,13 @@ public class guiScript : MonoBehaviour
         // unsetAttacks();
         attackBtns[0].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacks[0];
         attackBtns[1].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacks[1];
-        GameObject enemyFound = turnbaseScript.selectedGameObject.GetComponent<characterController>().targetEnemy;
-        if(enemyFound!=null){
+        List<GameObject> enemyFound = turnbaseScript.selectedGameObject.GetComponent<characterController>().targets;
+        attackEvent atkEvent =turnbaseScript.selectedGameObject.GetComponent<attackEvent>();
+        if(enemyFound.Count>0){
             Role selectedRole = turnbaseScript.selectedGameObject.GetComponent<Role>();
-            Enemy enemy = enemyFound.GetComponent<Enemy>();
-            attackBtns[0].onClick.AddListener(()=>setAttack(selectedRole,enemy,0));
-            attackBtns[1].onClick.AddListener(()=>setAttack(selectedRole,enemy,1));
+            // Enemy enemy = enemyFound.GetComponent<Enemy>();
+            attackBtns[0].onClick.AddListener(()=>atkEvent.setDamageValue(selectedRole.getAttack(0)));
+            attackBtns[1].onClick.AddListener(()=>atkEvent.setDamageValue(selectedRole.getAttack(1)));
         }
     }
     public void setAttack(Role role,Enemy enemy,int id)
