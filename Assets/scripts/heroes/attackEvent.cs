@@ -20,7 +20,13 @@ public class attackEvent : MonoBehaviour
     }
 
     public void setDamageValue(int dmg){
-        damage=dmg;
-        isSet=true;
+        if(isSet && damage==dmg){
+        damage=0;
+        isSet=false;
+        }
+        else{
+            damage=dmg;
+            isSet=true;
+        }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// [RequireComponent(typeof(characterController))]
 public class Detector : MonoBehaviour
 {
     [SerializeField]
@@ -9,7 +10,7 @@ public class Detector : MonoBehaviour
     [SerializeField]
     public List<Collider2D> detectedCharacterColliders;
     [SerializeField]
-    public GameObject markedCharacter{get;set;}
+    // public GameObject markedCharacter{get;set;}
     public characterController assignedCharacterController;
     // Start is called before the first frame update
     void Awake()
@@ -30,12 +31,11 @@ public class Detector : MonoBehaviour
             detectedMColliders.Add(collider);
         }
         else if(collider.gameObject.CompareTag("Enemy")){
-            if(!assignedCharacterController.targetEnemy){
-            assignedCharacterController.targetEnemy=collider.gameObject;
+            // if(!assignedCharacterController.targetEnemy){
+            // assignedCharacterController.targetEnemy=collider.gameObject;
             assignedCharacterController.addToTargets(collider.gameObject);
-            markedCharacter=collider.gameObject;
+            // markedCharacter=collider.gameObject;
             Camera.main.GetComponent<guiScript>().initializeGui();
-            }
         }
     }
 
@@ -49,8 +49,8 @@ public class Detector : MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("Enemy"))
         {
-            markedCharacter= null;
-            assignedCharacterController.targetEnemy=null;
+            // markedCharacter= null;
+            // assignedCharacterController.targetEnemy=null;
             assignedCharacterController.clearTargets();
         }
     }

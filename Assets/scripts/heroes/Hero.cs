@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+// [RequireComponent(typeof(characterGUI))]
 public class Hero : MonoBehaviour
 {
     [SerializeField]
@@ -12,14 +12,9 @@ public class Hero : MonoBehaviour
     [SerializeField]
     private string heroName;
     [SerializeField]
-    private heroGUI _gui;
-
-    public Hero(string name,int health){
-        heroName=name;
-        this.health=health;
-    }
+    private  characterGUI _gui;
     public void Awake(){
-        _gui=gameObject.GetComponent<heroGUI>();
+        _gui=gameObject.GetComponent<characterGUI>();
         gameObject.GetComponent<SpriteRenderer>().sprite=heroSprite;
         // setUpGUI();
     }
@@ -56,6 +51,7 @@ public class Hero : MonoBehaviour
         Debug.Log($"{this.name} otrzymal {dmg}");
         }
     }
+
 
     public override string ToString()
     {

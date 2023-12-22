@@ -29,8 +29,12 @@ public abstract class Role : MonoBehaviour
     public int getRandomAttack(){
         return attackDmgs[Random.Range(0,attackDmgs.Length-1)];
     }
-    public void dealDamageTo(Enemy enemy, int dmg){
+    public void dealDamageTo(GameObject _target, int dmg){
         // Debug.Log($"attack id: {_atkID}");
-        enemy.getHit(dmg);
+        if(_target.GetComponent<Enemy>()){
+            _target.GetComponent<Enemy>().getHit(dmg);
+        }else if(_target.GetComponent<Hero>()){
+            _target.GetComponent<Hero>().getHit(dmg);
+        }
     }
 }

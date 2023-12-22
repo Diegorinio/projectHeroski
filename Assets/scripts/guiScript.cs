@@ -38,11 +38,11 @@ public class guiScript : MonoBehaviour
             attackBtns[1].onClick.AddListener(()=>atkEvent.setDamageValue(selectedRole.getAttack(1)));
         }
     }
-    public void setAttack(Role role,Enemy enemy,int id)
-    {
-        role.dealDamageTo(enemy, id);
-        turnbaseScript.selectedGameObject.GetComponent<characterController>().disableClickable();
-    }
+    // public void setAttack(Role role,Enemy enemy,int id)
+    // {
+    //     role.dealDamageTo(enemy, id);
+    //     turnbaseScript.selectedGameObject.GetComponent<characterController>().disableClickable();
+    // }
     public void unsetAttacks(){
         foreach(Button btn in attackBtns)
         {
