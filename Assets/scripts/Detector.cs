@@ -13,7 +13,7 @@ public class Detector : MonoBehaviour
     // public GameObject markedCharacter{get;set;}
     public characterController assignedCharacterController;
     // Start is called before the first frame update
-    void Awake()
+    public virtual void Awake()
     {
         assignedCharacterController = gameObject.GetComponentInParent<characterController>();
     }

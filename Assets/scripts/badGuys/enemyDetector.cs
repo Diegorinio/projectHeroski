@@ -23,12 +23,13 @@ public class enemyDetector : Detector{
     // }
     [SerializeField]
     private enemyAI aI;
-    private void Awake()
+    public override void Awake()
     {
         aI = gameObject.GetComponentInParent<enemyAI>();
         assignedCharacterController=gameObject.GetComponentInParent<characterController>();
     }
-    private void Start(){
+    void OnEnable(){
+        StartCoroutine(waaitForColliders());
     }
     public override void OnTriggerEnter2D(Collider2D collider){
         if(collider.gameObject.CompareTag("platform")){
@@ -70,5 +71,12 @@ public class enemyDetector : Detector{
             aI.resetColliders();
         }
         aI.resetColliders();
+    }
+
+    IEnumerator waaitForColliders(){
+        Debug.Log("enemy detector start looking for colliders");
+        yield return new WaitForSeconds(0.5f);
+        Debug.Log($"enemy detector stop looking for colliders, found {detectedMColliders.Count-1}");
+        aI.randomAction();
     }
 }
