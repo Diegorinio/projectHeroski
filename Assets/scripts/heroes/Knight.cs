@@ -8,20 +8,20 @@ public class Knight : Role
     {
         base.Awake();
         roleName = "Knight";
-        damage = 50;
+        damage = 25;
         gridDistance = 6;
-        attacks[0]="wir miecza";
-        attacks[1]="Z calej epy!";
+        attacksNames[0]="wir miecza";
+        attacksNames[1]="Z calej epy!";
     }
 
     public override int Attack1()
     {
-        return damage / 2;
+        return damage/2+(Random.Range(0,10));
     }
 
     public override int Attack2()
     {
-        return damage - (damage - Random.Range(10, 50));
+        return damage*2-Random.Range(10,15);
     }
     
 }

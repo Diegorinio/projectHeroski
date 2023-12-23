@@ -27,8 +27,8 @@ public class guiScript : MonoBehaviour
     {
         // int id = 0;
         // unsetAttacks();
-        attackBtns[0].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacks[0];
-        attackBtns[1].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacks[1];
+        attackBtns[0].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacksNames[0];
+        attackBtns[1].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacksNames[1];
         List<GameObject> enemyFound = turnbaseScript.selectedGameObject.GetComponent<characterController>().targets;
         attackEvent atkEvent =turnbaseScript.selectedGameObject.GetComponent<attackEvent>();
         if(enemyFound.Count>0){

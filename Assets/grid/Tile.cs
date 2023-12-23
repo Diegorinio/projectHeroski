@@ -20,7 +20,7 @@ public class Tile : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
-        else
+        else if(!isActive||isTaken)
         {
             gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         }
@@ -35,12 +35,25 @@ public class Tile : MonoBehaviour
             // player.transform.position = new Vector3(gObj.x, gObj.y, player.transform.position.z);
             player.GetComponent<characterController>().characterMove(gameObject.transform);
             isActive = false;
-            isTaken = true;
+            // isTaken = true;
             // player.GetComponent<characterController>().disableClickable();
         }
         else
         {
             Debug.Log("NIE");
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D obj){
+        if(obj.transform.CompareTag("Player")||obj.transform.CompareTag("Enemy")){
+            isTaken=true;
+            Debug.Log($"TILE: {obj.gameObject.transform.name}");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D obj){
+        if(obj.transform.CompareTag("Player")||obj.transform.CompareTag("Enemy")){
+            isTaken=false;
+            Debug.Log($"TILE detect leave: {obj.gameObject.transform.name}");
         }
     }
 

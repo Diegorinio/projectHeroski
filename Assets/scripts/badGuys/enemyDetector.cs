@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class enemyDetector : Detector{
@@ -48,6 +49,7 @@ public class enemyDetector : Detector{
             // }
         }
         // Debug.Log($"Detected movement colliders : {detectedMColliders.Count}");
+        detectedMColliders=detectedMColliders.GroupBy(c=>c.transform.name).Select(d=>d.First()).ToList();
         aI.changeCollidersMovement(detectedMColliders);
         aI.changeCollidersCharacters(assignedCharacterController.targets);
         // Debug.Log($"detected characters: {detectedCharacterColliders.Count}");
@@ -69,9 +71,9 @@ public class enemyDetector : Detector{
             detectedCharacterColliders=new List<Collider2D>();
             detectedCharacterColliders=new List<Collider2D>();
             assignedCharacterController.clearTargets();
-            aI.resetColliders();
+            aI.resetAIColliders();
         }
-        aI.resetColliders();
+        aI.resetAIColliders();
     }
 
     IEnumerator waaitForColliders(){

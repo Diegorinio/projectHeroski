@@ -7,10 +7,10 @@ public class Mage : Role
     public override void Awake()
     {
         roleName = "Mag";
-        damage = 80;
+        damage = 15;
         gridDistance = 10;
-        attacks[0]="lodowy podmuch ";
-        attacks[1]="cios z karata";
+        attacksNames[0]="lodowy podmuch ";
+        attacksNames[1]="cios z karata";
     }
 
     public override int Attack1()
@@ -20,6 +20,6 @@ public class Mage : Role
 
     public override int Attack2()
     {
-        return damage - (damage - Random.Range(10, 50));
+        return damage+(damage/(Random.Range(2,4)));
     }
 }

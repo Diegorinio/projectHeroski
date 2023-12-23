@@ -101,4 +101,23 @@ public class turnbaseScript : MonoBehaviour
         _gui.showPanel(false);
         setTurn();
     }
+
+    public void checkGameState(){
+        int enemies=0,heroes=0;
+        // int heroes=0;
+        foreach(var i in quequeHeroes){
+            if(i.GetComponent<Hero>()){
+                heroes++;
+            }
+            else if(i.GetComponent<Enemy>()){
+                enemies++;
+            }
+        }
+        if(heroes<=0){
+            Debug.Log($"Heroes defeated");
+        }
+        else if(enemies<=0){
+            Debug.Log($"Enemies defeated");
+        }
+    }
 }

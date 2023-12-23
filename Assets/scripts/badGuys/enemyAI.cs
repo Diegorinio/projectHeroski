@@ -26,16 +26,17 @@ public class enemyAI : MonoBehaviour
     {
         //colliders = colliders.GroupBy(c => c.name).Select(d => d.First()).ToList();
         _collidersMovement.Clear();
-        _collidersMovement = colliders.GroupBy(c => c.name).Select(d => d.First()).ToList();
+        _collidersMovement = colliders.GroupBy(c => c.GetComponent<Tile>().isActive).Select(d => d.First()).ToList();
     }
     public void changeCollidersCharacters(List<GameObject> colliders){
         _collidersCharacters.Clear();
         _collidersCharacters=colliders.GroupBy(c=>c.name).Select(d=>d.First()).ToList();
     }
-    public void resetColliders()
+    public void resetAIColliders()
     {
-        _collidersMovement.Clear();
-        _collidersCharacters.Clear();
+        Debug.Log($"enemyAI colliders clear");
+        _collidersMovement= new List<Collider2D>();
+        _collidersCharacters=new List<GameObject>();
     }
 
     public void randomAction(){
@@ -54,17 +55,19 @@ public class enemyAI : MonoBehaviour
         else{
             moveToRandomDirecion();
         }
+        resetAIColliders();
     }
     public void moveToRandomDirecion()
     {
         if(_collidersMovement.Count>0){
         int id = Random.Range(0, _collidersMovement.Count - 1);
-        Debug.Log($"moves list size {_collidersMovement.Count} wybor id: {id}");
+        Debug.Log($"moves list size {_collidersMovement.Count} wybor id: {id} move to tile: {_collidersMovement[id].transform.name}");
         // gameObject.transform.position = _collidersMovement[id].transform.position;
         Transform rndCollider = _collidersMovement[id].transform;
         // gameObject.transform.position = new Vector3(rndCollider.position.x,rndCollider.position.y,gameObject.transform.position.z);
         gameObject.GetComponent<characterController>().characterMove(rndCollider);
         // gameObject.GetComponent<characterController>().disableClickable();
+        // resetColliders();
         }
     }
     public void attackDamageToRandomPlayer(){
@@ -77,7 +80,7 @@ public class enemyAI : MonoBehaviour
         // selectedHero.GetComponent<characterController>().hitToSelectedTarget(sele)
         gameObject.GetComponent<characterController>().hitToSelectedTarget(selectedHero);
         // gameObject.GetComponent<characterController>().disableClickable();
-
+        // resetColliders();
         }
     }
 

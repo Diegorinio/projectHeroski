@@ -8,10 +8,10 @@ public class Piechota : Role
     public override void Awake()
     {
         roleName="Piechota";
-        damage=0;
+        damage=5;
         gridDistance=16;
-        attacks[0]="cios z potylicy w kostke";
-        attacks[1]="aura miecza";
+        attacksNames[0]="cios z potylicy w kostke";
+        attacksNames[1]="aura miecza";
     }
 
     public override int Attack1()
@@ -21,6 +21,6 @@ public class Piechota : Role
 
     public override int Attack2()
     {
-        return damage+1;
+        return damage+Random.Range(0,10);
     }
 }

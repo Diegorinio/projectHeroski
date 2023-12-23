@@ -27,7 +27,8 @@ public class Detector : MonoBehaviour
     public virtual void OnTriggerEnter2D(Collider2D collider){
         if(collider.gameObject.CompareTag("platform")){
             Tile tile = collider.gameObject.GetComponent<Tile>();
-            tile.isActive=true;
+            if(!tile.isBusy())
+                tile.isActive=true;
             detectedMColliders.Add(collider);
         }
         else if(collider.gameObject.CompareTag("Enemy")){
@@ -63,5 +64,11 @@ public class Detector : MonoBehaviour
             coll.GetComponent<Tile>().isActive=false;
         }
         }
+        clearDetectorColliders();
+    }
+
+    private void clearDetectorColliders(){
+        detectedMColliders=new List<Collider2D>();
+        detectedCharacterColliders=new List<Collider2D>();
     }
 }
