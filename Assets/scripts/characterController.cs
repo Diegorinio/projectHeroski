@@ -22,7 +22,7 @@ public class characterController : MonoBehaviour
     {
         assignedRole = gameObject.GetComponent<Role>();
         int dist = assignedRole.gridDistance;
-        Debug.Log($"dist: {dist}");
+        Debug.Log($"{assignedRole.roleName} selected, distance{dist}");
         tileDetector=gameObject.transform.Find("tileDetector").gameObject;
         tileDetector.transform.localScale = new Vector3(dist, dist, dist);
         tileDetector.SetActive(false);

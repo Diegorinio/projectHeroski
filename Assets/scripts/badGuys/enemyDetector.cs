@@ -29,7 +29,8 @@ public class enemyDetector : Detector{
         assignedCharacterController=gameObject.GetComponentInParent<characterController>();
     }
     void OnEnable(){
-        StartCoroutine(waaitForColliders());
+        if(!turnbaseScript.IsHeroTurn())
+            StartCoroutine(waaitForColliders());
     }
     public override void OnTriggerEnter2D(Collider2D collider){
         if(collider.gameObject.CompareTag("platform")){

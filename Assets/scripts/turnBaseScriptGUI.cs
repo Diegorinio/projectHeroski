@@ -11,14 +11,14 @@ public class turnBaseScriptGUI : MonoBehaviour
     private Text roundTextGameUI;
     [SerializeField]
     private Text roundTextPanelUI;
-    [SerializeField]
-    public float panelShowTime{get;private set;}
+    // [SerializeField]
+    public float panelShowTime;
 
     void Awake(){
         // roundStartPanel=GameObject.Find("roundStartPanel");
         roundTextGameUI=GameObject.Find("roundText").GetComponent<Text>();
         roundTextPanelUI=roundStartPanel.transform.Find("roundTextPanel").GetComponent<Text>();
-        panelShowTime=1.5f;
+        // panelShowTime=1.5f;
     }
 
     public void setGUI(int round){
