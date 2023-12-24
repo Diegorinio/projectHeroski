@@ -48,7 +48,7 @@ public class gridManager : MonoBehaviour
             firstPosY = 0;
             firstPosX += spacer;
         }
-        GameObject[] heroes = mainPlayer.teamHeroes.ToArray();
+        GameObject[] heroes = mainPlayer.Instance.getHeroes();
         Debug.Log($"heroes size {heroes.Length}");
         foreach(GameObject hero in heroes)
         {

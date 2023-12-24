@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class mainPlayer : MonoBehaviour
 {
+    public static mainPlayer Instance{get;private set;}
     //jak narazie na staticach
-    public static List<GameObject> teamHeroes;
-    [SerializeField]
-    private List<GameObject> heroes;
+    public List<GameObject> teamHeroes;
     // Start is called before the first frame update
-
     void Awake(){
-        DontDestroyOnLoad(this);
-        teamHeroes=heroes;
+        if(Instance==null){
+        Instance=this;
+        DontDestroyOnLoad(gameObject);
+        // teamHeroes=heroes;
+        }
+        // else{
+        //     Destroy(gameObject);
+        // }
         // Debug.Log(teamHeroes[0].GetComponent<Hero>().getHeroName());
+    }
+
+    public GameObject[] getHeroes(){
+        return teamHeroes.ToArray();
     }
     void Start()
     {
@@ -26,8 +34,10 @@ public class mainPlayer : MonoBehaviour
         
     }
 
-    public static void addToTeam(GameObject teamMember){
+    public void addToTeam(GameObject teamMember){
+        if(teamHeroes.Count<5){
         Debug.Log($"added to team new hero {teamMember.GetComponent<Hero>().getHeroName()} with class {teamMember.GetComponent<Role>().roleName}");
         teamHeroes.Add(teamMember);
+        }
     }
 }

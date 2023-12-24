@@ -73,7 +73,7 @@ public class tavernHeroGenerator : MonoBehaviour
             break;
         }
         Debug.Log($"Character added: {tmpHero.getHeroName()} with role {newHero.GetComponent<Role>().roleName}");
-        mainPlayer.addToTeam(newHero);
+        mainPlayer.Instance.addToTeam(newHero);
         newHero.transform.name=heroName;
         newHero.transform.SetParent(GameObject.Find("mainPlayerManager").gameObject.transform);
         newHero.transform.position=GameObject.Find("mainPlayerManager").gameObject.transform.position;

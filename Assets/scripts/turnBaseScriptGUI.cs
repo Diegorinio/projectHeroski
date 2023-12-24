@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class turnBaseScriptGUI : MonoBehaviour
 {
     [SerializeField]
+    GameObject gameStatePanel;
+    [SerializeField]
     GameObject roundStartPanel;
     [SerializeField]
     private Text roundTextGameUI;
@@ -28,6 +30,12 @@ public class turnBaseScriptGUI : MonoBehaviour
 
     public void showPanel(bool state){
         roundStartPanel.SetActive(state);
+    }
+
+    public void gameStateGameOver(string winner){
+        Text state = gameStatePanel.transform.Find("gameStateText").gameObject.GetComponent<Text>();
+        state.text = winner;
+        gameStatePanel.SetActive(true);
     }
     // Start is called before the first frame update
     void Start()

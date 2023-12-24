@@ -18,11 +18,15 @@ public class turnbaseScript : MonoBehaviour
     // [SerializeField]
     private int round=1;
     turnBaseScriptGUI _gui;
+
+    [SerializeField]
+    private bool isFinished=false;
+    private bool isWin=false;
     // Start is called before the first frame update
     void Awake()
     {
         _gui=gameObject.GetComponent<turnBaseScriptGUI>();
-       GameObject[] findPlayer = mainPlayer.teamHeroes.ToArray();
+       GameObject[] findPlayer = mainPlayer.Instance.getHeroes();
             foreach (GameObject o in findPlayer)
             {
                 quequeHeroes.Add(o);
@@ -51,6 +55,8 @@ public class turnbaseScript : MonoBehaviour
     public void nextTurn(){
         isSelected=false;
         selectedGameObject=null;
+        checkGameState();
+        if(!isFinished){
         Debug.Log($"Queque heroes size: {quequeHeroes.Count} and id is {turn}");
         if(turn>=quequeHeroes.Count-1){
             turn=0;
@@ -66,6 +72,17 @@ public class turnbaseScript : MonoBehaviour
         }
         else{
         setTurn();
+        }
+        }
+        else{
+            if(isWin){
+                Debug.Log($"Koniec gry player wins");
+                _gui.gameStateGameOver("Win");
+            }
+            else{
+                Debug.Log($"Koniec gry enemies win");
+                _gui.gameStateGameOver("Lose");
+            }
         }
         // StartCoroutine(roundStart());
     }
@@ -114,10 +131,14 @@ public class turnbaseScript : MonoBehaviour
             }
         }
         if(heroes<=0){
-            Debug.Log($"Heroes defeated");
+            Debug.Log($"Heroes lose");
+            isFinished=true;
+            isWin=false;
         }
         else if(enemies<=0){
-            Debug.Log($"Enemies defeated");
+            Debug.Log($"Heroes win");
+            isFinished=true;
+            isWin=true;
         }
     }
 }
