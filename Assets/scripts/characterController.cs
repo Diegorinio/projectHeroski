@@ -95,4 +95,8 @@ public void addToTargets(GameObject trg){
 public void clearTargets(){
     targets.Clear();
 }
+
+public void setTile(Tile tile){
+    assignedTile=tile;
+}
 }

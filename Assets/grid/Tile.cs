@@ -29,7 +29,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (turnbaseScript.isSelected && isActive)
+        if (turnbaseScript.isSelected && isActive && !isTaken)
         {
             GameObject player = turnbaseScript.selectedGameObject;
             // Vector3 gObj = gameObject.transform.position;

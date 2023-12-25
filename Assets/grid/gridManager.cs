@@ -56,9 +56,12 @@ public class gridManager : MonoBehaviour
         foreach(GameObject hero in heroes)
         {
             hero.transform.parent=null;
-            hero.GetComponent<characterController>().characterMove(gridMap[Random.Range(0,9)].gameObject);
-            // Vector3 nPos = gridMap[Random.Range(0,9)].transform.position;
-            // hero.transform.position = new Vector3(nPos.x,nPos.y,-1);
+            // hero.GetComponent<characterController>().characterMove(gridMap[Random.Range(0,9)].gameObject);
+            int rnd = Random.Range(0,9);
+            gridMap[rnd].makeBusy();
+            hero.GetComponent<characterController>().setTile(gridMap[rnd]);
+            Vector3 nPos = gridMap[rnd].transform.position;
+            hero.transform.position = new Vector3(nPos.x,nPos.y,-1);
             hero.SetActive(true);
         }
         Debug.Log("ttt");

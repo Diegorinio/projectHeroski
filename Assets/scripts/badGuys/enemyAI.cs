@@ -63,6 +63,9 @@ public class enemyAI : MonoBehaviour
         int id = Random.Range(0, _collidersMovement.Count - 1);
         Debug.Log($"moves list size {_collidersMovement.Count} wybor id: {id} move to tile: {_collidersMovement[id].transform.name}");
         // gameObject.transform.position = _collidersMovement[id].transform.position;
+        if(_collidersMovement[id].GetComponent<Tile>().isBusy()){
+            moveToRandomDirecion();
+        }
         Transform rndCollider = _collidersMovement[id].transform;
         // gameObject.transform.position = new Vector3(rndCollider.position.x,rndCollider.position.y,gameObject.transform.position.z);
         gameObject.GetComponent<characterController>().characterMove(rndCollider.gameObject);
