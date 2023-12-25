@@ -37,6 +37,6 @@ public class characterGUI : MonoBehaviour
 
     public void displayGuiEvent(string eventVal){
         eventText.text=eventVal;
-        StartCoroutine(showGuiEvent(20));
+        StartCoroutine(showGuiEvent(2));
     }
 }

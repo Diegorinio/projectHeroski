@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5900491252553938594}
   - component: {fileID: 6775817831872389973}
   - component: {fileID: 6101126443454628349}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: hero_canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 6292261561935984263}
   - component: {fileID: 2143966291925812408}
   - component: {fileID: 8927022676616174566}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 5139710551662516196}
   - component: {fileID: 8300661312744507973}
   - component: {fileID: 7683475678688927276}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: eventText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +526,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4743545984637685982}
   - component: {fileID: 6276237540049827955}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: hpSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 6945974688066553074}
   - component: {fileID: 5660541024610189379}
   - component: {fileID: 8664640928524635813}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -689,7 +689,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4333134146983801611}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -18,6 +18,9 @@ public class characterController : MonoBehaviour
     public List<GameObject> targets=new List<GameObject>();
     [SerializeField]
     private Role assignedRole;
+
+    [SerializeField]
+    private Tile assignedTile;
     void Start()
     {
         assignedRole = gameObject.GetComponent<Role>();
@@ -46,10 +49,17 @@ public class characterController : MonoBehaviour
         // Camera.main.GetComponent<guiScript>().initializeGui();
 }
 
-public void characterMove(Transform _newTransform){
+public void characterMove(GameObject _newTransform){
+    if(assignedTile!=null){
+    assignedTile.GetComponent<Tile>().unMakeBusy();
+    assignedTile=null;
+    }
     Vector3 gObj = _newTransform.transform.position;
     gameObject.transform.position = new Vector3(gObj.x, gObj.y, -1);
     disableClickable();
+    _newTransform.GetComponent<Tile>().makeBusy();
+    assignedTile=_newTransform.GetComponent<Tile>();
+    // assignedTile.unMakeBusy();
 }
 
 //Dobra troche namieszalem z atakami ale to może kiedy sie poprawi XD

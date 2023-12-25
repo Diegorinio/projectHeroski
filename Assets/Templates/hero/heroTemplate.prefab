@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 9020007761864673793}
   - component: {fileID: 6390306850491678754}
   - component: {fileID: 3817858890851513138}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: hero_canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 3545426099007060622}
   - component: {fileID: 7810090898245359743}
   - component: {fileID: 8890881304990529048}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: eventText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 8392438235497617217}
   - component: {fileID: 3476708233864220484}
   - component: {fileID: 48642625201685003}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: heroTemplate
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -704,6 +704,10 @@ PrefabInstance:
     - target: {fileID: 6379656502737119248, guid: 5f1dc8ae59456c247857b3c1da921bf2, type: 3}
       propertyPath: m_Name
       value: tileDetector
+      objectReference: {fileID: 0}
+    - target: {fileID: 6379656502737119248, guid: 5f1dc8ae59456c247857b3c1da921bf2, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

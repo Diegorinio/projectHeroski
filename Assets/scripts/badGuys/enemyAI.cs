@@ -65,7 +65,7 @@ public class enemyAI : MonoBehaviour
         // gameObject.transform.position = _collidersMovement[id].transform.position;
         Transform rndCollider = _collidersMovement[id].transform;
         // gameObject.transform.position = new Vector3(rndCollider.position.x,rndCollider.position.y,gameObject.transform.position.z);
-        gameObject.GetComponent<characterController>().characterMove(rndCollider);
+        gameObject.GetComponent<characterController>().characterMove(rndCollider.gameObject);
         // gameObject.GetComponent<characterController>().disableClickable();
         // resetColliders();
         }
