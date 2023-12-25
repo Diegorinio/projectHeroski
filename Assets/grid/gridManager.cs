@@ -8,17 +8,20 @@ public class gridManager : MonoBehaviour
     [SerializeField]
     private int width, height;
     [SerializeField]
+    private int widthSplit,heigthSplit;//10,6
+    [SerializeField]
     private Tile _tilePreset;
     [SerializeField]
     private Transform _camera;
     [SerializeField] float offsetX, offsetY;
     [SerializeField] float spacer;
+    
     // Start is called before the first frame update
     List<Tile> gridMap = new List<Tile>();
     void Start()
     {
-        offsetX = Screen.width / 10;
-        offsetY = Screen.height / 6;
+        offsetX = Screen.width / widthSplit;
+        offsetY = Screen.height / heigthSplit;
         generateGrid();
     }
 
