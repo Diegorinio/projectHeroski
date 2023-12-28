@@ -35,6 +35,7 @@ public class mainPlayer : MonoBehaviour
     }
 
     public void addToTeam(GameObject teamMember){
+        //size tylko chwilowo
         if(teamHeroes.Count<5){
         Debug.Log($"added to team new hero {teamMember.GetComponent<Hero>().getHeroName()} with class {teamMember.GetComponent<Role>().roleName}");
         teamHeroes.Add(teamMember);

@@ -31,8 +31,10 @@ public class turnbaseScript : MonoBehaviour
             {
                 quequeHeroes.Add(o);
             } 
-        findPlayer = GameObject.FindGameObjectsWithTag("Enemy");
-        quequeHeroes.AddRange(findPlayer);
+        // findPlayer = GameObject.FindGameObjectsWithTag("Enemy");
+        // quequeHeroes.AddRange(findPlayer);
+        GameObject[] findEnemies=mainEnemies.Instance.getEnemies();
+            quequeHeroes.AddRange(findEnemies);
         // turnText=GameObject.Find("roundText").GetComponent<Text>();
         // turnText.text=round.ToString();
     }

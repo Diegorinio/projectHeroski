@@ -64,6 +64,16 @@ public class gridManager : MonoBehaviour
             hero.transform.position = new Vector3(nPos.x,nPos.y,-1);
             hero.SetActive(true);
         }
+        GameObject[] enemies = mainEnemies.Instance.getEnemies();
+        foreach(GameObject enemy in enemies){
+            enemy.transform.parent=null;
+            int rnd=Random.Range(gridMap.Count-1,gridMap.Count-9);
+            gridMap[rnd].makeBusy();
+            enemy.GetComponent<characterController>().setTile(gridMap[rnd]);
+            Vector3 nPos = gridMap[rnd].transform.position;
+            enemy.transform.position = new Vector3(nPos.x,nPos.y,-1);
+            enemy.SetActive(true);
+        }
         Debug.Log("ttt");
         //_camera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f,-10);
     }
