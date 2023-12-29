@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class tavernHeroGenerator : MonoBehaviour
 {
+    [SerializeField]
+    characterGenerator Generator;
     public GameObject template;
     //ui elements
     Image _heroImg;
@@ -26,6 +28,8 @@ public class tavernHeroGenerator : MonoBehaviour
     // Start is called before the first frame update
 
     void Awake(){
+        Generator = gameObject.transform.parent.GetComponent<characterGenerator>();
+        Debug.Log($"parent {gameObject.transform.parent.name}");
         _heroImg=gameObject.transform.Find("heroImage").GetComponent<Image>();
         _heroRoleText=gameObject.transform.Find("hero_role").GetComponent<Text>();
         _heroNameText=gameObject.transform.Find("hero_name").GetComponent<Text>();
@@ -37,17 +41,6 @@ public class tavernHeroGenerator : MonoBehaviour
         // roles[Random.Range(0,roles.Length-1)];
         _heroRoleText.text=roles[Random.Range(0,roles.Length-1)];
         type=_heroRoleText.text;
-        // switch(type){
-        //     case "knight":
-        //     role=new Knight();
-        //     break;
-        //     case "mage":
-        //     role=new Mage();
-        //     break;
-        //     case "piechota":
-        //     role=new Piechota();
-        //     break;
-        // }
     }
 
     // Update is called once per frame
@@ -57,22 +50,24 @@ public class tavernHeroGenerator : MonoBehaviour
     }
 
     void OnMouseDown(){
-        GameObject newHero= Instantiate(template,Vector3.zero,Quaternion.identity);
+        // GameObject newHero= Instantiate(template,Vector3.zero,Quaternion.identity);
+        // Hero tmpHero = newHero.GetComponent<Hero>();
+        // tmpHero.setHeroName(heroName);
+        // tmpHero.setHeroHealth(100);
+        // switch(type){
+        //     case "knight":
+        //     newHero.AddComponent<Knight>();
+        //     break;
+        //     case "mage":
+        //     newHero.AddComponent<Mage>();
+        //     break;
+        //     case "piechota":
+        //     newHero.AddComponent<Piechota>();
+        //     break;
+        // }
+        GameObject newHero = Generator.generateRandomCharacter(characterGenerator.characterType.Hero);
         Hero tmpHero = newHero.GetComponent<Hero>();
         tmpHero.setHeroName(heroName);
-        tmpHero.setHeroHealth(100);
-        switch(type){
-            case "knight":
-            newHero.AddComponent<Knight>();
-            break;
-            case "mage":
-            newHero.AddComponent<Mage>();
-            break;
-            case "piechota":
-            newHero.AddComponent<Piechota>();
-            break;
-        }
-        Debug.Log($"Character added: {tmpHero.getHeroName()} with role {newHero.GetComponent<Role>().roleName}");
         mainPlayer.Instance.addToTeam(newHero);
         newHero.transform.name=heroName;
         newHero.transform.SetParent(GameObject.Find("mainPlayerManager").gameObject.transform);

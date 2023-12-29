@@ -11,9 +11,8 @@ public class Hero : MonoBehaviour
     private int health;
     [SerializeField]
     private string heroName;
-    [SerializeField]
-    private  characterGUI _gui;
-    public void Awake(){
+    public  characterGUI _gui{get;set;}
+    public virtual void Awake(){
         _gui=gameObject.GetComponent<characterGUI>();
         gameObject.GetComponent<SpriteRenderer>().sprite=heroSprite;
         // setUpGUI();

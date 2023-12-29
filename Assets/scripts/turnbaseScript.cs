@@ -93,7 +93,7 @@ public class turnbaseScript : MonoBehaviour
         // if(selectedGameObject.GetComponent<Enemy>()){
         //     return false;
         // }
-        return selectedGameObject.GetComponent<Hero>();
+        return selectedGameObject.CompareTag("Player");
     }
 
     public void setTurn(){
@@ -125,10 +125,10 @@ public class turnbaseScript : MonoBehaviour
         int enemies=0,heroes=0;
         // int heroes=0;
         foreach(var i in quequeHeroes){
-            if(i.GetComponent<Hero>()){
+            if(i.CompareTag("Player")){
                 heroes++;
             }
-            else if(i.GetComponent<Enemy>()){
+            else if(i.CompareTag("Enemy")){
                 enemies++;
             }
         }

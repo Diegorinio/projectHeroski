@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class randomMapEventGenerator : MonoBehaviour,IPointerClickHandler
 {
+    characterGenerator Generator;
     public GameObject template;
     [SerializeField]
     private List<GameObject> enemiesList;
@@ -23,6 +24,7 @@ public class randomMapEventGenerator : MonoBehaviour,IPointerClickHandler
     Button fightBtn;
 
     void Awake(){
+        Generator=gameObject.transform.parent.GetComponent<characterGenerator>();
         eventPanel=gameObject.transform.Find("eventInfoPanel").gameObject;
         eventNameText=eventPanel.transform.Find("eventName").GetComponent<Text>();
         eventNameText.text=eventNames[Random.Range(0,eventNames.Length-1)];
@@ -53,23 +55,24 @@ public class randomMapEventGenerator : MonoBehaviour,IPointerClickHandler
         Debug.Log($"{enemiesAmount}");
         for(int x=0;x<enemiesAmount;x++){
             Debug.Log("enemy initialize"+enemiesAmount.ToString()+" "+x.ToString());
-            GameObject newEnemy = Instantiate(template,Vector3.zero,Quaternion.identity);
+            GameObject newEnemy = Generator.generateRandomCharacter(characterGenerator.characterType.Enemy);
             Enemy tmpEnemy = newEnemy.GetComponent<Enemy>();
-            string name=names[Random.Range(0,names.Length-1)];
+            string name = names[Random.Range(0,names.Length-1)];
+            // string name=names[Random.Range(0,names.Length-1)];
             tmpEnemy.setHeroName(name);
             tmpEnemy.setHeroHealth(120);
-            type=roles[Random.Range(0,roles.Length-1)];
-            switch(type){
-                case "knight":
-                newEnemy.AddComponent<Knight>();
-                break;
-                case "mage":
-                newEnemy.AddComponent<Mage>();
-                break;
-                case "piechota":
-                newEnemy.AddComponent<Piechota>();
-                break;
-            }
+            // type=roles[Random.Range(0,roles.Length-1)];
+            // switch(type){
+            //     case "knight":
+            //     newEnemy.AddComponent<Knight>();
+            //     break;
+            //     case "mage":
+            //     newEnemy.AddComponent<Mage>();
+            //     break;
+            //     case "piechota":
+            //     newEnemy.AddComponent<Piechota>();
+            //     break;
+            // }
             newEnemy.transform.name=name;
             eventEnemiesText.text+=$"\n{name}";
             // newEnemy.transform.position=mainPlayer.Instance.gameObject.transform.position;

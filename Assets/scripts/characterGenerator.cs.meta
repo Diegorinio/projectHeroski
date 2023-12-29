@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: c5ff115ee7f1fc64cacb18e24fd14f2b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - heroTemplate: {fileID: 7903013642338928715, guid: 2a95c9d966cb458418e60a7e35b3a261, type: 3}
+  - enemyTemplate: {fileID: 2853562460873022744, guid: 0522d0aa459d9484e9f8d3345961db1f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

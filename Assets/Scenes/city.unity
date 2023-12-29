@@ -201,7 +201,6 @@ GameObject:
   m_Component:
   - component: {fileID: 13946288}
   - component: {fileID: 13946290}
-  - component: {fileID: 13946289}
   - component: {fileID: 13946291}
   - component: {fileID: 13946292}
   m_Layer: 0
@@ -227,19 +226,6 @@ Transform:
   - {fileID: 1151988767}
   m_Father: {fileID: 2082761172}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &13946289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 13946287}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102d55ace33a28646b2e47fdaffa08ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 1151988766}
 --- !u!212 &13946290
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -771,6 +757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcd2d5f7f268af42bc8fd4e4d058c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Generator: {fileID: 0}
   template: {fileID: 7903013642338928715, guid: 2a95c9d966cb458418e60a7e35b3a261, type: 3}
   heroImage: {fileID: -1155796564, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
   heroName: 
@@ -1036,6 +1023,7 @@ GameObject:
   - component: {fileID: 1151988770}
   - component: {fileID: 1151988769}
   - component: {fileID: 1151988768}
+  - component: {fileID: 1151988771}
   m_Layer: 5
   m_Name: tavernPanel
   m_TagString: Untagged
@@ -1150,6 +1138,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151988766}
   m_CullTransparentMesh: 1
+--- !u!114 &1151988771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151988766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ff115ee7f1fc64cacb18e24fd14f2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroTemplate: {fileID: 7903013642338928715, guid: 2a95c9d966cb458418e60a7e35b3a261, type: 3}
+  enemyTemplate: {fileID: 2853562460873022744, guid: 0522d0aa459d9484e9f8d3345961db1f, type: 3}
 --- !u!1 &1235106402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,6 +1569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcd2d5f7f268af42bc8fd4e4d058c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Generator: {fileID: 0}
   template: {fileID: 7903013642338928715, guid: 2a95c9d966cb458418e60a7e35b3a261, type: 3}
   heroImage: {fileID: -1155796564, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
   heroName: 
@@ -2297,6 +2300,14 @@ PrefabInstance:
     - target: {fileID: 5471681712266952105, guid: dacef961c5b7f1ddb84c39159fd8a325, type: 3}
       propertyPath: m_Name
       value: tavernHeroTemplate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842973678824564286, guid: dacef961c5b7f1ddb84c39159fd8a325, type: 3}
+      propertyPath: Generator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842973678824564286, guid: dacef961c5b7f1ddb84c39159fd8a325, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

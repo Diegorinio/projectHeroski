@@ -6,11 +6,6 @@ using UnityEngine.UI;
 // [RequireComponent(typeof(Role))]
 public class characterController : MonoBehaviour
 {
-    // public static GameObject selectedGameObject;
-    // [SerializeField]
-    // private GameObject selectedG;
-    // [SerializeField]
-    // bool isSelected;
     [SerializeField]
     private GameObject tileDetector;
     // public GameObject targetEnemy;
@@ -29,16 +24,6 @@ public class characterController : MonoBehaviour
         tileDetector=gameObject.transform.Find("tileDetector").gameObject;
         tileDetector.transform.localScale = new Vector3(dist, dist, dist);
         tileDetector.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    private void OnMouseDown()
-    {
     }
 
     public void selectHero(){
@@ -70,16 +55,6 @@ public void hitToSelectedTarget(GameObject target){
         assignedRole.dealDamageTo(target,dmg);
         atkEvent.isSet=false;
         disableClickable();
-    // if(target.GetComponent<Enemy>()){
-    //     Enemy trg = target.GetComponent<Enemy>();
-    //     assignedRole.dealDamageTo(trg,dmg);
-    //     atkEvent.isSet=false;
-    //     disableClickable();
-    // }
-    // else{
-    //     Hero trg = target.GetComponent<Hero>();
-    //     assignedRole.dealDamageTo(trg,dmg);
-    // }
     }
 }
 public void disableClickable(){

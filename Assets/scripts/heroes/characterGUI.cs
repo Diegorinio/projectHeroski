@@ -8,7 +8,7 @@ public class characterGUI : MonoBehaviour
     [SerializeField]
     Hero assignedHero;
     [SerializeField]
-    public Slider hpSlider;
+    public Slider hpSlider{get;set;}
     [SerializeField]
     public  Text eventText;
     // Start is called before the first frame update

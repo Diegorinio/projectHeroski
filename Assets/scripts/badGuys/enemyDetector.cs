@@ -39,41 +39,39 @@ public class enemyDetector : Detector{
             tile.isActive=true;
             detectedMColliders.Add(collider);
         }
-        else if(collider.gameObject.GetComponent<Hero>()){
+        else if(collider.gameObject.CompareTag("Player")){
             // if(!assignedCharacterController.targetEnemy){
             // assignedCharacterController.targetEnemy=collider.gameObject;
             // markedCharacter=collider.gameObject;
             // Camera.main.GetComponent<guiScript>().initializeGui();
-            // detectedCharacterColliders.Add(collider);
-            assignedCharacterController.addToTargets(collider.gameObject);
+            detectedCharacterColliders.Add(collider);
+            // assignedCharacterController.addToTargets(collider.gameObject);
             // }
         }
         // Debug.Log($"Detected movement colliders : {detectedMColliders.Count}");
         detectedMColliders=detectedMColliders.GroupBy(c=>c.transform.name).Select(d=>d.First()).ToList();
         aI.changeCollidersMovement(detectedMColliders);
-        aI.changeCollidersCharacters(assignedCharacterController.targets);
+        aI.changeCollidersCharacters(detectedCharacterColliders);
         // Debug.Log($"detected characters: {detectedCharacterColliders.Count}");
     }
 
     public override void OnTriggerExit2D(Collider2D collider){
-        if (collider.gameObject.CompareTag("platform"))
-        {
-            //Debug.Log("o boze o kurwa");
-            GameObject colliderPlatform = collider.gameObject;
-            //colliderPlatform.GetComponent<SpriteRenderer>().color = Color.red;
-            colliderPlatform.GetComponent<Tile>().isActive = false;
-        }
-        else if (collider.gameObject.GetComponent<Hero>())
-        {
-            // markedCharacter= null;
-            // assignedCharacterController.targetEnemy=null;
-            // gameObject.GetComponentInParent<characterController>().targetEnemy = null;
-            detectedCharacterColliders=new List<Collider2D>();
-            detectedCharacterColliders=new List<Collider2D>();
-            assignedCharacterController.clearTargets();
-            aI.resetAIColliders();
-        }
-        aI.resetAIColliders();
+        // if (collider.gameObject.CompareTag("platform"))
+        // {
+        //     //Debug.Log("o boze o kurwa");
+        //     GameObject colliderPlatform = collider.gameObject;
+        //     //colliderPlatform.GetComponent<SpriteRenderer>().color = Color.red;
+        //     colliderPlatform.GetComponent<Tile>().isActive = false;
+        // }
+        // else if (collider.gameObject.CompareTag("Player"))
+        // {
+        //     detectedCharacterColliders.Clear();
+        //     detectedCharacterColliders.Clear();
+        //     assignedCharacterController.clearTargets();
+        //     // aI.resetAIColliders();
+        // }
+        // Debug.Log($"reset colliders on exit");
+        // // aI.resetAIColliders();
     }
 
     IEnumerator waaitForColliders(){
