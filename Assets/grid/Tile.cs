@@ -8,10 +8,11 @@ public class Tile : MonoBehaviour
     public bool isActive = false;
     [SerializeField]
     bool isTaken = false;
+    SpriteRenderer render;
     // Start is called before the first frame update
     void Start()
     {
-
+        render=gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -19,11 +20,11 @@ public class Tile : MonoBehaviour
     {
         if (isActive)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            render.color = Color.green;
         }
         else if(!isActive||isTaken)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            render.color = Color.grey;
         }
     }
 

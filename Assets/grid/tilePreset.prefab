@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6678813531492661852}
   - component: {fileID: 7392068716861724943}
   - component: {fileID: 1931652895918199878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tilePreset
   m_TagString: platform
   m_Icon: {fileID: 0}
@@ -73,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1a059761b41ea2f40990d07c79787ca0, type: 3}
+  m_SortingLayerID: 1132953095
+  m_SortingLayer: -1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 83d2c99963d0afa4a833a5ca9272c45d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
