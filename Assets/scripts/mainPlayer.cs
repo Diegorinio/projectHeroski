@@ -6,7 +6,9 @@ public class mainPlayer : MonoBehaviour
 {
     public static mainPlayer Instance{get;private set;}
     //jak narazie na staticach
-    public List<GameObject> teamHeroes;
+    public List<GameObject> heroesTeam;
+
+    public List<GameObject> enemyTeam;
     // Start is called before the first frame update
     void Awake(){
         if(Instance==null){
@@ -21,7 +23,7 @@ public class mainPlayer : MonoBehaviour
     }
 
     public GameObject[] getHeroes(){
-        return teamHeroes.ToArray();
+        return heroesTeam.ToArray();
     }
     void Start()
     {
@@ -34,11 +36,29 @@ public class mainPlayer : MonoBehaviour
         
     }
 
-    public void addToTeam(GameObject teamMember){
+    public void addHeroToTeam(GameObject teamMember){
         //size tylko chwilowo
-        if(teamHeroes.Count<5){
+        if(heroesTeam.Count<5){
         Debug.Log($"added to team new hero {teamMember.GetComponent<Hero>().getHeroName()} with class {teamMember.GetComponent<Role>().roleName}");
-        teamHeroes.Add(teamMember);
+        heroesTeam.Add(teamMember);
         }
     }
+
+    public void addHeroesToTeamList(List<GameObject> members){
+        if(heroesTeam.Count<5){
+            heroesTeam.AddRange(members);
+        }
+    }
+
+    public void addEnemyToTeam(GameObject member){
+        if(enemyTeam.Count<5){
+            enemyTeam.Add(member);
+        }
+    }
+    public void addEnemiesToTeamList(List<GameObject> members){
+        if(heroesTeam.Count<5){
+            enemyTeam.AddRange(members);
+        }
+    }
+
 }

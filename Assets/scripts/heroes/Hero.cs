@@ -11,6 +11,8 @@ public class Hero : MonoBehaviour
     private int health;
     [SerializeField]
     private string heroName;
+    [SerializeField]
+    private string role;
     public  characterGUI _gui{get;set;}
     public virtual void Awake(){
         _gui=gameObject.GetComponent<characterGUI>();
@@ -35,6 +37,13 @@ public class Hero : MonoBehaviour
 
     public int getHealth(){
         return health;
+    }
+
+    public void setRole(string role){
+        this.role = role;
+    }
+    public string getRole(){
+        return role;
     }
 
     public void getHit(int dmg){

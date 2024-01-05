@@ -413,7 +413,7 @@ Transform:
   m_GameObject: {fileID: 7903013642338928715}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.52, y: -1.08, z: -0.83}
+  m_LocalPosition: {x: -13.77, y: 0.076206066, z: 2.0713778}
   m_LocalScale: {x: 0.4513, y: 0.3649, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -533,6 +533,7 @@ MonoBehaviour:
   tileDetector: {fileID: 5933120966212888926}
   targets: []
   assignedRole: {fileID: 0}
+  assignedTile: {fileID: 0}
 --- !u!114 &8392438235497617217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,8 +548,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heroSprite: {fileID: 448876172, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
   health: 100
-  heroName: Kalid
-  _gui: {fileID: 0}
+  heroName: Al
+  role: 
 --- !u!114 &3476708233864220484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,7 +563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignedHero: {fileID: 0}
-  hpSlider: {fileID: 0}
   eventText: {fileID: 0}
 --- !u!114 &48642625201685003
 MonoBehaviour:

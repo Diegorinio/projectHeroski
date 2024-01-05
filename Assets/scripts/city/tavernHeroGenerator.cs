@@ -3,77 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class tavernHeroGenerator : MonoBehaviour
+public class tavernHeroGenerator : characterGenerator
 {
-    [SerializeField]
-    characterGenerator Generator;
-    public GameObject template;
-    //ui elements
     Image _heroImg;
     Text _heroNameText;
     Text _heroRoleText;
-    [SerializeField]
-    Sprite heroImage;
-    [SerializeField]
-    string heroName;
     // [SerializeField]
-    // Role role;
-    [SerializeField]
-    string[] names = {"Abuin","Ibdomar","Kalid","Benhari","Al","Shariri"};
-    [SerializeField]
-    string[] roles = {"knight","mage","piechota"};
-    [SerializeField]
-    string type;
-    // List<Role> roles = new List<Role>();
-    // Start is called before the first frame update
+    Sprite heroImage;
+    // [SerializeField]
+    string _heroName;
+    string _heroRole;
+    public GameObject tmpChar;
+    characterClass _role;
 
-    void Awake(){
-        Generator = gameObject.transform.parent.GetComponent<characterGenerator>();
+    void Start(){
+        _heroName=getRandomName();
+        _role = getRandomClass();
+        _heroRole=_role.ToString();
         Debug.Log($"parent {gameObject.transform.parent.name}");
         _heroImg=gameObject.transform.Find("heroImage").GetComponent<Image>();
         _heroRoleText=gameObject.transform.Find("hero_role").GetComponent<Text>();
         _heroNameText=gameObject.transform.Find("hero_name").GetComponent<Text>();
-    }
-    void Start()
-    {
-        heroName=names[Random.Range(0,names.Length-1)];
-        _heroNameText.text=heroName;
+        _heroNameText.text=_heroName;
         // roles[Random.Range(0,roles.Length-1)];
-        _heroRoleText.text=roles[Random.Range(0,roles.Length-1)];
-        type=_heroRoleText.text;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _heroRoleText.text=_heroRole;
     }
 
     void OnMouseDown(){
-        // GameObject newHero= Instantiate(template,Vector3.zero,Quaternion.identity);
-        // Hero tmpHero = newHero.GetComponent<Hero>();
-        // tmpHero.setHeroName(heroName);
-        // tmpHero.setHeroHealth(100);
-        // switch(type){
-        //     case "knight":
-        //     newHero.AddComponent<Knight>();
-        //     break;
-        //     case "mage":
-        //     newHero.AddComponent<Mage>();
-        //     break;
-        //     case "piechota":
-        //     newHero.AddComponent<Piechota>();
-        //     break;
-        // }
-        GameObject newHero = Generator.generateRandomCharacter(characterGenerator.characterType.Hero);
-        Hero tmpHero = newHero.GetComponent<Hero>();
-        tmpHero.setHeroName(heroName);
-        mainPlayer.Instance.addToTeam(newHero);
-        newHero.transform.name=heroName;
-        newHero.transform.SetParent(GameObject.Find("mainPlayerManager").gameObject.transform);
-        newHero.transform.position=GameObject.Find("mainPlayerManager").gameObject.transform.position;
-        // newHero.transform.position=
-        // newHero.SetActive(false);
+        GameObject newHero = generateFromData(_heroName,characterType.Hero,_role);
+        newHero.transform.SetParent(mainPlayer.Instance.transform);
+        mainPlayer.Instance.addHeroToTeam(newHero);
         Destroy(gameObject);
     }
 }
