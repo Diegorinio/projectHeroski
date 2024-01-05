@@ -6,22 +6,16 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class randomMapEventGenerator : characterGenerator,IPointerClickHandler
 {
-    // characterGenerator Generator;
-    // public GameObject template;
     [SerializeField]
     private List<GameObject> enemiesList;
-    // [SerializeField]
+    [SerializeField]
+    private List<string> enemiesListNames;
+    [SerializeField]
     private GameObject eventPanel;
     Text eventNameText;
     Text eventEnemiesText;
-    // [SerializeField]
     string[] eventNames = {"test","Kutang klan", "XD", "Potężna wichura"};
     string[] eventEnemies={"Chleb","Mieso","Wszystko","Gomez","Enemy1","test"};
-    // [SerializeField]
-    // string[] names = {"Chleb","Mieso","Wszystko","Gomez","Enemy1","test"};
-    // // Start is called before the first frame update
-    // string type="";
-    // string[] roles = {"knight","mage","piechota"};
     Button fightBtn;
 
     void Start(){
@@ -32,15 +26,27 @@ public class randomMapEventGenerator : characterGenerator,IPointerClickHandler
         eventEnemiesText = eventPanel.transform.Find("eventEnemies").GetComponent<Text>();
         fightBtn=eventPanel.transform.Find("goToFightBtn").GetComponent<Button>();
         fightBtn.onClick.AddListener(goToFight);
-    }
-    public void generateEvent(){
+        // generateEvent();
         int amount = Random.Range(1,4);
         for(int x=0;x<amount;x++){
-            string _name = eventEnemies[Random.Range(0,eventEnemies.Length-1)];
-            GameObject newEnemy = generateRandomCharacter(characterType.Enemy,_name);
+            enemiesListNames.Add(eventNames[Random.Range(0,eventNames.Length-1)]);
+        }
+    }
+    public void generateEvent(){
+        // for(int x=0;x<amount;x++){
+        //     string _name = eventEnemies[Random.Range(0,eventEnemies.Length-1)];
+        //     GameObject newEnemy = generateRandomCharacter(characterType.Enemy,_name);
+        //     Enemy _enemy = newEnemy.GetComponent<Enemy>();
+        //     _enemy.setHeroHealth(Random.Range(101,150));
+        //     enemiesList.Add(newEnemy);
+        // }
+        foreach(var name in enemiesListNames){
+            GameObject newEnemy = generateRandomCharacter(characterType.Enemy,name);
             Enemy _enemy = newEnemy.GetComponent<Enemy>();
-            _enemy.setHeroHealth(Random.Range(101,150));
+            _enemy.setHeroHealth(Random.Range(101,160));
             enemiesList.Add(newEnemy);
+            newEnemy.transform.SetParent(mainPlayer.Instance.gameObject.transform);
+            newEnemy.transform.localPosition=Vector3.zero;
         }
     }
     public void OnPointerClick(PointerEventData eventData)
@@ -49,15 +55,14 @@ public class randomMapEventGenerator : characterGenerator,IPointerClickHandler
             eventPanel.SetActive(false);
         else{
             eventPanel.SetActive(true);
-            generateEvent();
         }
     }
 
     void goToFight(){
-        foreach(var e in enemiesList){
-            e.transform.SetParent(mainPlayer.Instance.gameObject.transform);
-        }
-        // mainEnemies.Instance.addToEnemiesList(enemiesList);
+        generateEvent();
+        // foreach(var e in enemiesList){
+        //     e.transform.SetParent(mainPlayer.Instance.gameObject.transform);
+        // }
         mainPlayer.Instance.addEnemiesToTeamList(enemiesList);
         SceneManager.LoadScene(3);
     }

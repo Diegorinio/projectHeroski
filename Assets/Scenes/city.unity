@@ -757,13 +757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcd2d5f7f268af42bc8fd4e4d058c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroTemplate: {fileID: 7903013642338928715, guid: 2a95c9d966cb458418e60a7e35b3a261, type: 3}
-  enemyTemplate: {fileID: 2853562460873022744, guid: 0522d0aa459d9484e9f8d3345961db1f, type: 3}
-  roles:
-  - knight
-  - mage
-  - piechota
-  _heroImg: {fileID: 0}
   tmpChar: {fileID: 0}
 --- !u!1 &697907004
 GameObject:
@@ -1022,7 +1015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1151988767
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1142,12 +1135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ff115ee7f1fc64cacb18e24fd14f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroTemplate: {fileID: 7903013642338928715, guid: 2a95c9d966cb458418e60a7e35b3a261, type: 3}
-  enemyTemplate: {fileID: 2853562460873022744, guid: 0522d0aa459d9484e9f8d3345961db1f, type: 3}
-  roles:
-  - knight
-  - mage
-  - piechota
 --- !u!1 &1235106402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,13 +1552,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fcd2d5f7f268af42bc8fd4e4d058c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heroTemplate: {fileID: 7903013642338928715, guid: 2a95c9d966cb458418e60a7e35b3a261, type: 3}
-  enemyTemplate: {fileID: 2853562460873022744, guid: 0522d0aa459d9484e9f8d3345961db1f, type: 3}
-  roles:
-  - knight
-  - mage
-  - piechota
-  _heroImg: {fileID: 0}
   tmpChar: {fileID: 0}
 --- !u!1 &1788096832
 GameObject:
@@ -2300,11 +2280,11 @@ PrefabInstance:
     - target: {fileID: 8842973678824564286, guid: dacef961c5b7f1ddb84c39159fd8a325, type: 3}
       propertyPath: heroTemplate
       value: 
-      objectReference: {fileID: 7903013642338928715, guid: 2a95c9d966cb458418e60a7e35b3a261, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8842973678824564286, guid: dacef961c5b7f1ddb84c39159fd8a325, type: 3}
       propertyPath: enemyTemplate
       value: 
-      objectReference: {fileID: 2853562460873022744, guid: 0522d0aa459d9484e9f8d3345961db1f, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -25,6 +25,10 @@ public class mainPlayer : MonoBehaviour
     public GameObject[] getHeroes(){
         return heroesTeam.ToArray();
     }
+
+    public GameObject[] getEnemies(){
+        return enemyTeam.ToArray();
+    }
     void Start()
     {
         
@@ -46,7 +50,7 @@ public class mainPlayer : MonoBehaviour
 
     public void addHeroesToTeamList(List<GameObject> members){
         if(heroesTeam.Count<5){
-            heroesTeam.AddRange(members);
+            heroesTeam=members;
         }
     }
 
@@ -57,7 +61,7 @@ public class mainPlayer : MonoBehaviour
     }
     public void addEnemiesToTeamList(List<GameObject> members){
         if(heroesTeam.Count<5){
-            enemyTeam.AddRange(members);
+            enemyTeam=members;
         }
     }
 

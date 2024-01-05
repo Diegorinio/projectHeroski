@@ -64,7 +64,7 @@ public class gridManager : MonoBehaviour
             hero.transform.position = new Vector3(nPos.x,nPos.y,-1);
             hero.SetActive(true);
         }
-        GameObject[] enemies = mainEnemies.Instance.getEnemies();
+        GameObject[] enemies = mainPlayer.Instance.getEnemies();
         foreach(GameObject enemy in enemies){
             enemy.transform.parent=null;
             int rnd=Random.Range(gridMap.Count-1,gridMap.Count-9);
