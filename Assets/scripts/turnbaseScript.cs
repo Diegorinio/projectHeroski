@@ -143,4 +143,7 @@ public class turnbaseScript : MonoBehaviour
             isWin=true;
         }
     }
+    void OnDisable(){
+        mainPlayer.Instance.clearEnemyTeamList();
+    }
 }

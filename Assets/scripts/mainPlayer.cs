@@ -29,16 +29,6 @@ public class mainPlayer : MonoBehaviour
     public GameObject[] getEnemies(){
         return enemyTeam.ToArray();
     }
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void addHeroToTeam(GameObject teamMember){
         //size tylko chwilowo
@@ -63,6 +53,13 @@ public class mainPlayer : MonoBehaviour
         if(heroesTeam.Count<5){
             enemyTeam=members;
         }
+    }
+
+    public void clearEnemyTeamList(){
+        foreach(var el in enemyTeam){
+            Destroy(el);
+        }
+        enemyTeam.Clear();
     }
 
 }
