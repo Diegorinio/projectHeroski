@@ -102,8 +102,8 @@ namespace Game.UI
                 backToBigMap.clicked += () => ChangeSceneToBigMap();
                 // lvl1.clicked += () => FromBiomtoFight(lvl1.viewDataKey,"1");//strings
                 lvl1.clicked += ()=>FromBiomtoFight(rndEvent);
-                if (this.gameObject.tag == "MAP4") return;
-                nextBiom.clicked += () => BiomtoNextBiom(this.gameObject.tag);
+                if (gameObject.transform.name == "Biom4") return;
+                nextBiom.clicked += () => BiomtoNextBiom(this.gameObject.name);
                 // nextBiom.clicked+=()=>Debug.Log("Click");
             }
         }
@@ -138,9 +138,14 @@ namespace Game.UI
         { 
             int i;
             Debug.Log($"Czym to {x}");
-            string output = x.Substring(3); 
-            this.GetComponent<UIDocument>().sortingOrder = 10;
-            // GameObject.FindGameObjectWithTag("MAP" + i.ToString()).GetComponent<UIDocument>().sortingOrder = 11;
+            string output = x.Replace("Biom","");
+            i=Int32.Parse(output)+1;
+            Debug.Log($" kurwa mac{i}");
+            gameObject.GetComponent<UIDocument>().sortingOrder = 10;
+            UIDocument test = GameObject.Find("Biom"+i.ToString()).GetComponent<UIDocument>();
+            Debug.Log(test.sortingOrder);
+            GameObject.Find("Biom" + i.ToString()).GetComponent<UIDocument>().sortingOrder = 11;
+            Debug.Log(test.sortingOrder);
         }
         private void FromBiomtoFight(randomMapEventGenerator rndEvent)
         {
