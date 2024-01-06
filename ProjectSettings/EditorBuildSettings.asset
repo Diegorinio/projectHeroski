@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/city.unity
     guid: 74a6376ec9b3df3448f3dcc7cd9fc987
   - enabled: 1
+    path: Assets/Scenes/map/mainMap.unity
+    guid: 918f4351b525b654d9b80c6eba0d6361
+  - enabled: 1
+    path: Assets/Scenes/battleScene.unity
+    guid: 8f8a4b6b7c284a741a7e5a0139031648
+  - enabled: 1
     path: Assets/Scenes/map.unity
     guid: 03ef48fcc3ab71a42867ac0ef770aef6
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

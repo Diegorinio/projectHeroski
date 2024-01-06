@@ -30,9 +30,11 @@ public class tavernHeroGenerator : characterGenerator
     }
 
     void OnMouseDown(){
+        if(mainPlayer.Instance.getHeroes().Length<5){
         GameObject newHero = generateFromData(_heroName,characterType.Hero,_role);
         newHero.transform.SetParent(mainPlayer.Instance.transform);
         mainPlayer.Instance.addHeroToTeam(newHero);
         Destroy(gameObject);
+        }
     }
 }

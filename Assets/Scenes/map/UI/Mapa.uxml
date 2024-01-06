@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/LVLS.uss?fileID=7433441132597879392&amp;guid=5913f9330a367614c963a8a344c35154&amp;type=3#LVLS" />
+    <ui:VisualElement name="BIGMAP" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/BIGMAPA.jpg?fileID=2800000&amp;guid=411c2fd75583c9546a30660efa5915a8&amp;type=3#BIGMAPA&apos;);">
+        <ui:Button text="LVL 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="lvl-1" view-data-key="B1" class="lvls" style="top: 632px; left: 1244px; height: 95px; width: 214px;" />
+        <ui:Button text="LVL 2" parse-escape-sequences="true" display-tooltip-when-elided="true" name="lvl-2" view-data-key="B2" class="lvls" style="top: 612px; left: 824px; height: 87px; width: 246px;" />
+        <ui:Button text="LVL 3" parse-escape-sequences="true" display-tooltip-when-elided="true" name="lvl-3" view-data-key="B3" class="lvls" style="top: 653px; left: 405px; height: 79px; width: 214px;" />
+        <ui:Button text="LVL 4" parse-escape-sequences="true" display-tooltip-when-elided="true" name="lvl-4" view-data-key="B4" class="lvls" style="top: 244px; left: 462px; height: 113px; width: 205px;" />
+    </ui:VisualElement>
+</ui:UXML>

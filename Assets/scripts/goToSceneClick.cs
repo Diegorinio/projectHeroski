@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class goToSceneClick : MonoBehaviour
 {
     [SerializeField]
-    private int sceneID;
+    private string sceneID;
     // Start is called before the first frame update
     void Start()
     {

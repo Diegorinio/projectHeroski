@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/LVLS.uss?fileID=7433441132597879392&amp;guid=5913f9330a367614c963a8a344c35154&amp;type=3#LVLS" />
+    <ui:VisualElement style="flex-grow: 1; background-image: url(&apos;project://database/Assets/UI/B3.jpg?fileID=2800000&amp;guid=92209f3d34e96db419dc17651d4e7a7d&amp;type=3#B3&apos;);">
+        <ui:Button text="back to bigmap&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="BACKTOBIGMAP" class="lvls" style="top: 866px; left: 1476px; height: 139px; width: 390px; position: absolute;" />
+        <ui:Button text="To next Biom" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TONEXTB" enable-rich-text="false" class="lvls" style="top: 104px; left: 373px;" />
+        <ui:Button text="lvl1 b1&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="lvl-1" view-data-key="B3" class="lvls" style="top: 580px; left: 740px;" />
+    </ui:VisualElement>
+</ui:UXML>

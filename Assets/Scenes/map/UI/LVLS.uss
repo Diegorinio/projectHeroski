@@ -1,0 +1,12 @@
+.lvls {
+    position: absolute;
+    top: 1280px;
+    left: 2352px;
+    height: 195px;
+    width: 450px;
+    flex-basis: auto;
+    font-size: 50px;
+    color: rgb(0, 255, 243);
+    background-color: rgb(0, 0, 0);
+    background-image: none;
+}
