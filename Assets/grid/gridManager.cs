@@ -15,11 +15,13 @@ public class gridManager : MonoBehaviour
     private Transform _camera;
     [SerializeField] float offsetX, offsetY;
     [SerializeField] float spacer;
-    
+    [SerializeField] Tile[,] testMap;
     // Start is called before the first frame update
     List<Tile> gridMap = new List<Tile>();
+    public static Tile[,] gridMapTiles;
     void Start()
     {
+        gridMapTiles=new Tile[width,height];
         offsetX = Screen.width / widthSplit;
         offsetY = Screen.height / heigthSplit;
         generateGrid();
@@ -46,35 +48,41 @@ public class gridManager : MonoBehaviour
                 spawnTile.name = $"Tile{x}{y}";
                 spawnTile.transform.SetParent(gameObject.transform);
                 firstPosY += spacer;
-                gridMap.Add(spawnTile);
+                // gridMap.Add(spawnTile);
+                gridMapTiles[x,y]=spawnTile;
+                
             }
             firstPosY = 0;
             firstPosX += spacer;
         }
+        GridMap.setGridMap(gridMapTiles);
         GameObject[] heroes = mainPlayer.Instance.getHeroes();
         Debug.Log($"heroes size {heroes.Length}");
         foreach(GameObject hero in heroes)
         {
             hero.transform.parent=null;
             // hero.GetComponent<characterController>().characterMove(gridMap[Random.Range(0,9)].gameObject);
-            int rnd = Random.Range(0,9);
-            gridMap[rnd].makeBusy();
-            hero.GetComponent<characterController>().setTile(gridMap[rnd]);
-            Vector3 nPos = gridMap[rnd].transform.position;
+            int rnd = Random.Range(0,height-1);
+            // gridMap[rnd].makeBusy();
+            gridMapTiles[0,rnd].makeBusy();
+            hero.GetComponent<characterController>().setTile(gridMapTiles[0,rnd]);
+            Vector3 nPos = gridMapTiles[0,rnd].transform.position;
             hero.transform.position = new Vector3(nPos.x,nPos.y,-1);
             hero.SetActive(true);
         }
         GameObject[] enemies = mainPlayer.Instance.getEnemies();
         foreach(GameObject enemy in enemies){
             enemy.transform.parent=null;
-            int rnd=Random.Range(gridMap.Count-1,gridMap.Count-9);
-            gridMap[rnd].makeBusy();
-            enemy.GetComponent<characterController>().setTile(gridMap[rnd]);
-            Vector3 nPos = gridMap[rnd].transform.position;
+            // int rnd=Random.Range(gridMap.Count-1,gridMap.Count-9);
+            int rnd = Random.Range(0,height-1);
+            // gridMap[rnd].makeBusy();
+            gridMapTiles[width-1,rnd].makeBusy();
+            enemy.GetComponent<characterController>().setTile(gridMapTiles[width-1,rnd]);
+            Vector3 nPos = gridMapTiles[width-1,rnd].transform.position;
             enemy.transform.position = new Vector3(nPos.x,nPos.y,-1);
             enemy.SetActive(true);
         }
-        Debug.Log("ttt");
-        //_camera.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f,-10);
+        testMap = GridMap.getGridMap();
+        Debug.Log($"test map len: {testMap.Length}");
     }
 }

@@ -144,6 +144,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3424191863961798819, guid: 5d3e1b570c68a8d478fcb19f6fb103c7, type: 3}
+      propertyPath: enemyTeam.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424191863961798819, guid: 5d3e1b570c68a8d478fcb19f6fb103c7, type: 3}
       propertyPath: heroes.Array.data[0]
       value: 
       objectReference: {fileID: 1543805767}
@@ -156,9 +160,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1180390040}
     - target: {fileID: 3424191863961798819, guid: 5d3e1b570c68a8d478fcb19f6fb103c7, type: 3}
+      propertyPath: heroesTeam.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424191863961798819, guid: 5d3e1b570c68a8d478fcb19f6fb103c7, type: 3}
       propertyPath: teamHeroes.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3424191863961798819, guid: 5d3e1b570c68a8d478fcb19f6fb103c7, type: 3}
+      propertyPath: enemyTeam.Array.data[0]
+      value: 
+      objectReference: {fileID: 7903013643227573707}
+    - target: {fileID: 3424191863961798819, guid: 5d3e1b570c68a8d478fcb19f6fb103c7, type: 3}
+      propertyPath: enemyTeam.Array.data[1]
+      value: 
+      objectReference: {fileID: 1762190653}
+    - target: {fileID: 3424191863961798819, guid: 5d3e1b570c68a8d478fcb19f6fb103c7, type: 3}
+      propertyPath: heroesTeam.Array.data[0]
+      value: 
+      objectReference: {fileID: 636500320}
+    - target: {fileID: 3424191863961798819, guid: 5d3e1b570c68a8d478fcb19f6fb103c7, type: 3}
+      propertyPath: heroesTeam.Array.data[1]
+      value: 
+      objectReference: {fileID: 1481164810}
     - target: {fileID: 3424191863961798819, guid: 5d3e1b570c68a8d478fcb19f6fb103c7, type: 3}
       propertyPath: teamHeroes.Array.data[0]
       value: 
@@ -252,75 +276,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &24228355
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1459006899619476224, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: enemiesInMap.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1459006899619476224, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: enemiesInMap.Array.data[0]
-      value: 
-      objectReference: {fileID: 7903013643227573707}
-    - target: {fileID: 1459006899619476224, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: enemiesInMap.Array.data[1]
-      value: 
-      objectReference: {fileID: 1762190653}
-    - target: {fileID: 1473808895928964184, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_Name
-      value: mainEnemies
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -13.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.26495415
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 11.958979
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5434122904840448381, guid: 3fde455e038863631bd169a37592be6a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3fde455e038863631bd169a37592be6a, type: 3}
 --- !u!1 &37098713
 GameObject:
   m_ObjectHideFlags: 0
@@ -4673,21 +4628,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1309722351
-Transform:
+--- !u!224 &1309722351
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309722349}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.75, y: 4.24, z: 0.036899365}
+  m_LocalPosition: {x: 0, y: 0, z: 0.036899365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -10.75, y: 4.24}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1309722352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5591,7 +5550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: -58}
+  m_AnchoredPosition: {x: -20, y: -57.99994}
   m_SizeDelta: {x: -878.59, y: -443.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1620484105
@@ -6751,5 +6710,4 @@ SceneRoots:
   - {fileID: 212533876}
   - {fileID: 1591124186}
   - {fileID: 1363497528}
-  - {fileID: 24228355}
   - {fileID: 575803473}
