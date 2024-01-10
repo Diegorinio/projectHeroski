@@ -24,7 +24,7 @@ public class Enemy:Hero
 
     public void OnMouseDown(){
         if(turnbaseScript.IsHeroTurn()){
-            turnbaseScript.selectedGameObject.GetComponent<characterController>().hitToSelectedTarget(gameObject);
+            turnbaseScript.selectedGameObject.GetComponent<unitController>().hitToSelectedTarget(gameObject);
         }
     }
     

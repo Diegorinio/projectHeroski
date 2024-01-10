@@ -90,9 +90,6 @@ public class turnbaseScript : MonoBehaviour
     }
 
     public static bool IsHeroTurn(){
-        // if(selectedGameObject.GetComponent<Enemy>()){
-        //     return false;
-        // }
         return selectedGameObject.CompareTag("Player");
     }
 
@@ -102,11 +99,7 @@ public class turnbaseScript : MonoBehaviour
             // _gui.setGUI(round);
             if(!selectedGameObject)
                 selectedGameObject=quequeHeroes[turn];
-            // if(!IsHeroTurn()){
-            //     quequeHeroes[turn].GetComponent<characterController>().selectHero();
-            // }
-            // else{
-            quequeHeroes[turn].GetComponent<characterController>().selectHero();
+            quequeHeroes[turn].GetComponent<unitController>().selectHero();
         // }
     }
 

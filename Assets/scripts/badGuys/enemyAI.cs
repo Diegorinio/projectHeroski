@@ -10,10 +10,10 @@ public class enemyAI : MonoBehaviour
     // [SerializeField]
     private List<Collider2D> _collidersCharacters = new List<Collider2D>();
     // [SerializeField]
-    private Enemy assignedEnemy;
+    private Unit assignedEnemy;
     void Start()
     {
-        assignedEnemy=gameObject.GetComponent<Enemy>();
+        assignedEnemy=gameObject.GetComponent<Unit>();
         //gameObject.transform.position = _colliders[(Random.Range(0, _colliders.Count))].transform.position;
     }
 
@@ -86,7 +86,7 @@ public class enemyAI : MonoBehaviour
         GameObject selectedHero=_collidersCharacters[id].transform.gameObject;
         // assignedEnemy.dealDamageTo(selectedHero);
         // selectedHero.GetComponent<characterController>().hitToSelectedTarget(sele)
-        gameObject.GetComponent<characterController>().hitToSelectedTarget(selectedHero);
+        gameObject.GetComponent<unitController>().hitToSelectedTarget(selectedHero);
         // gameObject.GetComponent<characterController>().disableClickable();
         // resetColliders();
         }
