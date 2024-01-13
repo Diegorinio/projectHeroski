@@ -27,7 +27,7 @@ public class enemyDetector : Detector{
     public override void Awake()
     {
         aI = gameObject.GetComponentInParent<enemyAI>();
-        assignedCharacterController=gameObject.GetComponentInParent<characterController>();
+        assignedCharacterController=gameObject.GetComponentInParent<unitController>();
     }
     void OnEnable(){
         if(!turnbaseScript.IsHeroTurn())

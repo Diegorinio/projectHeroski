@@ -13,7 +13,8 @@ public class Unit : MonoBehaviour
     private int unitHealth;
     public int unitBaseHealth{get;set;}
     public int unitBaseDamage{get;set;}
-    public int gridDistance{get;set;}
+    public int gridDistanceX{get;set;}
+    public int gridDistanceY{get;set;}
     public unitGUI _gui{get;set;}
 
     public virtual void Awake(){}
@@ -48,6 +49,7 @@ public class Unit : MonoBehaviour
         int lost = (int)(dmg/unitBaseHealth);
         if(unitAmount-lost<=0){
             unitHealth=0;
+            GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
             gameObject.SetActive(false);
         }
         else{
@@ -58,11 +60,12 @@ public class Unit : MonoBehaviour
     public void dealDamageTo(GameObject _target){
         // Debug.Log($"attack id: {_atkID}");
         int dmg = getTotalDamage();
-        if(_target.CompareTag("Enemy")){
-            _target.GetComponent<Unit>().getHit(dmg);
-        }else if(_target.CompareTag("Enemy")){
-            _target.GetComponent<Unit>().getHit(dmg);
-        }
+        // if(_target.CompareTag("Enemy")){
+        //     _target.GetComponent<Unit>().getHit(dmg);
+        // }else if(_target.CompareTag("Enemy")){
+        //     _target.GetComponent<Unit>().getHit(dmg);
+        // }
+        _target.GetComponent<Unit>().getHit(dmg);
         Debug.Log($"hit {dmg} to {_target.name}");
     }
 }

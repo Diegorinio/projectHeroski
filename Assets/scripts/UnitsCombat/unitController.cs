@@ -7,7 +7,7 @@ public class unitController : MonoBehaviour
  [SerializeField]
     private GameObject tileDetector;
     // public GameObject targetEnemy;
-    [SerializeField]
+    // [SerializeField]
     public List<GameObject> targets=new List<GameObject>();
     [SerializeField]
     private Unit _unit;
@@ -17,10 +17,11 @@ public class unitController : MonoBehaviour
     void Start()
     {
         _unit = gameObject.GetComponent<Unit>();
-        int dist = _unit.gridDistance;
-        Debug.Log($"{_unit.unitName} selected, distance{dist}");
+        int distX = _unit.gridDistanceX;
+        int distY=_unit.gridDistanceY;
+        Debug.Log($"{_unit.unitName} selected, distance{distX},{distY}");
         tileDetector=gameObject.transform.Find("tileDetector").gameObject;
-        tileDetector.transform.localScale = new Vector3(dist, dist, dist);
+        tileDetector.transform.localScale = new Vector3(distX, distY, 0);
         tileDetector.SetActive(false);
     }
 
@@ -28,8 +29,6 @@ public class unitController : MonoBehaviour
         turnbaseScript.isSelected=true;
         turnbaseScript.selectedGameObject = gameObject;
         tileDetector.SetActive(true);
-        // gameObject.GetComponent<Hero>().
-        // Camera.main.GetComponent<guiScript>().initializeGui();
 }
 
 public void characterMove(GameObject _newTransform){

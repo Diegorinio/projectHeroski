@@ -11,11 +11,11 @@ public class Detector : MonoBehaviour
     public List<Collider2D> detectedCharacterColliders;
     [SerializeField]
     // public GameObject markedCharacter{get;set;}
-    public characterController assignedCharacterController;
+    public unitController assignedCharacterController;
     // Start is called before the first frame update
     public virtual void Awake()
     {
-        assignedCharacterController = gameObject.GetComponentInParent<characterController>();
+        assignedCharacterController = gameObject.GetComponentInParent<unitController>();
     }
 
     // Update is called once per frame

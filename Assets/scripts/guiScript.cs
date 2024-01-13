@@ -16,28 +16,28 @@ public class guiScript : MonoBehaviour
 
     public  void initializeGui()
     {
-        if(turnbaseScript.IsHeroTurn()){
-            heroName.text = turnbaseScript.selectedGameObject.GetComponent<Hero>().getHeroName();
-        }
-        unsetAttacks();
-        setAttacks();
+        // if(turnbaseScript.IsHeroTurn()){
+        //     heroName.text = turnbaseScript.selectedGameObject.GetComponent<Hero>().getHeroName();
+        // }
+        // unsetAttacks();
+        // setAttacks();
     }
 
-    public void setAttacks()
-    {
-        // int id = 0;
-        // unsetAttacks();
-        attackBtns[0].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacksNames[0];
-        attackBtns[1].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacksNames[1];
-        List<GameObject> enemyFound = turnbaseScript.selectedGameObject.GetComponent<characterController>().targets;
-        attackEvent atkEvent =turnbaseScript.selectedGameObject.GetComponent<attackEvent>();
-        if(enemyFound.Count>0){
-            Role selectedRole = turnbaseScript.selectedGameObject.GetComponent<Role>();
-            // Enemy enemy = enemyFound.GetComponent<Enemy>();
-            attackBtns[0].onClick.AddListener(()=>atkEvent.setDamageValue(selectedRole.getAttack(0)));
-            attackBtns[1].onClick.AddListener(()=>atkEvent.setDamageValue(selectedRole.getAttack(1)));
-        }
-    }
+    // public void setAttacks()
+    // {
+    //     // int id = 0;
+    //     // unsetAttacks();
+    //     attackBtns[0].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacksNames[0];
+    //     attackBtns[1].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacksNames[1];
+    //     List<GameObject> enemyFound = turnbaseScript.selectedGameObject.GetComponent<characterController>().targets;
+    //     attackEvent atkEvent =turnbaseScript.selectedGameObject.GetComponent<attackEvent>();
+    //     if(enemyFound.Count>0){
+    //         Role selectedRole = turnbaseScript.selectedGameObject.GetComponent<Role>();
+    //         // Enemy enemy = enemyFound.GetComponent<Enemy>();
+    //         attackBtns[0].onClick.AddListener(()=>atkEvent.setDamageValue(selectedRole.getAttack(0)));
+    //         attackBtns[1].onClick.AddListener(()=>atkEvent.setDamageValue(selectedRole.getAttack(1)));
+    //     }
+    // }
     // public void setAttack(Role role,Enemy enemy,int id)
     // {
     //     role.dealDamageTo(enemy, id);

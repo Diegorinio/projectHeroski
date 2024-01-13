@@ -11,7 +11,7 @@ public class turnbaseScript : MonoBehaviour
     public bool selectedCheck;
     [SerializeField]
     private int turn;
-    [SerializeField]
+    // [SerializeField]
     private List<GameObject> quequeHeroes= new List<GameObject>();
     [SerializeField]
     // private Text turnText;

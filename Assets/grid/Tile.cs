@@ -30,10 +30,11 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.Log($"Pressed {name}");
         if (turnbaseScript.isSelected && isActive && !isTaken)
         {
             GameObject player = turnbaseScript.selectedGameObject;
-            player.GetComponent<characterController>().characterMove(gameObject);
+            player.GetComponent<unitController>().characterMove(gameObject);
             isActive = false;
         }
         else

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-[RequireComponent(typeof(Enemy))]
+// [RequireComponent(typeof(Enemy))]
 public class enemyAI : MonoBehaviour
 {
     // [SerializeField]
@@ -70,7 +70,7 @@ public class enemyAI : MonoBehaviour
         // }
         Transform rndCollider = _collidersMovement[id].transform;
         // gameObject.transform.position = new Vector3(rndCollider.position.x,rndCollider.position.y,gameObject.transform.position.z);
-        gameObject.GetComponent<characterController>().characterMove(rndCollider.gameObject);
+        gameObject.GetComponent<unitController>().characterMove(rndCollider.gameObject);
         // gameObject.GetComponent<characterController>().disableClickable();
         // resetColliders();
         }
@@ -81,12 +81,13 @@ public class enemyAI : MonoBehaviour
     public void attackDamageToRandomPlayer(){
         if(_collidersCharacters.Count>0){
         attackEvent atkEvent = gameObject.GetComponent<attackEvent>();
-        atkEvent.setDamageValue(gameObject.GetComponent<Role>().getRandomAttack());
+        // atkEvent.setDamageValue(gameObject.GetComponent<Role>().getRandomAttack());
         int id=Random.Range(0,_collidersCharacters.Count-1);
         GameObject selectedHero=_collidersCharacters[id].transform.gameObject;
         // assignedEnemy.dealDamageTo(selectedHero);
         // selectedHero.GetComponent<characterController>().hitToSelectedTarget(sele)
         gameObject.GetComponent<unitController>().hitToSelectedTarget(selectedHero);
+        // assignedEnemy.dealDamageTo(selectedHero);
         // gameObject.GetComponent<characterController>().disableClickable();
         // resetColliders();
         }

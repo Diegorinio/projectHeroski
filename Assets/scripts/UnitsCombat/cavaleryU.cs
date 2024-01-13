@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class distanceU:Unit
+public class cavaleryU:Unit
 {
+    
     public override void Awake()
     {
         base.Awake();
-        unitName="Knight";
-        unitBaseDamage=5;
-        unitBaseHealth=20;
-        gridDistanceX=14;
+        unitName="Cavalery";
+        unitBaseDamage=7;
+        unitBaseHealth=16;
+        gridDistanceX=8;
         gridDistanceY=14;
     }
     // Start is called before the first frame update

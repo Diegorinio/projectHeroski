@@ -376,6 +376,7 @@ MonoBehaviour:
   tileDetector: {fileID: 8885639913676941375}
   targets: []
   assignedRole: {fileID: 0}
+  assignedTile: {fileID: 0}
 --- !u!114 &200973782261345682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,9 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e31323ebfee204999a61d239cf32a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collidersMovement: []
-  _collidersCharacters: []
-  assignedEnemy: {fileID: 0}
 --- !u!114 &3895864743491254600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,10 +401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1795fb156f7a38948a3e0f60edd3a230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySprite: {fileID: -1122784792, guid: 550f6f74cdf7642419abfdaef471d613, type: 3}
+  heroSprite: {fileID: 0}
   health: 120
-  enemyName: fdsafdas
-  _gui: {fileID: 0}
+  heroName: 
+  role: 
 --- !u!114 &171090053427646107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +418,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignedHero: {fileID: 0}
-  hpSlider: {fileID: 0}
   eventText: {fileID: 0}
   assignedEnemy: {fileID: 0}
 --- !u!114 &4856877862004378319
@@ -738,7 +735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7650984567581135409, guid: 65694120aaba7d54f9f9c3007795ba0b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.33
+      value: 272
       objectReference: {fileID: 0}
     - target: {fileID: 7650984567581135409, guid: 65694120aaba7d54f9f9c3007795ba0b, type: 3}
       propertyPath: m_LocalRotation.w
