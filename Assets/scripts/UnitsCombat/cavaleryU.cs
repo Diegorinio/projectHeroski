@@ -13,6 +13,7 @@ public class cavaleryU:Unit
         unitBaseHealth=16;
         gridDistanceX=8;
         gridDistanceY=14;
+        unitSprite = Resources.Load("Sprites/cavalery")as Sprite;
     }
     // Start is called before the first frame update
     void Start()

@@ -7,7 +7,7 @@ public class distanceU:Unit
     public override void Awake()
     {
         base.Awake();
-        unitName="Knight";
+        unitName="Distance U";
         unitBaseDamage=5;
         unitBaseHealth=20;
         gridDistanceX=14;

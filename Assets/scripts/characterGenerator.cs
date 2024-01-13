@@ -9,9 +9,6 @@ public class characterGenerator : MonoBehaviour
     [SerializeField]
     // private characterType charType;
     public enum characterClass{Knight,Mage,Piechota};
-    // [SerializeField]
-    // private characterClass charClass;
-    // [SerializeField]
     private GameObject heroTemplate;
     // [SerializeField]
     private GameObject enemyTemplate;

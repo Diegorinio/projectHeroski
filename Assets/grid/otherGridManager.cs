@@ -25,6 +25,7 @@ public class otherGridManager : MonoBehaviour
         offsetX = Screen.width / widthSplit;
         offsetY = Screen.height / heigthSplit;
         generateGrid();
+
     }
 
     // Update is called once per frame
@@ -56,7 +57,7 @@ public class otherGridManager : MonoBehaviour
             firstPosX += spacer;
         }
         GridMap.setGridMap(gridMapTiles);
-        GameObject[] heroes = mainPlayer.Instance.getHeroes();
+        GameObject[] heroes = mainPlayerUnit.Instance.getUnitsAsGameObject();
         Debug.Log($"heroes size {heroes.Length}");
         // heroes[0]=spawnedUnit;
         foreach(GameObject hero in heroes)
@@ -71,18 +72,18 @@ public class otherGridManager : MonoBehaviour
             hero.transform.position = new Vector3(nPos.x,nPos.y,-1);
             hero.SetActive(true);
         }
-        GameObject[] enemies = mainPlayer.Instance.getEnemies();
-        foreach(GameObject enemy in enemies){
-            enemy.transform.parent=null;
-            // int rnd=Random.Range(gridMap.Count-1,gridMap.Count-9);
-            int rnd = Random.Range(0,height-1);
-            // gridMap[rnd].makeBusy();
-            gridMapTiles[width-1,rnd].makeBusy();
-            enemy.GetComponent<unitController>().setTile(gridMapTiles[width-1,rnd]);
-            Vector3 nPos = gridMapTiles[width-1,rnd].transform.position;
-            enemy.transform.position = new Vector3(nPos.x,nPos.y,-1);
-            enemy.SetActive(true);
-        }
+        // GameObject[] enemies = mainPlayer.Instance.getEnemies();
+        // foreach(GameObject enemy in enemies){
+        //     enemy.transform.parent=null;
+        //     // int rnd=Random.Range(gridMap.Count-1,gridMap.Count-9);
+        //     int rnd = Random.Range(0,height-1);
+        //     // gridMap[rnd].makeBusy();
+        //     gridMapTiles[width-1,rnd].makeBusy();
+        //     enemy.GetComponent<unitController>().setTile(gridMapTiles[width-1,rnd]);
+        //     Vector3 nPos = gridMapTiles[width-1,rnd].transform.position;
+        //     enemy.transform.position = new Vector3(nPos.x,nPos.y,-1);
+        //     enemy.SetActive(true);
+        // }
         testMap = GridMap.getGridMap();
         Debug.Log($"test map len: {testMap.Length}");
     }

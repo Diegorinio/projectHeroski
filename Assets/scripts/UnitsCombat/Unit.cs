@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour
     [SerializeField]
     public string unitName{get;set;}
     [SerializeField]
-    private Sprite unitSprite;
+    public Sprite unitSprite;
     [SerializeField]
     private int unitAmount;
     private int unitHealth;
@@ -22,11 +22,17 @@ public class Unit : MonoBehaviour
     void Start()
     {
         _gui=gameObject.GetComponent<unitGUI>();
+        if(gameObject.GetComponent<SpriteRenderer>()){
         gameObject.GetComponent<SpriteRenderer>().sprite=unitSprite;
+        }
     }
 
     public void setUnitAmount(int amount){
         unitAmount=amount;
+    }
+
+    public int getUnitAmount(){
+        return unitAmount;
     }
     public void addUnits(int amount){
         unitAmount+=amount;
@@ -44,7 +50,7 @@ public class Unit : MonoBehaviour
         return unitAmount*unitBaseHealth;
     }
 
-    public void getHit(int dmg){
+    public virtual void getHit(int dmg){
         // _gui.displ
         int lost = (int)(dmg/unitBaseHealth);
         if(unitAmount-lost<=0){
@@ -57,14 +63,8 @@ public class Unit : MonoBehaviour
             Debug.Log($"Stracono {lost} jednostek");
         }
     }
-    public void dealDamageTo(GameObject _target){
-        // Debug.Log($"attack id: {_atkID}");
+    public virtual void dealDamageTo(GameObject _target){
         int dmg = getTotalDamage();
-        // if(_target.CompareTag("Enemy")){
-        //     _target.GetComponent<Unit>().getHit(dmg);
-        // }else if(_target.CompareTag("Enemy")){
-        //     _target.GetComponent<Unit>().getHit(dmg);
-        // }
         _target.GetComponent<Unit>().getHit(dmg);
         Debug.Log($"hit {dmg} to {_target.name}");
     }

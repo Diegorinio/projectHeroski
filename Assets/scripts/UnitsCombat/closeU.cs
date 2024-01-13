@@ -8,7 +8,7 @@ public class closeU : Unit
     public override void Awake()
     {
         base.Awake();
-        unitName="Knight";
+        unitName="Close U";
         unitBaseDamage=7;
         unitBaseHealth=25;
         gridDistanceX=8;

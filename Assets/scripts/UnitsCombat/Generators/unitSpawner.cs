@@ -40,12 +40,11 @@ public class unitSpawner : MonoBehaviour
         return newUnit;
     }
 
-    public static GameObject spawnEnemyUnitGameObject(Unit typeofUnit){
-        GameObject newUnit = new GameObject();
-        newUnit = unitTemplate;
-        newUnit.AddComponent<closeU>();
-        newUnit.AddComponent<Enemy>();
-        newUnit.AddComponent<enemyAI>();
+    public static GameObject spawnRandomUnitToGameObject(){
+        unitType type = (unitType)UnityEngine.Random.Range(0,3);
+        int amount = UnityEngine.Random.Range(100,200);
+        GameObject newUnit = spawnUnitGameObject(type,amount);
+        newUnit.GetComponent<Unit>().setUnitAmount(UnityEngine.Random.Range(100,200));
         return newUnit;
     }
 

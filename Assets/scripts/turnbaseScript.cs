@@ -26,7 +26,7 @@ public class turnbaseScript : MonoBehaviour
     void Awake()
     {
         _gui=gameObject.GetComponent<turnBaseScriptGUI>();
-       GameObject[] findPlayer = mainPlayer.Instance.getHeroes();
+       GameObject[] findPlayer = mainPlayerUnit.Instance.getUnitsAsGameObject();
             foreach (GameObject o in findPlayer)
             {
                 quequeHeroes.Add(o);

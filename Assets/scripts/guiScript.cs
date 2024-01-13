@@ -1,53 +1,30 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class guiScript : MonoBehaviour
 {
-    public Text heroName;
-    public Button[] attackBtns;
-    public Text bossName;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    Text unitsList;
+    List<Unit> unitlist;
 
-    public  void initializeGui()
-    {
-        // if(turnbaseScript.IsHeroTurn()){
-        //     heroName.text = turnbaseScript.selectedGameObject.GetComponent<Hero>().getHeroName();
-        // }
-        // unsetAttacks();
-        // setAttacks();
+    public void Start(){
+        unitsList = gameObject.transform.Find("units_list").GetComponent<Text>();
+        unitsList.text= "XD";
+        // showUnits();
+        unitlist = mainPlayerUnit.Instance.getUnitsList();
     }
-
-    // public void setAttacks()
-    // {
-    //     // int id = 0;
-    //     // unsetAttacks();
-    //     attackBtns[0].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacksNames[0];
-    //     attackBtns[1].GetComponentInChildren<Text>().text= turnbaseScript.selectedGameObject.GetComponent<Role>().attacksNames[1];
-    //     List<GameObject> enemyFound = turnbaseScript.selectedGameObject.GetComponent<characterController>().targets;
-    //     attackEvent atkEvent =turnbaseScript.selectedGameObject.GetComponent<attackEvent>();
-    //     if(enemyFound.Count>0){
-    //         Role selectedRole = turnbaseScript.selectedGameObject.GetComponent<Role>();
-    //         // Enemy enemy = enemyFound.GetComponent<Enemy>();
-    //         attackBtns[0].onClick.AddListener(()=>atkEvent.setDamageValue(selectedRole.getAttack(0)));
-    //         attackBtns[1].onClick.AddListener(()=>atkEvent.setDamageValue(selectedRole.getAttack(1)));
-    //     }
-    // }
-    // public void setAttack(Role role,Enemy enemy,int id)
-    // {
-    //     role.dealDamageTo(enemy, id);
-    //     turnbaseScript.selectedGameObject.GetComponent<characterController>().disableClickable();
-    // }
-    public void unsetAttacks(){
-        foreach(Button btn in attackBtns)
-        {
-            btn.GetComponentInChildren<Text>().text = "";
-            btn.onClick.RemoveAllListeners();
+    public void showUnits(){
+        string tekst ="";
+        foreach(var u in unitlist){
+            tekst+=$"{u.unitName},{u.getUnitAmount()}\n";
         }
+        unitsList.text=tekst;
+    }
+
+    public void Update(){
+        showUnits();
     }
 }

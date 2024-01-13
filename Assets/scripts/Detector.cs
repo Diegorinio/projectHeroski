@@ -36,7 +36,6 @@ public class Detector : MonoBehaviour
             // assignedCharacterController.targetEnemy=collider.gameObject;
             assignedCharacterController.addToTargets(collider.gameObject);
             // markedCharacter=collider.gameObject;
-            Camera.main.GetComponent<guiScript>().initializeGui();
         }
     }
 
