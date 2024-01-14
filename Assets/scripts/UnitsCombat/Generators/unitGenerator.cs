@@ -9,7 +9,7 @@ public class unitGenerator : MonoBehaviour
     private GameObject rndUnit;
     void Start()
     {
-        rndUnit = unitSpawner.spawnRandomUnitToGameObject();
+        rndUnit = unitSpawner.spawnRandomUnitToGameObject(unitSpawner.controllers.Player);
         Unit _unit = rndUnit.GetComponent<Unit>();
         gameObject.transform.Find("unit_name").GetComponent<Text>().text=_unit.unitName;
         gameObject.transform.Find("unit_amount").GetComponent<Text>().text=_unit.getUnitAmount().ToString();
@@ -18,8 +18,15 @@ public class unitGenerator : MonoBehaviour
 
     public void OnMouseDown(){
         Unit _unit = rndUnit.GetComponent<Unit>();
-        rndUnit.transform.SetParent(mainPlayer.Instance.transform);
-        mainPlayerUnit.Instance.addUnitsToTeam(_unit);
+        rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
+        if(!mainPlayerUnit.Instance.isUnitExists(_unit)){
+            rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
+            mainPlayerUnit.Instance.addUnitsToTeam(_unit);
+        }
+        else{
+            mainPlayerUnit.Instance.addUnitsToTeam(_unit);
+            Destroy(rndUnit);
+        }
         Destroy(gameObject);
     }
 }

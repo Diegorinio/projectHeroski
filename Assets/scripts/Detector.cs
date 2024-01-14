@@ -15,7 +15,10 @@ public class Detector : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Awake()
     {
+        detectedMColliders = new List<Collider2D>();
+        detectedCharacterColliders = new List<Collider2D>();
         assignedCharacterController = gameObject.GetComponentInParent<unitController>();
+        assignedCharacterController.setTileDetector(gameObject);
     }
 
     // Update is called once per frame

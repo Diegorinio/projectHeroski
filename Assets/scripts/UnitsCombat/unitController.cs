@@ -8,7 +8,7 @@ public class unitController : MonoBehaviour
     private GameObject tileDetector;
     // public GameObject targetEnemy;
     // [SerializeField]
-    public List<GameObject> targets=new List<GameObject>();
+    private List<GameObject> targets=new List<GameObject>();
     [SerializeField]
     private Unit _unit;
 
@@ -31,6 +31,10 @@ public class unitController : MonoBehaviour
         tileDetector.SetActive(true);
 }
 
+public void setTileDetector( GameObject detector){
+    tileDetector=detector;
+}
+
 public void characterMove(GameObject _newTransform){
     if(assignedTile!=null){
     assignedTile.GetComponent<Tile>().unMakeBusy();
@@ -46,8 +50,10 @@ public void characterMove(GameObject _newTransform){
 
 //Dobra troche namieszalem z atakami ale to może kiedy sie poprawi XD
 public void hitToSelectedTarget(GameObject target){
+    if(targets.Contains(target)){
     _unit.dealDamageTo(target);
     disableClickable();
+    }
 }
 public void disableClickable(){
     tileDetector.SetActive(false);

@@ -36,6 +36,7 @@ public class turnBaseScriptGUI : MonoBehaviour
         Text state = gameStatePanel.transform.Find("gameStateText").gameObject.GetComponent<Text>();
         state.text = winner;
         gameStatePanel.SetActive(true);
+        GameObject.Find("moveblocks").SetActive(false);
     }
     // Start is called before the first frame update
     void Start()

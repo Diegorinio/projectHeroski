@@ -1,11 +1,7 @@
 using System.Collections.Generic;
 using System;
-using UnityEditor.PackageManager.UI;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Unity.VisualScripting;
-using System.ComponentModel;
 // using Palmmedia.ReportGenerator.Core.Common;
 using UnityEngine.SceneManagement;
 
@@ -149,12 +145,7 @@ namespace Game.UI
         }
         private void FromBiomtoFight(randomMapEventGenerator rndEvent)
         {
-            Debug.Log(rndEvent.getRandomName());
             rndEvent.goToFight("battleScene");
-            // string biom = x;
-            // string lvl=y;
-            //zapisywanie scen walki fight;B<numerbiomu>-<numerlvl>
-            // SceneManager.LoadScene(sceneName: "fight;"+x+"-"+y);
         }
 
     }

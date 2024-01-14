@@ -33,7 +33,7 @@ public class turnbaseScript : MonoBehaviour
             } 
         // findPlayer = GameObject.FindGameObjectsWithTag("Enemy");
         // quequeHeroes.AddRange(findPlayer);
-        GameObject[] findEnemies=mainPlayer.Instance.getEnemies();
+        GameObject[] findEnemies=mainEnemiesUnit.Instance.getUnitsAsGameObject();
             quequeHeroes.AddRange(findEnemies);
         // turnText=GameObject.Find("roundText").GetComponent<Text>();
         // turnText.text=round.ToString();
@@ -116,7 +116,6 @@ public class turnbaseScript : MonoBehaviour
 
     public void checkGameState(){
         int enemies=0,heroes=0;
-        // int heroes=0;
         foreach(var i in quequeHeroes){
             if(i.CompareTag("Player")){
                 heroes++;
@@ -137,6 +136,6 @@ public class turnbaseScript : MonoBehaviour
         }
     }
     void OnDisable(){
-        mainPlayer.Instance.clearEnemyTeamList();
+        mainEnemiesUnit.Instance.clearEnemyTeamList();
     }
 }

@@ -4,30 +4,15 @@ using System.Linq;
 using UnityEngine;
 
 public class enemyDetector : Detector{
-    // [SerializeField]
-    // private List<Collider2D> detectedMColliders=new List<Collider2D>();
-    // [SerializeField]
-    // private List<Collider2D> detectedCharacterColliders = new List<Collider2D>();
-    // [SerializeField]
-    // private GameObject markedCharacter;
-    // private characterController assignedCharacterController;
-    // Start is called before the first frame update
-    // void Start()
-    // {
-
-    // }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-
-    // }
     [SerializeField]
     private enemyAI aI;
     public override void Awake()
     {
+        detectedCharacterColliders = new List<Collider2D>();
+        detectedMColliders = new List<Collider2D>();
         aI = gameObject.GetComponentInParent<enemyAI>();
         assignedCharacterController=gameObject.GetComponentInParent<unitController>();
+        assignedCharacterController.setTileDetector(gameObject);
     }
     void OnEnable(){
         if(!turnbaseScript.IsHeroTurn())
@@ -45,6 +30,7 @@ public class enemyDetector : Detector{
             // markedCharacter=collider.gameObject;
             // Camera.main.GetComponent<guiScript>().initializeGui();
             detectedCharacterColliders.Add(collider);
+            assignedCharacterController.addToTargets(collider.gameObject);
             // assignedCharacterController.addToTargets(collider.gameObject);
             // }
         }
@@ -56,22 +42,6 @@ public class enemyDetector : Detector{
     }
 
     public override void OnTriggerExit2D(Collider2D collider){
-        // if (collider.gameObject.CompareTag("platform"))
-        // {
-        //     //Debug.Log("o boze o kurwa");
-        //     GameObject colliderPlatform = collider.gameObject;
-        //     //colliderPlatform.GetComponent<SpriteRenderer>().color = Color.red;
-        //     colliderPlatform.GetComponent<Tile>().isActive = false;
-        // }
-        // else if (collider.gameObject.CompareTag("Player"))
-        // {
-        //     detectedCharacterColliders.Clear();
-        //     detectedCharacterColliders.Clear();
-        //     assignedCharacterController.clearTargets();
-        //     // aI.resetAIColliders();
-        // }
-        // Debug.Log($"reset colliders on exit");
-        // // aI.resetAIColliders();
     }
 
     IEnumerator waaitForColliders(){

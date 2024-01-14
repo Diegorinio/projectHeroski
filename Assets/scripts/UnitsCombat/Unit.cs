@@ -22,9 +22,6 @@ public class Unit : MonoBehaviour
     void Start()
     {
         _gui=gameObject.GetComponent<unitGUI>();
-        if(gameObject.GetComponent<SpriteRenderer>()){
-        gameObject.GetComponent<SpriteRenderer>().sprite=unitSprite;
-        }
     }
 
     public void setUnitAmount(int amount){
@@ -53,10 +50,21 @@ public class Unit : MonoBehaviour
     public virtual void getHit(int dmg){
         // _gui.displ
         int lost = (int)(dmg/unitBaseHealth);
+        _gui.displayGuiEvent(lost.ToString());
         if(unitAmount-lost<=0){
             unitHealth=0;
             GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
             gameObject.SetActive(false);
+            // mainPlayerUnit.Instance.removeFromUnits(this);
+            // Destroy(gameObject);
+            if(gameObject.CompareTag("Player")){
+                mainPlayerUnit.Instance.removeFromUnits(this);
+                Destroy(gameObject);
+            }
+            else if(gameObject.CompareTag("Enemy")){
+                mainEnemiesUnit.Instance.removeFromUnits(this);
+                Destroy(gameObject);
+            }
         }
         else{
             unitAmount-=lost;
