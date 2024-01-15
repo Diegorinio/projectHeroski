@@ -2665,6 +2665,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.42
       objectReference: {fileID: 0}
+    - target: {fileID: 8811566131630758668, guid: 123c39692ec55e34892de5870c11b230, type: 3}
+      propertyPath: m_Name
+      value: Iron_Counter
+      objectReference: {fileID: 0}
     - target: {fileID: 9018993987993173843, guid: 123c39692ec55e34892de5870c11b230, type: 3}
       propertyPath: m_SizeDelta.x
       value: 281.2479

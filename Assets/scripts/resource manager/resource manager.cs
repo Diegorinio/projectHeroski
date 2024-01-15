@@ -8,7 +8,7 @@ public class resourcemanager : MonoBehaviour
 {
     protected Animator animatorCmp;
     protected Button buttonCmp;
-    //zmieni� liczbe zale�nie od cheat�w
+    //zmienic liczbe zaleznie od cheatow
     public GameObject[] cheatbuttons;
     //
     [NonSerialized] public int gold;
