@@ -27,16 +27,9 @@ public class turnbaseScript : MonoBehaviour
     {
         _gui=gameObject.GetComponent<turnBaseScriptGUI>();
        GameObject[] findPlayer = mainPlayerUnit.Instance.getUnitsAsGameObject();
-            foreach (GameObject o in findPlayer)
-            {
-                quequeHeroes.Add(o);
-            } 
-        // findPlayer = GameObject.FindGameObjectsWithTag("Enemy");
-        // quequeHeroes.AddRange(findPlayer);
+       quequeHeroes.AddRange(findPlayer);
         GameObject[] findEnemies=mainEnemiesUnit.Instance.getUnitsAsGameObject();
             quequeHeroes.AddRange(findEnemies);
-        // turnText=GameObject.Find("roundText").GetComponent<Text>();
-        // turnText.text=round.ToString();
     }
 
     void Start(){
@@ -137,5 +130,8 @@ public class turnbaseScript : MonoBehaviour
     }
     void OnDisable(){
         mainEnemiesUnit.Instance.clearEnemyTeamList();
+        foreach(var p in mainPlayerUnit.Instance.getUnitsAsGameObject()){
+            p.SetActive(false);
+        }
     }
 }

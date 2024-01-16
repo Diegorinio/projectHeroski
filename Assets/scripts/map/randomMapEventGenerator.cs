@@ -24,17 +24,17 @@ public class randomMapEventGenerator : characterGenerator
     //         enemiesListNames.Add(eventNames[Random.Range(0,eventNames.Length-1)]);
     //     }
     // }
-    public void generateEvent(){
-        foreach(var name in enemiesListNames){
-            GameObject newEnemy = generateRandomCharacter(characterType.Enemy,name);
-            Enemy _enemy = newEnemy.GetComponent<Enemy>();
-            _enemy.setHeroHealth(Random.Range(101,160));
-            enemiesList.Add(newEnemy);
+    // public void generateEvent(){
+    //     foreach(var name in enemiesListNames){
+    //         GameObject newEnemy = generateRandomCharacter(characterType.Enemy,name);
+    //         Enemy _enemy = newEnemy.GetComponent<Enemy>();
+    //         _enemy.setHeroHealth(Random.Range(101,160));
+    //         enemiesList.Add(newEnemy);
 
-            newEnemy.transform.SetParent(mainPlayer.Instance.gameObject.transform);
-            newEnemy.transform.localPosition=Vector3.zero;
-        }
-    }
+    //         newEnemy.transform.SetParent(mainPlayer.Instance.gameObject.transform);
+    //         newEnemy.transform.localPosition=Vector3.zero;
+    //     }
+    // }
 
 
     private List<GameObject> Enemies = new List<GameObject>();

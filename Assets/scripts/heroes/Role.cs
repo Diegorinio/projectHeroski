@@ -49,9 +49,9 @@ public abstract class Role : MonoBehaviour
     public void dealDamageTo(GameObject _target, int dmg){
         // Debug.Log($"attack id: {_atkID}");
         if(_target.GetComponent<Enemy>()){
-            _target.GetComponent<Enemy>().getHit(dmg);
+            // _target.GetComponent<Enemy>().getHit(dmg);
         }else if(_target.GetComponent<Hero>()){
-            _target.GetComponent<Hero>().getHit(dmg);
+            // _target.GetComponent<Hero>().getHit(dmg);
         }
     }
 }

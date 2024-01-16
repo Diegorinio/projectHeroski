@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Skrypt generujacy losowa jednostke jako sprite ktora mozna dodac przez klikniecie
 public class unitGenerator : MonoBehaviour
 {
     private GameObject rndUnit;
@@ -19,6 +20,7 @@ public class unitGenerator : MonoBehaviour
     public void OnMouseDown(){
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
+        rndUnit.transform.localPosition = Vector3.zero;
         if(!mainPlayerUnit.Instance.isUnitExists(_unit)){
             rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
             mainPlayerUnit.Instance.addUnitsToTeam(_unit);
