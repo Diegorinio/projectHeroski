@@ -22,7 +22,7 @@ public class unitGenerator : MonoBehaviour
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
         rndUnit.transform.localPosition = Vector3.zero;
         if(!mainPlayerUnit.Instance.isUnitExists(_unit)){
-            rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
+            rndUnit.transform.localPosition = Vector3.zero;
             mainPlayerUnit.Instance.addUnitsToTeam(_unit);
         }
         else{
