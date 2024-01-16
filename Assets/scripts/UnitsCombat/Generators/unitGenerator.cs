@@ -20,7 +20,7 @@ public class unitGenerator : MonoBehaviour
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
         if(!mainPlayerUnit.Instance.isUnitExists(_unit)){
-            rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
+            rndUnit.transform.localPosition = Vector3.zero;
             mainPlayerUnit.Instance.addUnitsToTeam(_unit);
         }
         else{

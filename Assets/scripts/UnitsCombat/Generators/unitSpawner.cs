@@ -89,6 +89,7 @@ public class unitSpawner : MonoBehaviour
             break;
         }
         _newUnit.name +=$" {controller}";
+        _newUnit.SetActive(false);
         return _newUnit;
     }
 

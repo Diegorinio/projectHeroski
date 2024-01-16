@@ -28,6 +28,11 @@ public class resourcemanager : MonoBehaviour
                 cheatbuttons[i].SetActive(false);
             }
         }
+        //wczytanie save
+        gold=PlayerPrefs.GetInt("GoldInMenu");
+        iron=PlayerPrefs.GetInt("IronInMenu");
+        GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(gold.ToString());
+        GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
     }
     public void ManagerOnClick()
     {
@@ -60,6 +65,7 @@ public class resourcemanager : MonoBehaviour
         if(GameObject.Find("cheatButton0")==null){
             return;
         }
+        print("sasdasd");
         activateCheat += 1;
         if (activateCheat > 10)
         {
@@ -72,5 +78,13 @@ public class resourcemanager : MonoBehaviour
         {
             return;
         }
+    }
+    public void CheckifChange()
+    {
+        GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(gold.ToString());
+        GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
+        PlayerPrefs.SetInt("GoldInMenu", gold);
+        PlayerPrefs.SetInt("IronInMenu", iron);
+
     }
 }
