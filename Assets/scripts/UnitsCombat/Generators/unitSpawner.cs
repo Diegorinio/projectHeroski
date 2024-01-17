@@ -10,11 +10,10 @@ public class unitSpawner : MonoBehaviour
     //Statyczna jako ze dostepna zawsze gdy potrzeba a w sumie potrzeba tylko jedna instacje
 
     //Zaladowanie GameObjectu Unit jako template
-    public static GameObject unitTemplate;
+    public static GameObject unitTemplate=Resources.Load("Templates/UnitTemplates/unitTemplate") as GameObject;
     // Start is called before the first frame update
     void Awake()
     {
-        unitTemplate=Resources.Load("Templates/UnitTemplates/unitTemplate") as GameObject;
     }
 
     //Typy jednostek i jaki kontroler

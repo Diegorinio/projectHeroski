@@ -5,21 +5,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 //mini dukomentacja
 /*
- ControlerCitypanel s³u¿y do wyswietlenia paneli czyli tam bêda opcje co dany budynek robi
+ ControlerCitypanel sï¿½uï¿½y do wyswietlenia paneli czyli tam bï¿½da opcje co dany budynek robi
  ma back bttn do wracania
- Tokow¹ tawerne umieœci³em pod koszary i zmienie to na koñcu
-City manager bêdzie zajmowa³ sie skryptami tych paneli i wysy³a³ surówce do recource managera
-które bêdzie trzyma³ w sobie
+ Tokowï¿½ tawerne umieï¿½ciï¿½em pod koszary i zmienie to na koï¿½cu
+City manager bï¿½dzie zajmowaï¿½ sie skryptami tych paneli i wysyï¿½aï¿½ surï¿½wce do recource managera
+ktï¿½re bï¿½dzie trzymaï¿½ w sobie
  */
 public class CityManager : MonoBehaviour
 {
     public resourcemanager resourcemanager;
-    //surowce B, ze z budynków jeszcze nie w surowcemanager
+    //surowce B, ze z budynkï¿½w jeszcze nie w surowcemanager
     public int goldB;
     public int ironB;
-    //ratusz z³oto kopalnia iron
+    //ratusz zï¿½oto kopalnia iron
     protected GameObject GoldB_counter;
     protected GameObject IronB_counter;
     //obiekty itp
@@ -33,14 +34,14 @@ public class CityManager : MonoBehaviour
     protected GameObject P3;
     protected GameObject P4;
     protected GameObject P5;
-    //protected GameObject[] CityPanels =new GameObject[5]; w przysz³osci wsadzi siê do array
-    //lvl budynków
+    //protected GameObject[] CityPanels =new GameObject[5]; w przyszï¿½osci wsadzi siï¿½ do array
+    //lvl budynkï¿½w
     sbyte lvlRatusza;
     sbyte lvlkopalni;
     private void Start()
     {   lvlRatusza = 1;
         lvlkopalni = 1;
-        //COUNTERY DO BUDYNKÓW
+        //COUNTERY DO BUDYNKï¿½W
         GoldB_counter = GameObject.Find("GoldB_counter");
         IronB_counter = GameObject.Find("IronB_counter");
         //
@@ -53,7 +54,7 @@ public class CityManager : MonoBehaviour
         ironB = PlayerPrefs.GetInt("IronInBuilding");
         ChangeGoldInBuilding();
         ChangeIronInBuilding();
-        //save lvl budynków
+        //save lvl budynkï¿½w
         if( Convert.ToSByte(PlayerPrefs.GetInt("LvlRatusza"))==0) lvlRatusza = 1;
         else lvlRatusza = Convert.ToSByte(PlayerPrefs.GetInt("LvlRatusza"));
         if(Convert.ToSByte(PlayerPrefs.GetInt("LvlKopalni"))==0) lvlkopalni =1;
@@ -68,7 +69,7 @@ public class CityManager : MonoBehaviour
         P2 = GameObject.Find("KopalniaPanel");
         P3=GameObject.Find("ArenaPanel");
         P4=GameObject.Find("TavernPanel");
-        //zrobiæ dla koszar czyli tomkowej tawerny
+        //zrobiï¿½ dla koszar czyli tomkowej tawerny
         P1.SetActive(false);
         P2.SetActive(false);
         P3.SetActive(false);
@@ -94,6 +95,15 @@ public class CityManager : MonoBehaviour
         }
     }
 
+    public void goToMainMap(){
+        if(mainPlayerUnit.Instance.getUnits().Length>0){
+            SceneManager.LoadScene("mainMap");
+        }
+        else{
+            gameMessagebox.createMessageBox("Units","Przed wyruszeniem w droge zbierz druzyne");
+        }
+    }
+
 
     public void ActivateBuilding(string buttonBuildingName)
     {
@@ -103,7 +113,7 @@ public class CityManager : MonoBehaviour
         {
             case "ratusz":
                 P1.SetActive(true);
-                //znajduje i zmienia walrtosc w budynku by nie czekaæ na zegar by daæ hajs
+                //znajduje i zmienia walrtosc w budynku by nie czekaï¿½ na zegar by daï¿½ hajs
                 GoldB_counter.GetComponent<TextMeshProUGUI>().SetText(goldB.ToString());
                 break;
             case "kopalnia":

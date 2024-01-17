@@ -6,21 +6,9 @@ public class goToSceneClick : MonoBehaviour
 {
     [SerializeField]
     private string sceneID;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnMouseDown()
     {
-        SceneManager.LoadScene(sceneID, LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync(sceneID, LoadSceneMode.Single);
         Debug.Log($"go to scene {sceneID}");
     }
 }
