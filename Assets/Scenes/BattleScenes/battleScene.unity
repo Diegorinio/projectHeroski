@@ -2242,7 +2242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &588911895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2766,7 +2766,6 @@ GameObject:
   - component: {fileID: 731361029}
   - component: {fileID: 731361031}
   - component: {fileID: 731361030}
-  - component: {fileID: 731361032}
   m_Layer: 5
   m_Name: movement_panel
   m_TagString: Untagged
@@ -2832,28 +2831,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731361028}
   m_CullTransparentMesh: 1
---- !u!114 &731361032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731361028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4feb8726cf0b646bcf166cb13ba726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: 9
-  height: 10
-  widthSplit: 10
-  heigthSplit: 6
-  _tilePreset: {fileID: 5469864068619327916, guid: 2f1dc55954138ae4eba674bda864eee3, type: 3}
-  _camera: {fileID: 0}
-  offsetX: 0
-  offsetY: 0
-  spacer: 0.5
-  spawnedUnit: {fileID: 0}
 --- !u!1 &741674337
 GameObject:
   m_ObjectHideFlags: 0
@@ -3163,8 +3140,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.34959, y: 0.0079041}
-  m_SizeDelta: {x: 1089.3, y: 2177.1}
+  m_AnchoredPosition: {x: -0.010778, y: 2.596}
+  m_SizeDelta: {x: 1145.5, y: 2031.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &800058364
 MonoBehaviour:
@@ -3789,7 +3766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1111487931
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4515,7 +4492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169be34951c11f670bd193c13e90d4a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTeam: []
+  playerTeam:
+  - {fileID: 1762190691}
 --- !u!114 &1228648741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4528,7 +4506,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78eecb6041d78064fbf176c243665e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTeam: []
+  playerTeam:
+  - {fileID: 8411143564894148884}
 --- !u!4 &1228648742
 Transform:
   m_ObjectHideFlags: 0
@@ -4821,7 +4800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4feb8726cf0b646bcf166cb13ba726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 9
+  width: 10
   height: 10
   widthSplit: 10
   heigthSplit: 6
@@ -4936,7 +4915,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1080, y: 2160}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

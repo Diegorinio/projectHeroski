@@ -48,6 +48,7 @@ public class otherGridManager : MonoBehaviour
                 var spawnTile = Instantiate(_tilePreset, new Vector2(worldPos.x+firstPosX,worldPos.y+firstPosY), Quaternion.identity);
                 spawnTile.name = $"Tile{x}{y}";
                 spawnTile.transform.SetParent(gameObject.transform);
+                spawnTile.GetComponent<Tile>().setPosition(x,y);
                 firstPosY += spacer;
                 // gridMap.Add(spawnTile);
                 gridMapTiles[x,y]=spawnTile;

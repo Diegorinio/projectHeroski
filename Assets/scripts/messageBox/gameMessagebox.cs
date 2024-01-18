@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class gameMessagebox : MonoBehaviour
@@ -15,16 +14,6 @@ public class gameMessagebox : MonoBehaviour
         newxd.anchorMin = refxd.anchorMin;
         newxd.anchoredPosition = refxd.anchoredPosition;
         newxd.sizeDelta = refxd.sizeDelta;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        messageBox.GetComponent<MessageBox>().setMessageBox(title,content);
     }
 }

@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class Tile : MonoBehaviour
 {
+
+    [SerializeField]
+    private int posX,posY;
     public bool isActive = false;
     [SerializeField]
     bool isTaken = false;
@@ -28,6 +31,14 @@ public class Tile : MonoBehaviour
         }
     }
 
+    public int[] getPosition(){
+        int[] pos = {posX,posY};
+        return pos;
+    }
+    public void setPosition(int x,int y){
+        posX=x;
+        posY=y;
+    }
     private void OnMouseDown()
     {
         Debug.Log($"Pressed {name}");
@@ -41,6 +52,8 @@ public class Tile : MonoBehaviour
         {
             Debug.Log("NIE");
         }
+        int[] pos = {4,4};
+        GridMap.calculateMapTiles(pos,1);
     }
 
     public bool isBusy()
