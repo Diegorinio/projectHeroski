@@ -31,9 +31,8 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public int[] getPosition(){
-        int[] pos = {posX,posY};
-        return pos;
+    public Vector2Int getPosition(){
+        return new Vector2Int(posX,posY);
     }
     public void setPosition(int x,int y){
         posX=x;
@@ -52,8 +51,6 @@ public class Tile : MonoBehaviour
         {
             Debug.Log("NIE");
         }
-        int[] pos = {4,4};
-        GridMap.calculateMapTiles(pos,1);
     }
 
     public bool isBusy()

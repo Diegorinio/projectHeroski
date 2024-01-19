@@ -46,6 +46,9 @@ public void setTileDetector( GameObject detector){
 public Tile getAssignedTile(){
     return assignedTile;
 }
+public Unit getAssignedUnit(){
+    return _unit;
+}
 
 // Metoda ruchu gracza na tile mapy, _newTransform jest pozycja Tile, gracz przechodzi na pozycje 
 public void characterMove(GameObject _newTransform){
@@ -58,8 +61,6 @@ public void characterMove(GameObject _newTransform){
     disableClickable();
     _newTransform.GetComponent<Tile>().makeBusy();
     assignedTile=_newTransform.GetComponent<Tile>();
-    int[] testPos = GridMap.getGameObjectMapPosition(gameObject);
-    Debug.Log($"pozycja jednostki {testPos[0]},{testPos[1]}");
     // assignedTile.unMakeBusy();
 }
 

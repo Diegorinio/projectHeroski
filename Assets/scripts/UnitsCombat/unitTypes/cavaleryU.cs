@@ -11,7 +11,7 @@ public class cavaleryU:Unit
         unitName="Cavalery";
         unitBaseDamage=7;
         unitBaseHealth=16;
-        gridDistanceX=8;
+        gridDistanceX=4;
         gridDistanceY=14;
         unitSprite = Resources.Load<Sprite>("Sprites/cavaleryUnit");
     }
