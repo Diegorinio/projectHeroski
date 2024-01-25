@@ -3,85 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // [RequireComponent(typeof(characterController))]
+
+//Klasa odpowiedzialna za wykrywanie Tile ruchu i wykrywanie przeciwnika
+//enemyDetector dziedziczy
 public class Detector : MonoBehaviour
 {
+    //Lista Tile po ktorych jednostka moze atakowac
     [SerializeField]
-    public List<Tile> detectedMColliders;
+    protected List<Tile> movementTilesList;
+    
+    //Lista GameObject wykrytych przeciwnikow
     [SerializeField]
-    public List<Collider2D> detectedCharacterColliders;
+    protected List<GameObject> enemyUnitList;
     [SerializeField]
-    // public GameObject markedCharacter{get;set;}
-    public unitController assignedCharacterController;
-    // Start is called before the first frame update
-    public virtual void Awake()
-    {
-        detectedMColliders = new List<Tile>();
-        detectedCharacterColliders = new List<Collider2D>();
-        assignedCharacterController = gameObject.GetComponentInParent<unitController>();
-        assignedCharacterController.setTileDetector(gameObject);
+    //Przupisany kontroler jenostki, w tym wypadku Player
+    protected unitController assignedController;
+
+    //Znajdz Tile w zasiegu ruchu, pozniej znajdz Tile po ktorych moze sie poruszyc do movementTilesList i wykryj ewentualnych przeciwnikow
+    // Wykrywa jednostki z tagiem Enemy
+    public virtual void setTiles(){
+        Tile _assignedTile = assignedController.getAssignedTile();
+        List<Tile> rangeTiles = GridMap.calculateMapTiles(_assignedTile.getPosition(),assignedController.getAssignedUnit().gridDistanceX);
+        movementTilesList = GridMap.findMovementTiles(rangeTiles);
+        enemyUnitList = GridMap.findGameObjectsOnTiles(rangeTiles,"Enemy");
+        assignedController.addToTargets(enemyUnitList);
     }
 
-    public void Start(){
-        Tile _assignedtile = assignedCharacterController.getAssignedTile();
-        List<Tile> _tiles = new List<Tile>();
-        Vector2Int aTile = _assignedtile.getPosition();
-        detectedMColliders = GridMap.calculateMapTiles(_assignedtile.getPosition(),assignedCharacterController.getAssignedUnit().gridDistanceX);
-        Debug.Log($"Znaleziono {_tiles.Count}");
-        foreach(var t in detectedMColliders){
-            t.isActive=true;
-        } 
+    //Startuje wykrywanie
+    public virtual void StartDetector(){
+        assignedController = gameObject.GetComponent<unitController>();
+        setTiles();
+        GridMap.enableListTiles(movementTilesList);
+        Debug.Log($"{assignedController.name} activated detector");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // public virtual void OnTriggerEnter2D(Collider2D collider){
-    //     if(collider.gameObject.CompareTag("platform")){
-    //         Tile tile = collider.gameObject.GetComponent<Tile>();
-    //         if(!tile.isBusy())
-    //             tile.isActive=true;
-    //         detectedMColliders.Add(collider);
-    //     }
-    //     else if(collider.gameObject.CompareTag("Enemy")){
-    //         // if(!assignedCharacterController.targetEnemy){
-    //         // assignedCharacterController.targetEnemy=collider.gameObject;
-    //         assignedCharacterController.addToTargets(collider.gameObject);
-    //         // markedCharacter=collider.gameObject;
-    //     }
-    // }
-
-    // public virtual void OnTriggerExit2D(Collider2D collider){
-    //     if (collider.gameObject.CompareTag("platform"))
-    //     {
-    //         //Debug.Log("o boze o kurwa");
-    //         GameObject colliderPlatform = collider.gameObject;
-    //         //colliderPlatform.GetComponent<SpriteRenderer>().color = Color.red;
-    //         colliderPlatform.GetComponent<Tile>().isActive = false;
-    //     }
-    //     else if (collider.gameObject.CompareTag("Enemy"))
-    //     {
-    //         // markedCharacter= null;
-    //         // assignedCharacterController.targetEnemy=null;
-    //         assignedCharacterController.clearTargets();
-    //     }
-    // }
-    private void OnDisable()
-    {
-        //tutaj wyskakuje blad, nie wiem co jest ale cos jest. Ale bez tego nie zmeinia koloru wiec nie wiem 
-        if(detectedMColliders.Count>0){
-        foreach(Tile t in detectedMColliders){
-            // coll.GetComponent<SpriteRenderer>().color=Color.white;
-            t.isActive=false;
+    //Usuwa efekty wykrywania, czysci liste wykrytych przeciwnikow i Tile ruchu
+    public void StopDetector(){
+        if(movementTilesList.Count>0){
+            GridMap.disableListTiles(movementTilesList);
+            movementTilesList.Clear();
+            enemyUnitList.Clear();
+            assignedController.clearTargets();
         }
-        }
-        clearDetectorColliders();
-    }
-
-    private void clearDetectorColliders(){
-        detectedMColliders=new List<Tile>();
-        detectedCharacterColliders=new List<Collider2D>();
     }
 }

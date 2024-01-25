@@ -560,9 +560,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a87c658d2a46947bc6d5ff5668a518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectedMColliders: []
-  detectedCharacterColliders: []
-  assignedCharacterController: {fileID: 0}
+  movementTilesList: []
+  enemyUnitList: []
+  assignedController: {fileID: 0}
   aI: {fileID: 0}
 --- !u!50 &130919701
 Rigidbody2D:
@@ -1919,9 +1919,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a87c658d2a46947bc6d5ff5668a518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectedMColliders: []
-  detectedCharacterColliders: []
-  assignedCharacterController: {fileID: 0}
+  movementTilesList: []
+  enemyUnitList: []
+  assignedController: {fileID: 0}
   aI: {fileID: 0}
 --- !u!1 &562113483
 GameObject:
@@ -3046,7 +3046,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2590025769253753158, guid: 2e6b687a81a20bb4dbf7bb2e845c1a3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.13
+      value: 3.98
       objectReference: {fileID: 0}
     - target: {fileID: 2590025769253753158, guid: 2e6b687a81a20bb4dbf7bb2e845c1a3e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4315,9 +4315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a87c658d2a46947bc6d5ff5668a518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectedMColliders: []
-  detectedCharacterColliders: []
-  assignedCharacterController: {fileID: 0}
+  movementTilesList: []
+  enemyUnitList: []
+  assignedController: {fileID: 0}
   aI: {fileID: 0}
 --- !u!1 &1220107058
 GameObject:
@@ -4835,10 +4835,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4feb8726cf0b646bcf166cb13ba726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 10
-  height: 10
+  width: 9
+  height: 12
   widthSplit: 10
-  heigthSplit: 6
+  heigthSplit: 10
   _tilePreset: {fileID: 5469864068619327916, guid: 2f1dc55954138ae4eba674bda864eee3, type: 3}
   _camera: {fileID: 0}
   offsetX: 0
@@ -4894,9 +4894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84accdffc69822045b9073a76b25bd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectedMColliders: []
-  detectedCharacterColliders: []
-  assignedCharacterController: {fileID: 0}
+  movementTilesList: []
+  enemyUnitList: []
+  assignedController: {fileID: 0}
 --- !u!1 &1363497524
 GameObject:
   m_ObjectHideFlags: 0
@@ -5178,9 +5178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84accdffc69822045b9073a76b25bd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectedMColliders: []
-  detectedCharacterColliders: []
-  assignedCharacterController: {fileID: 0}
+  movementTilesList: []
+  enemyUnitList: []
+  assignedController: {fileID: 0}
 --- !u!1 &1516668065
 GameObject:
   m_ObjectHideFlags: 0
@@ -5920,6 +5920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileDetector: {fileID: 0}
+  targets: []
   _unit: {fileID: 0}
   assignedTile: {fileID: 0}
 --- !u!114 &1762190684
@@ -6394,9 +6395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84accdffc69822045b9073a76b25bd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectedMColliders: []
-  detectedCharacterColliders: []
-  assignedCharacterController: {fileID: 0}
+  movementTilesList: []
+  enemyUnitList: []
+  assignedController: {fileID: 0}
 --- !u!4 &958384693997478347 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3281404708235997960, guid: 87159ecfaee68b641bef37dfb3a6443b, type: 3}
@@ -6414,9 +6415,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84accdffc69822045b9073a76b25bd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectedMColliders: []
-  detectedCharacterColliders: []
-  assignedCharacterController: {fileID: 0}
+  movementTilesList: []
+  enemyUnitList: []
+  assignedController: {fileID: 0}
 --- !u!1001 &1357856967764126479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6618,7 +6619,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2590025769253753158, guid: 2e6b687a81a20bb4dbf7bb2e845c1a3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.11
+      value: -4.6
       objectReference: {fileID: 0}
     - target: {fileID: 2590025769253753158, guid: 2e6b687a81a20bb4dbf7bb2e845c1a3e, type: 3}
       propertyPath: m_LocalPosition.y

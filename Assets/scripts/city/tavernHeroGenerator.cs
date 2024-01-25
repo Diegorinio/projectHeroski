@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//Skrypt do tawerny ale do wywalenia bo chyba nie uzywany?
 public class tavernHeroGenerator : characterGenerator
 {
     Image _heroImg;

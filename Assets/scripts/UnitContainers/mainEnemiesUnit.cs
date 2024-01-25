@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
+//Instacja main EnemisUnit
+//Pozwala przenosic jednostki przeciwnka z mapy do sceny
+
+//Doslownie to samo co mainPlayerUnit
 public class mainEnemiesUnit : MonoBehaviour
 {
 public static mainEnemiesUnit Instance{get;private set;}
@@ -67,6 +72,4 @@ public static mainEnemiesUnit Instance{get;private set;}
     public void removeFromUnits(Unit _unit){
         playerTeam.Remove(_unit);
     }
-
-    // private Unit get
 }

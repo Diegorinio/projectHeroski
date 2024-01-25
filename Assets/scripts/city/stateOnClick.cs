@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Prosty skrypt ktory wylacza/wlacza dany obiekt po klinieciu
 public class stateOnClick : MonoBehaviour
 {
     public GameObject obj;

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+//Klasa generujaca jednostkix
 public class unitSpawner : MonoBehaviour
 {
 
@@ -11,10 +13,6 @@ public class unitSpawner : MonoBehaviour
 
     //Zaladowanie GameObjectu Unit jako template
     public static GameObject unitTemplate=Resources.Load("Templates/UnitTemplates/unitTemplate") as GameObject;
-    // Start is called before the first frame update
-    void Awake()
-    {
-    }
 
     //Typy jednostek i jaki kontroler
     public enum unitType{distance,cavalery,close}
@@ -41,31 +39,18 @@ public class unitSpawner : MonoBehaviour
         return newUnit;
     }
 
-    // public static GameObject spawnUnitGameObject(unitType type,int amount,controllers controller){
-    //     GameObject _newUnit = spawnUnitGameObject(type, amount);
-    //     switch (controller)
-    //     {
-    //         case controllers.Player:
-    //         assignPlayerAttributes(_newUnit);
-    //         break;
-    //         case controllers.Enemy:
-    //         assignEnemyAttributes(_newUnit);
-    //         break;
-    //     }
-    //     _newUnit.name=$"{controller} {type}";
-    //     return _newUnit;
-    // }
-
     // Dodaj komponenty potrzebne jednostce gracza
     private static void assignPlayerAttributes(GameObject obj){
-        obj.transform.Find("tileDetector").AddComponent<Detector>();
+        // obj.transform.Find("tileDetector").AddComponent<Detector>();
+        obj.AddComponent<Detector>();
     }
 
     // Dodaj komponenety potrzebne jednostce przeciwnika
     private static void assignEnemyAttributes(GameObject obj){
         obj.AddComponent<enemyAI>();
         obj.AddComponent<Enemy>();
-        obj.transform.Find("tileDetector").AddComponent<enemyDetector>();
+        // obj.transform.Find("tileDetector").AddComponent<enemyDetector>();
+        obj.AddComponent<enemyDetector>();
         obj.transform.tag="Enemy";
     }
 

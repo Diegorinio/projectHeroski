@@ -5,22 +5,25 @@ using UnityEngine.UI;
 
 public class turnBaseScriptGUI : MonoBehaviour
 {
+    //Panel konca gry
     [SerializeField]
     GameObject gameStatePanel;
     [SerializeField]
+    //Panel startu rundy
     GameObject roundStartPanel;
     [SerializeField]
+    //tekst rundy na glownym ekranie walki
     private Text roundTextGameUI;
     [SerializeField]
+    //tekst rundy na panelu startowym rundy
     private Text roundTextPanelUI;
     // [SerializeField]
+    // czas przez ktory panel startu rundy jest widoczny
     public float panelShowTime;
 
     void Awake(){
-        // roundStartPanel=GameObject.Find("roundStartPanel");
         roundTextGameUI=GameObject.Find("roundText").GetComponent<Text>();
         roundTextPanelUI=roundStartPanel.transform.Find("roundTextPanel").GetComponent<Text>();
-        // panelShowTime=1.5f;
     }
 
     public void setGUI(int round){
@@ -37,17 +40,6 @@ public class turnBaseScriptGUI : MonoBehaviour
         state.text = winner;
         gameStatePanel.SetActive(true);
         GameObject.Find("moveblocks").SetActive(false);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public IEnumerator roundStart(float time){

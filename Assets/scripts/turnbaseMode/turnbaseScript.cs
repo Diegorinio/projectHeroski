@@ -3,26 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Glowny skrypt odpowiadajacy za kolejkowanie tury 
 public class turnbaseScript : MonoBehaviour
 {
+    //Wybrany statyczny obiekt dostepny do wszystkich klas
     public static GameObject selectedGameObject;
+    //chwilowy obiekt zeby sprawdzic czy dziala w inspektorze
     public GameObject temp_gameobject;
+    //sprawdzenei czy obiekt jest wybrany
     public static bool isSelected;
+    //chwilowa zmienan zeby sprawdzic w inspektorze
     public bool selectedCheck;
     [SerializeField]
+    //dana tura 
     private int turn;
     // [SerializeField]
+    //Lista Obiektow w kolejce
     private List<GameObject> quequeHeroes= new List<GameObject>();
     [SerializeField]
     // private Text turnText;
     // [SerializeField]
+    //zmienan odpowiedzialna za runde
     private int round=1;
+    //GUI do skryptu wyswietlajace informacje
     turnBaseScriptGUI _gui;
 
     [SerializeField]
+    //zmienan odpowiedzialna czy gra zostala ukonczone( przez brak przeciwnikow lub brak jednostek gracza)
     private bool isFinished=false;
+
+    //zmienna odpowiedzialna za sprawdzanie gdy gracz wygral
     private bool isWin=false;
-    // Start is called before the first frame update
+    
+    // Przed startem znajdz komponent GUI i zwroc jednostki gracza i przeciwnika z instacji mainPlayerUnit
     void Awake()
     {
         _gui=gameObject.GetComponent<turnBaseScriptGUI>();
@@ -32,21 +45,22 @@ public class turnbaseScript : MonoBehaviour
             quequeHeroes.AddRange(findEnemies);
     }
 
+    //Na starcie uruchom kurtyne odpowiedzialna za wyswietlanie panelu rundy
     void Start(){
         StartCoroutine(roundStart());
     }
-    // Update is called once per frame
+    
+    // Do wyrzucenia
     void Update()
     {
         selectedCheck=isSelected;
         temp_gameobject=selectedGameObject;
-        // if(!IsHeroTurn()){
-        //     selectedGameObject.GetComponent<enemyAI>().randomAction();
-        // }
     }
     public int getTurn(){
         return turn;
     }
+
+    //Metoda odpowiedzialna za nastepna ture
     public void nextTurn(){
         isSelected=false;
         selectedGameObject=null;
@@ -82,23 +96,24 @@ public class turnbaseScript : MonoBehaviour
         // StartCoroutine(roundStart());
     }
 
+    //Sprawdz czy dana jednostka nalezy do gracza
     public static bool IsHeroTurn(){
         return selectedGameObject.CompareTag("Player");
     }
 
+    //Ustawia ture, odpala metode selectUnit z kontrolera danej jednostki
     public void setTurn(){
-        // if (!selectedGameObject)
-        // {
-            // _gui.setGUI(round);
             if(!selectedGameObject)
                 selectedGameObject=quequeHeroes[turn];
-            quequeHeroes[turn].GetComponent<unitController>().selectHero();
-        // }
+            quequeHeroes[turn].GetComponent<unitController>().selectUnit();
     }
 
+    //Usun GameObject jednostki z tury
     public void removeFromQueque(GameObject gObj){
         quequeHeroes.Remove(gObj);
     }
+
+    //Odpowiada za wyswietelenie panelu startu tury 
     IEnumerator roundStart(){
         _gui.setGUI(round);
         _gui.showPanel(true);
@@ -107,6 +122,7 @@ public class turnbaseScript : MonoBehaviour
         setTurn();
     }
 
+    //Sprawdza czy w grze są nadaj jednostki przeciwnika i gracza, jezeli ktorejs juz nie ma to koniec gry
     public void checkGameState(){
         int enemies=0,heroes=0;
         foreach(var i in quequeHeroes){
@@ -128,6 +144,8 @@ public class turnbaseScript : MonoBehaviour
             isWin=true;
         }
     }
+
+    //Po opusczzeniu walki dezaktywuje jednostki gracza( glownie zeby nie byly widoczne)
     void OnDisable(){
         mainEnemiesUnit.Instance.clearEnemyTeamList();
         foreach(var p in mainPlayerUnit.Instance.getUnitsAsGameObject()){

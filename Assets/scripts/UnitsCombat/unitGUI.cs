@@ -30,12 +30,14 @@ public class unitGUI : MonoBehaviour
         unitAmountText.text = _unit.getUnitAmount().ToString();
     }
 
+    //Coroutine pokazujace event dla jednostki(leczenie, strata)
     IEnumerator showGuiEvent(float time){
         eventText.enabled=true;
         yield return new WaitForSeconds(time);
         eventText.enabled=false;
     }
 
+    //Metoda glowna do wyswietlania eventu
     public void displayGuiEvent(string eventVal){
         eventText.text=eventVal;
         StartCoroutine(showGuiEvent(2));

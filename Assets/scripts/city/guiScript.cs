@@ -5,6 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Skrypt odpowiedzialny za wyswietlenie jednostek na panelu city
+// TODO: ZMIENIć nazwe klasy
+// Zmiana lokalizacji panelu
 public class guiScript : MonoBehaviour
 {
     Text unitsList;

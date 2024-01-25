@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Głównie do tawerny albo jakiego ewnetu czy cos gdzie mozesz dodaj jednostki
 //Skrypt generujacy losowa jednostke jako sprite ktora mozna dodac przez klikniecie
 public class unitGenerator : MonoBehaviour
 {
+    //GameObject ktory bedzie templataka
     [SerializeField]
     private GameObject rndUnit;
-    [SerializeField]
-    public GameObject testUnit;
+
+    //Na starcie generuje jednostke z unitSpawner jako GameOBject typu Player
+    //Na komponenty UI dodaj tekst na nazwe jednostki i ilosc jednostki
+    //Zmien Sprite na dany sprite klasy 
     void Start()
     {
-        testUnit = unitSpawner.unitTemplate;
         rndUnit = unitSpawner.spawnRandomUnitToGameObject(unitSpawner.controllers.Player);
         Unit _unit = rndUnit.GetComponent<Unit>();
         gameObject.transform.Find("unit_name").GetComponent<Text>().text=_unit.unitName;
@@ -21,6 +24,7 @@ public class unitGenerator : MonoBehaviour
         gameObject.GetComponent<Image>().sprite = _unit.unitSprite;
     }
 
+    // Po klienieciu myszka dodaj do mainPlayer jednostke
     public void OnMouseDown(){
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
