@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class otherGridManager : MonoBehaviour
 {
 [SerializeField]
     private int width, height;
     [SerializeField]
-    private int widthSplit,heigthSplit;//10,6
+    private float widthSplit,heigthSplit;//10,6
     [SerializeField]
-    private Tile _tilePreset;
+    private GameObject _tilePreset;
     [SerializeField]
     private Transform _camera;
     [SerializeField] float offsetX, offsetY;
@@ -22,16 +23,33 @@ public class otherGridManager : MonoBehaviour
     void Start()
     {
         gridMapTiles=new Tile[width,height];
-        offsetX = Screen.width / widthSplit;
-        offsetY = Screen.height / heigthSplit;
-        generateGrid();
+        float chuj = width*spacer;
+        Debug.Log($"Ekran width {Screen.width} height:{Screen.height}");
+        offsetX = Screen.width/widthSplit;
+        // offsetX=1;
+        offsetY = Screen.height/heigthSplit;
+        // offsetX=1;
+        // generateGrid();
+        generateGridGrid();
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void generateGridGrid(){
+        GridLayoutGroup grupa = gameObject.GetComponent<GridLayoutGroup>();
+        grupa.constraintCount=1;
+        grupa.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        grupa.constraintCount = width;
+
+        // Dodaj elementy do siatki
+        for (int i = 0; i < height * width; i++)
+        {
+           var newtile = Instantiate(_tilePreset,transform.position,Quaternion.identity);
+            newtile.transform.SetParent(gameObject.transform);
+            RectTransform rectTransform = newtile.GetComponent<RectTransform>();
+            rectTransform.localScale= new Vector3(100,100,1);
+            // newtile.transform.localScale=Vector3.one;
+        }
+
     }
 
     void generateGrid()
@@ -44,14 +62,13 @@ public class otherGridManager : MonoBehaviour
             {
                 var screenPoint = new Vector3(x+offsetX,y+offsetY,0);
                 var worldPos = Camera.main.ScreenToWorldPoint(screenPoint);
-                //var spawnTile = Instantiate(_tilePreset, new Vector2(x + firstPosX, y + firstPosY), Quaternion.identity);
                 var spawnTile = Instantiate(_tilePreset, new Vector2(worldPos.x+firstPosX,worldPos.y+firstPosY), Quaternion.identity);
                 spawnTile.name = $"Tile{x}{y}";
                 spawnTile.transform.SetParent(gameObject.transform);
                 spawnTile.GetComponent<Tile>().setPosition(x,y);
                 firstPosY += spacer;
                 // gridMap.Add(spawnTile);
-                gridMapTiles[x,y]=spawnTile;
+                // gridMapTiles[x,y]=spawnTile;
                 
             }
             firstPosY = 0;
