@@ -28,15 +28,15 @@ public class MessageBox : MonoBehaviour
             gameObject.transform.SetParent(GameObject.FindAnyObjectByType<Canvas>().transform);
             gameObject.transform.localScale = Vector2.one;
         }
-        okButton.GetComponent<Button>().onClick.AddListener(okButtonOnClickEvent);
+        // okButton.GetComponent<Button>().onClick.AddListener(okButtonOnClickEvent);
 
     }
 
     //Metody do ustawiania tytulu,wiadomosci albo wszystkiego naraz
     //Metoda odpowiedzialna za klikniecie buttona OK
-    public void okButtonOnClickEvent(){
-        Destroy(gameObject);
-    }
+    // public void okButtonOnClickEvent(){
+        // Destroy(gameObject);
+    // }
     public void setMessageTitle(string title){
         messageTitle.text = title;
     }

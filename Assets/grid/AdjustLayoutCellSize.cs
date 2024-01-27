@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 [ExecuteInEditMode]
 [RequireComponent(typeof(GridLayoutGroup))]
+
+//Główny skrypt do dopasowywania elementu canvasu grida do ekranu
+//Zgadza sie, ukradlem i troche zmienilem na potrzeby ale tylko glupi by nie skorzystal
 public class AdjustLayoutCellSize : MonoBehaviour
 {
     public enum Axis { X, Y };
@@ -12,7 +15,7 @@ public class AdjustLayoutCellSize : MonoBehaviour
     [SerializeField] RatioMode ratioMode;
     [SerializeField] float cellRatio = 1;
 
-    new RectTransform trans;
+    private RectTransform trans;
     [SerializeField]
     private GridLayoutGroup grid;
 
@@ -53,16 +56,16 @@ public class AdjustLayoutCellSize : MonoBehaviour
             float contentSize = trans.rect.width - grid.padding.left - grid.padding.right;
             float sizePerCell = contentSize / count;
 
-            // Ustaw maksymalną szerokość komórki, aby była zawarta w obszarze
+            // maksymalna komorka w obszarze
             float maxWidth = contentSize / count;
             grid.cellSize = new Vector2(Mathf.Min(maxWidth, sizePerCell), ratioMode == RatioMode.Free ? grid.cellSize.y : sizePerCell * cellRatio);
         }
-        else //if (expand == Axis.Y)
+        else
         {
             float contentSize = trans.rect.height - grid.padding.top - grid.padding.bottom;
             float sizePerCell = contentSize / count;
 
-            // Ustaw maksymalną wysokość komórki, aby była zawarta w obszarze
+            // maksymanla komurka w obszarze
             float maxHeight = contentSize / count;
             grid.cellSize = new Vector2(ratioMode == RatioMode.Free ? grid.cellSize.x : sizePerCell * cellRatio, Mathf.Min(maxHeight, sizePerCell));
         }

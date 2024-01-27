@@ -104,6 +104,10 @@ public class CityManager : MonoBehaviour
         }
     }
 
+    // private void chuj(){
+        // Debug.Log("Test buttona");
+    // }
+
 
     public void ActivateBuilding(string buttonBuildingName)
     {
