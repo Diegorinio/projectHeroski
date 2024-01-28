@@ -69,11 +69,13 @@ public class CityManager : MonoBehaviour
         P2 = GameObject.Find("KopalniaPanel");
         P3=GameObject.Find("ArenaPanel");
         P4=GameObject.Find("TavernPanel");
+        P5=GameObject.Find("Koszary");
         //zrobi� dla koszar czyli tomkowej tawerny
         P1.SetActive(false);
         P2.SetActive(false);
         P3.SetActive(false);
         P4.SetActive(false);
+        P5.SetActive(false);
     }
     //60 sec
     public float timeRemaining = 5;
@@ -131,6 +133,9 @@ public class CityManager : MonoBehaviour
             case "tawerna":
                 P4.SetActive(true);
                 break;
+            case "barracks":
+                P5.SetActive(true);
+                break;
         }
 
 
@@ -143,15 +148,16 @@ public class CityManager : MonoBehaviour
         P2.SetActive(false);
         P3.SetActive(false);
         P4.SetActive(false);
+        P5.SetActive(false);
     }
     public void ChangeGoldInBuilding()
     {
-        if(GoldB_counter.active==false) return;
+        if(!GoldB_counter.activeInHierarchy) return;
         GoldB_counter.GetComponent<TextMeshProUGUI>().SetText(goldB.ToString());
     }
     public void ChangeIronInBuilding()
     {
-        if (IronB_counter.active == false) return;
+        if (!IronB_counter.activeInHierarchy) return;
         IronB_counter.GetComponent<TextMeshProUGUI>().SetText(ironB.ToString());
     }
     public void GoldColleted()

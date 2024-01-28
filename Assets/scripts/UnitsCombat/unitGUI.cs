@@ -15,16 +15,12 @@ public class unitGUI : MonoBehaviour
     public virtual void Awake()
     {
         _unit=gameObject.GetComponent<Unit>();
-        Debug.Log($"{_unit.unitName} init");
         GameObject heroCanvas = gameObject.transform.Find("hero_canvas").gameObject;
         unitAmountText = heroCanvas.transform.Find("unitAmountText").GetComponent<Text>();
-        // hpSlider=heroCanvas.transform.Find("hpSlider").GetComponent<Slider>();
         eventText=heroCanvas.transform.Find("eventText").GetComponent<Text>();
-        // hpSlider.maxValue=_unit.getTotalHealth();
-        Debug.Log($"{_unit.unitName} init end");
     }
 
-    // Update is called once per frame
+    //Pokazuje ilosc jednostek, mozna to pozniej zmienic na metode wywolujaca zmiane ale mi sie nie chce
     public virtual void Update()
     {
         unitAmountText.text = _unit.getUnitAmount().ToString();

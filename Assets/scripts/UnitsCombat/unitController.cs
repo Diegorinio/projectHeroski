@@ -68,8 +68,9 @@ public void characterMove(GameObject _newTransform){
     assignedTile=_newTransform.GetComponent<Tile>();
     assignedTile.SetGameObjectOnTile(gameObject);
     disableClickable();
-    // assignedTile.unMakeBusy();
 }
+
+
 
 //Dobra troche namieszalem z atakami ale to może kiedy sie poprawi XD
 //Metoda sprawdza czy dany cel jest w liscie wykrytych celow, jezeli tak to moze zaatakowac, glowne uzycie do AI przeciwnika

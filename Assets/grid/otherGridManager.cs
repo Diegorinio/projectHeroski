@@ -53,24 +53,32 @@ public class otherGridManager : MonoBehaviour
         {
             hero.transform.parent=null;
             // hero.GetComponent<characterController>().characterMove(gridMap[Random.Range(0,9)].gameObject);
-            int rnd = Random.Range(0,height-1);
+            int rnd = Random.Range(0,width-1);
             // gridMap[rnd].makeBusy();
-            gridMapTiles[0,rnd].makeBusy();
-            hero.GetComponent<unitController>().setTile(gridMapTiles[0,rnd]);
-            Vector3 nPos = gridMapTiles[0,rnd].transform.position;
-            hero.transform.position = new Vector3(nPos.x,nPos.y,-1);
+            // gridMapTiles[rnd,0].makeBusy();
+            Tile spawnTile = gridMapTiles[rnd,0];
+            hero.GetComponent<unitController>().setTile(spawnTile);
+            spawnTile.makeBusy();
+            Vector3 nPos = gridMapTiles[rnd,0].transform.position;
+            Debug.Log($"Tile Transform {nPos.x},{nPos.y}");
+            hero.transform.position= new Vector3(nPos.x,nPos.y,-1);
             hero.SetActive(true);
+            // hero.GetComponent<unitController>().characterMoveToTile(spawnTile.gameObject);
+            // hero.SetActive(true);
         }
         GameObject[] enemies = mainEnemiesUnit.Instance.getUnitsAsGameObject();
         foreach(GameObject enemy in enemies){
             enemy.transform.parent=null;
             // int rnd=Random.Range(gridMap.Count-1,gridMap.Count-9);
-            int rnd = Random.Range(0,height-1);
+            int rnd = Random.Range(0,width-1);
+            Tile spawnTile = gridMapTiles[rnd,height-1];
             // gridMap[rnd].makeBusy();
-            gridMapTiles[width-1,rnd].makeBusy();
-            enemy.GetComponent<unitController>().setTile(gridMapTiles[width-1,rnd]);
-            Vector3 nPos = gridMapTiles[width-1,rnd].transform.position;
+            // gridMapTiles[rnd,height-1].makeBusy();
+            spawnTile.makeBusy();
+            enemy.GetComponent<unitController>().setTile(spawnTile);
+            Vector3 nPos = gridMapTiles[rnd,height-1].transform.position;
             enemy.transform.position = new Vector3(nPos.x,nPos.y,-1);
+            // enemy.GetComponent<unitController>().characterMoveToTile(spawnTile.gameObject);
             enemy.SetActive(true);
         }
 

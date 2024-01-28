@@ -83,7 +83,6 @@ public class Tile : MonoBehaviour
             Debug.Log("NIE");
         }
     }
-    
     public bool isBusy()
     {
         return isTaken;
