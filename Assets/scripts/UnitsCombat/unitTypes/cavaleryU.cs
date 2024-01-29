@@ -13,6 +13,6 @@ public class cavaleryU:Unit
         unitBaseHealth=16;
         gridDistanceX=4;
         gridDistanceY=14;
-        unitSprite = Resources.Load<Sprite>("Sprites/cavaleryUnit");
+        unitSprite = Resources.Load<Sprite>("Sprites/spearman");
     }
 }

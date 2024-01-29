@@ -33,6 +33,7 @@ public class unitSpawner : MonoBehaviour
             break;
         }
         newUnit.GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
+        // newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
         newUnit.AddComponent<unitGUI>();
         newUnit.name=$"{type} {amount}";

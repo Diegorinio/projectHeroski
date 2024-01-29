@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 //Skrypt generujacay losowee jednostki przeciwnika do mapy 
-public class randomMapEventGenerator : characterGenerator
+public class randomMapEventGenerator : MonoBehaviour
 {
     //Lista przeciwnikow
     private List<GameObject> Enemies = new List<GameObject>();

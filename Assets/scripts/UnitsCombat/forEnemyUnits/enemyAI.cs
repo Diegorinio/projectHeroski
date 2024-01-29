@@ -80,7 +80,6 @@ public class enemyAI : MonoBehaviour
     //Zaatakauj losowa jednostke gracza
     public void attackDamageToRandomPlayer(){
         if(_collidersCharacters.Count>0){
-        attackEvent atkEvent = gameObject.GetComponent<attackEvent>();
         int id=Random.Range(0,_collidersCharacters.Count-1);
         GameObject selectedHero=_collidersCharacters[id].transform.gameObject;
         Debug.Log($"Przeciwnik aatakowal {selectedHero.name} AI");

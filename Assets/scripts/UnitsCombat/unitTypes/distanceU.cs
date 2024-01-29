@@ -12,6 +12,6 @@ public class distanceU:Unit
         unitBaseHealth=20;
         gridDistanceX=5;
         gridDistanceY=14;
-        unitSprite = Resources.Load<Sprite>("Sprites/distanceUnit");
+        unitSprite = Resources.Load<Sprite>("Sprites/bowman");
     }
 }
