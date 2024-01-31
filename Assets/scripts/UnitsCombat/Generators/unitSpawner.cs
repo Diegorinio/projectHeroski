@@ -15,30 +15,70 @@ public class unitSpawner : MonoBehaviour
     public static GameObject unitTemplate=Resources.Load("Templates/UnitTemplates/unitTemplate") as GameObject;
 
     //Typy jednostek i jaki kontroler
-    public enum unitType{distance,cavalery,close}
+    public enum unitType{Distance,Cavalery,Close}
     public enum controllers{Player,Enemy}
 
     //Zespawnij dany typ i dana ilosc
+    //główne użycie w koszarach
     public static GameObject spawnUnitGameObject(unitType type,int amount){
         GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
         switch(type){
-            case unitType.distance:
+            case unitType.Distance:
             newUnit.AddComponent<distanceU>();
             break;
-            case unitType.close:
+            case unitType.Close:
             newUnit.AddComponent<closeU>();
             break;
-            case unitType.cavalery:
+            case unitType.Cavalery:
             newUnit.AddComponent<cavaleryU>();
             break;
         }
-        newUnit.GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
-        // newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
+        newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
         newUnit.AddComponent<unitGUI>();
         newUnit.name=$"{type} {amount}";
         return newUnit;
     }
+    public static GameObject spawnUnitGameObject(unitType type, controllers controller,int amount){
+        GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
+        switch(type){
+            case unitType.Distance:
+            newUnit.AddComponent<distanceU>();
+            break;
+            case unitType.Close:
+            newUnit.AddComponent<closeU>();
+            break;
+            case unitType.Cavalery:
+            newUnit.AddComponent<cavaleryU>();
+            break;
+        }
+        assignController(controller, newUnit);
+        newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
+        newUnit.GetComponent<Unit>().setUnitAmount(amount);
+        newUnit.AddComponent<unitGUI>();
+        newUnit.name=$"{type} {amount}";
+        return newUnit;
+    }
+    // public static Unit spawnUnit(unitType type,int amount){
+    //     GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
+    //     switch(type){
+    //         case unitType.Distance:
+    //         newUnit.AddComponent<distanceU>();
+    //         break;
+    //         case unitType.Close:
+    //         newUnit.AddComponent<closeU>();
+    //         break;
+    //         case unitType.Cavalery:
+    //         newUnit.AddComponent<cavaleryU>();
+    //         break;
+    //     }
+    //     newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
+    //     newUnit.GetComponent<Unit>().setUnitAmount(amount);
+    //     newUnit.AddComponent<unitGUI>();
+    //     newUnit.name=$"{type} {amount}";
+    //     return newUnit;
+    // }
+
 
     // Dodaj komponenty potrzebne jednostce gracza
     private static void assignPlayerAttributes(GameObject obj){
@@ -63,6 +103,17 @@ public class unitSpawner : MonoBehaviour
         GameObject newUnit = spawnUnitGameObject(type,amount);
         newUnit.GetComponent<Unit>().setUnitAmount(UnityEngine.Random.Range(100,200));
         return newUnit;
+    }
+
+    public static void assignController(controllers controller, GameObject obj){
+        switch(controller){
+            case controllers.Player:
+            assignPlayerAttributes(obj);
+            break;
+            case controllers.Enemy:
+            assignEnemyAttributes(obj);
+            break;
+        }
     }
 
     //Utworz lososwy typ jednostki z wyborem czy to jednostka przeciwna czy gracza

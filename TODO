@@ -1,0 +1,19 @@
+## Changes
+    #Made barracks with Slider to "buy" units
+    #Water tile added which decrease movement by half ( bugged )
+    #Started making Hero component
+## BUGS
+    #fix water( tile, unit have decreased movement when outside water and beign in water previously, everytime movement is decreased even if unit move water->water means x/2 and in other move movement is (x/2)/2)
+    #fix unit remove script from unit container
+    #find better way to store units
+    #find better way to store sprites between gameObject
+    (idk, using prefabs for every unit etc) or just scriptable objects
+    #remove resources folder?
+    #change some method and script names
+
+
+## TODO
+    #Hero with spells
+    #change turnbasescript to chave move/attack in turn and hero can cast spell
+    #Units movement on grid with A* pathfinding ( or not i'm too lazy to make nodes between Tiles)
+

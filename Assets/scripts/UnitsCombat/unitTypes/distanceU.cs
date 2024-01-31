@@ -10,8 +10,8 @@ public class distanceU:Unit
         unitName="Distance U";
         unitBaseDamage=5;
         unitBaseHealth=20;
-        gridDistanceX=5;
-        gridDistanceY=14;
+        gridDistanceX=3;
+        gridDistanceY=3;
         unitSprite = Resources.Load<Sprite>("Sprites/bowman");
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +20,6 @@ public static class GridMap
 
     // Zwroc dany Tile w danej pozycji mapy
     public static Tile getTile(int x,int y){
-        Debug.Log($"Tilemap at {x},{y} is {gridMap[x,y].name} {gridMap[x,y].isActive}");
         return gridMap[x,y];
     }
 
@@ -34,22 +34,53 @@ public static class GridMap
     }
 
     //Zwróć wszystkie kwadraty z mapy w zasięgu obiektu
-    public static List<Tile> calculateMapTiles(Vector2Int startingPoint,int distance){
+    // public static List<Tile> calculateMapTiles(Vector2Int startingPoint,int distance){
+    //     List<Tile> availableTiles = new List<Tile>();
+    //     for (int x = Mathf.Max(0, startingPoint.x - distance); x <= Mathf.Min(gridMap.GetLength(0) - 1, startingPoint.x + distance); x++)
+    //     {
+    //         for (int y = Mathf.Max(0, startingPoint.y - distance); y <= Mathf.Min(gridMap.GetLength(1) - 1, startingPoint.y + distance); y++)
+    //         {
+    //             if (Mathf.Abs(startingPoint.x - x) + Mathf.Abs(startingPoint.y - y) <= distance)
+    //             {
+    //                 // gridMap[x,y].isActive=true;
+    //                 availableTiles.Add(gridMap[x,y]);
+    //             }
+    //         }
+    //     }
+    //     gridMap[startingPoint.x,startingPoint.y].isActive=false;
+    //     return availableTiles;
+    // }
+    // public static List<Tile> calculateMapTiles(Vector2Int startingPoint,Vector2Int distance){
+    //     List<Tile> availableTiles = new List<Tile>();
+    //     for (int x = Mathf.Max(0, startingPoint.x - distance.x); x <= Mathf.Min(gridMap.GetLength(0) - 1, startingPoint.x + distance.x); x++)
+    //     {
+    //         for (int y = Mathf.Max(0, startingPoint.y - distance.y); y <= Mathf.Min(gridMap.GetLength(1) - 1, startingPoint.y + distance.y); y++)
+    //         {
+    //             if (Mathf.Abs(startingPoint.x - x) + Mathf.Abs(startingPoint.y - y) <= distance.x)
+    //             {
+    //                 // gridMap[x,y].isActive=true;
+    //                 availableTiles.Add(gridMap[x,y]);
+    //             }
+    //         }
+    //     }
+    //     gridMap[startingPoint.x,startingPoint.y].isActive=false;
+    //     return availableTiles;
+    // }
+
+    public static List<Tile> calculateMapTiles(Vector2Int startingPoint,Vector2Int distance){
         List<Tile> availableTiles = new List<Tile>();
-        for (int x = Mathf.Max(0, startingPoint.x - distance); x <= Mathf.Min(gridMap.GetLength(0) - 1, startingPoint.x + distance); x++)
-        {
-            for (int y = Mathf.Max(0, startingPoint.y - distance); y <= Mathf.Min(gridMap.GetLength(1) - 1, startingPoint.y + distance); y++)
-            {
-                if (Mathf.Abs(startingPoint.x - x) + Mathf.Abs(startingPoint.y - y) <= distance)
-                {
-                    // gridMap[x,y].isActive=true;
-                    availableTiles.Add(gridMap[x,y]);
-                }
+        for(int x=Math.Max(0,startingPoint.x-distance.x);x<=Mathf.Min(gridMap.GetLength(0)-1,startingPoint.x+distance.x);x++){
+            for(int y=Mathf.Max(0,startingPoint.y-distance.y);y<=Mathf.Min(gridMap.GetLength(1)-1,startingPoint.y+distance.y);y++){
+                Tile currentTile = gridMap[x,y];
+                availableTiles.Add(currentTile);
             }
         }
         gridMap[startingPoint.x,startingPoint.y].isActive=false;
         return availableTiles;
     }
+
+
+
 
     //Z daje listy Tile zwroc liste wolnych Tile gdzie nie sa zajete
     public static List<Tile> findMovementTiles(List<Tile> tiles){

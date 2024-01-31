@@ -15,7 +15,7 @@ public class enemyDetector : Detector{
     //To samo co w rodzicu ale wykrywa z tagiem jednostek Player
     public override void setTiles(){
         Tile _assignedTile = assignedController.getAssignedTile();
-        List<Tile> rangeTiles = GridMap.calculateMapTiles(_assignedTile.getPosition(),assignedController.getAssignedUnit().gridDistanceX);
+        List<Tile> rangeTiles = GridMap.calculateMapTiles(_assignedTile.getPosition(),assignedController.getUnitDistance());
         movementTilesList = GridMap.findMovementTiles(rangeTiles);
         enemyUnitList = GridMap.findGameObjectsOnTiles(rangeTiles,"Player");
         assignedController.addToTargets(enemyUnitList);

@@ -23,7 +23,7 @@ public class Detector : MonoBehaviour
     // Wykrywa jednostki z tagiem Enemy
     public virtual void setTiles(){
         Tile _assignedTile = assignedController.getAssignedTile();
-        List<Tile> rangeTiles = GridMap.calculateMapTiles(_assignedTile.getPosition(),assignedController.getAssignedUnit().gridDistanceX);
+        List<Tile> rangeTiles = GridMap.calculateMapTiles(_assignedTile.getPosition(),assignedController.getUnitDistance());
         movementTilesList = GridMap.findMovementTiles(rangeTiles);
         enemyUnitList = GridMap.findGameObjectsOnTiles(rangeTiles,"Enemy");
         assignedController.addToTargets(enemyUnitList);

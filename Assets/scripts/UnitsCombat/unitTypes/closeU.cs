@@ -11,8 +11,8 @@ public class closeU : Unit
         unitName="Close U";
         unitBaseDamage=7;
         unitBaseHealth=25;
-        gridDistanceX=2;
-        gridDistanceY=8;
+        gridDistanceX=1;
+        gridDistanceY=1;
         unitSprite = Resources.Load<Sprite>("Sprites/closeUnit");
     }
 }

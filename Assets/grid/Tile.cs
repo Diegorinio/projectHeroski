@@ -12,21 +12,20 @@ public class Tile : MonoBehaviour
 
     //pozycja x,y na mapie glownego gridu
     [SerializeField]
-    private int posX,posY;
+    protected int posX,posY;
 
     //ustawienie czy Tile jest aktywny isActive? podwietl:brak podswietlenia
     public bool isActive = false;
     [SerializeField]
     //ustawienie czy Tile jest zajety przez inny obiekt
     //TODO: Wyrzucic i przepisac 
-    bool isTaken = false;
+    protected bool isTaken = false;
     //Sprite danego Tile
-    SpriteRenderer render;
+    protected SpriteRenderer render;
 
     //Przypisany obiekt do danego Tile, np: gracz,przeszkoda,
-    private GameObject gameObjectOnTile;
-    // Start is called before the first frame update
-    void Start()
+    protected GameObject gameObjectOnTile;
+    protected virtual void  Start()
     {
         render=gameObject.GetComponent<SpriteRenderer>();
     }
@@ -68,7 +67,7 @@ public class Tile : MonoBehaviour
     }
 
     // DLA GRACZA: Jezeli jest aktywny to moze sie poruszyc do danego Tile
-    private void OnMouseDown()
+    public virtual void OnMouseDown()
     {
         Debug.Log($"Pressed {name}");
         if (turnbaseScript.isSelected && isActive && !isTaken)

@@ -22,12 +22,13 @@ public class unitController : MonoBehaviour
     private Tile assignedTile;
     //Znajdz komponent Unit danej jednostki
     //Ustaw dystan ruchu
+    Vector2Int dist;
     //Znajdz komponent Detector dla gracza lub przeciwnika
     void Start()
     {
         _unit = gameObject.GetComponent<Unit>();
-        int distX = _unit.gridDistanceX;
-        int distY=_unit.gridDistanceY;
+        dist.x = _unit.gridDistanceX;
+        dist.y=_unit.gridDistanceY;
         // Debug.Log($"{_unit.unitName} selected, distance{distX},{distY}");
         tileDetector=gameObject.GetComponent<Detector>();
     }
@@ -51,6 +52,19 @@ public Tile getAssignedTile(){
 //Zwroc typ jednostki 
 public Unit getAssignedUnit(){
     return _unit;
+}
+
+public Vector2Int getUnitDistance(){
+    return dist;
+}
+
+public void setUnitDistance(int x,int y){
+    dist.x=x;
+    dist.y=y;
+}
+
+public void setNormalDistance(){
+    setUnitDistance(_unit.gridDistanceX,_unit.gridDistanceY);
 }
 
 // Metoda ruchu gracza na tile
