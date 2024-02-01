@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Tile : MonoBehaviour
+public abstract class Tile : MonoBehaviour
 {
 
     //TODO:
     //Zmiana nazw i lepiej nazwanych wlasciwosci
-
-
     //pozycja x,y na mapie glownego gridu
     [SerializeField]
     protected int posX,posY;
@@ -22,12 +20,22 @@ public class Tile : MonoBehaviour
     protected bool isTaken = false;
     //Sprite danego Tile
     protected SpriteRenderer render;
+    protected TileSO tilePreset;
 
     //Przypisany obiekt do danego Tile, np: gracz,przeszkoda,
     protected GameObject gameObjectOnTile;
-    protected virtual void  Start()
+    protected virtual void setPreset(){
+        setTilePreset("grassTile");
+    }
+    private void Start()
     {
         render=gameObject.GetComponent<SpriteRenderer>();
+        setPreset();
+        render.sprite = tilePreset.tileSprite;
+    }
+
+    protected void setTilePreset(string presetName){
+        tilePreset = Resources.Load<TileSO>($"Tiles/{presetName}");
     }
 
     // Update ( trzeba to przepisac na zwykla funkcje aktywyjaca)
@@ -43,10 +51,14 @@ public class Tile : MonoBehaviour
             render.color = Color.grey;
         }
     }
+    protected abstract void TileBehaviour();
+    // protected abstract void TileBehaviour(GameObject obj);
 
     //Przypisz GameObject do danego Tile
-    public void SetGameObjectOnTile(GameObject obj){
+    //Wywolaj event dzialania tile w momencie przypisania Gameobjectu do Tile
+    public virtual void SetGameObjectOnTile(GameObject obj){
         gameObjectOnTile=obj;
+        TileBehaviour();
     }
 
     //Zwroc przypisany GameObject do danego Tile

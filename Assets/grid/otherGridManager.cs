@@ -39,12 +39,12 @@ public class otherGridManager : MonoBehaviour
             for(int y=0;y<height;y++){
                 var newTile = Instantiate(_tilePreset,transform.position,Quaternion.identity);
                 //Czy Tile jest eventem np woda czy coś
-                int rnd = Random.Range(0,10);
-                if(rnd>=8){
+                int rnd = Random.Range(0,100);
+                if(rnd>=80){
                     newTile.AddComponent<waterTile>();
                 }
                 else{
-                    newTile.AddComponent<Tile>();
+                    newTile.AddComponent<grassTile>();
                 }
                 newTile.transform.SetParent(gameObject.transform);
                 newTile.name = $"Tile{x}{y}";
