@@ -8,7 +8,6 @@ public abstract class Tile : MonoBehaviour
 
     //TODO:
     //Zmiana nazw i lepiej nazwanych wlasciwosci
-    //pozycja x,y na mapie glownego gridu
     [SerializeField]
     protected int posX,posY;
 
@@ -20,24 +19,42 @@ public abstract class Tile : MonoBehaviour
     protected bool isTaken = false;
     //Sprite danego Tile
     protected SpriteRenderer render;
+
+    //Preset asset dla Tile zawierajacy nazwe i sprite 
     protected TileSO tilePreset;
 
     //Przypisany obiekt do danego Tile, np: gracz,przeszkoda,
     protected GameObject gameObjectOnTile;
+
+    //Zaladuj preset
     protected virtual void setPreset(){
-        setTilePreset("grassTile");
+        setTilePreset("normalTile");
     }
+    //Zaladuj preset na Awake
+    private void Awake(){
+        setPreset();
+    }
+
+    //Znajdz spriteRendere i zmien sprite na ten z assetu
     private void Start()
     {
         render=gameObject.GetComponent<SpriteRenderer>();
-        setPreset();
         render.sprite = tilePreset.tileSprite;
     }
-
+    //Zaladuj preset
     protected void setTilePreset(string presetName){
         tilePreset = Resources.Load<TileSO>($"Tiles/{presetName}");
     }
 
+    //Zaladuj preset ze zmiana sprajta
+    protected void setTilePreset(string presetName, bool reload){
+        if(reload){
+        tilePreset = Resources.Load<TileSO>($"Tiles/{presetName}");
+        render=gameObject.GetComponent<SpriteRenderer>();
+        Debug.Log(render.sprite.name+" : "+tilePreset.tileSprite.name);
+        render.sprite=tilePreset.tileSprite;
+        }
+    }
     // Update ( trzeba to przepisac na zwykla funkcje aktywyjaca)
     // Jak narazie brak wplywu na wydajnosc ale to moze sie zmienic z czasem
     void Update()
@@ -51,14 +68,13 @@ public abstract class Tile : MonoBehaviour
             render.color = Color.grey;
         }
     }
+
+    //Metoda odpowiedzialna za efekt jaki daje gdy gracz/przeciwnik wejdzie na dany Tile
     protected abstract void TileBehaviour();
-    // protected abstract void TileBehaviour(GameObject obj);
 
     //Przypisz GameObject do danego Tile
-    //Wywolaj event dzialania tile w momencie przypisania Gameobjectu do Tile
     public virtual void SetGameObjectOnTile(GameObject obj){
         gameObjectOnTile=obj;
-        TileBehaviour();
     }
 
     //Zwroc przypisany GameObject do danego Tile
@@ -79,6 +95,7 @@ public abstract class Tile : MonoBehaviour
     }
 
     // DLA GRACZA: Jezeli jest aktywny to moze sie poruszyc do danego Tile
+    //gdy mozna sie poruszyc to uruchom zachowanie Tile
     public virtual void OnMouseDown()
     {
         Debug.Log($"Pressed {name}");
@@ -88,6 +105,7 @@ public abstract class Tile : MonoBehaviour
             GameObject player = turnbaseScript.selectedGameObject;
             player.GetComponent<unitController>().characterMove(gameObject);
             isActive = false;
+            TileBehaviour();
         }
         else
         {

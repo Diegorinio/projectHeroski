@@ -16,6 +16,10 @@ public class waterTile:Tile
 
     protected override void TileBehaviour()
     {
-        throw new System.NotImplementedException();
+        unitController _unitOnTile = gameObjectOnTile.GetComponent<unitController>();
+        if(_unitOnTile.getUnitDistance()==_unitOnTile.getBaseUnitDistance()){
+            Vector2Int dist = _unitOnTile.getUnitDistance();
+            _unitOnTile.setUnitDistance(dist.x/2,dist.y/2);
+        }
     }
 }

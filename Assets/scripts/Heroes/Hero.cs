@@ -6,6 +6,6 @@ public abstract class Hero : MonoBehaviour
 {
     public string Name;
     public Sprite heroSprite;
-
+    
     public abstract void Skill();
 }

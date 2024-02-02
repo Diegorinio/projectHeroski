@@ -11,6 +11,6 @@ public class grassTile : Tile
 
     protected override void TileBehaviour()
     {
-        throw new System.NotImplementedException();
+        gameObjectOnTile.GetComponent<unitController>().setNormalDistance();
     }
 }

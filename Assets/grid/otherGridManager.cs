@@ -41,7 +41,7 @@ public class otherGridManager : MonoBehaviour
                 //Czy Tile jest eventem np woda czy coś
                 int rnd = Random.Range(0,100);
                 if(rnd>=80){
-                    newTile.AddComponent<waterTile>();
+                    newTile.AddComponent<obstacleTile>();
                 }
                 else{
                     newTile.AddComponent<grassTile>();

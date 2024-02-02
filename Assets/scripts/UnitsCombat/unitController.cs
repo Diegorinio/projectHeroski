@@ -58,6 +58,11 @@ public Vector2Int getUnitDistance(){
     return dist;
 }
 
+public Vector2Int getBaseUnitDistance(){
+    Vector2Int retV = new Vector2Int(_unit.gridDistanceX,_unit.gridDistanceY);
+    return retV;
+}
+
 public void setUnitDistance(int x,int y){
     dist.x=x;
     dist.y=y;
