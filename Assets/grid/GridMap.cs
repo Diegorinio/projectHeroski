@@ -34,39 +34,6 @@ public static class GridMap
     }
 
     //Zwróć wszystkie kwadraty z mapy w zasięgu obiektu
-    // public static List<Tile> calculateMapTiles(Vector2Int startingPoint,int distance){
-    //     List<Tile> availableTiles = new List<Tile>();
-    //     for (int x = Mathf.Max(0, startingPoint.x - distance); x <= Mathf.Min(gridMap.GetLength(0) - 1, startingPoint.x + distance); x++)
-    //     {
-    //         for (int y = Mathf.Max(0, startingPoint.y - distance); y <= Mathf.Min(gridMap.GetLength(1) - 1, startingPoint.y + distance); y++)
-    //         {
-    //             if (Mathf.Abs(startingPoint.x - x) + Mathf.Abs(startingPoint.y - y) <= distance)
-    //             {
-    //                 // gridMap[x,y].isActive=true;
-    //                 availableTiles.Add(gridMap[x,y]);
-    //             }
-    //         }
-    //     }
-    //     gridMap[startingPoint.x,startingPoint.y].isActive=false;
-    //     return availableTiles;
-    // }
-    // public static List<Tile> calculateMapTiles(Vector2Int startingPoint,Vector2Int distance){
-    //     List<Tile> availableTiles = new List<Tile>();
-    //     for (int x = Mathf.Max(0, startingPoint.x - distance.x); x <= Mathf.Min(gridMap.GetLength(0) - 1, startingPoint.x + distance.x); x++)
-    //     {
-    //         for (int y = Mathf.Max(0, startingPoint.y - distance.y); y <= Mathf.Min(gridMap.GetLength(1) - 1, startingPoint.y + distance.y); y++)
-    //         {
-    //             if (Mathf.Abs(startingPoint.x - x) + Mathf.Abs(startingPoint.y - y) <= distance.x)
-    //             {
-    //                 // gridMap[x,y].isActive=true;
-    //                 availableTiles.Add(gridMap[x,y]);
-    //             }
-    //         }
-    //     }
-    //     gridMap[startingPoint.x,startingPoint.y].isActive=false;
-    //     return availableTiles;
-    // }
-
     public static List<Tile> calculateMapTiles(Vector2Int startingPoint,Vector2Int distance){
         List<Tile> availableTiles = new List<Tile>();
         for(int x=Math.Max(0,startingPoint.x-distance.x);x<=Mathf.Min(gridMap.GetLength(0)-1,startingPoint.x+distance.x);x++){
@@ -78,6 +45,152 @@ public static class GridMap
         gridMap[startingPoint.x,startingPoint.y].isActive=false;
         return availableTiles;
     }
+
+    
+    //Zwroc liste Wektorów 2Dint z danej listy
+    public static Vector2Int[] getMapTilesVectors(List<Tile> tiles){
+        Vector2Int[] resultVectors = new Vector2Int[tiles.Count];
+        for(int x=0;x<tiles.Count-1;x++){
+            resultVectors[x]=tiles[x].getPosition();
+        }
+        return resultVectors;
+    }
+
+public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, int searchRadius)
+{
+    // Lista do przechowywania odwiedzonych pól
+    List<Tile> visited = new List<Tile>();
+
+    // Kolejka dla pól do odwiedzenia
+    Queue<Tile> queue = new Queue<Tile>();
+
+    // Mapa przechowująca rodzica danego pola
+    Dictionary<Tile, Tile> parentMap = new Dictionary<Tile, Tile>();
+
+    // Koszt dotarcia do danego pola
+    Dictionary<Tile, float> costSoFar = new Dictionary<Tile, float>();
+
+    // Dodajemy startowe pole do kolejki i ustawiamy koszt na 0
+    queue.Enqueue(startTile);
+    costSoFar[startTile] = 0;
+
+    while (queue.Count > 0)
+    {
+        // Pobieramy pole z kolejki
+        Tile currentTile = queue.Dequeue();
+
+        // Jeśli dotarliśmy do celu, przerywamy pętlę
+        if (currentTile == targetTile)
+            break;
+
+        // Przechodzimy przez sąsiadów aktualnego pola
+        foreach (var neighbor in currentTile.getNeighbours())
+        {
+            // Sprawdzenie czy sąsiad mieści się w obszarze poszukiwań
+            float distance = Vector2Int.Distance(currentTile.getPosition(), neighbor.getPosition());
+            if (distance <= searchRadius && !neighbor.isBusy())
+            {
+                // Obliczamy nowy koszt dotarcia do sąsiada
+                float newCost = costSoFar[currentTile] + distance;
+
+                // Jeśli sąsiad nie został jeszcze odwiedzony lub nowy koszt jest mniejszy od dotychczasowego
+                if (!costSoFar.ContainsKey(neighbor) || newCost < costSoFar[neighbor])
+                {
+                    // Uaktualniamy koszt dotarcia i dodajemy do kolejki
+                    costSoFar[neighbor] = newCost;
+                    queue.Enqueue(neighbor);
+                    parentMap[neighbor] = currentTile;
+                }
+            }
+        }
+    }
+
+    // Rekonstrukcja ścieżki zakończona - przechodzimy od celu do startu, korzystając z rodziców
+    List<Tile> path = new List<Tile>();
+    Tile current = targetTile;
+    while (current != startTile)
+    {
+        path.Add(current);
+        current = parentMap[current];
+    }
+    path.Reverse(); // Odwracamy listę, aby ścieżka była w kolejności od startu do celu
+
+    return path;
+}
+
+public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vector2Int searchRadius)
+{
+    // Lista do przechowywania odwiedzonych pól
+    List<Tile> visited = new List<Tile>();
+
+    // Kolejka dla pól do odwiedzenia
+    Queue<Tile> queue = new Queue<Tile>();
+
+    // Mapa przechowująca rodzica danego pola
+    Dictionary<Tile, Tile> parentMap = new Dictionary<Tile, Tile>();
+
+    // Koszt dotarcia do danego pola
+    Dictionary<Tile, float> costSoFar = new Dictionary<Tile, float>();
+
+    // Dodajemy startowe pole do kolejki i ustawiamy koszt na 0
+    queue.Enqueue(startTile);
+    costSoFar[startTile] = 0;
+
+    while (queue.Count > 0)
+    {
+        // Pobieramy pole z kolejki
+        Tile currentTile = queue.Dequeue();
+
+        // Jeśli dotarliśmy do celu, przerywamy pętlę
+        if (currentTile == targetTile)
+            break;
+
+        // Przechodzimy przez sąsiadów aktualnego pola
+        for (int xOffset = -searchRadius.x; xOffset <= searchRadius.x; xOffset++)
+        {
+            for (int yOffset = -searchRadius.y; yOffset <= searchRadius.y; yOffset++)
+            {
+                int neighborX = currentTile.getPosition().x + xOffset;
+                int neighborY = currentTile.getPosition().y + yOffset;
+
+                // czy somsiad jest w obszarze
+                if (neighborX >= 0 && neighborX < gridMap.GetLength(0) &&
+                    neighborY >= 0 && neighborY < gridMap.GetLength(1))
+                {
+                    Tile neighbor = gridMap[neighborX, neighborY];
+                    float distance = Vector2Int.Distance(currentTile.getPosition(), neighbor.getPosition());
+                    if (distance <= 1 && !neighbor.isBusy()) //zmiana o 1 bo suzkanie w x,y
+                    {
+                        // koszt doracia do somsiada
+                        float newCost = costSoFar[currentTile] + distance;
+                        //jezeli somsiad nie byl odwiedzony albo koszt jest mniejszy od dotychczasowego
+                        if (!costSoFar.ContainsKey(neighbor) || newCost < costSoFar[neighbor])
+                        {
+                            // po ogarnieciu kosztu dodaj do kolejki
+                            costSoFar[neighbor] = newCost;
+                            queue.Enqueue(neighbor);
+                            parentMap[neighbor] = currentTile;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // generuj sciezke od startu do celu
+    List<Tile> path = new List<Tile>();
+    Tile current = targetTile;
+    while (current != startTile)
+    {
+        path.Add(current);
+        current = parentMap[current];
+    }
+    //odwrocenie bo od startu do celu
+    path.Reverse();
+
+    return path;
+}
+
 
 
 
@@ -120,6 +233,13 @@ public static class GridMap
     public static void enableListTiles(List<Tile> tiles){
         foreach(var t in tiles){
             t.isActive=true;
+        }
+    }
+
+    public static void enableListTiles(List<Tile> tiles, Color color){
+        foreach(var t in tiles){
+            t.isActive=true;
+            t.GetComponent<SpriteRenderer>().color=color;
         }
     }
 

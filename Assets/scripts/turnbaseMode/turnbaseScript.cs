@@ -6,6 +6,8 @@ using UnityEngine.UI;
 //Glowny skrypt odpowiadajacy za kolejkowanie tury 
 public class turnbaseScript : MonoBehaviour
 {
+    //Tile ktory zostal wcisniety do pathfinidingu
+    public static Tile selectedTile;
     //Wybrany statyczny obiekt dostepny do wszystkich klas
     public static GameObject selectedGameObject;
     //chwilowy obiekt zeby sprawdzic czy dziala w inspektorze

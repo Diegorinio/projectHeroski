@@ -12,7 +12,23 @@ public abstract class Tile : MonoBehaviour
     protected int posX,posY;
 
     //ustawienie czy Tile jest aktywny isActive? podwietl:brak podswietlenia
-    public bool isActive = false;
+    [SerializeField]
+    private bool isEnabled;
+    public bool isActive{get{
+        return isEnabled;
+    }
+    set{
+        isEnabled=value;
+        render=gameObject.GetComponent<SpriteRenderer>();
+        if (isEnabled)
+        {
+            render.color = Color.green;
+        }
+        else if(!isEnabled||isTaken)
+        {
+            render.color = Color.black;
+        }
+    }}
     [SerializeField]
     //ustawienie czy Tile jest zajety przez inny obiekt
     //TODO: Wyrzucic i przepisac 
@@ -25,6 +41,8 @@ public abstract class Tile : MonoBehaviour
 
     //Przypisany obiekt do danego Tile, np: gracz,przeszkoda,
     protected GameObject gameObjectOnTile;
+
+    public List<Tile> neighbors = new List<Tile>();
 
     //Zaladuj preset
     protected virtual void setPreset(){
@@ -59,14 +77,6 @@ public abstract class Tile : MonoBehaviour
     // Jak narazie brak wplywu na wydajnosc ale to moze sie zmienic z czasem
     void Update()
     {
-        if (isActive)
-        {
-            render.color = Color.green;
-        }
-        else if(!isActive||isTaken)
-        {
-            render.color = Color.grey;
-        }
     }
 
     //Metoda odpowiedzialna za efekt jaki daje gdy gracz/przeciwnik wejdzie na dany Tile
@@ -103,9 +113,19 @@ public abstract class Tile : MonoBehaviour
         {
             //Wez daną jednostę z tury i przypisz go do Tile
             GameObject player = turnbaseScript.selectedGameObject;
-            player.GetComponent<unitController>().characterMove(gameObject);
-            isActive = false;
-            TileBehaviour();
+            // player.GetComponent<unitController>().characterMove(this);
+            // player.GetComponent<unitController>().characterMove(gameObject);
+            if(turnbaseScript.selectedTile==this){
+                player.GetComponent<unitController>().characterMove(this);
+                TileBehaviour();
+            }
+            else if(turnbaseScript.selectedTile!=null||turnbaseScript.selectedTile==null){
+                player.GetComponent<Detector>().StartDetector();
+                turnbaseScript.selectedTile = this;
+                List<Tile> movePath = GridMap.FindShortestPath(player.GetComponent<unitController>().getAssignedTile(),this,player.GetComponent<unitController>().getUnitDistance());
+                GridMap.enableListTiles(movePath,Color.blue);
+            }
+            // isActive = false;
         }
         else
         {
@@ -122,5 +142,13 @@ public abstract class Tile : MonoBehaviour
     }
     public void unMakeBusy(){
         isTaken=false;
+    }
+
+    //Sasiedzi danego Tile
+    public void addNeighbour(Tile n){
+        neighbors.Add(n);
+    }
+    public List<Tile> getNeighbours(){
+        return neighbors;
     }
 }

@@ -990,7 +990,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 10
     m_Right: 20
-    m_Top: 0
+    m_Top: 5
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 2
