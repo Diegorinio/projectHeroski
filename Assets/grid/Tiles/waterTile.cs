@@ -23,6 +23,7 @@ public class waterTile:Tile
             Vector2Int dist = _unitOnTile.getUnitDistance();
             _unitOnTile.setUnitDistance(dist.x/2,dist.y/2);
         }
+        // _unitOnTile.disableClickable();
         }
     }
 }

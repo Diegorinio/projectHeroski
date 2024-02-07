@@ -82,6 +82,10 @@ public abstract class Tile : MonoBehaviour
     //Metoda odpowiedzialna za efekt jaki daje gdy gracz/przeciwnik wejdzie na dany Tile
     protected abstract void TileBehaviour();
 
+    public void castTileBehaviour(){
+        TileBehaviour();
+    }
+
     //Przypisz GameObject do danego Tile
     public virtual void SetGameObjectOnTile(GameObject obj){
         gameObjectOnTile=obj;
@@ -112,18 +116,16 @@ public abstract class Tile : MonoBehaviour
         if (turnbaseScript.isSelected && isActive && !isTaken)
         {
             //Wez daną jednostę z tury i przypisz go do Tile
-            GameObject player = turnbaseScript.selectedGameObject;
-            // player.GetComponent<unitController>().characterMove(this);
-            // player.GetComponent<unitController>().characterMove(gameObject);
+            GameObject player = turnbaseScript.selectedGameObject;;
             if(turnbaseScript.selectedTile==this){
                 player.GetComponent<unitController>().characterMove(this);
-                TileBehaviour();
             }
             else if(turnbaseScript.selectedTile!=null||turnbaseScript.selectedTile==null){
                 player.GetComponent<Detector>().StartDetector();
                 turnbaseScript.selectedTile = this;
-                List<Tile> movePath = GridMap.FindShortestPath(player.GetComponent<unitController>().getAssignedTile(),this,player.GetComponent<unitController>().getUnitDistance());
-                GridMap.enableListTiles(movePath,Color.blue);
+                GridMap.showPath(player.GetComponent<unitController>().getAssignedTile(),this,player.GetComponent<unitController>().getUnitDistance(),player.GetComponent<Detector>().getMovementTiles());
+                // List<Tile> movePath = GridMap.FindShortestPath(player.GetComponent<unitController>().getAssignedTile(),this,player.GetComponent<unitController>().getUnitDistance());
+                // GridMap.enableListTiles(movePath,Color.blue);
             }
             // isActive = false;
         }

@@ -37,6 +37,10 @@ public class Detector : MonoBehaviour
         Debug.Log($"{assignedController.name} activated detector");
     }
 
+    public List<Tile> getMovementTiles(){
+        return movementTilesList;
+    }
+
     //Usuwa efekty wykrywania, czysci liste wykrytych przeciwnikow i Tile ruchu
     public void StopDetector(){
         if(movementTilesList.Count>0){

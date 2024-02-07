@@ -88,6 +88,7 @@ public void characterMove(GameObject _newTransform){
     assignedTile.SetGameObjectOnTile(gameObject);
     disableClickable();
 }
+
 public void characterMove(GameObject _newTransform,bool isStart){
     if(assignedTile!=null){
     assignedTile.unMakeBusy();
@@ -104,14 +105,16 @@ public void characterMove(GameObject _newTransform,bool isStart){
         disableClickable();
 }
 public void characterMove(Tile _targetTile){
-    List<Tile> movePath = GridMap.FindShortestPath(getAssignedTile(),_targetTile,getUnitDistance());
+    List<Tile> movePath = GridMap.FindShortestPath(getAssignedTile(),_targetTile,getUnitDistance(),tileDetector.getMovementTiles());
     for(int x=0;x<movePath.Count;x++){
         characterMove(movePath[x].gameObject,true);
         if(movePath[x] is waterTile){
+            _targetTile=movePath[x];
             break;
         }
     }
     _targetTile.makeBusy();
+    _targetTile.castTileBehaviour();
     disableClickable();
 }
 

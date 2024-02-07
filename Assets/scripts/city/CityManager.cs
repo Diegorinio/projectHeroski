@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.SceneManagement;
+using System.Threading;
 //mini dukomentacja
 /*
  ControlerCitypanel s�u�y do wyswietlenia paneli czyli tam b�da opcje co dany budynek robi
@@ -39,7 +40,8 @@ public class CityManager : MonoBehaviour
     sbyte lvlRatusza;
     sbyte lvlkopalni;
     private void Start()
-    {   lvlRatusza = 1;
+    { 
+          lvlRatusza = 1;
         lvlkopalni = 1;
         //COUNTERY DO BUDYNK�W
         GoldB_counter = GameObject.Find("GoldB_counter");
