@@ -56,80 +56,6 @@ public static class GridMap
         return resultVectors;
     }
 
-
-public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vector2Int searchRadius)
-{
-    // Lista do przechowywania odwiedzonych pól
-    List<Tile> visited = new List<Tile>();
-
-    // Kolejka dla pól do odwiedzenia
-    Queue<Tile> queue = new Queue<Tile>();
-
-    // Mapa przechowująca rodzica danego pola
-    Dictionary<Tile, Tile> parentMap = new Dictionary<Tile, Tile>();
-
-    // Koszt dotarcia do danego pola
-    Dictionary<Tile, float> costSoFar = new Dictionary<Tile, float>();
-
-    // Dodajemy startowe pole do kolejki i ustawiamy koszt na 0
-    queue.Enqueue(startTile);
-    costSoFar[startTile] = 0;
-
-    while (queue.Count > 0)
-    {
-        // Pobieramy pole z kolejki
-        Tile currentTile = queue.Dequeue();
-
-        // Jeśli dotarliśmy do celu, przerywamy pętlę
-        if (currentTile == targetTile)
-            break;
-
-        // Przechodzimy przez sąsiadów aktualnego pola
-        for (int xOffset = -searchRadius.x; xOffset <= searchRadius.x; xOffset++)
-        {
-            for (int yOffset = -searchRadius.y; yOffset <= searchRadius.y; yOffset++)
-            {
-                int neighborX = currentTile.getPosition().x + xOffset;
-                int neighborY = currentTile.getPosition().y + yOffset;
-
-                // czy somsiad jest w obszarze
-                if (neighborX >= 0 && neighborX < gridMap.GetLength(0) &&
-                    neighborY >= 0 && neighborY < gridMap.GetLength(1))
-                {
-                    Tile neighbor = gridMap[neighborX, neighborY];
-                    float distance = Vector2Int.Distance(currentTile.getPosition(), neighbor.getPosition());
-                    if (distance <= 1 && !neighbor.isBusy()) //zmiana o 1 bo suzkanie w x,y
-                    {
-                        // koszt doracia do somsiada
-                        float newCost = costSoFar[currentTile] + distance;
-                        //jezeli somsiad nie byl odwiedzony albo koszt jest mniejszy od dotychczasowego
-                        if (!costSoFar.ContainsKey(neighbor) || newCost < costSoFar[neighbor])
-                        {
-                            // po ogarnieciu kosztu dodaj do kolejki
-                            costSoFar[neighbor] = newCost;
-                            queue.Enqueue(neighbor);
-                            parentMap[neighbor] = currentTile;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // generuj sciezke od startu do celu
-    List<Tile> path = new List<Tile>();
-    Tile current = targetTile;
-    while (current != startTile)
-    {
-        path.Add(current);
-        current = parentMap[current];
-    }
-    //odwrocenie bo od startu do celu
-    path.Reverse();
-
-    return path;
-}
-
 public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vector2Int searchRadius, List<Tile> searchArea)
 {
     // Lista do przechowywania odwiedzonych pól
@@ -165,23 +91,28 @@ public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vecto
                 int neighborX = currentTile.getPosition().x + xOffset;
                 int neighborY = currentTile.getPosition().y + yOffset;
 
-                // czy somsiad jest w obszarze
+                // Czy sąsiad jest w obszarze
                 if (neighborX >= 0 && neighborX < gridMap.GetLength(0) &&
                     neighborY >= 0 && neighborY < gridMap.GetLength(1))
                 {
                     Tile neighbor = gridMap[neighborX, neighborY];
-                    float distance = Vector2Int.Distance(currentTile.getPosition(), neighbor.getPosition());
-                    if (distance <= 1 && !neighbor.isBusy() && searchArea.Contains(neighbor)) //zmiana o 1 bo suzkanie w x,y
+
+                    // Sprawdzamy, czy sąsiadujące pole nie jest wodą lub przeszkodą, ale jeśli nie ma innej alternatywnej ścieżki, to uwzględniamy te pola
+                    if (!(neighbor is waterTile || neighbor is obstacleTile) || (neighbor == targetTile && !parentMap.ContainsKey(neighbor)))
                     {
-                        // koszt doracia do somsiada
-                        float newCost = costSoFar[currentTile] + distance;
-                        //jezeli somsiad nie byl odwiedzony albo koszt jest mniejszy od dotychczasowego
-                        if (!costSoFar.ContainsKey(neighbor) || newCost < costSoFar[neighbor])
+                        float distance = Vector2Int.Distance(currentTile.getPosition(), neighbor.getPosition());
+                        if (distance <= 1 && !neighbor.isBusy() && searchArea.Contains(neighbor)) //zmiana o 1 bo suzkanie w x,y
                         {
-                            // po ogarnieciu kosztu dodaj do kolejki
-                            costSoFar[neighbor] = newCost;
-                            queue.Enqueue(neighbor);
-                            parentMap[neighbor] = currentTile;
+                            // Koszt dojazdu do sąsiada
+                            float newCost = costSoFar[currentTile] + distance;
+                            // Jeśli sąsiad nie był odwiedzony lub koszt jest mniejszy niż dotychczasowy
+                            if (!costSoFar.ContainsKey(neighbor) || newCost < costSoFar[neighbor])
+                            {
+                                // Po aktualizacji kosztu dodaj do kolejki
+                                costSoFar[neighbor] = newCost;
+                                queue.Enqueue(neighbor);
+                                parentMap[neighbor] = currentTile;
+                            }
                         }
                     }
                 }
@@ -189,21 +120,116 @@ public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vecto
         }
     }
 
-    // generuj sciezke od startu do celu
+    // Generowanie pełnej ścieżki od startu do celu
     List<Tile> path = new List<Tile>();
-    Tile current = targetTile;
-    while (current != startTile)
+    Tile current = targetTile; // Zacznij od pola docelowego
+    while (current != null)
     {
         path.Add(current);
-        current = parentMap[current];
+        // Przejście do następnego pola w kierunku startu
+        current = parentMap.ContainsKey(current) ? parentMap[current] : null;
     }
-    //odwrocenie bo od startu do celu
+    // Odwrócenie ścieżki, aby uzyskać kolejność od startu do celu
     path.Reverse();
 
     return path;
 }
 
+//Zwraca wszystkie mozliwe sciezki
+public static Tile[,] FindAllPaths(Tile startTile, Tile targetTile, Vector2Int searchRadius, List<Tile> searchArea)
+{
+    // Kolejka dla pól do odwiedzenia
+    Queue<Tile> queue = new Queue<Tile>();
 
+    // Mapa przechowująca rodzica danego pola
+    Dictionary<Tile, Tile> parentMap = new Dictionary<Tile, Tile>();
+
+    // Koszt dotarcia do danego pola
+    Dictionary<Tile, float> costSoFar = new Dictionary<Tile, float>();
+
+    // Lista wszystkich ścieżek
+    List<List<Tile>> allPaths = new List<List<Tile>>();
+
+    // Dodajemy startowe pole do kolejki i ustawiamy koszt na 0
+    queue.Enqueue(startTile);
+    costSoFar[startTile] = 0;
+
+    // Wyszukiwanie wszystkich możliwych ścieżek
+    while (queue.Count > 0)
+    {
+        // Pobieramy pole z kolejki
+        Tile currentTile = queue.Dequeue();
+
+        // Jeśli dotarliśmy do celu, zapisujemy ścieżkę
+        if (currentTile == targetTile)
+        {
+            List<Tile> path = new List<Tile>();
+            Tile pathTile = currentTile;
+            while (pathTile != null)
+            {
+                path.Insert(0, pathTile);
+                pathTile = parentMap.ContainsKey(pathTile) ? parentMap[pathTile] : null;
+            }
+            allPaths.Add(path);
+            continue; // Przechodzimy do kolejnego sąsiada
+        }
+
+        // Przechodzimy przez sąsiadów aktualnego pola
+        for (int xOffset = -searchRadius.x; xOffset <= searchRadius.x; xOffset++)
+        {
+            for (int yOffset = -searchRadius.y; yOffset <= searchRadius.y; yOffset++)
+            {
+                int neighborX = currentTile.getPosition().x + xOffset;
+                int neighborY = currentTile.getPosition().y + yOffset;
+
+                // Czy sąsiad jest w obszarze
+                if (neighborX >= 0 && neighborX < gridMap.GetLength(0) &&
+                    neighborY >= 0 && neighborY < gridMap.GetLength(1))
+                {
+                    Tile neighbor = gridMap[neighborX, neighborY];
+
+                    // Sprawdzamy, czy sąsiadujące pole nie jest wodą lub jest to pole docelowe
+                    if (!(neighbor is waterTile) || neighbor == targetTile)
+                    {
+                        float distance = Vector2Int.Distance(currentTile.getPosition(), neighbor.getPosition());
+                        if (distance <= 1 && !neighbor.isBusy() && searchArea.Contains(neighbor)) //zmiana o 1 bo szukanie w x,y
+                        {
+                            // Koszt dojazdu do sąsiada
+                            float newCost = costSoFar[currentTile] + distance;
+                            // Jeśli sąsiad nie był odwiedzony lub koszt jest mniejszy niż dotychczasowy
+                            if (!costSoFar.ContainsKey(neighbor) || newCost < costSoFar[neighbor])
+                            {
+                                // Po aktualizacji kosztu dodaj do kolejki
+                                costSoFar[neighbor] = newCost;
+                                queue.Enqueue(neighbor);
+                                parentMap[neighbor] = currentTile;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Tworzymy tablicę 2D do przechowywania ścieżek
+    Tile[,] allPathsArray = new Tile[allPaths.Count, searchRadius.x * 2 + 1];
+
+    // Przenosimy wszystkie ścieżki do tablicy 2D
+    for (int i = 0; i < allPaths.Count; i++)
+    {
+        for (int j = 0; j < allPaths[i].Count; j++)
+        {
+            allPathsArray[i, j] = allPaths[i][j];
+        }
+    }
+
+    return allPathsArray;
+}
+
+
+
+
+    //Sprawdz sciezke i zwroc przez wyswietlenie na mapie
     public static void showPath(Tile start, Tile target, Vector2Int radius, List<Tile> area){
         List<Tile> movePath = FindShortestPath(start,target,radius,area);
         enableListTiles(movePath,Color.blue);
@@ -251,6 +277,10 @@ public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vecto
         foreach(var t in tiles){
             t.isActive=true;
         }
+    }
+
+    public static void enableTile(Tile tile,Color color){
+        tile.GetComponent<SpriteRenderer>().color=color;
     }
 
     public static void enableListTiles(List<Tile> tiles, Color color){

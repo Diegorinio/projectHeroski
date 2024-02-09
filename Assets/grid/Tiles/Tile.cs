@@ -26,7 +26,7 @@ public abstract class Tile : MonoBehaviour
         }
         else if(!isEnabled||isTaken)
         {
-            render.color = Color.black;
+            render.color = Color.grey;
         }
     }}
     [SerializeField]
@@ -124,8 +124,6 @@ public abstract class Tile : MonoBehaviour
                 player.GetComponent<Detector>().StartDetector();
                 turnbaseScript.selectedTile = this;
                 GridMap.showPath(player.GetComponent<unitController>().getAssignedTile(),this,player.GetComponent<unitController>().getUnitDistance(),player.GetComponent<Detector>().getMovementTiles());
-                // List<Tile> movePath = GridMap.FindShortestPath(player.GetComponent<unitController>().getAssignedTile(),this,player.GetComponent<unitController>().getUnitDistance());
-                // GridMap.enableListTiles(movePath,Color.blue);
             }
             // isActive = false;
         }

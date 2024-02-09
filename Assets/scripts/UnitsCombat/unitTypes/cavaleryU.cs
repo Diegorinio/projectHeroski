@@ -11,8 +11,8 @@ public class cavaleryU:Unit
         unitName="Cavalery";
         unitBaseDamage=7;
         unitBaseHealth=16;
-        gridDistanceX=3;
-        gridDistanceY=4;
+        gridMoveDistance = new Vector2Int(2,3);
+        gridAttackDistance = new Vector2Int(2,4);
         unitSprite = Resources.Load<Sprite>("Sprites/spearman");
     }
 }

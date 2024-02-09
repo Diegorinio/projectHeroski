@@ -38,7 +38,7 @@ public class randomMapEventGenerator : MonoBehaviour
             Unit _unit = e.GetComponent<Unit>();
             mainEnemiesUnit.Instance.addUnitsToTeam(_unit);
         }
-        SceneManager.LoadScene(biom);
+        SceneManager.LoadSceneAsync(biom);
         }
         else{
             

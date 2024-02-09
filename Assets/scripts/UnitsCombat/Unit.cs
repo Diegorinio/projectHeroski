@@ -11,12 +11,11 @@ public class Unit : MonoBehaviour
     public Sprite unitSprite;
     [SerializeField]
     private int unitAmount;
-    private int unitHealth;
-    public int unitBaseHealth{get;set;}
-    public int unitBaseDamage{get;set;}
-    public int gridDistanceX{get;set;}
-    public int gridDistanceY{get;set;}
-    public unitGUI _gui{get;set;}
+    protected int unitBaseHealth;
+    protected int unitBaseDamage;
+    protected  Vector2Int gridMoveDistance;
+    protected Vector2Int gridAttackDistance;
+    protected unitGUI _gui{get;set;}
 
     public virtual void Awake(){}
     // Start gierze UniGUI ktore wyswietla ilosc jednostek
@@ -28,6 +27,14 @@ public class Unit : MonoBehaviour
     //Ustaw ilosc jednostek
     public void setUnitAmount(int amount){
         unitAmount=amount;
+    }
+
+    public Vector2Int getUnitMoveDistance(){
+        return gridMoveDistance;
+    }
+
+    public Vector2Int getAttackDistance(){
+        return gridAttackDistance;
     }
 
     //Zwraca ilosc dostepnych jednostek
@@ -60,19 +67,16 @@ public class Unit : MonoBehaviour
         int lost = (int)(dmg/unitBaseHealth);
         _gui.displayGuiEvent(lost.ToString());
         if(unitAmount-lost<=0){
-            unitHealth=0;
             GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
             gameObject.SetActive(false);
-            // mainPlayerUnit.Instance.removeFromUnits(this);
-            // Destroy(gameObject);
             if(gameObject.CompareTag("Player")){
                 mainPlayerUnit.Instance.removeFromUnits(this);
-                Destroy(gameObject);
             }
             else if(gameObject.CompareTag("Enemy")){
                 mainEnemiesUnit.Instance.removeFromUnits(this);
-                Destroy(gameObject);
             }
+            gameObject.GetComponent<unitController>().moveFromTile();
+            Destroy(gameObject);
         }
         else{
             unitAmount-=lost;

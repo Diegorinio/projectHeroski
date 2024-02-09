@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ public class AdjustLayoutCellSize : MonoBehaviour
     [SerializeField] Axis expand;
     [SerializeField] RatioMode ratioMode;
     [SerializeField] float cellRatio = 1;
-
+    [SerializeField]
     private RectTransform trans;
     [SerializeField]
     private GridLayoutGroup grid;
@@ -23,31 +24,16 @@ public class AdjustLayoutCellSize : MonoBehaviour
     {
         trans = (RectTransform)gameObject.transform;
         grid = gameObject.GetComponent<GridLayoutGroup>();
+
     }
 
-    void Start()
-    {
-        UpdateCellSize();
+    //Zwroc rozmiar komorek w gridLAyout
+    public Vector2 getGridCells(){
+        return grid.cellSize;
     }
 
-    void Update()
-    {
-        // UpdateCellSize();
-    }
-
-    void OnValidate()
-    {
-        trans = (RectTransform)base.transform;
-        // grid = gameObject.GetComponent<GridLayoutGroup>();
-        UpdateCellSize();
-    }
-
-    void OnRectTransformDimensionsChange()
-    {
-        UpdateCellSize();
-    }
-
-    void UpdateCellSize()
+    //Dopasuj rozmiar komorek do ekranu (os x,y do wyboru)
+    public void UpdateCellSize()
     {
         if(grid!=null && trans!=null){
         var count = grid.constraintCount;

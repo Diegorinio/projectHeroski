@@ -23,12 +23,14 @@ public class unitController : MonoBehaviour
     //Znajdz komponent Unit danej jednostki
     //Ustaw dystan ruchu
     Vector2Int dist;
+    //Ustaw dystans ataku
+    Vector2Int atkDist;
     //Znajdz komponent Detector dla gracza lub przeciwnika
     void Start()
     {
         _unit = gameObject.GetComponent<Unit>();
-        dist.x = _unit.gridDistanceX;
-        dist.y=_unit.gridDistanceY;
+        dist = _unit.getUnitMoveDistance();
+        atkDist = _unit.getAttackDistance();
         // Debug.Log($"{_unit.unitName} selected, distance{distX},{distY}");
         tileDetector=gameObject.GetComponent<Detector>();
     }
@@ -39,7 +41,6 @@ public class unitController : MonoBehaviour
     public void selectUnit(){
         turnbaseScript.isSelected=true;
         turnbaseScript.selectedGameObject = gameObject;
-        // tileDetector.SetActive(true);
         tileDetector.StartDetector();
         Debug.Log($"{_unit.name} actived");
 }
@@ -59,17 +60,15 @@ public Vector2Int getUnitDistance(){
 }
 
 public Vector2Int getBaseUnitDistance(){
-    Vector2Int retV = new Vector2Int(_unit.gridDistanceX,_unit.gridDistanceY);
-    return retV;
+    return _unit.getUnitMoveDistance();
 }
 
-public void setUnitDistance(int x,int y){
-    dist.x=x;
-    dist.y=y;
+public void setUnitDistance(Vector2Int vector){
+    dist = vector;
 }
 
 public void setNormalDistance(){
-    setUnitDistance(_unit.gridDistanceX,_unit.gridDistanceY);
+    setUnitDistance(_unit.getUnitMoveDistance());
 }
 
 // Metoda ruchu gracza na tile
@@ -91,9 +90,7 @@ public void characterMove(GameObject _newTransform){
 
 public void characterMove(GameObject _newTransform,bool isStart){
     if(assignedTile!=null){
-    assignedTile.unMakeBusy();
-    assignedTile.SetGameObjectOnTile(null);
-    assignedTile=null;
+        moveFromTile();
     }
     Transform trns = (Transform)_newTransform.GetComponent<RectTransform>();
     Vector3 gObj = trns.position;
@@ -104,9 +101,15 @@ public void characterMove(GameObject _newTransform,bool isStart){
     if(!isStart)
         disableClickable();
 }
+
+public void moveFromTile(){
+    assignedTile.unMakeBusy();
+    assignedTile.SetGameObjectOnTile(null);
+    assignedTile=null;
+}
 public void characterMove(Tile _targetTile){
     List<Tile> movePath = GridMap.FindShortestPath(getAssignedTile(),_targetTile,getUnitDistance(),tileDetector.getMovementTiles());
-    for(int x=0;x<movePath.Count;x++){
+    for(int x=1;x<movePath.Count;x++){
         characterMove(movePath[x].gameObject,true);
         if(movePath[x] is waterTile){
             _targetTile=movePath[x];
@@ -120,10 +123,11 @@ public void characterMove(Tile _targetTile){
 
 
 
-//Dobra troche namieszalem z atakami ale to może kiedy sie poprawi XD
 //Metoda sprawdza czy dany cel jest w liscie wykrytych celow, jezeli tak to moze zaatakowac, glowne uzycie do AI przeciwnika
 public void hitToSelectedTarget(GameObject target){
     if(targets.Contains(target)){
+        Tile _target = target.GetComponent<unitController>().getAssignedTile();
+        List<Tile> enemyPath = GridMap.FindShortestPath(getAssignedTile(),_target,getUnitDistance(),tileDetector.getMovementTiles());
     _unit.dealDamageTo(target);
     disableClickable();
     }

@@ -24,9 +24,9 @@ public class otherGridManager : MonoBehaviour
     void Start()
     {
         gridMapTiles=new Tile[width,height];
-        Debug.Log($"Ekran width {Screen.width} height:{Screen.height}");
         generateGrid();
-
+        gameObject.GetComponent<AdjustLayoutCellSize>().UpdateCellSize();
+        setUpTilesToGrid();
     }
 
     void generateGrid(){
@@ -35,7 +35,6 @@ public class otherGridManager : MonoBehaviour
         grupa.constraintCount=1;
         grupa.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
         grupa.constraintCount = width;
-
         for(int x =0;x<width;x++){
             for(int y=0;y<height;y++){
                 var newTile = Instantiate(_tilePreset,transform.position,Quaternion.identity);
@@ -50,10 +49,10 @@ public class otherGridManager : MonoBehaviour
                 else{
                     newTile.AddComponent<grassTile>();
                 }
+                //Ustaw rodzica dla Tile czyli gameObject podpiety do tego skryptu
+                //Ustaw pozycje x,y w Tile oraz ustaw na nieaktywny
                 newTile.transform.SetParent(gameObject.transform);
                 newTile.name = $"Tile{x}{y}";
-                RectTransform rectTransform = newTile.GetComponent<RectTransform>();
-                rectTransform.localScale= new Vector3(100,100,1);
                 Tile newTileComponent = newTile.GetComponent<Tile>();
                 newTileComponent.setPosition(x,y);
                 newTileComponent.isActive=false;
@@ -61,7 +60,24 @@ public class otherGridManager : MonoBehaviour
             }
         }
 
-        // ustaw sasiadow
+        setNeighbours();
+        //Przekaz wygenerowana mape do GridMap
+        GridMap.setGridMap(gridMapTiles);
+        generatePlayer();
+        generateEnemies();
+    }
+
+    //Ustawia skale Tile do rozmiarow GridLayoutGroup
+    private void setUpTilesToGrid(){
+        Vector2 cell = gameObject.GetComponent<AdjustLayoutCellSize>().getGridCells();
+        Debug.Log($"ruchANIE {cell.x},{cell.y}");
+        foreach(var tile in gridMapTiles){
+            tile.GetComponent<RectTransform>().localScale = cell;
+        }
+    }
+
+    //Ustaw sasiadow 
+    private void setNeighbours(){
         for(int x=0;x<gridMapTiles.GetLength(0);x++){
             for(int y=0;y<gridMapTiles.GetLength(1);y++){
                 Tile newTileComponent = gridMapTiles[x,y].GetComponent<Tile>();
@@ -96,30 +112,20 @@ public class otherGridManager : MonoBehaviour
                 }
             }
         }
-        GridMap.setGridMap(gridMapTiles);
-        // List<Tile> xd = GridMap.FindShortestPath(gridMapTiles[4,0],gridMapTiles[2,6]);
-        // foreach(var x in xd){
-            // x.isActive=true;
-        // }
-        generatePlayer();
-        generateEnemies();
     }
-
+    // Przy wyszukiwaniu sasiadow sprawdz czy juz nie jest w liscie (dla bezpieczenstwa)
     private bool isInList(List<Tile> have,Tile toAdd){
         return have.Contains(toAdd);
     }
 
+    //Przypisz jednostki gracza do losowych Tile startowych
     private void generatePlayer(){
         GameObject[] heroes = mainPlayerUnit.Instance.getUnitsAsGameObject();
         Debug.Log($"heroes size {heroes.Length}");
-        // heroes[0]=spawnedUnit;
         foreach(GameObject hero in heroes)
         {
             hero.transform.parent=null;
-            // hero.GetComponent<characterController>().characterMove(gridMap[Random.Range(0,9)].gameObject);
             int rnd = Random.Range(0,width-1);
-            // gridMap[rnd].makeBusy();
-            // gridMapTiles[rnd,0].makeBusy();
             Tile spawnTile = gridMapTiles[rnd,0];
             hero.GetComponent<unitController>().setTile(spawnTile);
             spawnTile.makeBusy();
@@ -127,21 +133,17 @@ public class otherGridManager : MonoBehaviour
             Debug.Log($"Tile Transform {nPos.x},{nPos.y}");
             hero.transform.position= new Vector3(nPos.x,nPos.y,-1);
             hero.SetActive(true);
-            // hero.GetComponent<unitController>().characterMoveToTile(spawnTile.gameObject);
             hero.GetComponent<unitController>().characterMove(spawnTile.gameObject,true);
-            // hero.SetActive(true);
         }
     }
-    
+
+    //Przypisz jednostki przeciwnika do losowych Tile startowych
     private void generateEnemies(){
          GameObject[] enemies = mainEnemiesUnit.Instance.getUnitsAsGameObject();
         foreach(GameObject enemy in enemies){
             enemy.transform.parent=null;
-            // int rnd=Random.Range(gridMap.Count-1,gridMap.Count-9);
             int rnd = Random.Range(0,width-1);
             Tile spawnTile = gridMapTiles[rnd,height-1];
-            // gridMap[rnd].makeBusy();
-            // gridMapTiles[rnd,height-1].makeBusy();
             spawnTile.makeBusy();
             enemy.GetComponent<unitController>().setTile(spawnTile);
             Vector3 nPos = gridMapTiles[rnd,height-1].transform.position;

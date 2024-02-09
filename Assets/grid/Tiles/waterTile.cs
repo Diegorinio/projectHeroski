@@ -21,9 +21,9 @@ public class waterTile:Tile
         unitController _unitOnTile = gameObjectOnTile.GetComponent<unitController>();
         if(_unitOnTile.getUnitDistance()==_unitOnTile.getBaseUnitDistance()){
             Vector2Int dist = _unitOnTile.getUnitDistance();
-            _unitOnTile.setUnitDistance(dist.x/2,dist.y/2);
+            dist = new Vector2Int(Mathf.CeilToInt(dist.x/2),Mathf.CeilToInt(dist.y/2));
+            _unitOnTile.setUnitDistance(dist);
         }
-        // _unitOnTile.disableClickable();
         }
     }
 }

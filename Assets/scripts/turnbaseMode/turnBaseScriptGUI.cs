@@ -43,7 +43,6 @@ public class turnBaseScriptGUI : MonoBehaviour
         GameObject.Find("movement_panel").SetActive(false);
         state.text = winner;
         gameStatePanel.SetActive(true);
-        GameObject.Find("moveblocks").SetActive(false);
     }
 
     //Pokaz panel startu rundy przez dany czas
