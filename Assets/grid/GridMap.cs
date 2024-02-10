@@ -212,24 +212,23 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
         enableListTiles(movePath,clr);
     }
 
-    public static void ShowPathToGameObject(GameObject source, GameObject target){
-        List<Tile> movePath = getPathToGameObject(source,target);
+    public static void ShowPathNearGameObject(GameObject source, GameObject target){
+        List<Tile> movePath = getPathToNeighbourObject(source,target);
         enableListTiles(movePath,Color.red);
     }
 
-    private static List<Tile> getPathToTile(GameObject source,GameObject target){
+    public static List<Tile> getPathToTile(GameObject source,GameObject target){
         Tile targetTile = target.GetComponent<Tile>();
         unitController sourceController = source.GetComponent<unitController>();
         List<Tile> movePath = FindShortestPath(sourceController.getAssignedTile(),targetTile,sourceController.getUnitDistance(),sourceController.getDetector().getMovementTiles());
         return movePath;
     }
 
-    private static List<Tile> getPathToGameObject(GameObject source,GameObject target){
+    public static List<Tile> getPathToNeighbourObject(GameObject source,GameObject target){
         unitController targetController = target.GetComponent<unitController>();
         unitController sourceController = source.GetComponent<unitController>();
         Tile targetTile = targetController.getAssignedTile();
         Tile neighbour = FindNeighborOfTarget(sourceController.getAssignedTile(),targetTile,sourceController.getBaseUnitDistance(),sourceController.getDetector().getMovementTiles());
-        Debug.Log($"Sosmsiad {neighbour.name}");
         List<Tile> movePath = FindShortestPath(sourceController.getAssignedTile(),neighbour,sourceController.getBaseUnitDistance(),sourceController.getDetector().getMovementTiles());
         return movePath;
     }

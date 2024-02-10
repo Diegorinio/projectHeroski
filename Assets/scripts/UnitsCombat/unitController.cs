@@ -119,7 +119,7 @@ public void moveFromTile(){
     assignedTile=null;
 }
 public void characterMove(Tile _targetTile){
-    List<Tile> movePath = GridMap.FindShortestPath(getAssignedTile(),_targetTile,getUnitDistance(),tileDetector.getMovementTiles());
+    List<Tile> movePath = GridMap.getPathToTile(gameObject,_targetTile.gameObject);
     for(int x=1;x<movePath.Count;x++){
         characterMove(movePath[x].gameObject,true);
         if(movePath[x] is waterTile){
@@ -132,6 +132,23 @@ public void characterMove(Tile _targetTile){
     disableClickable();
 }
 
+private void characterMoveTroughList(List<Tile> tiles){
+    Tile current_tile =tiles[0];
+    for(int x=1;x<tiles.Count;x++){
+        characterMove(tiles[x].gameObject,true);
+        if(tiles[x] is waterTile){
+            current_tile=tiles[x];
+            break;
+        }
+        else{
+            current_tile=tiles[x];
+        }
+    }
+
+    current_tile.makeBusy();
+    current_tile.castTileBehaviour();
+    disableClickable();
+}
 
 
 //Metoda sprawdza czy dany cel jest w liscie wykrytych celow, jezeli tak to moze zaatakowac, glowne uzycie do AI przeciwnika
@@ -143,18 +160,18 @@ public void hitToSelectedTarget(GameObject target){
 }
 
 public void playerHitSelectedTarget(GameObject target){
-    // tileDetector.StartDetector();
     if(targets.Contains(target)){
+        Debug.Log($"{enemyTarget==target}");
         if(enemyTarget==target){
-            // _unit.dealDamageTo(target);
-            // disableClickable();
+            // Debug.Log($"FOund Path to enemy clicked 2 times and attack");
+            List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
+            _unit.dealDamageTo(target);
+            characterMoveTroughList(movePath);
         }
         else if(enemyTarget==null || enemyTarget!=target){
             enemyTarget=target;
-            Tile _target = target.GetComponent<unitController>().getAssignedTile();
-            Debug.Log($"Tile celu {_target.name}");
-            Debug.Log($"To enemy path tile gracza {getAssignedTile().name}, tile przeciwnika {_target.name}, distance {getUnitDistance()} , dlugosc szukania{tileDetector.getMovementTiles().Count}");
-            GridMap.ShowPathToGameObject(gameObject,target);
+            GridMap.ShowPathNearGameObject(gameObject,target);
+            Debug.Log($"Found path to target and clicked 1 time");
         }
     }
 }
