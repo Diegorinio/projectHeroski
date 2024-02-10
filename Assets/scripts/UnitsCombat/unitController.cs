@@ -25,9 +25,12 @@ public class unitController : MonoBehaviour
     Vector2Int dist;
     //Ustaw dystans ataku
     Vector2Int atkDist;
+    [SerializeField]
+    private GameObject enemyTarget;
     //Znajdz komponent Detector dla gracza lub przeciwnika
     void Start()
     {
+        enemyTarget=null;
         _unit = gameObject.GetComponent<Unit>();
         dist = _unit.getUnitMoveDistance();
         atkDist = _unit.getAttackDistance();
@@ -41,6 +44,7 @@ public class unitController : MonoBehaviour
     public void selectUnit(){
         turnbaseScript.isSelected=true;
         turnbaseScript.selectedGameObject = gameObject;
+        enemyTarget=null;
         tileDetector.StartDetector();
         Debug.Log($"{_unit.name} actived");
 }
@@ -57,6 +61,13 @@ public Unit getAssignedUnit(){
 
 public Vector2Int getUnitDistance(){
     return dist;
+}
+public Vector2Int getUnitAttackDistance(){
+    return atkDist;
+}
+
+public Detector getDetector(){
+    return tileDetector;
 }
 
 public Vector2Int getBaseUnitDistance(){
@@ -126,10 +137,25 @@ public void characterMove(Tile _targetTile){
 //Metoda sprawdza czy dany cel jest w liscie wykrytych celow, jezeli tak to moze zaatakowac, glowne uzycie do AI przeciwnika
 public void hitToSelectedTarget(GameObject target){
     if(targets.Contains(target)){
-        Tile _target = target.GetComponent<unitController>().getAssignedTile();
-        List<Tile> enemyPath = GridMap.FindShortestPath(getAssignedTile(),_target,getUnitDistance(),tileDetector.getMovementTiles());
     _unit.dealDamageTo(target);
     disableClickable();
+    }
+}
+
+public void playerHitSelectedTarget(GameObject target){
+    // tileDetector.StartDetector();
+    if(targets.Contains(target)){
+        if(enemyTarget==target){
+            // _unit.dealDamageTo(target);
+            // disableClickable();
+        }
+        else if(enemyTarget==null || enemyTarget!=target){
+            enemyTarget=target;
+            Tile _target = target.GetComponent<unitController>().getAssignedTile();
+            Debug.Log($"Tile celu {_target.name}");
+            Debug.Log($"To enemy path tile gracza {getAssignedTile().name}, tile przeciwnika {_target.name}, distance {getUnitDistance()} , dlugosc szukania{tileDetector.getMovementTiles().Count}");
+            GridMap.ShowPathToGameObject(gameObject,target);
+        }
     }
 }
 
@@ -137,18 +163,13 @@ public void hitToSelectedTarget(GameObject target){
 // Znajduje glowny kontroler tury i uruchamia nastepna ture
 // tileDetector przestaje wykrywanie i "wylacza" dane Tile ktore byly w zasiegu
 public void disableClickable(){
+    enemyTarget=null;
     turnbaseScript script = GameObject.FindObjectOfType<turnbaseScript>();
     tileDetector.StopDetector();
     script.nextTurn();
 }
 
 
-//Dodaj do celu pojedynczy cel
-//Spoko ale na wydajnosc lepiej dac dodanie drugiej listy 
-// W przypadku foreach musi lapac komponenety wszyskich co moze kiedy sie zemscic
-public void addToTargets(GameObject trg){
-    targets.Add(trg);
-}
 
 
 //Dodaj do listy celow druga liste znalezionych celow

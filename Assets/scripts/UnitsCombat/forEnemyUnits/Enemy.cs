@@ -5,9 +5,10 @@ using UnityEngine.UI;
 // [RequireComponent(typeof(characterGUI))]
 public class Enemy:MonoBehaviour
 {
+    //Tutaj gracz klika przecinika do ataku
     public void OnMouseDown(){
         if(turnbaseScript.IsHeroTurn()){
-            turnbaseScript.selectedGameObject.GetComponent<unitController>().hitToSelectedTarget(gameObject);
+            turnbaseScript.selectedGameObject.GetComponent<unitController>().playerHitSelectedTarget(gameObject);
         }
     }
     

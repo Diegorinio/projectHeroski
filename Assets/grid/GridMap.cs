@@ -135,8 +135,7 @@ public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vecto
     return path;
 }
 
-//Zwraca wszystkie mozliwe sciezki
-public static Tile[,] FindAllPaths(Tile startTile, Tile targetTile, Vector2Int searchRadius, List<Tile> searchArea)
+private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector2Int searchRadius, List<Tile> searchArea)
 {
     // Kolejka dla pól do odwiedzenia
     Queue<Tile> queue = new Queue<Tile>();
@@ -147,31 +146,19 @@ public static Tile[,] FindAllPaths(Tile startTile, Tile targetTile, Vector2Int s
     // Koszt dotarcia do danego pola
     Dictionary<Tile, float> costSoFar = new Dictionary<Tile, float>();
 
-    // Lista wszystkich ścieżek
-    List<List<Tile>> allPaths = new List<List<Tile>>();
-
     // Dodajemy startowe pole do kolejki i ustawiamy koszt na 0
     queue.Enqueue(startTile);
     costSoFar[startTile] = 0;
 
-    // Wyszukiwanie wszystkich możliwych ścieżek
     while (queue.Count > 0)
     {
         // Pobieramy pole z kolejki
         Tile currentTile = queue.Dequeue();
 
-        // Jeśli dotarliśmy do celu, zapisujemy ścieżkę
-        if (currentTile == targetTile)
+        // Jeśli sąsiad jest w obszarze
+        if (Vector2Int.Distance(currentTile.getPosition(), targetTile.getPosition()) <= 1)
         {
-            List<Tile> path = new List<Tile>();
-            Tile pathTile = currentTile;
-            while (pathTile != null)
-            {
-                path.Insert(0, pathTile);
-                pathTile = parentMap.ContainsKey(pathTile) ? parentMap[pathTile] : null;
-            }
-            allPaths.Add(path);
-            continue; // Przechodzimy do kolejnego sąsiada
+            return currentTile;
         }
 
         // Przechodzimy przez sąsiadów aktualnego pola
@@ -188,8 +175,8 @@ public static Tile[,] FindAllPaths(Tile startTile, Tile targetTile, Vector2Int s
                 {
                     Tile neighbor = gridMap[neighborX, neighborY];
 
-                    // Sprawdzamy, czy sąsiadujące pole nie jest wodą lub jest to pole docelowe
-                    if (!(neighbor is waterTile) || neighbor == targetTile)
+                    // Sprawdzamy, czy sąsiadujące pole nie jest wodą lub przeszkodą, ale jeśli nie ma innej alternatywnej ścieżki, to uwzględniamy te pola
+                    if (!(neighbor is waterTile || neighbor is obstacleTile) || (neighbor == targetTile && !parentMap.ContainsKey(neighbor)))
                     {
                         float distance = Vector2Int.Distance(currentTile.getPosition(), neighbor.getPosition());
                         if (distance <= 1 && !neighbor.isBusy() && searchArea.Contains(neighbor)) //zmiana o 1 bo szukanie w x,y
@@ -211,28 +198,40 @@ public static Tile[,] FindAllPaths(Tile startTile, Tile targetTile, Vector2Int s
         }
     }
 
-    // Tworzymy tablicę 2D do przechowywania ścieżek
-    Tile[,] allPathsArray = new Tile[allPaths.Count, searchRadius.x * 2 + 1];
-
-    // Przenosimy wszystkie ścieżki do tablicy 2D
-    for (int i = 0; i < allPaths.Count; i++)
-    {
-        for (int j = 0; j < allPaths[i].Count; j++)
-        {
-            allPathsArray[i, j] = allPaths[i][j];
-        }
-    }
-
-    return allPathsArray;
+    // Jeśli nie znaleziono sąsiada, zwracamy null
+    return null;
 }
 
 
-
-
-    //Sprawdz sciezke i zwroc przez wyswietlenie na mapie
-    public static void showPath(Tile start, Tile target, Vector2Int radius, List<Tile> area){
-        List<Tile> movePath = FindShortestPath(start,target,radius,area);
+    public static void ShowPathToTile(GameObject source, GameObject target){
+        List<Tile> movePath = getPathToTile(source,target);
         enableListTiles(movePath,Color.blue);
+    }
+    public static void ShowPathToTile(GameObject source, GameObject target,Color clr){
+        List<Tile> movePath = getPathToTile(source,target);
+        enableListTiles(movePath,clr);
+    }
+
+    public static void ShowPathToGameObject(GameObject source, GameObject target){
+        List<Tile> movePath = getPathToGameObject(source,target);
+        enableListTiles(movePath,Color.red);
+    }
+
+    private static List<Tile> getPathToTile(GameObject source,GameObject target){
+        Tile targetTile = target.GetComponent<Tile>();
+        unitController sourceController = source.GetComponent<unitController>();
+        List<Tile> movePath = FindShortestPath(sourceController.getAssignedTile(),targetTile,sourceController.getUnitDistance(),sourceController.getDetector().getMovementTiles());
+        return movePath;
+    }
+
+    private static List<Tile> getPathToGameObject(GameObject source,GameObject target){
+        unitController targetController = target.GetComponent<unitController>();
+        unitController sourceController = source.GetComponent<unitController>();
+        Tile targetTile = targetController.getAssignedTile();
+        Tile neighbour = FindNeighborOfTarget(sourceController.getAssignedTile(),targetTile,sourceController.getBaseUnitDistance(),sourceController.getDetector().getMovementTiles());
+        Debug.Log($"Sosmsiad {neighbour.name}");
+        List<Tile> movePath = FindShortestPath(sourceController.getAssignedTile(),neighbour,sourceController.getBaseUnitDistance(),sourceController.getDetector().getMovementTiles());
+        return movePath;
     }
 
 
@@ -287,6 +286,12 @@ public static Tile[,] FindAllPaths(Tile startTile, Tile targetTile, Vector2Int s
         foreach(var t in tiles){
             t.isActive=true;
             t.GetComponent<SpriteRenderer>().color=color;
+        }
+    }
+    public static void enableListTiles(List<Tile> tiles, Color color,int minus){
+        for(int x=0;x<tiles.Count-minus;x++){
+           tiles[x].isActive=true;
+            tiles[x].GetComponent<SpriteRenderer>().color=color; 
         }
     }
 

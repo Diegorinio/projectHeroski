@@ -33,7 +33,7 @@ public class enemyDetector : Detector{
     //Jezeli aktualna tura to gracz to po nacisnieciu na przeciwnika zadaj obrazenia
     public void OnMouseDown(){
         if(turnbaseScript.IsHeroTurn()){
-            turnbaseScript.selectedGameObject.GetComponent<unitController>().hitToSelectedTarget(gameObject);
+            turnbaseScript.selectedGameObject.GetComponent<unitController>().playerHitSelectedTarget(gameObject);
         }
     }
 }

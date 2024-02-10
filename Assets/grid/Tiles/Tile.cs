@@ -123,9 +123,8 @@ public abstract class Tile : MonoBehaviour
             else if(turnbaseScript.selectedTile!=null||turnbaseScript.selectedTile==null){
                 player.GetComponent<Detector>().StartDetector();
                 turnbaseScript.selectedTile = this;
-                GridMap.showPath(player.GetComponent<unitController>().getAssignedTile(),this,player.GetComponent<unitController>().getUnitDistance(),player.GetComponent<Detector>().getMovementTiles());
+                GridMap.ShowPathToTile(player,gameObject);
             }
-            // isActive = false;
         }
         else
         {
