@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,38 +13,111 @@ public class barracks : MonoBehaviour
     [SerializeField]
     InputField amount_input;
     public Button buyBtn;
+
+    public GameObject collectBtn;
+
     public enum unitsTier{tier1,tier2,tier3}
     public unitsTier Tier;
     public unitSpawner.unitType unitType;
-    // Start is called before the first frame update
+    //recruiment
+    private string unitName;
+    private int lastRecruitSoldiers;
+    private bool isRecrutable;
+    private bool isFirstTime;
+
+    public TMP_Text _complitionTime;
+    
+    protected DateTime UnitToReadyTime;
+    protected DateTime rightNowTime;
+
     void Start()
     {
-        // amount_input.onValueChanged.AddListener(delegate {changeSlider();});
         amount_slider.onValueChanged.AddListener(changeSlider);
         amount_input.onValueChanged.AddListener(changeInput);
         buyBtn.onClick.AddListener(buyUnit);
+        collectBtn.GetComponent<Button>().onClick.AddListener(RecruitUnit);
+        if(isRecrutable)isRecrutable = true;
+        if((PlayerPrefs.GetInt($"isFirstTime {unitName}") != 0)==false) isFirstTime = false;
+        else isFirstTime = true;
+    }
+    private void Awake()
+    {
+        unitName = this.gameObject.name;
+
+    }
+    private void FixedUpdate()
+    {
+
+        if (UnitToReadyTime >= DateTime.Now && !isRecrutable)
+        {
+            amount_slider.interactable = false;
+            amount_input.interactable = false;
+            buyBtn.interactable = false;
+            TimeSpan ts = UnitToReadyTime - DateTime.Now;
+            _complitionTime.SetText($"Time left: {(int)ts.TotalSeconds}");
+
+        }
+        else
+        {
+            if (isRecrutable || !isFirstTime) return;
+        
+            buyBtn.interactable = true;
+            if(!isRecrutable&& isFirstTime) { collectBtn.SetActive(true); 
+            }
+                
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        // amount_slider.value = amount_input.text
+        UnitToReadyTime = DateTime.Parse(PlayerPrefs.GetString($"{unitName}: recruitment time"));
+        lastRecruitSoldiers = PlayerPrefs.GetInt($"{unitName}: amount");
+        isRecrutable= (PlayerPrefs.GetInt($"isRecrutable {unitName}") != 0);
+        if (!isRecrutable)
+        collectBtn.SetActive(false);
+        else buyBtn.gameObject.SetActive(true);
+
+    }
+    private void OnDisable()
+    {
+        PlayerPrefs.SetInt($"isRecrutable {unitName}", (isRecrutable ? 1 : 0));
+        PlayerPrefs.SetString($"{unitName}: recruitment time",UnitToReadyTime.ToString());
+        PlayerPrefs.SetInt($"{unitName}: amount",lastRecruitSoldiers);
+        PlayerPrefs.SetInt($"isFirstTime {unitName}", (isFirstTime ? 1 : 0));
     }
 
     private void buyUnit(){
-        Debug.Log("CHUUJJJ!J!J!J!J1");
-        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
+
+        DateTime UnitBoughtTime = DateTime.Now;
+
+        UnitToReadyTime = UnitBoughtTime.AddSeconds((int)amount_slider.value*2);
+        lastRecruitSoldiers = (int)amount_slider.value;
+        isRecrutable = false;
+        isFirstTime = true;
+        buyBtn.gameObject.SetActive(false);
+        
+    }
+    private void RecruitUnit()
+    {
+        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitType, unitSpawner.controllers.Player, lastRecruitSoldiers);
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
         rndUnit.transform.localPosition = Vector3.zero;
-        if(!mainPlayerUnit.Instance.isUnitExists(_unit)){
+        if (!mainPlayerUnit.Instance.isUnitExists(_unit))
+        {
             rndUnit.transform.localPosition = Vector3.zero;
             mainPlayerUnit.Instance.addUnitsToTeam(_unit);
         }
-        else{
+        else
+        {
             mainPlayerUnit.Instance.addUnitsToTeam(_unit);
             Destroy(rndUnit);
         }
+        isRecrutable=true;
+        amount_slider.interactable = true;
+        amount_input.interactable = true;
+        buyBtn.gameObject.SetActive(true);
+        collectBtn.gameObject.SetActive(false);
     }
     private void changeSlider(float v ){
         int r = (int)v;

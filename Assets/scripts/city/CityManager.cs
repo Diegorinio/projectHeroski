@@ -38,6 +38,8 @@ public class CityManager : MonoBehaviour
     //lvl budynk�w
     sbyte lvlRatusza;
     sbyte lvlkopalni;
+    //stan rekrutacji
+
     private void Start()
     {   lvlRatusza = 1;
         lvlkopalni = 1;
