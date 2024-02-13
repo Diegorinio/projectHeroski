@@ -16,6 +16,9 @@ kt�re b�dzie trzyma� w sobie
  */
 public class CityManager : MonoBehaviour
 {
+    //place holder for const script
+    public int TimerToNextReward;
+    //
     public resourcemanager resourcemanager;
     //surowce B, ze z budynk�w jeszcze nie w surowcemanager
     public int goldB;
@@ -38,7 +41,8 @@ public class CityManager : MonoBehaviour
     //lvl budynk�w
     sbyte lvlRatusza;
     sbyte lvlkopalni;
-    //stan rekrutacji
+    //surowce jak nie grasz
+    DateTime lastTimeIncity;
 
     private void Start()
     {   lvlRatusza = 1;
@@ -107,12 +111,21 @@ public class CityManager : MonoBehaviour
             gameMessagebox.createMessageBox("Units","Przed wyruszeniem w droge zbierz druzyne");
         }
     }
-
-    // private void chuj(){
-        // Debug.Log("Test buttona");
-    // }
-
-
+    private void OnEnable()
+    {
+        //wczytanie ile mineło czasu XD / przez ile na 1 staka
+        lastTimeIncity = DateTime.Parse(PlayerPrefs.GetString("Last Time login Town"));
+        TimeSpan howManySecPassed= DateTime.Now - lastTimeIncity;
+        if (howManySecPassed.TotalSeconds > TimerToNextReward)
+        {
+            goldB += 500 * lvlRatusza * (int)howManySecPassed.TotalSeconds % TimerToNextReward;
+            ironB += 300 * lvlkopalni * ((int)howManySecPassed.TotalSeconds % TimerToNextReward);
+        }
+    }
+    private void OnDisable()
+    {
+        PlayerPrefs.SetString("Last Time login Town",DateTime.Now.ToString());
+    }
     public void ActivateBuilding(string buttonBuildingName)
     {
         animatorCmp.SetTrigger("OpenPanel");
