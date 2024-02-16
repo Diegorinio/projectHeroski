@@ -128,4 +128,8 @@ public class barracks : MonoBehaviour
         int r = int.Parse(s);
         amount_slider.value = (float)r;
     }
+    public void cheat()
+    {
+        UnitToReadyTime=DateTime.Now;
+    }
 }

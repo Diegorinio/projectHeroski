@@ -13,6 +13,9 @@ public class resourcemanager : MonoBehaviour
     //
     [NonSerialized] public int gold;
     [NonSerialized] public int iron;
+    [NonSerialized] public int wood;
+    [NonSerialized] public int steel;
+    [NonSerialized] public int X;
     protected bool menuIsOn=true;
     protected byte activateCheat=0;
     private void Start()
@@ -31,8 +34,14 @@ public class resourcemanager : MonoBehaviour
         //wczytanie save
         gold=PlayerPrefs.GetInt("GoldInMenu");
         iron=PlayerPrefs.GetInt("IronInMenu");
+        wood+=PlayerPrefs.GetInt("WoodInMenu", wood);
+        steel+=PlayerPrefs.GetInt("SteelInMenu", steel);
+        X+=PlayerPrefs.GetInt("XInMenu", X);
         GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(gold.ToString());
         GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
+        GameObject.Find("WoodLabel").GetComponent<TextMeshPro>().SetText("Wood: " + wood.ToString());
+        GameObject.Find("SteelLabel").GetComponent<TextMeshPro>().SetText("Steel: " + steel.ToString());
+        GameObject.Find("XlLabel").GetComponent<TextMeshPro>().SetText("X: " + X.ToString());
     }
     public void ManagerOnClick()
     {
@@ -83,8 +92,16 @@ public class resourcemanager : MonoBehaviour
     {
         GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(gold.ToString());
         GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
+        GameObject.Find("WoodLabel").GetComponent<TextMeshPro>().SetText("Wood: "+wood.ToString());
+        GameObject.Find("SteelLabel").GetComponent<TextMeshPro>().SetText("Steel: "+steel.ToString());
+        GameObject.Find("XlLabel").GetComponent<TextMeshPro>().SetText("X: "+X.ToString());
         PlayerPrefs.SetInt("GoldInMenu", gold);
         PlayerPrefs.SetInt("IronInMenu", iron);
+        PlayerPrefs.SetInt("WoodInMenu", wood);
+        PlayerPrefs.SetInt("SteelInMenu", steel);
+        PlayerPrefs.SetInt("XInMenu", X);
+
+
 
     }
 }

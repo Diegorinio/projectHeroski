@@ -23,6 +23,7 @@ public class guiScript : MonoBehaviour
         string tekst ="";
         foreach(var u in unitlist){
             tekst+=$"{u.unitName},{u.getUnitAmount()}\n";
+            print(u);
         }
         unitsList.text=tekst;
     }
