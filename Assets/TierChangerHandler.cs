@@ -11,6 +11,8 @@ public class TierChangerHandler : MonoBehaviour
     public Button T3B;
     public Button T4B;
 
+    public GameObject citymanager;
+
     public GameObject T1;
     public GameObject T2;
     public GameObject T3;
@@ -27,6 +29,18 @@ public class TierChangerHandler : MonoBehaviour
         lastOpenTier = T1;
         firsttime = true;
         animation = false;
+        if (citymanager.GetComponent<CityManager>().lvlKoszar != 0)
+        {
+            if ((int)citymanager.GetComponent<CityManager>().lvlKoszar < 4)
+            {
+                T4B.interactable = false; print("1");
+                if ((int)citymanager.GetComponent<CityManager>().lvlKoszar < 3)
+                {
+                    T3B.interactable = false; print("2");
+                    if ((int)citymanager.GetComponent<CityManager>().lvlKoszar < 2) { T2B.interactable = false; print("3"); }
+                }
+            }
+        }
 
     }
     public void TierChanger(string Tier)
@@ -70,10 +84,7 @@ public class TierChangerHandler : MonoBehaviour
                 yield return StartCoroutine(littleBitOfWaitingNewTier(GoodTier));
 
                 if(!lastOpenTier== LateTierUsed) LateTierUsed.SetActive(false);
-        T1B.interactable = true;
-        T2B.interactable = true;
-        T3B.interactable = true;
-        T4B.interactable = true;
+
     }
     IEnumerator littleBitOfWaitingNewTier(GameObject NewTier)
     {
@@ -85,6 +96,10 @@ public class TierChangerHandler : MonoBehaviour
                 yield return new WaitForSeconds(0.005f);
             }
         lastOpenTier = NewTier;
+        T1B.interactable = true;
+        T2B.interactable = true;
+        T3B.interactable = true;
+        T4B.interactable = true;
     }
     private void OnDisable()
     {

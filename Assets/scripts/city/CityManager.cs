@@ -53,6 +53,7 @@ public class CityManager : MonoBehaviour
     //lvl budynk�w
     public sbyte lvlRatusza;
     public sbyte lvlkopalni;
+    public sbyte lvlKoszar;
     //surowce jak nie grasz
     DateTime lastTimeIncity;
 
@@ -81,6 +82,9 @@ public class CityManager : MonoBehaviour
         {
             lvlkopalni = Convert.ToSByte(PlayerPrefs.GetInt("LvlKopalni"));
         }
+        if (PlayerPrefs.HasKey("LvlKoszar"))lvlKoszar=Convert.ToSByte(PlayerPrefs.GetInt("LvlKoszar"));
+        else lvlKoszar = 1;
+        //jeśoi wiekszy niż 1 trzeba w osobbnej funkcji
         if (lvlRatusza >= 2) GameObject.Find("RatuszEntryButton").GetComponent<Image>().color = new Color32(155, 55, 190, 255);
         if (lvlkopalni >= 2) GameObject.Find("KopalniaEntryButton").GetComponent<Image>().color = new Color32(241, 255, 0, 255);
         //
@@ -248,13 +252,22 @@ public class CityManager : MonoBehaviour
     public void UpgradeBuilding(string building)
     {
         if (building == null) return;
-        if (building == "Ratusz" && lvlRatusza < 5 && resourcemanager.gold > 2000 * lvlRatusza && resourcemanager.iron > 3000 * lvlRatusza) {resourcemanager.gold -= 2000 * lvlRatusza; resourcemanager.iron -= 3000 * lvlRatusza;
+
+        if (building == "Ratusz" && lvlRatusza < 5 && resourcemanager.gold > 2000 * lvlRatusza 
+            && resourcemanager.iron > 3000 * lvlRatusza)
+        {resourcemanager.gold -= 2000 * lvlRatusza; resourcemanager.iron -= 3000 * lvlRatusza;
             lvlRatusza += 1;
             PlayerPrefs.SetInt("LvlRatusza", lvlRatusza); resourcemanager.CheckifChange(); }
-        if (building == "kopalnia" && lvlkopalni < 5 && resourcemanager.gold > 3000 * lvlkopalni && resourcemanager.iron > 2000 * lvlkopalni) { resourcemanager.gold -= 2000 * lvlkopalni; resourcemanager.iron -= 3000 * lvlRatusza; lvlkopalni += 1;
+
+        if (building == "kopalnia" && lvlkopalni < 5 && resourcemanager.gold > 3000 * lvlkopalni 
+            && resourcemanager.iron > 2000 * lvlkopalni) 
+        { resourcemanager.gold -= 2000 * lvlkopalni; resourcemanager.iron -= 3000 * lvlkopalni; 
             lvlkopalni += 1;
             PlayerPrefs.SetInt("LvlKopalni", lvlkopalni); resourcemanager.CheckifChange(); }
+        //dla koszar
+        if (building == "koszary") { lvlKoszar += 1; PlayerPrefs.SetInt("LvlKoszar", lvlKoszar); }
         if (lvlRatusza >= 2) GameObject.Find("RatuszEntryButton").GetComponent<Image>().color = new Color32(155, 55, 190, 255);
         if (lvlkopalni >= 2) GameObject.Find("KopalniaEntryButton").GetComponent<Image>().color = new Color32(155, 100, 75, 50);
+        BackToCity();
     }
 }

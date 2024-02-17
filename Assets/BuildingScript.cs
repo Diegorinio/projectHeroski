@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class BuildingScript : MonoBehaviour
 {
-    protected bool isbuilding;
+    public bool isbuilding;
    [Serialize] public Button Timer;
     public TMP_Text TimerText;
     protected DateTime TimeToComplete;
@@ -18,41 +18,56 @@ public class BuildingScript : MonoBehaviour
     {
         //jesli jest to nie znika i odlicza czas
         Timer.gameObject.SetActive(false);
-        if (PlayerPrefs.HasKey($"{this.name} Timer")){ 
-            isbuilding=PlayerPrefs.GetInt($"{this.name} Timer")!=0;
+        if (PlayerPrefs.HasKey($"isBulding {this.name}")){ 
+            isbuilding=(PlayerPrefs.GetInt($"isBulding {this.name}") !=0);
         }
         else isbuilding=false;
         switch (this.name)
         {
             case "RatuszEntryButton":
                 whatLvlHaveBuilding = GameObject.Find("CityManager").GetComponent<CityManager>().lvlRatusza; break;
+            case "KopalniaEntryButton":
+                whatLvlHaveBuilding = GameObject.Find("CityManager").GetComponent<CityManager>().lvlkopalni; break;
+           case "KoszaryEntryButton":
+              whatLvlHaveBuilding = GameObject.Find("CityManager").GetComponent<CityManager>().lvlKoszar; break;
         }
 
     }
     private void OnEnable()
     {
-        //2 wczytanie jeabæ bo dzia³¹ wsumie i jak zmienisz scene to i tak enable odpali
+        if (PlayerPrefs.HasKey($"isBulding {this.name}"))
+        {
+            isbuilding =( PlayerPrefs.GetInt($"isBulding {this.name}") != 0);
+        }
+        
+        if(PlayerPrefs.HasKey($"time to complete {this.name} Building"))
+        TimeToComplete=DateTime.Parse( PlayerPrefs.GetString($"time to complete {this.name} Building"));
     }
     private void OnDisable()
     {
-        //zapisuje ile zosta³o do koñca i zapisuje
-    }
+        PlayerPrefs.SetString($"time to complete {this.name} Building", TimeToComplete.ToString());
+        PlayerPrefs.SetInt($"isBulding {this.name}", (isbuilding ? 1 : 0));
 
-    // Update is called once per frame
+
+    }
     void FixedUpdate()
     {
+        print(isbuilding);
         if (!isbuilding) return;
-        //if jest to liczy
-        //else zapisuje isbuilding na false i deaktywuje wszystko
         if (DateTime.Now <= TimeToComplete)
         {
+            Timer.gameObject.SetActive (true);
+            Timer.gameObject.GetComponent<Button>().interactable = false;
+            this.gameObject.GetComponent<Button>().interactable = false;
+            TimeSpan TimeLeft=TimeToComplete-DateTime.Now;
+            TimerText.SetText("Time to Complete: "+((int)TimeLeft.TotalSeconds).ToString());
 
         }
         else
         {
-            
+            this.gameObject.GetComponent<Button>().interactable = true;
             isbuilding = false;
-            PlayerPrefs.SetInt($"isBulding {this.gameObject.name}", (isbuilding ? 1 : 0));
+            PlayerPrefs.SetInt($"isBulding {this.name}", (isbuilding ? 1 : 0));
             Timer.gameObject.SetActive(false);
         }
         
