@@ -163,15 +163,25 @@ public void playerHitSelectedTarget(GameObject target){
     if(targets.Contains(target)){
         Debug.Log($"{enemyTarget==target}");
         if(enemyTarget==target){
-            // Debug.Log($"FOund Path to enemy clicked 2 times and attack");
+            if(_unit is IDistance){
+                _unit.dealDamageTo(target);
+                disableClickable();
+            }
+            else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
             _unit.dealDamageTo(target);
             characterMoveTroughList(movePath);
+            }
         }
         else if(enemyTarget==null || enemyTarget!=target){
             enemyTarget=target;
-            GridMap.ShowPathNearGameObject(gameObject,target);
+            if((_unit is IDistance)){
+                GridMap.enableTile(target.GetComponent<unitController>().getAssignedTile(),Color.red);
+            }
+            else{
+                GridMap.ShowPathNearGameObject(gameObject,target);
             Debug.Log($"Found path to target and clicked 1 time");
+            }
         }
     }
 }
