@@ -14,6 +14,8 @@ public class mainPlayerUnit : MonoBehaviour
     [SerializeField]
     //Lista przetrzymujaca jednostki gracza w instancji
     private List<Unit> playerTeam;
+    [SerializeField]
+    private Dictionary<int,List<Unit>> unitsList = new Dictionary<int, List<Unit>>();
 
     //Jezeli nie ma instancji to utworz
     void Awake(){

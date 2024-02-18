@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Cecil;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -15,8 +16,9 @@ public class unitSpawner : MonoBehaviour
     public static GameObject unitTemplate=Resources.Load("Templates/UnitTemplates/unitTemplate") as GameObject;
 
     //Typy jednostek i jaki kontroler
-    public enum unitType{Distance,Cavalery,Close}
+    public enum unitType{Distance,Cavalery,Close};
     public enum controllers{Player,Enemy}
+    public enum tier{t1,t2,t3};
 
     //Zespawnij dany typ i dana ilosc
     //główne użycie w koszarach
@@ -39,6 +41,8 @@ public class unitSpawner : MonoBehaviour
         newUnit.name=$"{type} {amount}";
         return newUnit;
     }
+
+    //Zespawnij jednostke jako gameObject z wyborem kontrolera(player, enemy) i iloscia jednostek
     public static GameObject spawnUnitGameObject(unitType type, controllers controller,int amount){
         GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
         switch(type){
@@ -59,26 +63,74 @@ public class unitSpawner : MonoBehaviour
         newUnit.name=$"{type} {amount}";
         return newUnit;
     }
-    // public static Unit spawnUnit(unitType type,int amount){
-    //     GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
-    //     switch(type){
-    //         case unitType.Distance:
-    //         newUnit.AddComponent<distanceU>();
-    //         break;
-    //         case unitType.Close:
-    //         newUnit.AddComponent<closeU>();
-    //         break;
-    //         case unitType.Cavalery:
-    //         newUnit.AddComponent<cavaleryU>();
-    //         break;
-    //     }
-    //     newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
-    //     newUnit.GetComponent<Unit>().setUnitAmount(amount);
-    //     newUnit.AddComponent<unitGUI>();
-    //     newUnit.name=$"{type} {amount}";
-    //     return newUnit;
-    // }
+    public static GameObject spawnUnitGameObject(tier _tier,unitType type, controllers controller,int amount){
+        GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
+        UnitSO _wantedUnitSO = getUnitSO(_tier,type);
+        switch(type){
+            case unitType.Distance:
+            newUnit.AddComponent<distanceU>();
+            break;
+            case unitType.Close:
+            newUnit.AddComponent<closeU>();
+            break;
+            case unitType.Cavalery:
+            newUnit.AddComponent<cavaleryU>();
+            break;
+        }
+        newUnit.GetComponent<Unit>().unitInitialize(_wantedUnitSO);
+        assignController(controller, newUnit);
+        newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
+        newUnit.GetComponent<Unit>().setUnitAmount(amount);
+        newUnit.AddComponent<unitGUI>();
+        newUnit.name=$"{type} {amount}";
+        return newUnit;
+    }
 
+    public static UnitSO getUnitSO(tier _tier, unitType type){
+        UnitSO returnUnitSO=null;
+        switch(type){
+            case unitType.Distance:
+            switch(_tier){
+                case tier.t1:
+                returnUnitSO = Resources.Load<UnitSO>("Units/procarz");
+                break;
+                case tier.t2:
+
+                break;
+                case tier.t3:
+
+                break;
+            }
+            break;
+            case unitType.Close:
+            switch(_tier){
+                case tier.t1:
+                returnUnitSO = Resources.Load<UnitSO>("Units/piechota");
+                break;
+                case tier.t2:
+
+                break;
+                case tier.t3:
+                
+                break;
+            }
+            break;
+            case unitType.Cavalery:
+            switch(_tier){
+                case tier.t1:
+                returnUnitSO = Resources.Load<UnitSO>("Units/dzida");
+                break;
+                case tier.t2:
+
+                break;
+                case tier.t3:
+                
+                break;
+            }
+            break;
+        }
+        return returnUnitSO;
+    }
 
     // Dodaj komponenty potrzebne jednostce gracza
     private static void assignPlayerAttributes(GameObject obj){

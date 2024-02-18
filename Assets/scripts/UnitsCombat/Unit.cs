@@ -5,6 +5,7 @@ using UnityEngine;
 // Skrypt okreslajacy jednostke
 public class Unit : MonoBehaviour
 {
+    protected int tier;
     [SerializeField]
     public string unitName{get;set;}
     [SerializeField]
@@ -18,6 +19,14 @@ public class Unit : MonoBehaviour
     protected unitGUI _gui{get;set;}
 
     public virtual void Awake(){}
+    public void unitInitialize(UnitSO _unit){
+        unitName=_unit.unitName;
+        unitBaseDamage=_unit.unitBaseDamage;
+        unitBaseHealth=_unit.unitBaseHealth;
+        gridMoveDistance = new Vector2Int(_unit.gridDistanceX,_unit.gridDistanceY);
+        gridAttackDistance = new Vector2Int(2,4);
+        unitSprite = _unit.unitSprite;
+    }
     // Start gierze UniGUI ktore wyswietla ilosc jednostek
     void Start()
     {
@@ -36,7 +45,9 @@ public class Unit : MonoBehaviour
     public Vector2Int getAttackDistance(){
         return gridAttackDistance;
     }
-
+    public void setTier(int _tier){
+        tier=_tier;
+    }
     //Zwraca ilosc dostepnych jednostek
     public int getUnitAmount(){
         return unitAmount;
