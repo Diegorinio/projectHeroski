@@ -35,7 +35,8 @@ public class barracks : MonoBehaviour
         amount_slider.onValueChanged.AddListener(changeSlider);
         amount_input.onValueChanged.AddListener(changeInput);
         buyBtn.onClick.AddListener(buyUnit);
-        collectBtn.GetComponent<Button>().onClick.AddListener(RecruitUnit);
+        // buyBtn.onClick.AddListener(buyUnitTier);
+        collectBtn.GetComponent<Button>().onClick.AddListener(buyUnitTier);
         if(isRecrutable)isRecrutable = true;
         if((PlayerPrefs.GetInt($"isFirstTime {unitName}") != 0)==false) isFirstTime = false;
         else isFirstTime = true;

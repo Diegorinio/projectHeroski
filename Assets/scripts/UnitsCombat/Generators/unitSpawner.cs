@@ -59,6 +59,8 @@ public class unitSpawner : MonoBehaviour
         newUnit.name=$"{type} {amount}";
         return newUnit;
     }
+
+    //Jednostka z tierem
     public static GameObject spawnUnitGameObject(tier _tier,unitType type, controllers controller,int amount){
         GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
         UnitSO _wantedUnitSO = getUnitSO(_tier,type);
@@ -95,6 +97,7 @@ public class unitSpawner : MonoBehaviour
             returnUnitSO = Resources.Load<UnitSO>($"Units/{_tier}/cavalery{_tier}");
             break;
         }
+        Debug.Log($"FOund SO is {returnUnitSO.unitName} {returnUnitSO.unitSprite}");
         return returnUnitSO;
     }
 
