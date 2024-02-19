@@ -17,13 +17,28 @@ kt�re b�dzie trzyma� w sobie
  */
 public class CityManager : MonoBehaviour
 {
+    public int GOLDPERTIMER;
+    public int IronPERTIMER;
+    public int WoodPERTIMER;
+    public int steelPERTIMER;
+    public int xPERTIMER;
+    public int ________________;
+    //place holder for const script
+    public int TimerToNextReward;
+    //
     public resourcemanager resourcemanager;
     //surowce B, ze z budynk�w jeszcze nie w surowcemanager
     public int goldB;
     public int ironB;
+    public int woodB;
+    public int steelB;
+    public int xB;
     //ratusz z�oto kopalnia iron
     protected GameObject GoldB_counter;
     protected GameObject IronB_counter;
+    [SerializeField] protected GameObject WoodB_counter;
+    [SerializeField] protected GameObject steelB_counter;
+    [SerializeField] protected GameObject xB_counter;
     //obiekty itp
     protected GameObject BuildingButtons;
     protected Animator animatorCmp;
@@ -37,12 +52,14 @@ public class CityManager : MonoBehaviour
     protected GameObject P5;
     //protected GameObject[] CityPanels =new GameObject[5]; w przysz�osci wsadzi si� do array
     //lvl budynk�w
-    sbyte lvlRatusza;
-    sbyte lvlkopalni;
-    private void Start()
-    { 
-          lvlRatusza = 1;
-        lvlkopalni = 1;
+    public sbyte lvlRatusza;
+    public sbyte lvlkopalni;
+    public sbyte lvlKoszar;
+    //surowce jak nie grasz
+    DateTime lastTimeIncity;
+
+    private void Awake()
+    {
         //COUNTERY DO BUDYNK�W
         GoldB_counter = GameObject.Find("GoldB_counter");
         IronB_counter = GameObject.Find("IronB_counter");
@@ -52,20 +69,25 @@ public class CityManager : MonoBehaviour
         animatorCmp = CityBuildingPanelImg.GetComponent<Animator>();
         //
         //wczytanie save
-        goldB = PlayerPrefs.GetInt("GoldInBuilding");
-        ironB = PlayerPrefs.GetInt("IronInBuilding");
-        ChangeGoldInBuilding();
-        ChangeIronInBuilding();
+        goldB += PlayerPrefs.GetInt("GoldInBuilding");
+        ironB += PlayerPrefs.GetInt("IronInBuilding");
+        woodB += PlayerPrefs.GetInt("WoodInBuilding"); ;
+        steelB += PlayerPrefs.GetInt("SteelInBuilding"); ;
+        xB += PlayerPrefs.GetInt("XInBuilding");
+        ChangeValuesInBuilding();
         //save lvl budynk�w
-        if( Convert.ToSByte(PlayerPrefs.GetInt("LvlRatusza"))==0) lvlRatusza = 1;
+        if (!PlayerPrefs.HasKey("LvlRatusza")) lvlRatusza = 1;
         else lvlRatusza = Convert.ToSByte(PlayerPrefs.GetInt("LvlRatusza"));
-        if(Convert.ToSByte(PlayerPrefs.GetInt("LvlKopalni"))==0) lvlkopalni =1;
+        if(!PlayerPrefs.HasKey("LvlKopalni")) lvlkopalni =1;
         else
         {
             lvlkopalni = Convert.ToSByte(PlayerPrefs.GetInt("LvlKopalni"));
         }
-        if (lvlRatusza > 2) GameObject.Find("RatuszEntryButton").GetComponent<Image>().color = new Color32(155, 55, 190, 255);
-        if (lvlkopalni > 2) GameObject.Find("KopalniaEntryButton").GetComponent<Image>().color = new Color32(155, 100, 75, 255);
+        if (PlayerPrefs.HasKey("LvlKoszar"))lvlKoszar=Convert.ToSByte(PlayerPrefs.GetInt("LvlKoszar"));
+        else lvlKoszar = 1;
+        //jeśoi wiekszy niż 1 trzeba w osobbnej funkcji
+        if (lvlRatusza >= 2) GameObject.Find("RatuszEntryButton").GetComponent<Image>().color = new Color32(155, 55, 190, 255);
+        if (lvlkopalni >= 2) GameObject.Find("KopalniaEntryButton").GetComponent<Image>().color = new Color32(241, 255, 0, 255);
         //
         P1 = GameObject.Find("RatuszPanel");
         P2 = GameObject.Find("KopalniaPanel");
@@ -89,13 +111,15 @@ public class CityManager : MonoBehaviour
         }
         else
         {
-            goldB += 500*lvlRatusza;
-            ironB += 300*lvlkopalni;
-            ChangeGoldInBuilding();
-            ChangeIronInBuilding();
+            goldB += GOLDPERTIMER*lvlRatusza;
+            ironB += IronPERTIMER*lvlkopalni;
+            woodB+=WoodPERTIMER*lvlkopalni;
+            if(lvlkopalni>=2) { steelB += steelPERTIMER * lvlkopalni; }
+            if(lvlkopalni>=3){ xB += xPERTIMER * lvlkopalni; }
+
+            ChangeValuesInBuilding();
             timeRemaining = 5;
-            PlayerPrefs.SetInt("GoldInBuilding",goldB);
-            PlayerPrefs.SetInt("IronInBuilding", ironB);
+            savebuildingres();
         }
     }
 
@@ -107,12 +131,29 @@ public class CityManager : MonoBehaviour
             gameMessagebox.createMessageBox("Units","Przed wyruszeniem w droge zbierz druzyne");
         }
     }
+    private void OnEnable()
+    {
+        //wczytanie ile mineło czasu XD / przez ile na 1 staka
+        lastTimeIncity = DateTime.Parse(PlayerPrefs.GetString("Last Time login Town"));
+        TimeSpan howManySecPassed= DateTime.Now - lastTimeIncity;
+        if ((int)howManySecPassed.TotalSeconds >= TimerToNextReward)
+        {
+            goldB += (GOLDPERTIMER * PlayerPrefs.GetInt("LvlRatusza")) *( (int)howManySecPassed.TotalSeconds % TimerToNextReward);
+            ironB += (IronPERTIMER * PlayerPrefs.GetInt("LvlKopalni")) *( (int)howManySecPassed.TotalSeconds % TimerToNextReward);
+            woodB+= (WoodPERTIMER*PlayerPrefs.GetInt("lvlKopalni"))* ((int)howManySecPassed.TotalSeconds % TimerToNextReward);
+            if (PlayerPrefs.GetInt("lvlKopalni") >= 2) {
+                steelB += (steelPERTIMER * PlayerPrefs.GetInt("lvlKopalni")) * ((int)howManySecPassed.TotalSeconds % TimerToNextReward); 
+                if(PlayerPrefs.GetInt("lvlKopalni") >= 3) 
+                        xB+= ( xPERTIMER * PlayerPrefs.GetInt("lvlKopalni")) * ((int)howManySecPassed.TotalSeconds % TimerToNextReward);
+            }
 
-    // private void chuj(){
-        // Debug.Log("Test buttona");
-    // }
-
-
+            ChangeValuesInBuilding();
+        }
+    }
+    private void OnDisable()
+    {
+        PlayerPrefs.SetString("Last Time login Town",DateTime.Now.ToString());
+    }
     public void ActivateBuilding(string buttonBuildingName)
     {
         animatorCmp.SetTrigger("OpenPanel");
@@ -126,8 +167,7 @@ public class CityManager : MonoBehaviour
                 break;
             case "kopalnia":
                 P2.SetActive(true);
-                //IronB_counter = GameObject.Find("IronB_counter");
-                IronB_counter.GetComponent<TextMeshProUGUI>().SetText(ironB.ToString());
+                ChangeValuesInBuilding();
                 break;
             case "arena":
                 P3.SetActive(true);
@@ -144,6 +184,7 @@ public class CityManager : MonoBehaviour
     }
     public void BackToCity()
     {
+        if (GameObject.Find("StatShow")!=null) { GameObject.Find("StatShow").SetActive(false); print("XDDDDDDDD"); return; }
         animatorCmp.ResetTrigger("OpenPanel");
         animatorCmp.SetTrigger("ClosePanel");
         P1.SetActive(false);
@@ -152,40 +193,82 @@ public class CityManager : MonoBehaviour
         P4.SetActive(false);
         P5.SetActive(false);
     }
-    public void ChangeGoldInBuilding()
+    public void savebuildingres()
     {
-        if(!GoldB_counter.activeInHierarchy) return;
-        GoldB_counter.GetComponent<TextMeshProUGUI>().SetText(goldB.ToString());
+        PlayerPrefs.SetInt("GoldInBuilding", goldB);
+        PlayerPrefs.SetInt("IronInBuilding", ironB);
+        PlayerPrefs.SetInt("WoodInBuilding", woodB);
+        PlayerPrefs.SetInt("SteelInBuilding", steelB);
+        PlayerPrefs.SetInt("XInBuilding", xB);
     }
-    public void ChangeIronInBuilding()
+    void ChangeValuesInBuilding()
     {
-        if (!IronB_counter.activeInHierarchy) return;
+        if (GoldB_counter!=null) GoldB_counter.GetComponent<TextMeshProUGUI>().SetText(goldB.ToString());
+        if (IronB_counter==null) return;
         IronB_counter.GetComponent<TextMeshProUGUI>().SetText(ironB.ToString());
+        WoodB_counter.GetComponent<TextMeshProUGUI>().SetText("How much Wood: " + woodB.ToString());
+        steelB_counter.GetComponent<TextMeshProUGUI>().SetText("How much steel: " + steelB.ToString());
+        xB_counter.GetComponent<TextMeshProUGUI>().SetText("How much X: " + xB.ToString());
+
     }
     public void GoldColleted()
     {
         resourcemanager.gold += goldB;
         goldB = 0;
-        ChangeGoldInBuilding();
+        ChangeValuesInBuilding();
         resourcemanager.CheckifChange();
     }
     public void IronColleted()
     {
         resourcemanager.iron += ironB;
         ironB = 0;
-        ChangeIronInBuilding();
+        ChangeValuesInBuilding();
         resourcemanager.CheckifChange();
+    }
+    public void collectedRes(string res)
+    {
+        switch (res)
+        {
+            case "Wood":
+                resourcemanager.wood += woodB;
+                woodB = 0;
+                ChangeValuesInBuilding();
+                resourcemanager.CheckifChange();
+                break;
+            case "Steel":
+                resourcemanager.steel += steelB;
+                steelB = 0;
+                ChangeValuesInBuilding();
+                resourcemanager.CheckifChange();
+                break;
+            case "X":
+                resourcemanager.X += xB;
+                xB = 0;
+                ChangeValuesInBuilding();
+                resourcemanager.CheckifChange();
+                break;
+        }
+
     }
     public void UpgradeBuilding(string building)
     {
         if (building == null) return;
-        if (building == "Ratusz" && lvlRatusza < 5 && resourcemanager.gold > 2000 * lvlRatusza && resourcemanager.iron > 3000 * lvlRatusza) {resourcemanager.gold -= 2000 * lvlRatusza; resourcemanager.iron -= 3000 * lvlRatusza;
+
+        if (building == "Ratusz" && lvlRatusza < 5 && resourcemanager.gold > 2000 * lvlRatusza 
+            && resourcemanager.iron > 3000 * lvlRatusza)
+        {resourcemanager.gold -= 2000 * lvlRatusza; resourcemanager.iron -= 3000 * lvlRatusza;
             lvlRatusza += 1;
             PlayerPrefs.SetInt("LvlRatusza", lvlRatusza); resourcemanager.CheckifChange(); }
-        if (building == "kopalnia" && lvlkopalni < 5 && resourcemanager.gold > 3000 * lvlkopalni && resourcemanager.iron > 2000 * lvlkopalni) { resourcemanager.gold -= 2000 * lvlkopalni; resourcemanager.iron -= 3000 * lvlRatusza; lvlkopalni += 1;
+
+        if (building == "kopalnia" && lvlkopalni < 5 && resourcemanager.gold > 3000 * lvlkopalni 
+            && resourcemanager.iron > 2000 * lvlkopalni) 
+        { resourcemanager.gold -= 2000 * lvlkopalni; resourcemanager.iron -= 3000 * lvlkopalni; 
             lvlkopalni += 1;
             PlayerPrefs.SetInt("LvlKopalni", lvlkopalni); resourcemanager.CheckifChange(); }
-        if (lvlRatusza > 2) GameObject.Find("RatuszEntryButton").GetComponent<Image>().color = new Color32(155, 55, 190, 255);
-        if (lvlkopalni > 2) GameObject.Find("RatuszEntryButton").GetComponent<Image>().color = new Color32(155, 100, 75, 50);
+        //dla koszar
+        if (building == "koszary") { lvlKoszar += 1; PlayerPrefs.SetInt("LvlKoszar", lvlKoszar); }
+        if (lvlRatusza >= 2) GameObject.Find("RatuszEntryButton").GetComponent<Image>().color = new Color32(155, 55, 190, 255);
+        if (lvlkopalni >= 2) GameObject.Find("KopalniaEntryButton").GetComponent<Image>().color = new Color32(155, 100, 75, 50);
+        BackToCity();
     }
 }
