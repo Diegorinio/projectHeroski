@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class cavaleryU:Unit
 {   
-    public override void Awake()
-    {
-        base.Awake();
-    }
+    // public override void Awake()
+    // {
+    //     base.Awake();
+    // }
 }

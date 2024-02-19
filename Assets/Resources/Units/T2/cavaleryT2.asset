@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 285928d9a7cfbdd41b24ba94687cd0bc, type: 3}
-  m_Name: procarz
+  m_Name: cavaleryT2
   m_EditorClassIdentifier: 
-  unitName: procarz
-  unitSprite: {fileID: 21300000, guid: a86029da4764c98439ea9705e5cfe11c, type: 3}
-  tier: 0
-  unitBaseHealth: 2
-  unitBaseDamage: 4
-  gridDistanceX: 4
+  unitName: calvaery t2
+  unitSprite: {fileID: 21300000, guid: 90535168b83eef7b19f1f6ff1372ca5b, type: 3}
+  tier: 1
+  unitBaseHealth: 6
+  unitBaseDamage: 6
+  gridDistanceX: 3
   gridDistanceY: 4

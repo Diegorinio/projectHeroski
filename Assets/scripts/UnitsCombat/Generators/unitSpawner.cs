@@ -18,7 +18,7 @@ public class unitSpawner : MonoBehaviour
     //Typy jednostek i jaki kontroler
     public enum unitType{Distance,Cavalery,Close};
     public enum controllers{Player,Enemy}
-    public enum tier{t1,t2,t3};
+    public enum tier{T1,T2,T3};
 
     //Zespawnij dany typ i dana ilosc
     //główne użycie w koszarach
@@ -90,43 +90,13 @@ public class unitSpawner : MonoBehaviour
         UnitSO returnUnitSO=null;
         switch(type){
             case unitType.Distance:
-            switch(_tier){
-                case tier.t1:
-                returnUnitSO = Resources.Load<UnitSO>("Units/procarz");
-                break;
-                case tier.t2:
-
-                break;
-                case tier.t3:
-
-                break;
-            }
+            returnUnitSO = Resources.Load<UnitSO>($"Units/{_tier}/distance{_tier}");
             break;
             case unitType.Close:
-            switch(_tier){
-                case tier.t1:
-                returnUnitSO = Resources.Load<UnitSO>("Units/piechota");
-                break;
-                case tier.t2:
-
-                break;
-                case tier.t3:
-                
-                break;
-            }
+            returnUnitSO = Resources.Load<UnitSO>($"Units/{_tier}/close{_tier}");
             break;
             case unitType.Cavalery:
-            switch(_tier){
-                case tier.t1:
-                returnUnitSO = Resources.Load<UnitSO>("Units/dzida");
-                break;
-                case tier.t2:
-
-                break;
-                case tier.t3:
-                
-                break;
-            }
+            returnUnitSO = Resources.Load<UnitSO>($"Units/{_tier}/cavalery{_tier}");
             break;
         }
         return returnUnitSO;

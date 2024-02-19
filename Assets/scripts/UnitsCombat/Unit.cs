@@ -18,7 +18,7 @@ public class Unit : MonoBehaviour
     protected Vector2Int gridAttackDistance;
     protected unitGUI _gui{get;set;}
 
-    public virtual void Awake(){}
+    // public virtual void Awake(){}
     public void unitInitialize(UnitSO _unit){
         unitName=_unit.unitName;
         unitBaseDamage=_unit.unitBaseDamage;

@@ -48,7 +48,7 @@ public class barracks : MonoBehaviour
 
     private void buyUnitTier(){
         Debug.Log("Kupienie jednostek CHCHCHCHHCHCUI!!!1");
-        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitSpawner.tier.t1,unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
+        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitSpawner.tier.T1,unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
         rndUnit.transform.localPosition = Vector3.zero;
