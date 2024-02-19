@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Mono.Cecil;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -124,6 +120,30 @@ public class unitSpawner : MonoBehaviour
         int amount = UnityEngine.Random.Range(100,200);
         GameObject newUnit = spawnUnitGameObject(type,amount);
         newUnit.GetComponent<Unit>().setUnitAmount(UnityEngine.Random.Range(100,200));
+        return newUnit;
+    }
+
+    public static GameObject spawnRandomUnitGameObject(tier _tier,controllers controller,int amount){
+        GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
+        unitType type = (unitType)UnityEngine.Random.Range(0,3);
+        UnitSO _wantedUnitSO = getUnitSO(_tier,type);
+        switch(type){
+            case unitType.Distance:
+            newUnit.AddComponent<distanceU>();
+            break;
+            case unitType.Close:
+            newUnit.AddComponent<closeU>();
+            break;
+            case unitType.Cavalery:
+            newUnit.AddComponent<cavaleryU>();
+            break;
+        }
+        newUnit.GetComponent<Unit>().unitInitialize(_wantedUnitSO);
+        assignController(controller, newUnit);
+        newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
+        newUnit.GetComponent<Unit>().setUnitAmount(amount);
+        newUnit.AddComponent<unitGUI>();
+        newUnit.name=$"{type} {amount}";
         return newUnit;
     }
 

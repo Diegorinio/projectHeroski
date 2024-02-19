@@ -85,6 +85,9 @@ public void setNormalDistance(){
 // Metoda ruchu gracza na tile
 // Jezeli tile jest przypisany to ustaw na null
 // Pozniej Przenies na Tile i przypisz jednostke do danego Tile
+//rusza jednostke na dany Tile
+//Do rozstawiania na planszy na poczatku gry
+//Takze jako glowny skrypt do poruszania sie 
 public void characterMove(GameObject _newTransform){
     if(assignedTile!=null){
     assignedTile.unMakeBusy();
@@ -112,12 +115,19 @@ public void characterMove(GameObject _newTransform,bool isStart){
     if(!isStart)
         disableClickable();
 }
+///
+//
 
+
+//Przy ruchu usun wlasnosci tile na ktory poprzednio stala jednostka
 public void moveFromTile(){
     assignedTile.unMakeBusy();
     assignedTile.SetGameObjectOnTile(null);
     assignedTile=null;
 }
+
+//Ruch jednostki ale po każdym Tile po kolei
+//do ruchu po tile
 public void characterMove(Tile _targetTile){
     List<Tile> movePath = GridMap.getPathToTile(gameObject,_targetTile.gameObject);
     for(int x=1;x<movePath.Count;x++){
@@ -132,6 +142,8 @@ public void characterMove(Tile _targetTile){
     disableClickable();
 }
 
+//Ruch do tile ale obok wybraneego Tile 
+// zastowanie do ruchu blisko przeciwnika
 private void characterMoveTroughList(List<Tile> tiles){
     Tile current_tile =tiles[0];
     for(int x=1;x<tiles.Count;x++){
@@ -159,6 +171,9 @@ public void hitToSelectedTarget(GameObject target){
     }
 }
 
+
+//Metoda do ataku
+//Podchodzi pod naglizszy Tile obok przeciwnika i zadaje obrazenia
 public void playerHitSelectedTarget(GameObject target){
     if(targets.Contains(target)){
         Debug.Log($"{enemyTarget==target}");
@@ -184,6 +199,18 @@ public void playerHitSelectedTarget(GameObject target){
             }
         }
     }
+}
+
+public void goToNearestTileAndDealDamage(GameObject target){
+    if(_unit is IDistance){
+                _unit.dealDamageTo(target);
+                disableClickable();
+            }
+            else{
+            List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
+            _unit.dealDamageTo(target);
+            characterMoveTroughList(movePath);
+            }
 }
 
 //Metoda konca tury
