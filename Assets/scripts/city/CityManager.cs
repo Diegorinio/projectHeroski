@@ -135,6 +135,7 @@ public class CityManager : MonoBehaviour
     {
         //wczytanie ile mineło czasu XD / przez ile na 1 staka
         lastTimeIncity = DateTime.Parse(PlayerPrefs.GetString("Last Time login Town"));
+        Debug.Log($"Ostatni pobyt{lastTimeIncity}");
         TimeSpan howManySecPassed= DateTime.Now - lastTimeIncity;
         if ((int)howManySecPassed.TotalSeconds >= TimerToNextReward)
         {

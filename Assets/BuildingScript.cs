@@ -52,7 +52,7 @@ public class BuildingScript : MonoBehaviour
     }
     void FixedUpdate()
     {
-        print(isbuilding);
+        // print(isbuilding);
         if (!isbuilding) return;
         if (DateTime.Now <= TimeToComplete)
         {
