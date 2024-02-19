@@ -87,9 +87,32 @@ public class barracks : MonoBehaviour
         PlayerPrefs.SetInt($"isFirstTime {unitName}", (isFirstTime ? 1 : 0));
     }
 
-    private void buyUnit(){
-        Debug.Log("Kupienie Jednostek chuchuchcucuj1");
-        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
+    // private void buyUnit(){
+    //     Debug.Log("Kupienie Jednostek chuchuchcucuj1");
+    //     GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
+    //     Unit _unit = rndUnit.GetComponent<Unit>();
+    //     rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
+    //     rndUnit.transform.localPosition = Vector3.zero;
+    //     if (!mainPlayerUnit.Instance.isUnitExists(_unit))
+    //     {
+    //         rndUnit.transform.localPosition = Vector3.zero;
+    //         mainPlayerUnit.Instance.addUnitsToTeam(_unit);
+    //     }
+    //     else
+    //     {
+    //         mainPlayerUnit.Instance.addUnitsToTeam(_unit);
+    //         Destroy(rndUnit);
+    //     }
+    //     isRecrutable=true;
+    //     amount_slider.interactable = true;
+    //     amount_input.interactable = true;
+    //     buyBtn.gameObject.SetActive(true);
+    //     collectBtn.gameObject.SetActive(false);
+    // }
+
+    private void buyUnitTier(){
+        Debug.Log("Kupienie jednostek CHCHCHCHHCHCUI!!!1");
+        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitSpawner.tier.T1,unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
         rndUnit.transform.localPosition = Vector3.zero;
@@ -110,9 +133,9 @@ public class barracks : MonoBehaviour
         collectBtn.gameObject.SetActive(false);
     }
 
-    private void buyUnitTier(){
-        Debug.Log("Kupienie jednostek CHCHCHCHHCHCUI!!!1");
-        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitSpawner.tier.T1,unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
+    private void RecruitUnit()
+    {
+        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitType, unitSpawner.controllers.Player, lastRecruitSoldiers);
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
         rndUnit.transform.localPosition = Vector3.zero;
