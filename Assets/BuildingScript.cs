@@ -35,6 +35,7 @@ public class BuildingScript : MonoBehaviour
     }
     private void OnEnable()
     {
+        // PlayerPrefs.DeleteAll();
         if (PlayerPrefs.HasKey($"isBulding {this.name}"))
         {
             isbuilding =( PlayerPrefs.GetInt($"isBulding {this.name}") != 0);

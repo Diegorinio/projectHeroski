@@ -34,8 +34,7 @@ public class barracks : MonoBehaviour
     {
         amount_slider.onValueChanged.AddListener(changeSlider);
         amount_input.onValueChanged.AddListener(changeInput);
-        // buyBtn.onClick.AddListener(buyUnit);
-        buyBtn.onClick.AddListener(buyUnitTier);
+        buyBtn.onClick.AddListener(buyUnit);
         collectBtn.GetComponent<Button>().onClick.AddListener(RecruitUnit);
         if(isRecrutable)isRecrutable = true;
         if((PlayerPrefs.GetInt($"isFirstTime {unitName}") != 0)==false) isFirstTime = false;
@@ -87,28 +86,17 @@ public class barracks : MonoBehaviour
         PlayerPrefs.SetInt($"isFirstTime {unitName}", (isFirstTime ? 1 : 0));
     }
 
-    // private void buyUnit(){
-    //     Debug.Log("Kupienie Jednostek chuchuchcucuj1");
-    //     GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
-    //     Unit _unit = rndUnit.GetComponent<Unit>();
-    //     rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
-    //     rndUnit.transform.localPosition = Vector3.zero;
-    //     if (!mainPlayerUnit.Instance.isUnitExists(_unit))
-    //     {
-    //         rndUnit.transform.localPosition = Vector3.zero;
-    //         mainPlayerUnit.Instance.addUnitsToTeam(_unit);
-    //     }
-    //     else
-    //     {
-    //         mainPlayerUnit.Instance.addUnitsToTeam(_unit);
-    //         Destroy(rndUnit);
-    //     }
-    //     isRecrutable=true;
-    //     amount_slider.interactable = true;
-    //     amount_input.interactable = true;
-    //     buyBtn.gameObject.SetActive(true);
-    //     collectBtn.gameObject.SetActive(false);
-    // }
+    private void buyUnit(){
+
+        DateTime UnitBoughtTime = DateTime.Now;
+
+        UnitToReadyTime = UnitBoughtTime.AddSeconds((int)amount_slider.value*2);
+        lastRecruitSoldiers = (int)amount_slider.value;
+        isRecrutable = false;
+        isFirstTime = true;
+        buyBtn.gameObject.SetActive(false);
+        
+    }
 
     private void buyUnitTier(){
         Debug.Log("Kupienie jednostek CHCHCHCHHCHCUI!!!1");
