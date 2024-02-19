@@ -85,12 +85,13 @@ public class enemyAI : MonoBehaviour
         GameObject selectedHero=_collidersCharacters[id].transform.gameObject;
         Debug.Log($"Przeciwnik aatakowal {selectedHero.name} AI");
         // gameObject.GetComponent<unitController>().hitToSelectedTarget(selectedHero);
-        gameObject.GetComponent<unitController>().playerHitSelectedTarget(selectedHero);
+        // gameObject.GetComponent<unitController>().playerHitSelectedTarget(selectedHero);
+        gameObject.GetComponent<unitController>().goToNearestTileAndDealDamage(selectedHero);
         }
     }
 
     public void attackRandomPlayer(){
-        
+
     }
 
 }

@@ -201,6 +201,18 @@ public void playerHitSelectedTarget(GameObject target){
     }
 }
 
+public void goToNearestTileAndDealDamage(GameObject target){
+    if(_unit is IDistance){
+                _unit.dealDamageTo(target);
+                disableClickable();
+            }
+            else{
+            List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
+            _unit.dealDamageTo(target);
+            characterMoveTroughList(movePath);
+            }
+}
+
 //Metoda konca tury
 // Znajduje glowny kontroler tury i uruchamia nastepna ture
 // tileDetector przestaje wykrywanie i "wylacza" dane Tile ktore byly w zasiegu
