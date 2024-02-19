@@ -23,7 +23,8 @@ public class randomMapEventGenerator : MonoBehaviour
     // Wygeneruj przez UnitSpawner jednostki losowego typu i dodaj do instacji MainEnemiesUnit
     void setEventUnits(){
         for(int x=0;x<amountOfEventUnits;x++){
-        GameObject newEnemy = unitSpawner.spawnRandomUnitToGameObject(unitSpawner.controllers.Enemy);
+        // GameObject newEnemy = unitSpawner.spawnRandomUnitToGameObject(unitSpawner.controllers.Enemy);
+        GameObject newEnemy = unitSpawner.spawnRandomUnitGameObject(unitSpawner.tier.T1,unitSpawner.controllers.Enemy,Random.Range(100,300));
         newEnemy.transform.SetParent(mainEnemiesUnit.Instance.gameObject.transform);
         newEnemy.transform.localPosition=Vector3.zero;
         Enemies.Add(newEnemy);

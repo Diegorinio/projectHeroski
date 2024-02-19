@@ -97,7 +97,7 @@ public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vecto
                 {
                     Tile neighbor = gridMap[neighborX, neighborY];
 
-                    // Sprawdzamy, czy sąsiadujące pole nie jest wodą lub przeszkodą, ale jeśli nie ma innej alternatywnej ścieżki, to uwzględniamy te pola
+                    // Sprawdz, czy sąsiadujące pole nie jest wodą lub przeszkodą, ale jeśli nie ma innej alternatywnej ścieżki to uwzględniamy te pola
                     if (!(neighbor is waterTile || neighbor is obstacleTile) || (neighbor == targetTile && !parentMap.ContainsKey(neighbor)))
                     {
                         float distance = Vector2Int.Distance(currentTile.getPosition(), neighbor.getPosition());

@@ -16,18 +16,25 @@ public class enemyDetector : Detector{
     public override void setTiles(){
         Tile _assignedTile = assignedController.getAssignedTile();
         List<Tile> rangeTiles = GridMap.calculateMapTiles(_assignedTile.getPosition(),assignedController.getUnitDistance());
+        Debug.Log($"Enemy list tiles {rangeTiles.Count}");
         movementTilesList = GridMap.findMovementTiles(rangeTiles);
+        Debug.Log($"set tiles enemy {movementTilesList.Count}");
         enemyUnitList = GridMap.findGameObjectsOnTiles(rangeTiles,"Player");
         assignedController.addToTargets(enemyUnitList);
     }
 
     //Startuje wykrywanie, wykryte Tile i GameObject przekazuje do AI a nastepnie wykonuje losowa akcje z AI
     public override void StartDetector(){
-        base.StartDetector();
+        assignedController = gameObject.GetComponent<unitController>();
+        setTiles();
+        GridMap.enableListTiles(movementTilesList);
+        // base.StartDetector();
         aI=gameObject.GetComponent<enemyAI>();
+        setTiles();
         aI.changeCollidersMovement(movementTilesList);
         aI.changeCollidersCharacters(enemyUnitList);
         aI.randomAction();
+        Debug.Log($"Enemy end starting detector detector");
     }
 
     //Jezeli aktualna tura to gracz to po nacisnieciu na przeciwnika zadaj obrazenia
