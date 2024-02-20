@@ -257,17 +257,25 @@ public class CityManager : MonoBehaviour
 
         if (building == "Ratusz" && lvlRatusza < 5 && resourcemanager.gold > 2000 * lvlRatusza 
             && resourcemanager.iron > 3000 * lvlRatusza)
+
         {resourcemanager.gold -= 2000 * lvlRatusza; resourcemanager.iron -= 3000 * lvlRatusza;
             lvlRatusza += 1;
-            PlayerPrefs.SetInt("LvlRatusza", lvlRatusza); resourcemanager.CheckifChange(); }
+            PlayerPrefs.SetInt("LvlRatusza", lvlRatusza); resourcemanager.CheckifChange();
+            GameObject.Find("RatuszEntryButton").GetComponent<BuildingScript>().UpgradeStarts();
+        }
 
         if (building == "kopalnia" && lvlkopalni < 5 && resourcemanager.gold > 3000 * lvlkopalni 
             && resourcemanager.iron > 2000 * lvlkopalni) 
+
         { resourcemanager.gold -= 2000 * lvlkopalni; resourcemanager.iron -= 3000 * lvlkopalni; 
             lvlkopalni += 1;
-            PlayerPrefs.SetInt("LvlKopalni", lvlkopalni); resourcemanager.CheckifChange(); }
+            GameObject.Find("KopalniaEntryButton").GetComponent<BuildingScript>().UpgradeStarts();
+            PlayerPrefs.SetInt("LvlKopalni", lvlkopalni); resourcemanager.CheckifChange();
+        }
         //dla koszar
-        if (building == "koszary") { lvlKoszar += 1; PlayerPrefs.SetInt("LvlKoszar", lvlKoszar); }
+        if (building == "koszary" && lvlKoszar <5) //awrunki do zrobienia koszar
+        
+        { lvlKoszar += 1; PlayerPrefs.SetInt("LvlKoszar", lvlKoszar); GameObject.Find("KoszaryEntryButton").GetComponent<BuildingScript>().UpgradeStarts(); }
         if (lvlRatusza >= 2) GameObject.Find("RatuszEntryButton").GetComponent<Image>().color = new Color32(155, 55, 190, 255);
         if (lvlkopalni >= 2) GameObject.Find("KopalniaEntryButton").GetComponent<Image>().color = new Color32(155, 100, 75, 50);
         BackToCity();
