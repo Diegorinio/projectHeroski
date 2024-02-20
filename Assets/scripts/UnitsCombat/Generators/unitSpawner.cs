@@ -60,7 +60,7 @@ public class unitSpawner : MonoBehaviour
         return newUnit;
     }
 
-    //Jednostka z tierem
+    //Jednostka z tierem //uzywane glownie do spawnu jednostek gracza
     public static GameObject spawnUnitGameObject(tier _tier,unitType type, controllers controller,int amount){
         GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
         UnitSO _wantedUnitSO = getUnitSO(_tier,type);
@@ -80,7 +80,7 @@ public class unitSpawner : MonoBehaviour
         newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
         newUnit.AddComponent<unitGUI>();
-        newUnit.name=$"{type} {amount}";
+        newUnit.name=$"{controller} {_tier} {type} {amount}";
         return newUnit;
     }
 
@@ -161,7 +161,7 @@ public class unitSpawner : MonoBehaviour
         newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
         newUnit.AddComponent<unitGUI>();
-        newUnit.name=$"{type} {amount}";
+        newUnit.name=$"{controller} {type} {amount} {_tier}";
         return newUnit;
     }
 

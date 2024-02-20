@@ -5,7 +5,6 @@ using UnityEngine;
 // Skrypt okreslajacy jednostke
 public class Unit : MonoBehaviour
 {
-    [SerializeField]
     protected int tier;
     [SerializeField]
     public string unitName{get;set;}
