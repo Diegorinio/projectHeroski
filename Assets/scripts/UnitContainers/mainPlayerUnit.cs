@@ -13,41 +13,68 @@ public class mainPlayerUnit : MonoBehaviour
     public static mainPlayerUnit Instance{get;private set;}
     [SerializeField]
     //Lista przetrzymujaca jednostki gracza w instancji
-    private List<Unit> playerTeam;
-    [SerializeField]
-    private Dictionary<int,List<Unit>> unitsList = new Dictionary<int, List<Unit>>();
+    // private List<Unit> playerTeam;
+    // [SerializeField]
+    private Dictionary<int,List<Unit>> playerUnits = new Dictionary<int, List<Unit>>();
 
     //Jezeli nie ma instancji to utworz
     void Awake(){
         if(Instance==null){
         Instance=this;
-        playerTeam = new List<Unit>();
+        // playerTeam = new List<Unit>();
+        playerUnits = new Dictionary<int, List<Unit>>();
         DontDestroyOnLoad(gameObject);
         }
     }
 
-    //Dodaj jednostke
-    public void addToTeam(Unit _unit){
-        playerTeam.Add(_unit);
-    }
-    // Dodaj liste jednostek
+
+    // Dodaj jednostke do  listy jednostek
     public void addUnitsToTeam(Unit _unit){
+        // if(isUnitExists(_unit)){
+        //     Unit existingUnit = getExistingUnit(_unit);
+        //     existingUnit.addUnits(_unit.getUnitAmount());
+        // }
+        // else{
+        //     playerTeam.Add(_unit);
+        // }
         if(isUnitExists(_unit)){
             Unit existingUnit = getExistingUnit(_unit);
             existingUnit.addUnits(_unit.getUnitAmount());
         }
         else{
-            playerTeam.Add(_unit);
+            int tier=_unit.getUnitTier();
+            // playerUnits[tier]=new List<Unit> {_unit};
+            addKeyToDictionary(tier,_unit);
         }
     }
+
+    private void addKeyToDictionary(int _tier,Unit _unit){
+
+        // playerUnits[_tier].Add(_unit);
+        if(playerUnits.ContainsKey(_tier)){
+            playerUnits[_tier].Add(_unit);
+        }
+        else{
+        playerUnits.Add(_tier,new List<Unit>());
+        playerUnits[_tier].Add(_unit);
+        }
+    }
+    
     //Zworc jednostke ktora istnieje
     public Unit getExistingUnit(Unit _unit){
-        Unit exisingUnit = playerTeam.FirstOrDefault(unit=>unit.GetType()==_unit.GetType());
-        return exisingUnit;
+        int _tier = _unit.getUnitTier();
+        if(playerUnits.ContainsKey(_tier)){
+            Unit existingUnit = playerUnits[_tier].FirstOrDefault(unit=>unit.GetType()==_unit.GetType());
+            return existingUnit;
+        }
+        else{
+            return null;
+        }
     }
 
     //Sprawdz czy jednostka juz istnieje w instancji
     public bool isUnitExists(Unit _unit){
+        
         if(getExistingUnit(_unit)!=null)
             return true;
         else
@@ -56,25 +83,38 @@ public class mainPlayerUnit : MonoBehaviour
 
     //Zwroc jednostki jako tablice
     public Unit[] getUnits(){
-        return playerTeam.ToArray();
+        return getUnitsList().ToArray();
     }
 
     //Zwroc jednostki jako tablice gameObject
     public GameObject[] getUnitsAsGameObject(){
         List<GameObject> list = new List<GameObject>();
-        foreach(var u in playerTeam){
-            list.Add(u.gameObject);
+        // foreach(var u in playerTeam){
+        //     list.Add(u.gameObject);
+        // }
+        foreach(var unitList in playerUnits.Values){
+            foreach(var unit in unitList){
+                list.Add(unit.gameObject);
+            }
         }
         return list.ToArray();
     }
 
     //Zwroc Jednostki jako lista
     public List<Unit> getUnitsList(){
-        return playerTeam;
+        List<Unit> allUnits = new List<Unit>();
+        foreach(var unit in playerUnits.Values){
+            allUnits.AddRange(unit);
+        }
+        return allUnits;
     }
 
     //Usun jednostke z druzyny instancji
     public void removeFromUnits(Unit _unit){
-        playerTeam.Remove(_unit);
+        // playerTeam.Remove(_unit);
+        int tier = _unit.getUnitTier();
+        if(playerUnits.ContainsKey(tier)){
+            playerUnits[tier].Remove(_unit);
+        }
     }
 }

@@ -16,8 +16,7 @@ public class barracks : MonoBehaviour
 
     public GameObject collectBtn;
 
-    public enum unitsTier{tier1,tier2,tier3}
-    public unitsTier Tier;
+    public unitSpawner.tier unitTier;
     public unitSpawner.unitType unitType;
     //recruiment
     private string unitName;
@@ -30,8 +29,14 @@ public class barracks : MonoBehaviour
     protected DateTime UnitToReadyTime;
     protected DateTime rightNowTime;
 
+    //Do cheat buttona, !pamietac wywalic na release
+    public Button cheatBtn;
+
     void Start()
     {
+        //cheat button
+        cheatBtn.onClick.AddListener(cheat);
+        //
         amount_slider.onValueChanged.AddListener(changeSlider);
         amount_input.onValueChanged.AddListener(changeInput);
         buyBtn.onClick.AddListener(buyUnit);
@@ -101,7 +106,7 @@ public class barracks : MonoBehaviour
 
     private void buyUnitTier(){
         Debug.Log("Kupienie jednostek CHCHCHCHHCHCUI!!!1");
-        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitSpawner.tier.T1,unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
+        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitTier,unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
         rndUnit.transform.localPosition = Vector3.zero;
@@ -122,28 +127,28 @@ public class barracks : MonoBehaviour
         collectBtn.gameObject.SetActive(false);
     }
 
-    private void RecruitUnit()
-    {
-        GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitType, unitSpawner.controllers.Player, lastRecruitSoldiers);
-        Unit _unit = rndUnit.GetComponent<Unit>();
-        rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
-        rndUnit.transform.localPosition = Vector3.zero;
-        if (!mainPlayerUnit.Instance.isUnitExists(_unit))
-        {
-            rndUnit.transform.localPosition = Vector3.zero;
-            mainPlayerUnit.Instance.addUnitsToTeam(_unit);
-        }
-        else
-        {
-            mainPlayerUnit.Instance.addUnitsToTeam(_unit);
-            Destroy(rndUnit);
-        }
-        isRecrutable=true;
-        amount_slider.interactable = true;
-        amount_input.interactable = true;
-        buyBtn.gameObject.SetActive(true);
-        collectBtn.gameObject.SetActive(false);
-    }
+    // private void RecruitUnit()
+    // {
+    //     GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitType, unitSpawner.controllers.Player, lastRecruitSoldiers);
+    //     Unit _unit = rndUnit.GetComponent<Unit>();
+    //     rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
+    //     rndUnit.transform.localPosition = Vector3.zero;
+    //     if (!mainPlayerUnit.Instance.isUnitExists(_unit))
+    //     {
+    //         rndUnit.transform.localPosition = Vector3.zero;
+    //         mainPlayerUnit.Instance.addUnitsToTeam(_unit);
+    //     }
+    //     else
+    //     {
+    //         mainPlayerUnit.Instance.addUnitsToTeam(_unit);
+    //         Destroy(rndUnit);
+    //     }
+    //     isRecrutable=true;
+    //     amount_slider.interactable = true;
+    //     amount_input.interactable = true;
+    //     buyBtn.gameObject.SetActive(true);
+    //     collectBtn.gameObject.SetActive(false);
+    // }
     private void changeSlider(float v ){
         int r = (int)v;
         amount_input.text = r.ToString();

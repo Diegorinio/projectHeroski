@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285928d9a7cfbdd41b24ba94687cd0bc, type: 3}
   m_Name: cavaleryT1
   m_EditorClassIdentifier: 
-  unitName: cavalery
-  unitSprite: {fileID: 21300000, guid: 360a39e388316b1468a52639b2ddc574, type: 3}
+  unitName: cavalery t1
+  unitSprite: {fileID: 21300000, guid: 38a922da8801a33119068b1560c677dc, type: 3}
   tier: 0
   unitBaseHealth: 5
   unitBaseDamage: 5

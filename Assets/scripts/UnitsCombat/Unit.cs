@@ -5,6 +5,7 @@ using UnityEngine;
 // Skrypt okreslajacy jednostke
 public class Unit : MonoBehaviour
 {
+    [SerializeField]
     protected int tier;
     [SerializeField]
     public string unitName{get;set;}
@@ -19,7 +20,8 @@ public class Unit : MonoBehaviour
     protected unitGUI _gui{get;set;}
 
     // public virtual void Awake(){}
-    public void unitInitialize(UnitSO _unit){
+    public void unitInitialize(int _tier,UnitSO _unit){
+        tier=_tier;
         unitName=_unit.unitName;
         unitBaseDamage=_unit.unitBaseDamage;
         unitBaseHealth=_unit.unitBaseHealth;
@@ -31,6 +33,11 @@ public class Unit : MonoBehaviour
     void Start()
     {
         _gui=gameObject.GetComponent<unitGUI>();
+    }
+
+
+    public int getUnitTier(){
+        return tier;
     }
 
     //Ustaw ilosc jednostek

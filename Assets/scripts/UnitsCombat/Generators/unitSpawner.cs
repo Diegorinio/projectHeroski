@@ -75,7 +75,7 @@ public class unitSpawner : MonoBehaviour
             newUnit.AddComponent<cavaleryU>();
             break;
         }
-        newUnit.GetComponent<Unit>().unitInitialize(_wantedUnitSO);
+        newUnit.GetComponent<Unit>().unitInitialize(getTier(_tier),_wantedUnitSO);
         assignController(controller, newUnit);
         newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
@@ -99,6 +99,19 @@ public class unitSpawner : MonoBehaviour
         }
         Debug.Log($"FOund SO is {returnUnitSO.unitName} {returnUnitSO.unitSprite}");
         return returnUnitSO;
+    }
+
+    private static int getTier(tier _tier){
+        switch(_tier){
+            case tier.T1:
+            return 1;
+            case tier.T2:
+            return 2;
+            case tier.T3:
+            return 3;
+            default:
+            return 1;
+        }
     }
 
     // Dodaj komponenty potrzebne jednostce gracza
@@ -126,6 +139,8 @@ public class unitSpawner : MonoBehaviour
         return newUnit;
     }
 
+    //Losowa jednostka z tierem
+    //Glowne zastowoanie do losowej jednostki na map event
     public static GameObject spawnRandomUnitGameObject(tier _tier,controllers controller,int amount){
         GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
         unitType type = (unitType)UnityEngine.Random.Range(0,3);
@@ -141,7 +156,7 @@ public class unitSpawner : MonoBehaviour
             newUnit.AddComponent<cavaleryU>();
             break;
         }
-        newUnit.GetComponent<Unit>().unitInitialize(_wantedUnitSO);
+        newUnit.GetComponent<Unit>().unitInitialize(getTier(_tier),_wantedUnitSO);
         assignController(controller, newUnit);
         newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
