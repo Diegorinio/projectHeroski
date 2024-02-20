@@ -511,6 +511,7 @@ MonoBehaviour:
   tileDetector: {fileID: 0}
   targets: []
   assignedTile: {fileID: 0}
+  enemyTarget: {fileID: 0}
 --- !u!1 &5595722230699491412
 GameObject:
   m_ObjectHideFlags: 0

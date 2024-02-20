@@ -145,7 +145,7 @@ public void characterMove(Tile _targetTile){
 //Ruch do tile ale obok wybraneego Tile 
 // zastowanie do ruchu blisko przeciwnika
 private void characterMoveTroughList(List<Tile> tiles){
-    Tile current_tile =tiles[0];
+    Tile current_tile=tiles[0];
     for(int x=1;x<tiles.Count;x++){
         characterMove(tiles[x].gameObject,true);
         if(tiles[x] is waterTile){
