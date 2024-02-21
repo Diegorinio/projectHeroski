@@ -16,6 +16,7 @@ public class mainPlayerUnit : MonoBehaviour
     // private List<Unit> playerTeam;
     // [SerializeField]
     private Dictionary<int,List<Unit>> playerUnits = new Dictionary<int, List<Unit>>();
+    private Hero selectedHero;
 
     //Jezeli nie ma instancji to utworz
     void Awake(){
@@ -30,13 +31,6 @@ public class mainPlayerUnit : MonoBehaviour
 
     // Dodaj jednostke do  listy jednostek
     public void addUnitsToTeam(Unit _unit){
-        // if(isUnitExists(_unit)){
-        //     Unit existingUnit = getExistingUnit(_unit);
-        //     existingUnit.addUnits(_unit.getUnitAmount());
-        // }
-        // else{
-        //     playerTeam.Add(_unit);
-        // }
         if(isUnitExists(_unit)){
             Unit existingUnit = getExistingUnit(_unit);
             existingUnit.addUnits(_unit.getUnitAmount());
@@ -45,6 +39,15 @@ public class mainPlayerUnit : MonoBehaviour
             int tier=_unit.getUnitTier();
             // playerUnits[tier]=new List<Unit> {_unit};
             addKeyToDictionary(tier,_unit);
+        }
+    }
+
+    public void assignHeroToTeam(Hero hero){
+        if(selectedHero==null){
+            selectedHero=hero;
+        }
+        else{
+            
         }
     }
 
