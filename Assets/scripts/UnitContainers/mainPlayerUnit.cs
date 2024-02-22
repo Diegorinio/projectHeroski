@@ -16,7 +16,10 @@ public class mainPlayerUnit : MonoBehaviour
     // private List<Unit> playerTeam;
     // [SerializeField]
     private Dictionary<int,List<Unit>> playerUnits = new Dictionary<int, List<Unit>>();
+    [SerializeField]
     private Hero selectedHero;
+    [SerializeField]
+    private GameObject selecteHeroG;
 
     //Jezeli nie ma instancji to utworz
     void Awake(){
@@ -26,6 +29,10 @@ public class mainPlayerUnit : MonoBehaviour
         playerUnits = new Dictionary<int, List<Unit>>();
         DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public Hero getSelectedHero(){
+        return selectedHero;
     }
 
 
@@ -43,12 +50,9 @@ public class mainPlayerUnit : MonoBehaviour
     }
 
     public void assignHeroToTeam(Hero hero){
-        if(selectedHero==null){
-            selectedHero=hero;
-        }
-        else{
-            
-        }
+        selectedHero = hero;
+        selecteHeroG=hero.gameObject;
+        selecteHeroG.transform.SetParent(gameObject.transform);
     }
 
     private void addKeyToDictionary(int _tier,Unit _unit){

@@ -2048,6 +2048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temp_gameobject: {fileID: 0}
   selectedCheck: 0
+  playerSpriteTmp: {fileID: 981572451}
   turn: 0
   round: 1
   isFinished: 0
@@ -2202,6 +2203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78eecb6041d78064fbf176c243665e11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedHero: {fileID: 0}
+  selecteHeroG: {fileID: 0}
 --- !u!4 &1228648742
 Transform:
   m_ObjectHideFlags: 0

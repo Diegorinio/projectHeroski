@@ -16,6 +16,8 @@ public class turnbaseScript : MonoBehaviour
     public static bool isSelected;
     //chwilowa zmienan zeby sprawdzic w inspektorze
     public bool selectedCheck;
+
+    public Image playerSpriteTmp;
     [SerializeField]
     //dana tura 
     private int turn;
@@ -45,6 +47,7 @@ public class turnbaseScript : MonoBehaviour
        quequeHeroes.AddRange(findPlayer);
         GameObject[] findEnemies=mainEnemiesUnit.Instance.getUnitsAsGameObject();
             quequeHeroes.AddRange(findEnemies);
+        playerSpriteTmp.sprite = mainPlayerUnit.Instance.getSelectedHero().getHeroSprite();
     }
 
     //Na starcie uruchom kurtyne odpowiedzialna za wyswietlanie panelu rundy

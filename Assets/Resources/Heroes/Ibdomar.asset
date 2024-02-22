@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f82d694152d5a0e71bcae81a194ec8c4, type: 3}
-  m_Name: Abduin
+  m_Name: Ibdomar
   m_EditorClassIdentifier: 
-  heroID: 1
-  heroName: Abduin
-  heroSprite: {fileID: -1296829879, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
-  spellIcon: {fileID: 448876172, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
-  entryDialog: essunia
-  defeatDialog: essa wariacie
+  heroID: 2
+  heroName: TEst
+  heroSprite: {fileID: 21300000, guid: c236b5c7a61fa1548ba479b2674cf18a, type: 3}
+  spellIcon: {fileID: 21300000, guid: a97a97a115a9c2942afc4ada30c88110, type: 3}
+  entryDialog: test111
+  defeatDialog: test222
