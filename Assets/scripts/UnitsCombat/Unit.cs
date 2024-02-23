@@ -34,6 +34,10 @@ public class Unit : MonoBehaviour
         _gui=gameObject.GetComponent<unitGUI>();
     }
 
+    public Sprite getUnitSprite(){
+        return unitSprite;
+    }
+
 
     public int getUnitTier(){
         return tier;

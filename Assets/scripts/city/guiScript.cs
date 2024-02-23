@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,25 +11,46 @@ using UnityEngine.UI;
 // Zmiana lokalizacji panelu
 public class guiScript : MonoBehaviour
 {
-    Text unitsList;
     List<Unit> unitlist;
+    public GameObject unitListElementTemplate;
+    GameObject playerTemp;
 
     public void Start(){
-        unitsList = gameObject.transform.Find("units_list").GetComponent<Text>();
-        unitsList.text= "XD";
-        // showUnits();
-        unitlist = mainPlayerUnit.Instance.getUnitsList();
+        // unitlist = mainPlayerUnit.Instance.getUnitsList();
+        // Debug.Log($"UnitsList {unitlist.Count}");
+        // if(unitlist.Count>0){
+        //     showUnits();
+        // }
     }
     public void showUnits(){
-        string tekst ="";
         foreach(var u in unitlist){
-            tekst+=$"{u.unitName},{u.getUnitAmount()}\n";
-            // print(u);
+            GameObject newImage = Instantiate(unitListElementTemplate,gameObject.transform.position,Quaternion.identity);
+            newImage.transform.SetParent(playerTemp.transform);
+            newImage.GetComponent<Image>().sprite = u.getUnitSprite();
+            newImage.GetComponent<RectTransform>().localScale = Vector3.one;
         }
-        unitsList.text=tekst;
+    }
+
+    void OnEnable(){
+        playerTemp = new GameObject("temporarary container");
+        playerTemp.AddComponent<RectTransform>();
+        playerTemp.AddComponent<GridLayoutGroup>();
+        playerTemp.transform.SetParent(gameObject.transform);
+        GridLayoutGroup _grid = playerTemp.GetComponent<GridLayoutGroup>();
+        _grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        _grid.constraintCount = 7;
+        _grid.spacing = new Vector2(30,60);
+        playerTemp.GetComponent<RectTransform>().localScale = Vector3.one;
+        // playerTemp.GetComponent
+        unitlist = mainPlayerUnit.Instance.getUnitsList();
+        showUnits();
+    }
+
+    void OnDisable(){
+        Destroy(playerTemp);    
     }
 
     public void Update(){
-        showUnits();
+        // showUnits();
     }
 }

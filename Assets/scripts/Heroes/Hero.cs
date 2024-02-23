@@ -23,6 +23,10 @@ public class Hero : MonoBehaviour
         entryDialog=_hero.entryDialog;
         defeatDialog=_hero.defeatDialog;
     }
+
+    public string getHeroName(){
+        return heroName;
+    }
     public void firstSpell(){
 
     }

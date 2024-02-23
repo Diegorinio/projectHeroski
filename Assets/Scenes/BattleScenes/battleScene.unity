@@ -2027,6 +2027,7 @@ GameObject:
   - component: {fileID: 1195370493}
   - component: {fileID: 1195370492}
   - component: {fileID: 1195370494}
+  - component: {fileID: 1195370495}
   m_Layer: 0
   m_Name: controllers
   m_TagString: Untagged
@@ -2048,7 +2049,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temp_gameobject: {fileID: 0}
   selectedCheck: 0
-  playerSpriteTmp: {fileID: 981572451}
   turn: 0
   round: 1
   isFinished: 0
@@ -2084,6 +2084,20 @@ MonoBehaviour:
   roundTextGameUI: {fileID: 0}
   roundTextPanelUI: {fileID: 0}
   panelShowTime: 1
+--- !u!114 &1195370495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195370491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6ba663bc7bef83ab6cce9f1e093b79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpriteTmp: {fileID: 981572451}
+  playerNameTmp: {fileID: 1093631492}
 --- !u!1 &1227729248
 GameObject:
   m_ObjectHideFlags: 0
