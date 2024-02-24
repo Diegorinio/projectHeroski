@@ -46,10 +46,6 @@ public class guiScript : MonoBehaviour
         showUnits();
     }
 
-    void OnDisable(){
-        Destroy(playerTemp);    
-    }
-
     public void Update(){
         // showUnits();
     }

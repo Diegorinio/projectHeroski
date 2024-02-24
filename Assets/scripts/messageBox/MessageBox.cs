@@ -24,10 +24,10 @@ public class MessageBox : MonoBehaviour
         messageContent = gameObject.transform.Find("messageContent").GetComponent<TextMeshProUGUI>();
         okButton = gameObject.transform.Find("okButton").gameObject;
         // Dobra walic to zrobie zeby tylko dzialalo
-        if(GameObject.FindFirstObjectByType<Canvas>()){
-            gameObject.transform.SetParent(GameObject.FindAnyObjectByType<Canvas>().transform);
-            gameObject.transform.localScale = Vector2.one;
-        }
+        // if(GameObject.FindFirstObjectByType<Canvas>()){
+        //     gameObject.transform.SetParent(GameObject.FindAnyObjectByType<Canvas>().transform);
+        //     gameObject.transform.localScale = Vector2.one;
+        // }
         // okButton.GetComponent<Button>().onClick.AddListener(okButtonOnClickEvent);
 
     }

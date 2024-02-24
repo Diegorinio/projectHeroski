@@ -124,11 +124,11 @@ public class CityManager : MonoBehaviour
     }
 
     public void goToMainMap(){
-        if(mainPlayerUnit.Instance.getUnits().Length>0){
+        if(mainPlayerUnit.Instance.getUnits().Length>0 || mainPlayerUnit.Instance.getSelectedHero()!=null){
             SceneManager.LoadScene("mainMap");
         }
         else{
-            gameMessagebox.createMessageBox("Units","Przed wyruszeniem w droge zbierz druzyne");
+            gameMessagebox.createMessageBox("Units","Przed wyruszeniem w droge zbierz druzyne oraz bohatera");
         }
     }
     private void OnEnable()

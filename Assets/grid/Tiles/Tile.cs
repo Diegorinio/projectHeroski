@@ -18,13 +18,11 @@ public abstract class Tile : MonoBehaviour
     set{
         isEnabled=value;
         render=gameObject.GetComponent<SpriteRenderer>();
-        if (isEnabled)
-        {
-            render.color = Color.green;
-        }
-        else if(!isEnabled||isTaken)
-        {
+        if(!isEnabled||isTaken){
             render.color = Color.grey;
+        }
+        else if(isEnabled){
+            render.color=Color.green;
         }
     }}
     [SerializeField]
