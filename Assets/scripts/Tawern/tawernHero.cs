@@ -13,14 +13,11 @@ public class tawernHero : MonoBehaviour, IPointerDownHandler
         // Debug.Log($"_herotawern {_heroInTawern.thirdSpell()}");
         // _heroInTawern.thirdSpell();
     }
-     void OnMouseDown(){
-        Debug.Log("DODAJ do druzyny");
-        _heroInTawern.thirdSpell();
-        mainPlayerUnit.Instance.assignHeroToTeam(_heroInTawern);
-    }
     public void OnPointerDown(PointerEventData eventData){
         Debug.Log("DODAJ do druzyny pointer");
-        _heroInTawern.thirdSpell();
+        // _heroInTawern.thirdSpell();
+        GameObject spawnedHero = heroSpawner.spawnHeroGameObject(0,heroSpawner.HeroController.Player);
+        _heroInTawern = spawnedHero.GetComponent<Hero>();
         mainPlayerUnit.Instance.assignHeroToTeam(_heroInTawern);
     }
 }
