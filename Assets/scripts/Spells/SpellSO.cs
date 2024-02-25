@@ -27,5 +27,8 @@ public class SpellSO : ScriptableObject
     public healType getHealType(){
         return HealType;
     }
+    public spellRange getSpellRange(){
+        return SpellRange;
+    }
 
 }

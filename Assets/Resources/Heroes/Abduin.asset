@@ -15,6 +15,8 @@ MonoBehaviour:
   heroID: 1
   heroName: Abduin
   heroSprite: {fileID: -1296829879, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
-  spellIcon: {fileID: 448876172, guid: d67e9c4df43440543a087e8ce4870502, type: 3}
+  spellIcons: []
   entryDialog: essunia
   defeatDialog: essa wariacie
+  spellOne: {fileID: 11400000, guid: fc7c386fe41ab182e89c250e5ebd59e6, type: 2}
+  spellTwo: {fileID: 11400000, guid: 0f7935fc74d2e4a74867258485082c9c, type: 2}

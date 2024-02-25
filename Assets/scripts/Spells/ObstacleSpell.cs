@@ -8,4 +8,9 @@ public class ObstacleSpell : Spell
     {
         throw new System.NotImplementedException();
     }
+
+    public override void castSpellGlobal(string tag)
+    {
+        throw new System.NotImplementedException();
+    }
 }

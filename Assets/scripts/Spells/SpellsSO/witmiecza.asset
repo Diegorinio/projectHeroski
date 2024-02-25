@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6250215baf6b52141845bc55e47347f5, type: 3}
-  m_Name: Zew dupy
+  m_Name: witmiecza
   m_EditorClassIdentifier: 
-  spellName: Zew dupy
+  spellName: wir miecza
   SpellType: 0
   SpellRange: 1
-  DamageType: 1
-  spellCastPercent: 50
-  spellCastFixed: 50
+  DamageType: 0
+  spellCastPercent: 5
+  spellCastFixed: 200
   HealType: 0

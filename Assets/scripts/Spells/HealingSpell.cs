@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 
 public class HealingSpell : Spell
@@ -15,6 +16,12 @@ public class HealingSpell : Spell
             break;
         }
     }
+
+    public override void castSpellGlobal(string tag)
+    {
+        throw new System.NotImplementedException();
+    }
+
     private void FixedSpellHeal(GameObject target,int heal){
         target.GetComponent<Unit>().healUnit(heal);
     }

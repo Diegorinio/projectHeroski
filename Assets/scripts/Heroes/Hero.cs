@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 
@@ -8,7 +9,9 @@ public class Hero : MonoBehaviour
     private int heroID;
     private string heroName;
     private Sprite heroSprite;
-    private Sprite spellIcon;
+    private Sprite[] spellIcons;
+    [SerializeField]
+    private string HeroTag;
     private string entryDialog;
     private string defeatDialog;
     private heroSO _heroSO;
@@ -20,7 +23,7 @@ public class Hero : MonoBehaviour
         heroID=_hero.heroID;
         heroName=_hero.heroName;
         heroSprite=_hero.heroSprite;
-        spellIcon=_hero.spellIcon;
+        spellIcons=_hero.spellIcons;
         entryDialog=_hero.entryDialog;
         defeatDialog=_hero.defeatDialog;
         firstSpell = getSpellBySO(_hero.spellOne);
@@ -31,9 +34,21 @@ public class Hero : MonoBehaviour
         return heroName;
     }
     public void castFirstSpell(){
-    }
-    public void castSecondSpell(){
+        if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Target){
 
+        }
+        else if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Global){
+            firstSpell.castSpellGlobal(getTargetTag());
+        }
+    }
+
+    public void castSecondSpell(){
+        if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Target){
+
+        }
+        else if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Global){
+            secondSpell.castSpellGlobal(getTargetTag());
+        }
     }
     public void thirdSpell(){
         Debug.Log($"3 spell");
@@ -42,26 +57,45 @@ public class Hero : MonoBehaviour
     public Sprite getHeroSprite(){
         return heroSprite;
     }
+    public void setHeroTag(string tag){
+        HeroTag = tag;
+    }
+    public string getHeroTag(){
+        return HeroTag;
+    }
+    private string getTargetTag(){
+        if(HeroTag=="Player")
+            return "Enemy";
+        else
+            return "Player";
+    }
     public heroSO getHeroSO(){
         return _heroSO;
     }
 
     private Spell getSpellBySO(SpellSO _spellSO){
         SpellSO.spellType _type = _spellSO.getSpellType();
+        Spell addedComponent;
         switch(_type){
             case SpellSO.spellType.Damage:
-            gameObject.AddComponent<DestructionSpell>();
+            addedComponent = gameObject.AddComponent<DestructionSpell>();
             break;
             case SpellSO.spellType.Healing:
-            gameObject.AddComponent<DestructionSpell>();
+            addedComponent = gameObject.AddComponent<HealingSpell>();
             break;
             case SpellSO.spellType.Obstacle:
-            gameObject.AddComponent<DestructionSpell>();
+            addedComponent = gameObject.AddComponent<ObstacleSpell>();
             break;
             default:
-            gameObject.AddComponent<DestructionSpell>();
+            addedComponent = gameObject.AddComponent<DestructionSpell>();
             break;
         }
-        return gameObject.GetComponent<Spell>();
+        // gameObject.GetComponent<Spell>().assignSpellSO(_spellSO);
+        addedComponent.assignSpellSO(_spellSO);
+        return addedComponent;
+    }
+
+    public Sprite[] getSpellImages(){
+        return spellIcons;
     }
 }

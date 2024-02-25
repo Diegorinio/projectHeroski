@@ -7,7 +7,7 @@ public class heroSO : ScriptableObject
     public int heroID;
     public string heroName;
     public Sprite heroSprite;
-    public Sprite spellIcon;
+    public Sprite[] spellIcons;
     public string entryDialog;
     public string defeatDialog;
     public SpellSO spellOne;
