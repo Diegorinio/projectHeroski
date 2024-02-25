@@ -34,6 +34,8 @@ public class turnbaseScript : MonoBehaviour
     //zmienan odpowiedzialna czy gra zostala ukonczone( przez brak przeciwnikow lub brak jednostek gracza)
     private bool isFinished=false;
 
+    private battleManager BattleManager;
+
     //zmienna odpowiedzialna za sprawdzanie gdy gracz wygral
     private bool isWin=false;
     
@@ -45,6 +47,7 @@ public class turnbaseScript : MonoBehaviour
        quequeHeroes.AddRange(findPlayer);
         GameObject[] findEnemies=mainEnemiesUnit.Instance.getUnitsAsGameObject();
         quequeHeroes.AddRange(findEnemies);
+        BattleManager = gameObject.GetComponent<battleManager>();
 
     }
 
@@ -108,6 +111,10 @@ public class turnbaseScript : MonoBehaviour
     public void setTurn(){
             if(!selectedGameObject)
                 selectedGameObject=quequeHeroes[turn];
+            if(IsHeroTurn())
+                BattleManager.spellButtonsEnable(true);
+            else
+                BattleManager.spellButtonsEnable(false);
             quequeHeroes[turn].GetComponent<unitController>().selectUnit();
     }
 

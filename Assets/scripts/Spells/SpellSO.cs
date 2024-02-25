@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.UI;
 using UnityEngine;
 [CreateAssetMenu(fileName="New Spell", menuName ="Spells/New Spell")]
 public class SpellSO : ScriptableObject
