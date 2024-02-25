@@ -8,6 +8,7 @@ public class battleManager: MonoBehaviour
     
     public Image playerSpriteTmp;
     public TextMeshProUGUI playerNameTmp;
+    public Image[] spellIcons;
     // Start is called before the first frame update
     void Start()
     {

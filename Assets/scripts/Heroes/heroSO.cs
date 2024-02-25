@@ -10,4 +10,6 @@ public class heroSO : ScriptableObject
     public Sprite spellIcon;
     public string entryDialog;
     public string defeatDialog;
+    public SpellSO spellOne;
+    public SpellSO spellTwo;
 }

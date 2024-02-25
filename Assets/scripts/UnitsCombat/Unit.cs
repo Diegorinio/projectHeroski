@@ -86,7 +86,7 @@ public class Unit : MonoBehaviour
     // dla przeciwnika mainPlayerUnit, dla uzytkownika mainEnemiesUnit
     public virtual void getHit(int dmg){
         int lost = (int)(dmg/unitBaseHealth);
-        _gui.displayGuiEvent(lost.ToString());
+        _gui.displayGuiEvent($"-{lost.ToString()}");
         if(unitAmount-lost<=0){
             GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
             gameObject.SetActive(false);
@@ -103,6 +103,37 @@ public class Unit : MonoBehaviour
             unitAmount-=lost;
             Debug.Log($"Stracono {lost} jednostek");
         }
+    }
+    public virtual void getHit(float procent_dmg){
+        int lost = (int)(procent_dmg/100*unitAmount);
+        _gui.displayGuiEvent($"-{lost.ToString()}");
+        if(unitAmount-lost<=0){
+            GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
+            gameObject.SetActive(false);
+            if(gameObject.CompareTag("Player")){
+                mainPlayerUnit.Instance.removeFromUnits(this);
+            }
+            else if(gameObject.CompareTag("Enemy")){
+                mainEnemiesUnit.Instance.removeFromUnits(this);
+            }
+            gameObject.GetComponent<unitController>().moveFromTile();
+            Destroy(gameObject);
+        }
+        else{
+            unitAmount-=lost;
+            Debug.Log($"Stracono {lost} jednostek");
+        }
+    }
+
+    public virtual void healUnit(int heal){
+        int toHeal = (int)(heal/unitBaseHealth);
+        unitAmount+=toHeal;
+        _gui.displayGuiEvent($"+{heal.ToString()}");
+    }
+    public virtual void healUnit(float procent_heal){
+        int toHeal = (int)(procent_heal/100*unitAmount);
+        unitAmount+=toHeal;
+        _gui.displayGuiEvent($"+{toHeal.ToString()}");
     }
 
     //Metoda zadajaca obrazenia do danej jednostki

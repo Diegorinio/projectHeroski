@@ -11,8 +11,9 @@ public class Hero : MonoBehaviour
     private Sprite spellIcon;
     private string entryDialog;
     private string defeatDialog;
-    private Object[] spellsList;
     private heroSO _heroSO;
+    private Spell firstSpell;
+    private Spell secondSpell;
 
     public void assignHeroSO(heroSO _hero){
         _heroSO = _hero;
@@ -22,15 +23,16 @@ public class Hero : MonoBehaviour
         spellIcon=_hero.spellIcon;
         entryDialog=_hero.entryDialog;
         defeatDialog=_hero.defeatDialog;
+        firstSpell = getSpellBySO(_hero.spellOne);
+        secondSpell = getSpellBySO(_hero.spellTwo);
     }
 
     public string getHeroName(){
         return heroName;
     }
-    public void firstSpell(){
-
+    public void castFirstSpell(){
     }
-    public void secondSpell(){
+    public void castSecondSpell(){
 
     }
     public void thirdSpell(){
@@ -42,5 +44,24 @@ public class Hero : MonoBehaviour
     }
     public heroSO getHeroSO(){
         return _heroSO;
+    }
+
+    private Spell getSpellBySO(SpellSO _spellSO){
+        SpellSO.spellType _type = _spellSO.getSpellType();
+        switch(_type){
+            case SpellSO.spellType.Damage:
+            gameObject.AddComponent<DestructionSpell>();
+            break;
+            case SpellSO.spellType.Healing:
+            gameObject.AddComponent<DestructionSpell>();
+            break;
+            case SpellSO.spellType.Obstacle:
+            gameObject.AddComponent<DestructionSpell>();
+            break;
+            default:
+            gameObject.AddComponent<DestructionSpell>();
+            break;
+        }
+        return gameObject.GetComponent<Spell>();
     }
 }

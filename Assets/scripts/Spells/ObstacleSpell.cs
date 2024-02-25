@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleSpell : MonoBehaviour
+public class ObstacleSpell : Spell
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void castSpell(GameObject target)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        throw new System.NotImplementedException();
     }
 }
