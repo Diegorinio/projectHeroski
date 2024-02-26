@@ -68,9 +68,6 @@ public class otherGridManager : MonoBehaviour
                     if(x>0&&mapTiles[x-1,y].GetComponent<obstacleTile>()==null&&mapTiles[x-1,y].GetComponent<Tile>()==null){
                         mapTiles[x-1,y].AddComponent<obstacleTile>();
                     }
-                    // if(y>0&&mapTiles[x,y-1].GetComponent<obstacleTile>()==null){
-                    //     mapTiles[x,y-1].AddComponent<obstacleTile>();
-                    // }
                 }
                 else if(rnd>=60&&rnd<69){
                     mapTiles[x,y].AddComponent<waterTile>();
