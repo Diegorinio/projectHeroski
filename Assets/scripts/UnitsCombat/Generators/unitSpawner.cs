@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 //Klasa generujaca jednostkix
@@ -77,7 +78,7 @@ public class unitSpawner : MonoBehaviour
         }
         newUnit.GetComponent<Unit>().unitInitialize(getTier(_tier),_wantedUnitSO);
         assignController(controller, newUnit);
-        newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
+        newUnit.transform.Find("hero_canvas").transform.Find("unit_sprite").GetComponent<Image>().sprite= newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
         newUnit.AddComponent<unitGUI>();
         newUnit.name=$"{controller} {_tier} {type} {amount}";
@@ -158,7 +159,7 @@ public class unitSpawner : MonoBehaviour
         }
         newUnit.GetComponent<Unit>().unitInitialize(getTier(_tier),_wantedUnitSO);
         assignController(controller, newUnit);
-        newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
+        newUnit.transform.Find("hero_canvas").transform.Find("unit_sprite").GetComponent<Image>().sprite= newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
         newUnit.AddComponent<unitGUI>();
         newUnit.name=$"{controller} {type} {amount} {_tier}";

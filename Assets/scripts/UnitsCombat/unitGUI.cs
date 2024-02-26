@@ -11,6 +11,7 @@ public class unitGUI : MonoBehaviour
     // public Slider hpSlider{get;set;}
     private  Text eventText;
     private Text unitAmountText;
+    private Image unitImageSprite;
     // Start is called before the first frame update
     public virtual void Awake()
     {
@@ -18,6 +19,8 @@ public class unitGUI : MonoBehaviour
         GameObject heroCanvas = gameObject.transform.Find("hero_canvas").gameObject;
         unitAmountText = heroCanvas.transform.Find("unitAmountText").GetComponent<Text>();
         eventText=heroCanvas.transform.Find("eventText").GetComponent<Text>();
+        unitImageSprite = heroCanvas.transform.Find("unit_sprite").GetComponent<Image>();
+        unitImageSprite.sprite = _unit.getUnitSprite();
     }
 
     //Pokazuje ilosc jednostek, mozna to pozniej zmienic na metode wywolujaca zmiane ale mi sie nie chce

@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-
-public abstract class Tile : MonoBehaviour
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+public abstract class Tile : MonoBehaviour,IPointerDownHandler
 {
 
     //TODO:
@@ -17,7 +18,7 @@ public abstract class Tile : MonoBehaviour
     }
     set{
         isEnabled=value;
-        render=gameObject.GetComponent<SpriteRenderer>();
+        render=gameObject.GetComponent<Image>();
         if(!isEnabled||isTaken){
             render.color = Color.grey;
         }
@@ -30,7 +31,7 @@ public abstract class Tile : MonoBehaviour
     //TODO: Wyrzucic i przepisac 
     protected bool isTaken = false;
     //Sprite danego Tile
-    protected SpriteRenderer render;
+    protected Image render;
 
     //Preset asset dla Tile zawierajacy nazwe i sprite 
     protected TileSO tilePreset;
@@ -52,7 +53,7 @@ public abstract class Tile : MonoBehaviour
     //Znajdz spriteRendere i zmien sprite na ten z assetu
     private void Start()
     {
-        render=gameObject.GetComponent<SpriteRenderer>();
+        render=gameObject.GetComponent<Image>();
         render.sprite = tilePreset.tileSprite;
     }
     //Zaladuj preset
@@ -64,7 +65,7 @@ public abstract class Tile : MonoBehaviour
     protected void setTilePreset(string presetName, bool reload){
         if(reload){
         tilePreset = Resources.Load<TileSO>($"Tiles/{presetName}");
-        render=gameObject.GetComponent<SpriteRenderer>();
+        render=gameObject.GetComponent<Image>();
         Debug.Log(render.sprite.name+" : "+tilePreset.tileSprite.name);
         render.sprite=tilePreset.tileSprite;
         }
@@ -145,5 +146,10 @@ public abstract class Tile : MonoBehaviour
     }
     public List<Tile> getNeighbours(){
         return neighbors;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        OnMouseDown();
     }
 }

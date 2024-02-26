@@ -39,16 +39,10 @@ public class otherGridManager : MonoBehaviour
         grupa.constraintCount = width;
         for(int x =0;x<width;x++){
             for(int y=0;y<height;y++){
-                var newTile = Instantiate(_tilePreset,transform.position,Quaternion.identity);
-                //Ustaw rodzica dla Tile czyli gameObject podpiety do tego skryptu
-                //Ustaw pozycje x,y w Tile oraz ustaw na nieaktywny
+                GameObject newTile = Instantiate(_tilePreset,gameObject.transform.position,Quaternion.identity);
+
                 gridMapGameObjects[x,y]=newTile;
                 newTile.transform.SetParent(gameObject.transform);
-                // newTile.name = $"Tile{x}{y}";
-                // Tile newTileComponent = newTile.GetComponent<Tile>();
-                // newTileComponent.setPosition(x,y);
-                // newTileComponent.isActive=false;
-                // gridMapTiles[x,y]=newTileComponent;
             }
         }
         SetMapTiles(gridMapGameObjects);
@@ -86,7 +80,7 @@ public class otherGridManager : MonoBehaviour
                     mapTiles[x,y].AddComponent<grassTile>();
                 }
 
-                mapTiles[x,y].name = $"Tile{x}{y}";
+                mapTiles[x,y].name = $"{mapTiles[x,y].GetComponent<Tile>().GetType()}{x}{y}";
                 Tile newTileComponent = mapTiles[x,y].GetComponent<Tile>();
                 newTileComponent.setPosition(x,y);
                 newTileComponent.isActive=false;
@@ -98,9 +92,8 @@ public class otherGridManager : MonoBehaviour
     //Ustawia skale Tile do rozmiarow GridLayoutGroup
     private void setUpTilesToGrid(){
         Vector2 cell = gameObject.GetComponent<AdjustLayoutCellSize>().getGridCells();
-        Debug.Log($"ruchANIE {cell.x},{cell.y}");
         foreach(var tile in gridMapTiles){
-            tile.GetComponent<RectTransform>().localScale = cell;
+            tile.GetComponent<RectTransform>().localScale = Vector3.one;
         }
     }
 

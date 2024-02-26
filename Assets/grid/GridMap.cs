@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class GridMap
 {
@@ -309,19 +310,19 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
     }
 
     public static void enableTile(Tile tile,Color color){
-        tile.GetComponent<SpriteRenderer>().color=color;
+        tile.GetComponent<Image>().color=color;
     }
 
     public static void enableListTiles(List<Tile> tiles, Color color){
         foreach(var t in tiles){
             t.isActive=true;
-            t.GetComponent<SpriteRenderer>().color=color;
+            t.GetComponent<Image>().color=color;
         }
     }
     public static void enableListTiles(List<Tile> tiles, Color color,int minus){
         for(int x=0;x<tiles.Count-minus;x++){
            tiles[x].isActive=true;
-            tiles[x].GetComponent<SpriteRenderer>().color=color; 
+            tiles[x].GetComponent<Image>().color=color; 
         }
     }
 
