@@ -23,6 +23,15 @@ public static class GridMap
         return gridMap[x,y];
     }
 
+    public static List<Tile> getGridMapList(){
+        List<Tile> gridMapList = new List<Tile>();
+        foreach(Tile tile in gridMap){
+            if(tile!=null)
+                gridMapList.Add(tile);
+        }
+        return gridMapList;
+    }
+
     // Zwroc pozycje danego obiektu na mapie jako Vector2Int x,y
     public static Vector2Int getGameObjectMapPosition(GameObject obj){
         Vector2Int position = Vector2Int.zero;
@@ -39,11 +48,21 @@ public static class GridMap
         for(int x=Math.Max(0,startingPoint.x-distance.x);x<=Mathf.Min(gridMap.GetLength(0)-1,startingPoint.x+distance.x);x++){
             for(int y=Mathf.Max(0,startingPoint.y-distance.y);y<=Mathf.Min(gridMap.GetLength(1)-1,startingPoint.y+distance.y);y++){
                 Tile currentTile = gridMap[x,y];
-                availableTiles.Add(currentTile);
+                if(!(currentTile is obstacleTile))
+                    availableTiles.Add(currentTile);
+            }
+        }
+        List<Tile> movableTiles = new List<Tile>();
+        foreach(Tile t in gridMap){
+            if(t==null)
+                continue;
+            List<Tile> path = FindShortestPath(gridMap[startingPoint.x,startingPoint.y],t,distance,availableTiles);
+            if(path.Count>1){
+                movableTiles.Add(t);
             }
         }
         gridMap[startingPoint.x,startingPoint.y].isActive=false;
-        return availableTiles;
+        return movableTiles;
     }
 
     
@@ -258,9 +277,21 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
     }
 
     //Z danej listy zwroc elementy ktore sa przypisane do danego Tile jezeli to GameObject
-    public static List<GameObject> findGameObjectsOnTiles(List<Tile> tiles,string type){
+    public static List<GameObject> findGameObjectsOnTiles(Vector2Int startingPoint,Vector2Int distance,string type){
+        List<GameObject> l = new List<GameObject>();
+        List<Tile> objectsTiles = new List<Tile>();
+        for(int x=Math.Max(0,startingPoint.x-distance.x);x<=Mathf.Min(gridMap.GetLength(0)-1,startingPoint.x+distance.x);x++){
+            for(int y=Mathf.Max(0,startingPoint.y-distance.y);y<=Mathf.Min(gridMap.GetLength(1)-1,startingPoint.y+distance.y);y++){
+                Tile currentTile = gridMap[x,y];
+                objectsTiles.Add(currentTile);
+            }
+        }
+        foreach(var t in objectsTiles){
+            if(t.GetGameObjectOnTile()!=null)
+                l.Add(t.GetGameObjectOnTile());
+        }
         List<GameObject> gList = new List<GameObject>();
-        foreach(var t in tiles){
+        foreach(var t in objectsTiles){
             if(t.GetGameObjectOnTile()){
                 if(t.GetGameObjectOnTile().transform.tag==type){
                     gList.Add(t.GetGameObjectOnTile());

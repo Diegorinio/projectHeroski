@@ -27,7 +27,7 @@ public class Detector : MonoBehaviour
         Debug.Log($"player list tiles {rangeTiles.Count}");
         movementTilesList = GridMap.findMovementTiles(rangeTiles);
         Debug.Log($"Set Tiles for player {movementTilesList.Count}");
-        enemyUnitList = GridMap.findGameObjectsOnTiles(rangeTiles,"Enemy");
+        enemyUnitList = GridMap.findGameObjectsOnTiles(_assignedTile.getPosition(),assignedController.getUnitDistance(),"Enemy");
         assignedController.addToTargets(enemyUnitList);
     }
 

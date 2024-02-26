@@ -19,7 +19,7 @@ public class enemyDetector : Detector{
         Debug.Log($"Enemy list tiles {rangeTiles.Count}");
         movementTilesList = GridMap.findMovementTiles(rangeTiles);
         Debug.Log($"set tiles enemy {movementTilesList.Count}");
-        enemyUnitList = GridMap.findGameObjectsOnTiles(rangeTiles,"Player");
+        enemyUnitList = GridMap.findGameObjectsOnTiles(_assignedTile.getPosition(),assignedController.getUnitDistance(),"Player");
         assignedController.addToTargets(enemyUnitList);
     }
 
@@ -39,7 +39,9 @@ public class enemyDetector : Detector{
 
     //Jezeli aktualna tura to gracz to po nacisnieciu na przeciwnika zadaj obrazenia
     public void OnMouseDown(){
+        Debug.Log($"Enemy pressed");
         if(turnbaseScript.IsHeroTurn()){
+            Debug.Log($"Enemy pressed and set to attack");
             turnbaseScript.selectedGameObject.GetComponent<unitController>().playerHitSelectedTarget(gameObject);
         }
     }

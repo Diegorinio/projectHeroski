@@ -18,12 +18,14 @@ public class otherGridManager : MonoBehaviour
     private GameObject _tilePreset;
     //Ogolna mapa grida generowana i przekazywana do GridMap
     private Tile[,] gridMapTiles;
+    private GameObject[,] gridMapGameObjects;
 
     void Awake(){
     }
     void Start()
     {
         gridMapTiles=new Tile[width,height];
+        gridMapGameObjects = new GameObject[width,height];
         generateGrid();
         gameObject.GetComponent<AdjustLayoutCellSize>().UpdateCellSize();
         setUpTilesToGrid();
@@ -38,33 +40,62 @@ public class otherGridManager : MonoBehaviour
         for(int x =0;x<width;x++){
             for(int y=0;y<height;y++){
                 var newTile = Instantiate(_tilePreset,transform.position,Quaternion.identity);
-                //Czy Tile jest eventem np woda czy coś
-                int rnd = Random.Range(0,100);
-                if(rnd>=90){
-                    newTile.AddComponent<obstacleTile>();
-                }
-                else if(rnd>50&&rnd<59){
-                    newTile.AddComponent<waterTile>();
-                }
-                else{
-                    newTile.AddComponent<grassTile>();
-                }
                 //Ustaw rodzica dla Tile czyli gameObject podpiety do tego skryptu
                 //Ustaw pozycje x,y w Tile oraz ustaw na nieaktywny
+                gridMapGameObjects[x,y]=newTile;
                 newTile.transform.SetParent(gameObject.transform);
-                newTile.name = $"Tile{x}{y}";
-                Tile newTileComponent = newTile.GetComponent<Tile>();
+                // newTile.name = $"Tile{x}{y}";
+                // Tile newTileComponent = newTile.GetComponent<Tile>();
+                // newTileComponent.setPosition(x,y);
+                // newTileComponent.isActive=false;
+                // gridMapTiles[x,y]=newTileComponent;
+            }
+        }
+        SetMapTiles(gridMapGameObjects);
+        //Przekaz wygenerowana mape do GridMap
+        GridMap.setGridMap(gridMapTiles);
+        setNeighbours();
+        generatePlayer();
+        generateEnemies();
+    }
+
+    private void SetMapTiles(GameObject[,] mapTiles){
+        for(int x=0;x<width;x++){
+            for(int y=0;y<height;y++){
+                int rnd = Random.Range(0,100);
+                if(rnd>=95){
+                    mapTiles[x,y].AddComponent<obstacleTile>();
+                    if(x>0&&mapTiles[x-1,y].GetComponent<obstacleTile>()==null&&mapTiles[x-1,y].GetComponent<Tile>()==null){
+                        mapTiles[x-1,y].AddComponent<obstacleTile>();
+                    }
+                    // if(y>0&&mapTiles[x,y-1].GetComponent<obstacleTile>()==null){
+                    //     mapTiles[x,y-1].AddComponent<obstacleTile>();
+                    // }
+                }
+                else if(rnd>=60&&rnd<69){
+                    mapTiles[x,y].AddComponent<waterTile>();
+                    int rndWaterSize=Random.Range(1,3);
+                    for(int i=0;i<rndWaterSize;i++){
+                        for(int j=0;j<rndWaterSize;j++){
+                            if(x+i<width&&y+j<height){
+                                if(mapTiles[x+i,y+j].GetComponent<waterTile>()==null&&mapTiles[x+i,y+j].GetComponent<Tile>()==null){
+                                    mapTiles[x+i,y+j].AddComponent<waterTile>();
+                                }
+                            }
+                        }
+                    }
+                }
+                else{
+                    mapTiles[x,y].AddComponent<grassTile>();
+                }
+
+                mapTiles[x,y].name = $"Tile{x}{y}";
+                Tile newTileComponent = mapTiles[x,y].GetComponent<Tile>();
                 newTileComponent.setPosition(x,y);
                 newTileComponent.isActive=false;
                 gridMapTiles[x,y]=newTileComponent;
             }
         }
-
-        setNeighbours();
-        //Przekaz wygenerowana mape do GridMap
-        GridMap.setGridMap(gridMapTiles);
-        generatePlayer();
-        generateEnemies();
     }
 
     //Ustawia skale Tile do rozmiarow GridLayoutGroup

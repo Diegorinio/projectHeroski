@@ -36,6 +36,7 @@ public class obstacleTile : grassTile
             setTilePreset("normalTile",true);
             obstacleHealth--;
             isDestroyed=true;
+            isActive=true;
         }
         else{
             obstacleHealth--;

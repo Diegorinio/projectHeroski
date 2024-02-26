@@ -16,7 +16,7 @@ public class tawernHero : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData){
         Debug.Log("DODAJ do druzyny pointer");
         // _heroInTawern.thirdSpell();
-        GameObject spawnedHero = heroSpawner.spawnHeroGameObject(0,heroSpawner.HeroController.Player);
+        GameObject spawnedHero = heroSpawner.spawnHeroGameObject(1,heroSpawner.HeroController.Player);
         _heroInTawern = spawnedHero.GetComponent<Hero>();
         mainPlayerUnit.Instance.assignHeroToTeam(_heroInTawern);
     }
