@@ -23,20 +23,11 @@ public class MessageBox : MonoBehaviour
         messageTitle = gameObject.transform.Find("messageTitle").GetComponent<TextMeshProUGUI>();
         messageContent = gameObject.transform.Find("messageContent").GetComponent<TextMeshProUGUI>();
         okButton = gameObject.transform.Find("okButton").gameObject;
-        // Dobra walic to zrobie zeby tylko dzialalo
-        // if(GameObject.FindFirstObjectByType<Canvas>()){
-        //     gameObject.transform.SetParent(GameObject.FindAnyObjectByType<Canvas>().transform);
-        //     gameObject.transform.localScale = Vector2.one;
-        // }
-        // okButton.GetComponent<Button>().onClick.AddListener(okButtonOnClickEvent);
 
     }
 
     //Metody do ustawiania tytulu,wiadomosci albo wszystkiego naraz
     //Metoda odpowiedzialna za klikniecie buttona OK
-    // public void okButtonOnClickEvent(){
-        // Destroy(gameObject);
-    // }
     public void setMessageTitle(string title){
         messageTitle.text = title;
     }

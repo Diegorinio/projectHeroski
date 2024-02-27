@@ -148,6 +148,7 @@ public abstract class Tile : MonoBehaviour,IPointerDownHandler
         return neighbors;
     }
 
+    //Pointer na potrzeby wykrywania po zmiana ze Sprite na Image
     public void OnPointerDown(PointerEventData eventData)
     {
         OnMouseDown();

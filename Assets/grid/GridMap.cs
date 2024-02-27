@@ -14,25 +14,6 @@ public static class GridMap
     public static void setGridMap(Tile[,] map){
         gridMap=map;
     }
-    //Zwroc dwu elementowa tablice reprezentujaca mape z coordami x,y
-    public static Tile[,] getGridMap(){
-        return gridMap;
-    }
-
-    // Zwroc dany Tile w danej pozycji mapy
-    public static Tile getTile(int x,int y){
-        return gridMap[x,y];
-    }
-
-    public static List<Tile> getGridMapList(){
-        List<Tile> gridMapList = new List<Tile>();
-        foreach(Tile tile in gridMap){
-            if(tile!=null)
-                gridMapList.Add(tile);
-        }
-        return gridMapList;
-    }
-
     // Zwroc pozycje danego obiektu na mapie jako Vector2Int x,y
     public static Vector2Int getGameObjectMapPosition(GameObject obj){
         Vector2Int position = Vector2Int.zero;
@@ -66,16 +47,8 @@ public static class GridMap
         return movableTiles;
     }
 
-    
-    //Zwroc liste Wektorów 2Dint z danej listy
-    public static Vector2Int[] getMapTilesVectors(List<Tile> tiles){
-        Vector2Int[] resultVectors = new Vector2Int[tiles.Count];
-        for(int x=0;x<tiles.Count-1;x++){
-            resultVectors[x]=tiles[x].getPosition();
-        }
-        return resultVectors;
-    }
-
+//Główny skrypt zwracajacy liste <tile> z drogą
+//Args: tile startowy, tile docelowy, zasieg ruchu/wyszukiwania, szukanie po wykrytych Tile`
 public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vector2Int searchRadius, List<Tile> searchArea)
 {
     // Lista do przechowywania odwiedzonych pól
@@ -227,10 +200,6 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
         List<Tile> movePath = getPathToTile(source,target);
         enableListTiles(movePath,Color.blue);
     }
-    public static void ShowPathToTile(GameObject source, GameObject target,Color clr){
-        List<Tile> movePath = getPathToTile(source,target);
-        enableListTiles(movePath,clr);
-    }
 
     public static void ShowPathNearGameObject(GameObject source, GameObject target){
         List<Tile> movePath = getPathToNeighbourObject(source,target);
@@ -243,6 +212,7 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
         List<Tile> movePath = FindShortestPath(sourceController.getAssignedTile(),targetTile,sourceController.getUnitDistance(),sourceController.getDetector().getMovementTiles());
         return movePath;
     }
+
 
     public static List<Tile> getPathToNeighbourObject(GameObject source,GameObject target){
         unitController targetController = target.GetComponent<unitController>();
@@ -265,16 +235,6 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
             }
         }
         return mList;
-    }
-
-    //Z danej listy Tile zwroc liste przypisanych obiektow do Tile jezeli takie istnieja
-    public static List<GameObject> findGameObjectsOnTiles(List<Tile> tiles){
-        List<GameObject> l = new List<GameObject>();
-        foreach(var t in tiles){
-            if(t.GetGameObjectOnTile()!=null)
-                l.Add(t.GetGameObjectOnTile());
-        }
-        return l;
     }
 
     //Z danej listy zwroc elementy ktore sa przypisane do danego Tile jezeli to GameObject
@@ -317,12 +277,6 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
         foreach(var t in tiles){
             t.isActive=true;
             t.GetComponent<Image>().color=color;
-        }
-    }
-    public static void enableListTiles(List<Tile> tiles, Color color,int minus){
-        for(int x=0;x<tiles.Count-minus;x++){
-           tiles[x].isActive=true;
-            tiles[x].GetComponent<Image>().color=color; 
         }
     }
 

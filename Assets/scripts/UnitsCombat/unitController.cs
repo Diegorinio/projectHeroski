@@ -23,8 +23,6 @@ public class unitController : MonoBehaviour
     //Znajdz komponent Unit danej jednostki
     //Ustaw dystan ruchu
     Vector2Int dist;
-    //Ustaw dystans ataku
-    Vector2Int atkDist;
     [SerializeField]
     private GameObject enemyTarget;
     //Znajdz komponent Detector dla gracza lub przeciwnika
@@ -33,8 +31,6 @@ public class unitController : MonoBehaviour
         enemyTarget=null;
         _unit = gameObject.GetComponent<Unit>();
         dist = _unit.getUnitMoveDistance();
-        atkDist = _unit.getAttackDistance();
-        // Debug.Log($"{_unit.unitName} selected, distance{distX},{distY}");
         tileDetector=gameObject.GetComponent<Detector>();
     }
 
@@ -62,9 +58,6 @@ public Unit getAssignedUnit(){
 public Vector2Int getUnitDistance(){
     return dist;
 }
-public Vector2Int getUnitAttackDistance(){
-    return atkDist;
-}
 
 public Detector getDetector(){
     return tileDetector;
@@ -88,19 +81,6 @@ public void setNormalDistance(){
 //rusza jednostke na dany Tile
 //Do rozstawiania na planszy na poczatku gry
 //Takze jako glowny skrypt do poruszania sie 
-public void characterMove(GameObject _newTransform){
-    if(assignedTile!=null){
-    assignedTile.unMakeBusy();
-    assignedTile.SetGameObjectOnTile(null);
-    assignedTile=null;
-    }
-    Vector3 gObj = _newTransform.transform.position;
-    gameObject.transform.position = new Vector3(gObj.x, gObj.y, -1);
-    _newTransform.GetComponent<Tile>().makeBusy();
-    assignedTile=_newTransform.GetComponent<Tile>();
-    assignedTile.SetGameObjectOnTile(gameObject);
-    disableClickable();
-}
 
 public void characterMove(GameObject _newTransform,bool isStart){
     if(assignedTile!=null){

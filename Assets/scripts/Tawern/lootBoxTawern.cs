@@ -19,7 +19,6 @@ public class lootBoxTawern : MonoBehaviour
         randomHeroImage.SetActive(true);
         randomHero = heroesList[Random.Range(0,heroesList.Length)] as heroSO;
         randomHeroImage.GetComponent<Image>().sprite = randomHero.heroSprite;
-        // randomHeroImage.GetComponent<tawernHero>().assignSOToHeroTawern(randomHero);
     }
 
 }

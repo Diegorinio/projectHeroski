@@ -6,13 +6,6 @@ using UnityEngine.EventSystems;
 public class tawernHero : MonoBehaviour, IPointerDownHandler
 {
     private Hero _heroInTawern;
-    public void assignSOToHeroTawern(heroSO _hero){
-        gameObject.GetComponent<Hero>().assignHeroSO(_hero);
-        _heroInTawern = gameObject.GetComponent<Hero>();
-        _heroInTawern.setHeroTag("Player");
-        // Debug.Log($"_herotawern {_heroInTawern.thirdSpell()}");
-        // _heroInTawern.thirdSpell();
-    }
     public void OnPointerDown(PointerEventData eventData){
         Debug.Log("DODAJ do druzyny pointer");
         // _heroInTawern.thirdSpell();

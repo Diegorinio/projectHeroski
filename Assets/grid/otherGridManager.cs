@@ -19,9 +19,6 @@ public class otherGridManager : MonoBehaviour
     //Ogolna mapa grida generowana i przekazywana do GridMap
     private Tile[,] gridMapTiles;
     private GameObject[,] gridMapGameObjects;
-
-    void Awake(){
-    }
     void Start()
     {
         gridMapTiles=new Tile[width,height];

@@ -21,10 +21,6 @@ public static mainEnemiesUnit Instance{get;private set;}
         DontDestroyOnLoad(gameObject);
         }
     }
-
-    public void addToTeam(Unit _unit){
-        playerTeam.Add(_unit);
-    }
     public void addUnitsToTeam(Unit _unit){
         if(isUnitExists(_unit)){
             Unit existingUnit = getExistingUnit(_unit);
@@ -44,10 +40,6 @@ public static mainEnemiesUnit Instance{get;private set;}
             return true;
         else
             return false;
-    }
-
-    public Unit[] getUnits(){
-        return playerTeam.ToArray();
     }
     public GameObject[] getUnitsAsGameObject(){
         List<GameObject> list = new List<GameObject>();

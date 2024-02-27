@@ -700,8 +700,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1132953095
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3445145983550659313
 MonoBehaviour:
