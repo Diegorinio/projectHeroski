@@ -97,9 +97,16 @@ public class TierChangerHandler : MonoBehaviour
             }
         lastOpenTier = NewTier;
         T1B.interactable = true;
-        T2B.interactable = true;
-        T3B.interactable = true;
-        T4B.interactable = true;
+        if ((int)citymanager.GetComponent<CityManager>().lvlKoszar >= 2)
+        {
+            T2B.interactable = true;
+            if ((int)citymanager.GetComponent<CityManager>().lvlKoszar >= 3)
+            {
+                T3B.interactable = true;
+                if ((int)citymanager.GetComponent<CityManager>().lvlKoszar >= 4)T4B.interactable = true; 
+            }
+        }
+        
     }
     private void OnDisable()
     {

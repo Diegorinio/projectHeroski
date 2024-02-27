@@ -35,6 +35,7 @@ public class randomMapEventGenerator : MonoBehaviour
     public void goToFight(string biom){
         if(mainPlayerUnit.Instance.getUnits().Length>0){
         setEventUnits();
+        Debug.Log($"Random event generator!");
         foreach(var e in Enemies){
             Unit _unit = e.GetComponent<Unit>();
             mainEnemiesUnit.Instance.addUnitsToTeam(_unit);
