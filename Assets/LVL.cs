@@ -11,8 +11,9 @@ public class LVL : MonoBehaviour
     public GameObject StarFrom;
     private void OnEnable()
     {
+        randomMapEventGenerator rndEvent = gameObject.AddComponent<randomMapEventGenerator>();
         StarFrom = GameObject.Find("MANAGER");
-        activator.onClick.AddListener(TaskOnClick);
+        activator.onClick.AddListener(()=>{TaskOnClick(rndEvent);});
         if (PlayerPrefs.HasKey($"{this.name} Stars"))
         {
             stars = PlayerPrefs.GetInt($"{this.name} Stars");
@@ -30,9 +31,10 @@ public class LVL : MonoBehaviour
 
             }
         }
+        
 
     }
-    private void TaskOnClick()
+    private void TaskOnClick(randomMapEventGenerator _rndevent)
     {
         if (Lock != null)
         {
@@ -44,8 +46,7 @@ public class LVL : MonoBehaviour
         }
         //tu przechodzi do walki i mo�e animacja
         print($"WALKA : {this.name}");
-        randomMapEventGenerator rndEvent= gameObject.AddComponent<randomMapEventGenerator>();
-        rndEvent.goToFight("battleScene");
+        _rndevent.goToFight("battleScene");
 
     }
 
