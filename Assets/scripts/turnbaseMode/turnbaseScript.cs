@@ -38,6 +38,8 @@ public class turnbaseScript : MonoBehaviour
 
     //zmienna odpowiedzialna za sprawdzanie gdy gracz wygral
     private bool isWin=false;
+
+    
     
     // Przed startem znajdz komponent GUI i zwroc jednostki gracza i przeciwnika z instacji mainPlayerUnit
     void Awake()

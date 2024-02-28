@@ -125,6 +125,7 @@ public void characterMove(Tile _targetTile){
 //Ruch do tile ale obok wybraneego Tile 
 // zastowanie do ruchu blisko przeciwnika
 private void characterMoveTroughList(List<Tile> tiles){
+    if(tiles.Count>0){
     Tile current_tile=tiles[0];
     for(int x=1;x<tiles.Count;x++){
         characterMove(tiles[x].gameObject,true);
@@ -140,6 +141,7 @@ private void characterMoveTroughList(List<Tile> tiles){
     current_tile.makeBusy();
     current_tile.castTileBehaviour();
     disableClickable();
+    }
 }
 
 

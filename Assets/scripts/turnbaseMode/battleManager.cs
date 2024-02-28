@@ -6,13 +6,15 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 public class battleManager: MonoBehaviour
 {
-    
+    public static GameObject battleAnimPanel;
+    public GameObject _battleAnimPanel;
     public Image playerSpriteTmp;
     public TextMeshProUGUI playerNameTmp;
     public Button[] spellButtons;
     // Start is called before the first frame update
     void Start()
     {
+        battleAnimPanel = _battleAnimPanel;
         Hero _assignedPlayerHero = mainPlayerUnit.Instance.getSelectedHero();
         playerSpriteTmp.sprite = _assignedPlayerHero.getHeroSprite();
         playerNameTmp.text = _assignedPlayerHero.getHeroName();

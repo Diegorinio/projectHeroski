@@ -41,4 +41,17 @@ public class unitGUI : MonoBehaviour
         eventText.text=eventVal;
         StartCoroutine(showGuiEvent(2));
     }
+
+    IEnumerator showAnimEvent(float time){
+        // battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().setDamageText(dmg);
+        battleManager.battleAnimPanel.SetActive(true);
+        battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().Func_PlayUIAnim();
+        yield return new WaitForSeconds(time);
+        battleManager.battleAnimPanel.SetActive(false);
+    }
+    public void displayAnimEvent(int dmg){
+        battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().setDamageText(dmg);
+        StartCoroutine(showAnimEvent(0.6f));
+    }
+
 }

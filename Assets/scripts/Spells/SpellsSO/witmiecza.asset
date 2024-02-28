@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: witmiecza
   m_EditorClassIdentifier: 
   spellName: wir miecza
+  spellImage: {fileID: 0}
   SpellType: 0
   SpellRange: 1
   DamageType: 0

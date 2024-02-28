@@ -2640,6 +2640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6ba663bc7bef83ab6cce9f1e093b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _battleAnimPanel: {fileID: 1301617812}
   playerSpriteTmp: {fileID: 981572451}
   playerNameTmp: {fileID: 1093631492}
   spellButtons:
@@ -3016,6 +3017,7 @@ GameObject:
   - component: {fileID: 1301617813}
   - component: {fileID: 1301617815}
   - component: {fileID: 1301617814}
+  - component: {fileID: 1301617816}
   m_Layer: 5
   m_Name: unitBattleAnim
   m_TagString: Untagged
@@ -3083,6 +3085,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1301617812}
   m_CullTransparentMesh: 1
+--- !u!114 &1301617816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301617812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00842bcd097ee0c4cbf22fa67d64cb82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Image: {fileID: 2135589882}
+  m_SpriteArray:
+  - {fileID: -192672540, guid: 589452b806a0458489a85953efa5bb99, type: 3}
+  - {fileID: -1184950267, guid: 589452b806a0458489a85953efa5bb99, type: 3}
+  - {fileID: 2038839315, guid: 589452b806a0458489a85953efa5bb99, type: 3}
+  - {fileID: -1541243363, guid: 589452b806a0458489a85953efa5bb99, type: 3}
+  damageTextUI: {fileID: 395965446}
+  m_Speed: 0.2
 --- !u!1 &1363497524
 GameObject:
   m_ObjectHideFlags: 0
@@ -4541,7 +4563,6 @@ GameObject:
   - component: {fileID: 2135589880}
   - component: {fileID: 2135589883}
   - component: {fileID: 2135589882}
-  - component: {fileID: 2135589881}
   m_Layer: 5
   m_Name: unitAttackAnim
   m_TagString: Untagged
@@ -4568,25 +4589,6 @@ RectTransform:
   m_AnchoredPosition: {x: -211, y: 36}
   m_SizeDelta: {x: 272.1, y: 414.6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2135589881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2135589879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00842bcd097ee0c4cbf22fa67d64cb82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Image: {fileID: 2135589882}
-  m_SpriteArray:
-  - {fileID: -192672540, guid: 589452b806a0458489a85953efa5bb99, type: 3}
-  - {fileID: -1184950267, guid: 589452b806a0458489a85953efa5bb99, type: 3}
-  - {fileID: 2038839315, guid: 589452b806a0458489a85953efa5bb99, type: 3}
-  - {fileID: -1541243363, guid: 589452b806a0458489a85953efa5bb99, type: 3}
-  m_Speed: 0.2
 --- !u!114 &2135589882
 MonoBehaviour:
   m_ObjectHideFlags: 0
