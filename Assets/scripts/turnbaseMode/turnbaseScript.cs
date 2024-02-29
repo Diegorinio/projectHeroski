@@ -101,7 +101,6 @@ public class turnbaseScript : MonoBehaviour
                 _gui.gameStateGameOver("Lose");
             }
         }
-        // StartCoroutine(roundStart());
     }
 
     //Sprawdz czy dana jednostka nalezy do gracza

@@ -10,6 +10,7 @@
     (idk, using prefabs for every unit etc) or just scriptable objects
     #remove resources folder?
     #change some method and script names
+    #deal damage animation is playing after dealing damage and setting new turn
 
 
 ## TODO

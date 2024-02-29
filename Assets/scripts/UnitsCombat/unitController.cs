@@ -89,7 +89,6 @@ public void characterMove(GameObject _newTransform,bool isStart){
     Transform trns = (Transform)_newTransform.GetComponent<RectTransform>();
     Vector3 gObj = trns.position;
     gameObject.transform.position = new Vector3(gObj.x, gObj.y, -1);
-    Debug.Log($"Chuj dupa cipa {gObj.x},{gObj.y}");
     assignedTile=_newTransform.GetComponent<Tile>();
     assignedTile.SetGameObjectOnTile(gameObject);
     if(!isStart)
@@ -166,8 +165,8 @@ public void playerHitSelectedTarget(GameObject target){
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
-            _unit.dealDamageTo(target);
             characterMoveTroughList(movePath);
+            _unit.dealDamageTo(target);
             }
         }
         else if(enemyTarget==null || enemyTarget!=target){
