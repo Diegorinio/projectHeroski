@@ -4374,6 +4374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d23489b01a8c9e4389723bbd605777b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HeroTag: 
 --- !u!61 &320176876
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24238,8 +24239,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_SizeDelta: {x: -0.00036621, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2101890197
 MonoBehaviour:
@@ -25283,7 +25284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6842804463200488811, guid: f29a67dbd2d7452bb9c8f50f6b394061, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5.799988
+      value: -5.800049
       objectReference: {fileID: 0}
     - target: {fileID: 6842804463200488811, guid: f29a67dbd2d7452bb9c8f50f6b394061, type: 3}
       propertyPath: m_AnchoredPosition.y
