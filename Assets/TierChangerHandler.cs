@@ -79,7 +79,7 @@ public class TierChangerHandler : MonoBehaviour
                 for (double i = LateTierUsed.transform.position.x; i <= oldposition+5.5; i += 0.40)
                 {
                     LateTierUsed.transform.position = new Vector3((float)i, LateTierUsed.transform.position.y, LateTierUsed.transform.position.z);
-                    yield return new WaitForSecondsRealtime(0.005f);
+                    // yield return new WaitForSecondsRealtime(0.005f);
                 }
                 yield return StartCoroutine(littleBitOfWaitingNewTier(GoodTier));
 
