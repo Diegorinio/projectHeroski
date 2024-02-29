@@ -34,7 +34,6 @@ public class LoobyMapManager : MonoBehaviour
         {
             if (GameObject.Find($"LVL {i}") != null)
             {
-                LVLButtons[i] = GameObject.Find($"LVL{i}");
                 GameObject.Find($"LVL {i}").SetActive(false);
             }
         }
