@@ -116,7 +116,8 @@ public class turnbaseScript : MonoBehaviour
                 BattleManager.spellButtonsEnable(true);
             else
                 BattleManager.spellButtonsEnable(false);
-            quequeHeroes[turn].GetComponent<unitController>().selectUnit();
+            StartCoroutine(waitForNextUnit(0.3f));
+            // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
     }
 
     //Usun GameObject jednostki z tury
@@ -162,5 +163,11 @@ public class turnbaseScript : MonoBehaviour
         foreach(var p in mainPlayerUnit.Instance.getUnitsAsGameObject()){
             p.SetActive(false);
         }
+    }
+
+    IEnumerator waitForNextUnit(float timer){
+        // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
+        yield return new WaitForSeconds(timer);
+         quequeHeroes[turn].GetComponent<unitController>().selectUnit();
     }
 }

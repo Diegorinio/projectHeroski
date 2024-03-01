@@ -93,7 +93,7 @@ public class TierChangerHandler : MonoBehaviour
             for (double i = NewTier.transform.position.x; i <= oldposition; i += 0.40)
             {
                 NewTier.transform.position = new Vector3((float)i, NewTier.transform.position.y, NewTier.transform.position.z);
-                yield return new WaitForSecondsRealtime(0.005f);
+                yield return new WaitForSeconds(0.005f);
             }
         lastOpenTier = NewTier;
         T1B.interactable = true;

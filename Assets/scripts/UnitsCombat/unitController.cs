@@ -139,7 +139,7 @@ private void characterMoveTroughList(List<Tile> tiles){
 
     current_tile.makeBusy();
     current_tile.castTileBehaviour();
-    disableClickable();
+    // disableClickable();
     }
 }
 
@@ -148,7 +148,7 @@ private void characterMoveTroughList(List<Tile> tiles){
 public void hitToSelectedTarget(GameObject target){
     if(targets.Contains(target)){
     _unit.dealDamageTo(target);
-    disableClickable();
+    // disableClickable();
     }
 }
 
@@ -161,7 +161,7 @@ public void playerHitSelectedTarget(GameObject target){
         if(enemyTarget==target){
             if(_unit is IDistance){
                 _unit.dealDamageTo(target);
-                disableClickable();
+                // disableClickable();
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
@@ -185,12 +185,12 @@ public void playerHitSelectedTarget(GameObject target){
 public void goToNearestTileAndDealDamage(GameObject target){
     if(_unit is IDistance){
                 _unit.dealDamageTo(target);
-                disableClickable();
+                // disableClickable();
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
-            _unit.dealDamageTo(target);
             characterMoveTroughList(movePath);
+            _unit.dealDamageTo(target);
             }
 }
 

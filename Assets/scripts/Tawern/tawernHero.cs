@@ -12,5 +12,6 @@ public class tawernHero : MonoBehaviour, IPointerDownHandler
         GameObject spawnedHero = heroSpawner.spawnHeroGameObject(1,heroSpawner.HeroController.Player);
         _heroInTawern = spawnedHero.GetComponent<Hero>();
         mainPlayerUnit.Instance.assignHeroToTeam(_heroInTawern);
+        Destroy(gameObject);
     }
 }

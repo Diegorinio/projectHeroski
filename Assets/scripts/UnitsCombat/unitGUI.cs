@@ -34,6 +34,7 @@ public class unitGUI : MonoBehaviour
         eventText.enabled=true;
         yield return new WaitForSeconds(time);
         eventText.enabled=false;
+        gameObject.GetComponent<unitController>().disableClickable(); 
     }
 
     //Metoda glowna do wyswietlania eventu
@@ -48,10 +49,12 @@ public class unitGUI : MonoBehaviour
         battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().Func_PlayUIAnim();
         yield return new WaitForSeconds(time);
         battleManager.battleAnimPanel.SetActive(false);
+        Debug.Log("Koniec scenki przejscie do nastepnego gracza");
+        gameObject.GetComponent<unitController>().disableClickable(); 
     }
     public void displayAnimEvent(int dmg){
         battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().setDamageText(dmg);
-        StartCoroutine(showAnimEvent(0.6f));
+        StartCoroutine(showAnimEvent(1f));
     }
 
 }

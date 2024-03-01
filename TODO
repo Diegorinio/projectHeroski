@@ -1,20 +1,39 @@
 ## Changes
     #Made barracks with Slider to "buy" units
-    #Water tile added which decrease movement by half ( bugged )
-    #Started making Hero component
 ## BUGS
-    #fix water( tile, unit have decreased movement when outside water and beign in water previously, everytime movement is decreased even if unit move water->water means x/2 and in other move movement is (x/2)/2)
-    #fix unit remove script from unit container
-    #find better way to store units
-    #find better way to store sprites between gameObject
+    #fix water( tile, unit have decreased movement when outside water and beign in water previously, everytime movement is decreased even if unit move water->water means x/2 and in other move movement is (x/2)/2) // solved
+    #fix unit remove script from unit container //solved
+    #find better way to store units //solved
+    #find better way to store sprites between gameObject // solved
     (idk, using prefabs for every unit etc) or just scriptable objects
     #remove resources folder?
     #change some method and script names
-    #deal damage animation is playing after dealing damage and setting new turn
+    #deal damage animation is playing after dealing damage and setting new turn //kidna fixed?
+    #pathfinding works but not good
+    #Tile activation is sometimes fucked up
+    #enemyAI is not enabling sometimes
+    #game state is detected only after moveement of last unit
+    #unit dont move when clicked Tile in movement range but without possible path
+    #tavern panel is showing collect even without launched timer
+    #tavern tier changer is too fast or too slow ( random or depend on cpu)
+    #Cannot exit map
+    #can start level without hero selected
+    #Random map generator sometimes generate spawn point which is blocking any path so unit is stuck
+    #Enemy units cannot find path when blocked
+    #REsources panel is rolling down when started
+    #Resources panel sometimes hide over screen
+    #After buying units and coming back to collect collected units are set to 0 ( value is set to slider value)
+    # There is no difference between player units and enemy Units
+
+
+
 
 
 ## TODO
-    #Hero with spells
+    #UI templates changes
     #change turnbasescript to chave move/attack in turn and hero can cast spell
-    #Units movement on grid with A* pathfinding ( or not i'm too lazy to make nodes between Tiles)
+    #Unit controller Hero
 
+## DONE
+    #Heroes with spells
+    #Units movement on grid with A* pathfinding ( or not i'm too lazy to make nodes between Tiles)
