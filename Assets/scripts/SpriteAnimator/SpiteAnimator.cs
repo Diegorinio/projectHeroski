@@ -5,7 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SpiteAnimator : MonoBehaviour
 {
-public Image m_Image;
+    public Image attackerImageSpace;
+    public Image victimImageSpace;
+    private Image attackerSourceImage;
+    private Image victimSourceImage;
 
     public Sprite[] m_SpriteArray;
     public TextMeshProUGUI damageTextUI;
@@ -36,7 +39,7 @@ public Image m_Image;
             isDone=true;
         }
         if(!isDone){
-        m_Image.sprite = m_SpriteArray[m_IndexSprite];
+        attackerImageSpace.sprite = m_SpriteArray[m_IndexSprite];
         m_IndexSprite++;
         StartCoroutine(Func_PlayAnimUI());
         }
@@ -46,6 +49,12 @@ public Image m_Image;
         }
     }
 
+    private void setVictimImage(Image img){
+        victimSourceImage = img;
+    }
+    private void setAttackerImage(Image img){
+        attackerSourceImage = img;
+    }
     void Start(){
         // Debug.Log("animation play");
         // Func_PlayUIAnim();
@@ -53,5 +62,11 @@ public Image m_Image;
 
     public void setDamageText(int dmg){
         damageText = dmg;
+    }
+
+    public void setAnimator(Image attackerImage,Image victimImage,int dmg){
+        setAttackerImage(attackerImage);
+        setVictimImage(victimImage);
+        setDamageText(dmg);
     }
 }

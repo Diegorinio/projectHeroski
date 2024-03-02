@@ -127,6 +127,7 @@ public class unitSpawner : MonoBehaviour
         obj.AddComponent<Enemy>();
         // obj.transform.Find("tileDetector").AddComponent<enemyDetector>();
         obj.AddComponent<enemyDetector>();
+        obj.transform.Find("hero_canvas").transform.Find("cardColor").GetComponent<Image>().color=Color.red;
         obj.transform.tag="Enemy";
     }
 
