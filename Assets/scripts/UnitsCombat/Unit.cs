@@ -16,6 +16,7 @@ public class Unit : MonoBehaviour
     protected int unitBaseHealth;
     protected int unitBaseDamage;
     protected  Vector2Int gridMoveDistance;
+    //do usuniecia
     protected Vector2Int gridAttackDistance;
     protected unitGUI _gui{get;set;}
 
@@ -54,10 +55,6 @@ public class Unit : MonoBehaviour
 
     public Vector2Int getUnitMoveDistance(){
         return gridMoveDistance;
-    }
-
-    public Vector2Int getAttackDistance(){
-        return gridAttackDistance;
     }
     public void setTier(int _tier){
         tier=_tier;
@@ -148,6 +145,10 @@ public class Unit : MonoBehaviour
     public virtual void dealDamageTo(GameObject _target){
         int dmg = getTotalDamage();
         _target.GetComponent<Unit>().getHit(dmg,gameObject);
+        Unit atakujacy = this;
+        Unit ofiara = _target.GetComponent<Unit>();
         Debug.Log($"hit {dmg} to {_target.name}");
     }
+    //Tutaj mozna wwalic obliczanie damage
 }
+

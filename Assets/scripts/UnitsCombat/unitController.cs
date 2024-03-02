@@ -50,10 +50,6 @@ public Tile getAssignedTile(){
     return assignedTile;
 }
 
-//Zwroc typ jednostki 
-public Unit getAssignedUnit(){
-    return _unit;
-}
 
 public Vector2Int getUnitDistance(){
     return dist;
@@ -148,15 +144,6 @@ private IEnumerator characterMoveTroughList(List<Tile> tiles){
 
 
 
-//Metoda sprawdza czy dany cel jest w liscie wykrytych celow, jezeli tak to moze zaatakowac, glowne uzycie do AI przeciwnika
-public void hitToSelectedTarget(GameObject target){
-    if(targets.Contains(target)){
-    _unit.dealDamageTo(target);
-    // disableClickable();
-    }
-}
-
-
 //Metoda do ataku
 //Podchodzi pod naglizszy Tile obok przeciwnika i zadaje obrazenia
 public void playerHitSelectedTarget(GameObject target){
@@ -186,6 +173,8 @@ public void playerHitSelectedTarget(GameObject target){
     }
 }
 
+
+//Dla enemyh AI
 public void goToNearestTileAndDealDamage(GameObject target){
     if(_unit is IDistance){
                 _unit.dealDamageTo(target);
@@ -227,3 +216,5 @@ public void setTile(Tile tile){
     assignedTile=tile;
 }
 }
+
+

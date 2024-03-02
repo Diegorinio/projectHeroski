@@ -8,7 +8,7 @@ public class UnitSO :ScriptableObject
 {
     public string unitName;
     public Sprite unitSprite;
-    public enum tiers{t1,t2,t3};
+    public enum tiers{t1,t2,t3,t4};
     public tiers tier;
     public int unitBaseHealth;
     public int unitBaseDamage;

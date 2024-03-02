@@ -89,9 +89,4 @@ public class enemyAI : MonoBehaviour
         gameObject.GetComponent<unitController>().goToNearestTileAndDealDamage(selectedHero);
         }
     }
-
-    public void attackRandomPlayer(){
-
-    }
-
 }
