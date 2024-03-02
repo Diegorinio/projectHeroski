@@ -74,7 +74,7 @@ public class enemyAI : MonoBehaviour
         int id = Random.Range(0, _collidersMovement.Count - 1);
         Transform rndCollider = _collidersMovement[id].transform;
         // gameObject.GetComponent<unitController>().characterMove(rndCollider.gameObject);
-        gameObject.GetComponent<unitController>().characterMove(rndCollider.GetComponent<Tile>());
+        StartCoroutine(gameObject.GetComponent<unitController>().characterMovePerTile(rndCollider.GetComponent<Tile>()));
         }
     } 
 

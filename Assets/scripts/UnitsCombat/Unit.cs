@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 // Skrypt okreslajacy jednostke
@@ -36,6 +37,9 @@ public class Unit : MonoBehaviour
 
     public Sprite getUnitSprite(){
         return unitSprite;
+    }
+    public Image getUnitImage(){
+        return transform.Find("hero_canvas").transform.Find("unit_sprite").GetComponent<Image>();
     }
 
 
@@ -90,10 +94,22 @@ public class Unit : MonoBehaviour
         _gui.displayAnimEvent(lost);
         lostUnits(lost);
     }
+    public virtual void getHit(int dmg,GameObject attacker){
+        int lost = (int)(dmg/unitBaseHealth);
+        // _gui.displayGuiEvent($"-{lost.ToString()}");
+        _gui.displayAnimEvent(lost,attacker,gameObject);
+        lostUnits(lost);
+    }
     public virtual void getHit(float procent_dmg){
         int lost = (int)(procent_dmg/100*unitAmount);
         // _gui.displayGuiEvent($"-{lost.ToString()}");
         _gui.displayAnimEvent(lost);
+        lostUnits(lost);
+    }
+    public virtual void getHit(float procent_dmg,GameObject attacker){
+        int lost = (int)(procent_dmg/100*unitAmount);
+        // _gui.displayGuiEvent($"-{lost.ToString()}");
+        _gui.displayAnimEvent(lost,attacker,gameObject);
         lostUnits(lost);
     }
 
@@ -131,7 +147,7 @@ public class Unit : MonoBehaviour
     // Brany jest gameObject reprezentujacy jednostke i zadaje obrazenia przez komponent <Unit>
     public virtual void dealDamageTo(GameObject _target){
         int dmg = getTotalDamage();
-        _target.GetComponent<Unit>().getHit(dmg);
+        _target.GetComponent<Unit>().getHit(dmg,gameObject);
         Debug.Log($"hit {dmg} to {_target.name}");
     }
 }

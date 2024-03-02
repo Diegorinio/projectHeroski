@@ -116,7 +116,7 @@ public class turnbaseScript : MonoBehaviour
                 BattleManager.spellButtonsEnable(true);
             else
                 BattleManager.spellButtonsEnable(false);
-            StartCoroutine(waitForNextUnit(0.3f));
+            StartCoroutine(waitForNextUnit(0.2f));
             // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
     }
 

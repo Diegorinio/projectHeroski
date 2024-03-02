@@ -75,6 +75,7 @@ public void setNormalDistance(){
     setUnitDistance(_unit.getUnitMoveDistance());
 }
 
+//glowna metoda do ruchu
 // Metoda ruchu gracza na tile
 // Jezeli tile jest przypisany to ustaw na null
 // Pozniej Przenies na Tile i przypisz jednostke do danego Tile
@@ -98,7 +99,7 @@ public void characterMove(GameObject _newTransform,bool isStart){
 //
 
 
-//Przy ruchu usun wlasnosci tile na ktory poprzednio stala jednostka
+//Przy ruchu usun wlasnosci tile na ktorym poprzednio stala jednostka
 public void moveFromTile(){
     assignedTile.unMakeBusy();
     assignedTile.SetGameObjectOnTile(null);
@@ -107,7 +108,7 @@ public void moveFromTile(){
 
 //Ruch jednostki ale po każdym Tile po kolei
 //do ruchu po tile
-public void characterMove(Tile _targetTile){
+public IEnumerator characterMovePerTile(Tile _targetTile){
     List<Tile> movePath = GridMap.getPathToTile(gameObject,_targetTile.gameObject);
     for(int x=1;x<movePath.Count;x++){
         characterMove(movePath[x].gameObject,true);
@@ -115,6 +116,7 @@ public void characterMove(Tile _targetTile){
             _targetTile=movePath[x];
             break;
         }
+        yield return new WaitForSeconds(0.2f);
     }
     _targetTile.makeBusy();
     _targetTile.castTileBehaviour();
@@ -123,7 +125,7 @@ public void characterMove(Tile _targetTile){
 
 //Ruch do tile ale obok wybraneego Tile 
 // zastowanie do ruchu blisko przeciwnika
-private void characterMoveTroughList(List<Tile> tiles){
+private IEnumerator characterMoveTroughList(List<Tile> tiles){
     if(tiles.Count>0){
     Tile current_tile=tiles[0];
     for(int x=1;x<tiles.Count;x++){
@@ -135,6 +137,7 @@ private void characterMoveTroughList(List<Tile> tiles){
         else{
             current_tile=tiles[x];
         }
+        yield return new WaitForSeconds(10f);
     }
 
     current_tile.makeBusy();
@@ -142,6 +145,7 @@ private void characterMoveTroughList(List<Tile> tiles){
     // disableClickable();
     }
 }
+
 
 
 //Metoda sprawdza czy dany cel jest w liscie wykrytych celow, jezeli tak to moze zaatakowac, glowne uzycie do AI przeciwnika
@@ -165,7 +169,7 @@ public void playerHitSelectedTarget(GameObject target){
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
-            characterMoveTroughList(movePath);
+            StartCoroutine(characterMoveTroughList(movePath));
             _unit.dealDamageTo(target);
             }
         }
@@ -189,7 +193,7 @@ public void goToNearestTileAndDealDamage(GameObject target){
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
-            characterMoveTroughList(movePath);
+            StartCoroutine(characterMoveTroughList(movePath));
             _unit.dealDamageTo(target);
             }
 }

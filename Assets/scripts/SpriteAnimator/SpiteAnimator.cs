@@ -7,7 +7,9 @@ public class SpiteAnimator : MonoBehaviour
 {
     public Image attackerImageSpace;
     public Image victimImageSpace;
+    [SerializeField]
     private Image attackerSourceImage;
+    [SerializeField]
     private Image victimSourceImage;
 
     public Sprite[] m_SpriteArray;
@@ -51,9 +53,11 @@ public class SpiteAnimator : MonoBehaviour
 
     private void setVictimImage(Image img){
         victimSourceImage = img;
+        victimImageSpace.sprite=img.sprite;
     }
     private void setAttackerImage(Image img){
         attackerSourceImage = img;
+        attackerImageSpace.sprite = img.sprite;
     }
     void Start(){
         // Debug.Log("animation play");

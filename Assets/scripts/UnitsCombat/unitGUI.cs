@@ -46,15 +46,27 @@ public class unitGUI : MonoBehaviour
     IEnumerator showAnimEvent(float time){
         // battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().setDamageText(dmg);
         battleManager.battleAnimPanel.SetActive(true);
+        // SpiteAnimator animatorSprite = battleManager.battleAnimPanel.GetComponent<SpiteAnimator>();
         battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().Func_PlayUIAnim();
+        // animatorSprite.
         yield return new WaitForSeconds(time);
         battleManager.battleAnimPanel.SetActive(false);
         Debug.Log("Koniec scenki przejscie do nastepnego gracza");
-        gameObject.GetComponent<unitController>().disableClickable(); 
+        // gameObject.GetComponent<unitController>().disableClickable(); 
     }
     public void displayAnimEvent(int dmg){
         battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().setDamageText(dmg);
         StartCoroutine(showAnimEvent(1f));
+    }
+    public void displayAnimEvent(int dmg,GameObject attacker, GameObject victim){
+        SpiteAnimator animatorSprite = battleManager.battleAnimPanel.GetComponent<SpiteAnimator>();
+        Image _attacker = attacker.GetComponent<Unit>().getUnitImage();
+        //  _victim.sprite = victim.GetComponent<Unit>().getUnitSprite();
+        Image _victim = victim.GetComponent<Unit>().getUnitImage();
+        animatorSprite.setAnimator(_attacker,_victim,dmg);
+        // battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().setDamageText(dmg);
+        StartCoroutine(showAnimEvent(1f));
+        attacker.GetComponent<unitController>().disableClickable();
     }
 
 }

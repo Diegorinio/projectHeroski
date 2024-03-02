@@ -3099,6 +3099,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackerImageSpace: {fileID: 2135589882}
   victimImageSpace: {fileID: 607968298}
+  attackerSourceImage: {fileID: 0}
+  victimSourceImage: {fileID: 0}
   m_SpriteArray:
   - {fileID: -192672540, guid: 589452b806a0458489a85953efa5bb99, type: 3}
   - {fileID: -1184950267, guid: 589452b806a0458489a85953efa5bb99, type: 3}

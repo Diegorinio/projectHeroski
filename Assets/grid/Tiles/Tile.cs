@@ -115,7 +115,7 @@ public abstract class Tile : MonoBehaviour,IPointerDownHandler
             //Wez daną jednostę z tury i przypisz go do Tile
             GameObject player = turnbaseScript.selectedGameObject;;
             if(turnbaseScript.selectedTile==this){
-                player.GetComponent<unitController>().characterMove(this);
+                StartCoroutine(player.GetComponent<unitController>().characterMovePerTile(this));
             }
             else if(turnbaseScript.selectedTile!=null||turnbaseScript.selectedTile==null){
                 player.GetComponent<Detector>().StartDetector();

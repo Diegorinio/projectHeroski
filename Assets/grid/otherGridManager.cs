@@ -104,28 +104,28 @@ public class otherGridManager : MonoBehaviour
                     if(!isInList(newTileComponent.getNeighbours(),gridMapTiles[x-1,y])&& !gridMapTiles[x-1,y].isBusy()){
                     newTileComponent.addNeighbour(gridMapTiles[x-1,y]);
                     gridMapTiles[x-1,y].addNeighbour(newTileComponent);
-                    Debug.Log($"Tile {newTileComponent.name} lewy sasiad {gridMapTiles[x-1,y].name}");
+                    // Debug.Log($"Tile {newTileComponent.name} lewy sasiad {gridMapTiles[x-1,y].name}");
                     }
                 }
                 if(x<width-1){//prawo
                 if(!isInList(newTileComponent.getNeighbours(),gridMapTiles[x+1,y])&& !gridMapTiles[x+1,y].isBusy()){
                     newTileComponent.addNeighbour(gridMapTiles[x+1,y]);
                     gridMapTiles[x+1,y].addNeighbour(newTileComponent);
-                    Debug.Log($"Tile {newTileComponent.name} prawy sasiad {gridMapTiles[x+1,y].name}");
+                    // Debug.Log($"Tile {newTileComponent.name} prawy sasiad {gridMapTiles[x+1,y].name}");
                     }
                 }
                 if(y>0){//dol
                 if(!isInList(newTileComponent.getNeighbours(),gridMapTiles[x,y-1])&& !gridMapTiles[x,y-1].isBusy()){
                     newTileComponent.addNeighbour(gridMapTiles[x,y-1]);
                     gridMapTiles[x,y-1].addNeighbour(newTileComponent);
-                    Debug.Log($"Tile {newTileComponent.name} dolny sasiad {gridMapTiles[x,y-1].name}");
+                    // Debug.Log($"Tile {newTileComponent.name} dolny sasiad {gridMapTiles[x,y-1].name}");
                     }
                 }
                 if(y<height-1){//gora
                 if(!isInList(newTileComponent.getNeighbours(),gridMapTiles[x,y+1])&& !gridMapTiles[x,y+1].isBusy()){
                     newTileComponent.addNeighbour(gridMapTiles[x,y+1]);
                     gridMapTiles[x,y+1].addNeighbour(newTileComponent);
-                    Debug.Log($"Tile {newTileComponent.name} gorny sasiad {gridMapTiles[x,y+1].name}");
+                    // Debug.Log($"Tile {newTileComponent.name} gorny sasiad {gridMapTiles[x,y+1].name}");
                     }
                 }
             }
