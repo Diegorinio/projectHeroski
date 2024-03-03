@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class battleManager: MonoBehaviour
 {
     public static GameObject battleAnimPanel;
+    public static bool isSelectingTarget;
+    public static GameObject selectedTargetForSpell;
     public GameObject _battleAnimPanel;
     public Image playerSpriteTmp;
     public TextMeshProUGUI playerNameTmp;
@@ -35,6 +37,14 @@ public class battleManager: MonoBehaviour
 
     private void spellButtonEnable(int id ,bool state){
         spellButtons[id].enabled=state;
+    }
+
+    public static void setTargetForSpell(GameObject target){
+        selectedTargetForSpell = target;
+    }
+    public static void resetSpellTarget(){
+        selectedTargetForSpell=null;
+        isSelectingTarget=false;
     }
 
 

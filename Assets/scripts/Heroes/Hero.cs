@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -32,6 +33,9 @@ public class Hero : MonoBehaviour
     }
     public void castFirstSpell(){
         if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Target){
+            // firstSpell.castSpell()
+            battleManager.isSelectingTarget=true;
+            StartCoroutine(waitUntilTargetIsSelected());
 
         }
         else if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Global){
@@ -41,6 +45,8 @@ public class Hero : MonoBehaviour
 
     public void castSecondSpell(){
         if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Target){
+            battleManager.isSelectingTarget=true;
+            StartCoroutine(waitUntilTargetIsSelected());
 
         }
         else if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Global){
@@ -94,5 +100,11 @@ public class Hero : MonoBehaviour
 
     public Sprite[] getSpellImages(){
         return spellIcons;
+    }
+
+    private IEnumerator waitUntilTargetIsSelected(){
+        yield return new WaitUntil(()=>battleManager.selectedTargetForSpell!=null);
+        firstSpell.castSpell(battleManager.selectedTargetForSpell);
+        battleManager.resetSpellTarget();
     }
 }

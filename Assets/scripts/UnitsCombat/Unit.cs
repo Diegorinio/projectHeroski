@@ -85,6 +85,8 @@ public class Unit : MonoBehaviour
     // usun ze sceny
     // usun z managera ktory trzyma jednostki miedzy scenami
     // dla przeciwnika mainPlayerUnit, dla uzytkownika mainEnemiesUnit
+
+    //getHit (ogólna metoda otrzymywania obrazen)
     public virtual void getHit(int dmg){
         int lost = (int)(dmg/unitBaseHealth);
         // _gui.displayGuiEvent($"-{lost.ToString()}");

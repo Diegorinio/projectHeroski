@@ -5,6 +5,7 @@ using UnityEngine;
 public class DestructionSpell : Spell
 {
 
+    //castuj spell na wygraną jednostkę
     public override void castSpell(GameObject target)
     {
         switch(assignedSpellSO.DamageType){
@@ -17,6 +18,7 @@ public class DestructionSpell : Spell
         }
     }
 
+    //castuj spell na wszystkie jednostki z tagiem
     public override void castSpellGlobal(string tag)
     {
         switch(assignedSpellSO.DamageType){
@@ -29,9 +31,11 @@ public class DestructionSpell : Spell
         }
     }
 
+    //metoda do zadawania okreslonych obrazen na jednostke
     private void FixedSpellDamage(GameObject target,int dmg){
         target.GetComponent<Unit>().getHit(dmg);
     }
+    //metoda do zadawania okresloneych obrazen wszystkim jednostkom z tagiem
     private void FixedSpellDamage(int dmg, string tag){
         List<Unit> unitList = new List<Unit>();
         switch(tag){
@@ -46,9 +50,13 @@ public class DestructionSpell : Spell
             u.getHit(dmg);
         }
     }
+
+    //procentowy damage jednostce
     private void PercentagetSpellDamage(GameObject target,float dmg){
         target.GetComponent<Unit>().getHit(dmg);
     }
+
+    //procentowy damage wszystkim jednostek
     private void PercentagetSpellDamage(float dmg,string tag){
         List<Unit> unitList = new List<Unit>();
         switch(tag){

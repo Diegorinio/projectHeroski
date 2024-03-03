@@ -24,6 +24,8 @@
     #Resources panel sometimes hide over screen
     #After buying units and coming back to collect collected units are set to 0 ( value is set to slider value)
     # There is no difference between player units and enemy Units
+    # After defeating all enemies game is not over until someone makes move
+    # After killing unit with spells game is not over until someone makes move
 
 
 
