@@ -26,6 +26,7 @@
     # There is no difference between player units and enemy Units
     # After defeating all enemies game is not over until someone makes move
     # After killing unit with spells game is not over until someone makes move
+    # After enemy turn activated Tiles fo enemy don't dissapear
 
 
 

@@ -10,7 +10,6 @@ public class SpellSO : ScriptableObject
     public enum healType{Fixed,Percentage}
     public enum spellRange{Target,Global}
     public string spellName;
-    public Image spellImage;
     public spellType SpellType;
     public spellRange SpellRange;
     public damageType DamageType;

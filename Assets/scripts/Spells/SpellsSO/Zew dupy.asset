@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Zew dupy
   SpellType: 0
-  SpellRange: 1
+  SpellRange: 0
   DamageType: 1
-  spellCastPercent: 50
+  spellCastPercent: 99
   spellCastFixed: 50
   HealType: 0

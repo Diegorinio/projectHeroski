@@ -29,11 +29,9 @@ public class SpiteAnimator : MonoBehaviour
         damageTextUI.text = "";
         m_IndexSprite=0;
         StartCoroutine(Func_PlayAnimUI());
-        Debug.Log("$CHUJ AIMACJA KSONCZONE");
     }
     IEnumerator Func_PlayAnimUI()
     {
-        Debug.Log("KURWa animacja dziala");
         yield return new WaitForSeconds(m_Speed);
         if(m_IndexSprite>=m_SpriteArray.Length){
             m_IndexSprite=m_SpriteArray.Length-1;
@@ -49,6 +47,9 @@ public class SpiteAnimator : MonoBehaviour
             gameObject.SetActive(false);
             StopCoroutine(Func_PlayAnimUI());
         }
+    }
+    public bool isAnimDone(){
+        return isDone;
     }
 
     private void setVictimImage(Image img){

@@ -24,9 +24,9 @@ public class Detector : MonoBehaviour
     public virtual void setTiles(){
         Tile _assignedTile = assignedController.getAssignedTile();
         List<Tile> rangeTiles = GridMap.calculateMapTiles(_assignedTile.getPosition(),assignedController.getUnitDistance());
-        Debug.Log($"player list tiles {rangeTiles.Count}");
+        // Debug.Log($"player list tiles {rangeTiles.Count}");
         movementTilesList = GridMap.findMovementTiles(rangeTiles);
-        Debug.Log($"Set Tiles for player {movementTilesList.Count}");
+        // Debug.Log($"Set Tiles for player {movementTilesList.Count}");
         enemyUnitList = GridMap.findGameObjectsOnTiles(_assignedTile.getPosition(),assignedController.getUnitDistance(),"Enemy");
         assignedController.addToTargets(enemyUnitList);
     }
@@ -46,6 +46,7 @@ public class Detector : MonoBehaviour
     //Usuwa efekty wykrywania, czysci liste wykrytych przeciwnikow i Tile ruchu
     public void StopDetector(){
         if(movementTilesList.Count>0){
+            Debug.Log($"Unit {gameObject.name} stop detector");
             GridMap.disableListTiles(movementTilesList);
             movementTilesList.Clear();
             enemyUnitList.Clear();

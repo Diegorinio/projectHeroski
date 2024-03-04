@@ -14,13 +14,10 @@ public class guiScript : MonoBehaviour
     List<Unit> unitlist;
     public GameObject unitListElementTemplate;
     GameObject playerTemp;
+    [SerializeField]
+    private List<GameObject> imagesList = new List<GameObject>();
 
     public void Start(){
-        // unitlist = mainPlayerUnit.Instance.getUnitsList();
-        // Debug.Log($"UnitsList {unitlist.Count}");
-        // if(unitlist.Count>0){
-        //     showUnits();
-        // }
     }
     public void showUnits(){
         foreach(var u in unitlist){
@@ -28,10 +25,17 @@ public class guiScript : MonoBehaviour
             newImage.transform.SetParent(playerTemp.transform);
             newImage.GetComponent<Image>().sprite = u.getUnitSprite();
             newImage.GetComponent<RectTransform>().localScale = Vector3.one;
+            imagesList.Add(newImage);
         }
     }
 
     void OnEnable(){
+        if(imagesList.Count>0){
+            foreach(GameObject image in imagesList){
+            Destroy(image.transform.parent);
+        }
+        imagesList.Clear();
+        }
         playerTemp = new GameObject("temporarary container");
         playerTemp.AddComponent<RectTransform>();
         playerTemp.AddComponent<GridLayoutGroup>();

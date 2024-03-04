@@ -13,7 +13,7 @@ public class gameMessagebox : MonoBehaviour
 
     //Utworz wartosci MessageBox i wyswietl na srodku canvasu
     public static void createMessageBox(string title, string content, UnityAction okButtonClick=null){
-        GameObject _canvas = GameObject.FindAnyObjectByType<Canvas>().gameObject;
+        GameObject _canvas = GameObject.FindGameObjectsWithTag("mainCanvas")[0].gameObject;
         GameObject messageBox = Instantiate(msgBox,_canvas.transform);
         RectTransform refxd = msgBox.GetComponent<RectTransform>();
         RectTransform newxd = messageBox.GetComponent<RectTransform>();

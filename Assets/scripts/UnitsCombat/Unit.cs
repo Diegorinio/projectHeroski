@@ -86,32 +86,32 @@ public class Unit : MonoBehaviour
     // usun z managera ktory trzyma jednostki miedzy scenami
     // dla przeciwnika mainPlayerUnit, dla uzytkownika mainEnemiesUnit
 
-    //getHit (ogólna metoda otrzymywania obrazen)
-    public virtual void getHit(int dmg){
-        int lost = (int)(dmg/unitBaseHealth);
-        // _gui.displayGuiEvent($"-{lost.ToString()}");
-        _gui.displayAnimEvent(lost);
-        lostUnits(lost);
-    }
+    //Do walki jednostek
     public virtual void getHit(int dmg,GameObject attacker){
         int lost = (int)(dmg/unitBaseHealth);
         // _gui.displayGuiEvent($"-{lost.ToString()}");
-        _gui.displayAnimEvent(lost,attacker,gameObject);
-        lostUnits(lost);
-    }
-    public virtual void getHit(float procent_dmg){
-        int lost = (int)(procent_dmg/100*unitAmount);
-        // _gui.displayGuiEvent($"-{lost.ToString()}");
-        _gui.displayAnimEvent(lost);
-        lostUnits(lost);
-    }
-    public virtual void getHit(float procent_dmg,GameObject attacker){
-        int lost = (int)(procent_dmg/100*unitAmount);
-        // _gui.displayGuiEvent($"-{lost.ToString()}");
-        _gui.displayAnimEvent(lost,attacker,gameObject);
+        // _gui.displayAnimEvent(lost,attacker,gameObject);
+        _gui.displayGuiEvent(lost.ToString());
         lostUnits(lost);
     }
 
+
+    //Do czarow
+    //Czary na bazie procenta damage
+    public virtual void getHit(float procent_dmg){
+        int lost = (int)(procent_dmg/100*unitAmount);
+        _gui.displayGuiEvent(lost.ToString());
+        lostUnits(lost);
+    }
+    //Czary na bazie stalego damage
+    public void getHit(int dmg){
+        int lost = (int)(dmg/unitBaseHealth);
+        _gui.displayGuiEvent(lost.ToString());
+        lostUnits(lost);
+    }
+
+
+    //Metoda obliczajac ilosc straconych jednostek, jezeli po straceniu będzie <0 to usun jednostke z gry
     private void lostUnits(int amount){
         if(unitAmount-amount<=0){
             GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
@@ -131,11 +131,14 @@ public class Unit : MonoBehaviour
         }
     }
 
+    //Leczenie jednostki przez dodawanie na podstawie stalej 
     public virtual void healUnit(int heal){
         int toHeal = (int)(heal/unitBaseHealth);
         unitAmount+=toHeal;
         _gui.displayGuiEvent($"+{heal.ToString()}");
     }
+
+    //Leczenie jednostki przez dodawanie na podstawie procenta ilosci jednostki
     public virtual void healUnit(float procent_heal){
         int toHeal = (int)(procent_heal/100*unitAmount);
         unitAmount+=toHeal;

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: witmiecza
   m_EditorClassIdentifier: 
   spellName: wir miecza
-  spellImage: {fileID: 0}
   SpellType: 0
   SpellRange: 1
-  DamageType: 0
-  spellCastPercent: 5
+  DamageType: 1
+  spellCastPercent: 99
   spellCastFixed: 200
   HealType: 0

@@ -40,7 +40,7 @@ public class turnBaseScriptGUI : MonoBehaviour
     //Pokaz ekran konca gry i kto wygral
     public void gameStateGameOver(string winner){
         Text state = gameStatePanel.transform.Find("gameStateText").gameObject.GetComponent<Text>();
-        GameObject.Find("movement_panel").SetActive(false);
+        // GameObject.Find("movement_panel").SetActive(false);
         state.text = winner;
         gameStatePanel.SetActive(true);
     }

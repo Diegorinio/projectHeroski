@@ -38,17 +38,23 @@ public class enemyAI : MonoBehaviour
     //Wyczysc movement i wykrytych jednostek
     public void resetAIColliders()
     {
+        gameObject.GetComponent<Detector>().StopDetector();
         Debug.Log($"enemyAI colliders clear");
         if(_collidersMovement.Count>0)
         _collidersMovement.Clear();
         if(_collidersCharacters.Count>0)
         _collidersCharacters.Clear();
+        // gameObject.GetComponent<Detector>().StopDetector();
     }
 
     //Zrob losowa akcje
     //Jezeli mozesz sie tylko poruszyc to sie porusz
     //Jezeli sa obce jednostki w zasiegu to losuj czy atakujesz czy robisz ruch
     public void randomAction(){
+        StartCoroutine(waitToMakeRandomDecision(0.6f));
+    }
+    private IEnumerator waitToMakeRandomDecision(float time){
+        yield return new WaitForSeconds(time);
         if(_collidersCharacters.Count>0){
                     int r = Random.Range(0,2);
         Debug.Log($"{assignedEnemy.transform.name} enemyAI selected action {r}");
@@ -65,16 +71,15 @@ public class enemyAI : MonoBehaviour
             moveToRandomDirecion();
         }
         resetAIColliders();
-    }
 
+    }
     //Zrob ruch w losowej miejsce z Tile w zasiegu
     public void moveToRandomDirecion()
     {
         if(_collidersMovement.Count>0){
         int id = Random.Range(0, _collidersMovement.Count - 1);
         Transform rndCollider = _collidersMovement[id].transform;
-        // gameObject.GetComponent<unitController>().characterMove(rndCollider.gameObject);
-        StartCoroutine(gameObject.GetComponent<unitController>().characterMovePerTile(rndCollider.GetComponent<Tile>()));
+        gameObject.GetComponent<unitController>().characterMovePerTile(rndCollider.GetComponent<Tile>());
         }
     } 
 
@@ -84,8 +89,6 @@ public class enemyAI : MonoBehaviour
         int id=Random.Range(0,_collidersCharacters.Count-1);
         GameObject selectedHero=_collidersCharacters[id].transform.gameObject;
         Debug.Log($"Przeciwnik aatakowal {selectedHero.name} AI");
-        // gameObject.GetComponent<unitController>().hitToSelectedTarget(selectedHero);
-        // gameObject.GetComponent<unitController>().playerHitSelectedTarget(selectedHero);
         gameObject.GetComponent<unitController>().goToNearestTileAndDealDamage(selectedHero);
         }
     }

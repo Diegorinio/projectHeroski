@@ -57,15 +57,12 @@ public class turnbaseScript : MonoBehaviour
     void Start(){
         StartCoroutine(roundStart());
     }
-    
-    // Do wyrzucenia
-    void Update()
-    {
-        selectedCheck=isSelected;
-        temp_gameobject=selectedGameObject;
-    }
+
     public int getTurn(){
         return turn;
+    }
+    public bool checkIsFinished(){
+        return isFinished;
     }
 
     //Metoda odpowiedzialna za nastepna ture
@@ -83,7 +80,7 @@ public class turnbaseScript : MonoBehaviour
             turn++;
         }
         // turnText.text = round.ToString();
-        Debug.Log($"state 2 {turn}");
+        // Debug.Log($"state 2 {turn}");
         if(turn==0){
             StartCoroutine(roundStart());
         }
@@ -116,7 +113,7 @@ public class turnbaseScript : MonoBehaviour
                 BattleManager.spellButtonsEnable(true);
             else
                 BattleManager.spellButtonsEnable(false);
-            StartCoroutine(waitForNextUnit(0.2f));
+            StartCoroutine(waitForNextUnit(0.5f));
             // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
     }
 
@@ -168,6 +165,7 @@ public class turnbaseScript : MonoBehaviour
     IEnumerator waitForNextUnit(float timer){
         // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
         yield return new WaitForSeconds(timer);
-         quequeHeroes[turn].GetComponent<unitController>().selectUnit();
+        Debug.Log($"Aktualna tura {turn} a rozmiar listy {quequeHeroes.Count}");
+        quequeHeroes[turn].GetComponent<unitController>().selectUnit();
     }
 }

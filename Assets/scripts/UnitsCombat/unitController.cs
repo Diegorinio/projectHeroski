@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class unitController : MonoBehaviour
         turnbaseScript.selectedGameObject = gameObject;
         enemyTarget=null;
         tileDetector.StartDetector();
-        Debug.Log($"{_unit.name} actived");
+        Debug.Log($"{_unit.name} selected");
 }
 
 //Zworc Tile na ktorym znajduje sie jednostka
@@ -104,24 +105,37 @@ public void moveFromTile(){
 
 //Ruch jednostki ale po każdym Tile po kolei
 //do ruchu po tile
-public IEnumerator characterMovePerTile(Tile _targetTile){
+public void characterMovePerTile(Tile _targetTile){
     List<Tile> movePath = GridMap.getPathToTile(gameObject,_targetTile.gameObject);
-    for(int x=1;x<movePath.Count;x++){
-        characterMove(movePath[x].gameObject,true);
-        if(movePath[x] is waterTile){
-            _targetTile=movePath[x];
-            break;
-        }
-        yield return new WaitForSeconds(0.2f);
-    }
-    _targetTile.makeBusy();
-    _targetTile.castTileBehaviour();
-    disableClickable();
+    Action a = ()=>disableClickable();
+    StartCoroutine(characterMoveTroughList(movePath,a));
 }
 
 //Ruch do tile ale obok wybraneego Tile 
 // zastowanie do ruchu blisko przeciwnika
-private IEnumerator characterMoveTroughList(List<Tile> tiles){
+// private IEnumerator characterMoveTroughList(List<Tile> tiles){
+//     if(tiles.Count>0){
+//     Tile current_tile=tiles[0];
+//     for(int x=1;x<tiles.Count;x++){
+//         characterMove(tiles[x].gameObject,true);
+//         if(tiles[x] is waterTile){
+//             current_tile=tiles[x];
+//             break;
+//         }
+//         else{
+//             current_tile=tiles[x];
+//         }
+//         yield return new WaitForSeconds(0.2f);
+//     }
+
+//     current_tile.makeBusy();
+//     current_tile.castTileBehaviour();
+//     // disableClickable();
+//     }
+// }
+
+//Z mozliwoscia odpalenia eventu na koncu
+private IEnumerator characterMoveTroughList(List<Tile> tiles,Action lastEvent){
     if(tiles.Count>0){
     Tile current_tile=tiles[0];
     for(int x=1;x<tiles.Count;x++){
@@ -133,15 +147,15 @@ private IEnumerator characterMoveTroughList(List<Tile> tiles){
         else{
             current_tile=tiles[x];
         }
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(0.1f);
     }
-
+    lastEvent();
     current_tile.makeBusy();
     current_tile.castTileBehaviour();
+    // lastEvent();
     // disableClickable();
     }
 }
-
 
 
 //Metoda do ataku
@@ -152,12 +166,14 @@ public void playerHitSelectedTarget(GameObject target){
         if(enemyTarget==target){
             if(_unit is IDistance){
                 _unit.dealDamageTo(target);
-                // disableClickable();
+                disableClickable();
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
-            StartCoroutine(characterMoveTroughList(movePath));
-            _unit.dealDamageTo(target);
+            Action a = ()=>_unit.dealDamageTo(target);
+            StartCoroutine(characterMoveTroughList(movePath,a));
+            disableClickable();
+            // _unit.dealDamageTo(target);
             }
         }
         else if(enemyTarget==null || enemyTarget!=target){
@@ -173,17 +189,18 @@ public void playerHitSelectedTarget(GameObject target){
     }
 }
 
-
-//Dla enemyh AI
+//Dla enemy AI
 public void goToNearestTileAndDealDamage(GameObject target){
     if(_unit is IDistance){
                 _unit.dealDamageTo(target);
-                // disableClickable();
+                disableClickable();
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
-            StartCoroutine(characterMoveTroughList(movePath));
-            _unit.dealDamageTo(target);
+            Action a  =()=>_unit.dealDamageTo(target);
+            StartCoroutine(characterMoveTroughList(movePath,a));
+            // _unit.dealDamageTo(target);
+            disableClickable();
             }
 }
 
@@ -194,6 +211,9 @@ public void disableClickable(){
     enemyTarget=null;
     turnbaseScript script = GameObject.FindObjectOfType<turnbaseScript>();
     tileDetector.StopDetector();
+    turnbaseScript turnScript = GameObject.FindAnyObjectByType<turnbaseScript>();
+        Debug.Log($"Checking game state {turnScript.getTurn()} {turnScript.checkIsFinished()}");
+        turnScript.checkGameState();
     script.nextTurn();
 }
 

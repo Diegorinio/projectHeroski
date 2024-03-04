@@ -15,7 +15,6 @@ public abstract class Spell : MonoBehaviour
     public void assignSpellSO(SpellSO _spellSO){
         assignedSpellSO = _spellSO;
         spellName = _spellSO.spellName;
-        spellImage = _spellSO.spellImage;
     }
     //castuj spell na jeden cel
     public abstract void castSpell(GameObject target);

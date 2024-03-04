@@ -124,7 +124,7 @@ public class CityManager : MonoBehaviour
     }
 
     public void goToMainMap(){
-        if(mainPlayerUnit.Instance.getUnits().Length>0 || mainPlayerUnit.Instance.getSelectedHero()!=null){
+        if(mainPlayerUnit.Instance.getUnits().Length>0 && mainPlayerUnit.Instance.getSelectedHero()!=null){
             SceneManager.LoadScene("mainMap");
         }
         else{
