@@ -9,10 +9,23 @@ using UnityEngine.UI;
 public class gameMessagebox : MonoBehaviour
 {
     //Prefab MessageBox
-    public static GameObject msgBox = Resources.Load("messages/messageBox") as GameObject;
+    public static GameObject msgBox;
 
     //Utworz wartosci MessageBox i wyswietl na srodku canvasu
     public static void createMessageBox(string title, string content, UnityAction okButtonClick=null){
+        msgBox = Resources.Load("messages/messageBox") as GameObject;
+        setBox(title,content,okButtonClick);
+    }
+    private static void okButtonOnClickEvent(GameObject obj){
+        Destroy(obj);
+    }
+
+    public static void createDialogBox(string title, string content,UnityAction okButtonClick=null){
+        msgBox = Resources.Load("messages/dialogBox") as GameObject;
+        setBox(title,content,okButtonClick);
+    }
+
+    private static void setBox(string title,string content,UnityAction okButtonClick=null){
         GameObject _canvas = GameObject.FindGameObjectsWithTag("mainCanvas")[0].gameObject;
         GameObject messageBox = Instantiate(msgBox,_canvas.transform);
         RectTransform refxd = msgBox.GetComponent<RectTransform>();
@@ -23,15 +36,11 @@ public class gameMessagebox : MonoBehaviour
         newxd.sizeDelta = refxd.sizeDelta;
         Button okBtn = messageBox.transform.GetComponentInChildren<Button>();
         messageBox.GetComponent<MessageBox>().setMessageBox(title,content);
-        // messageBox.transform.GetComponentInChildren<Button>().onClick.AddListener(okButtonClick);
         if(okButtonClick==null){
             okBtn.onClick.AddListener(()=>okButtonOnClickEvent(messageBox));
         }
         else{
             okBtn.onClick.AddListener(()=>okButtonClick());
         }
-    }
-    private static void okButtonOnClickEvent(GameObject obj){
-        Destroy(obj);
     }
 }

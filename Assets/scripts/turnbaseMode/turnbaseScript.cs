@@ -129,6 +129,10 @@ public class turnbaseScript : MonoBehaviour
                 BattleManager.spellButtonsEnable(true);
             else
                 BattleManager.spellButtonsEnable(false);
+
+            if(!IsHeroTurn()){
+                checkGameState();
+            }
             StartCoroutine(waitForNextUnit(0.5f));
     }
 
@@ -200,6 +204,12 @@ public class turnbaseScript : MonoBehaviour
         yield return new WaitForSeconds(timer);
         Debug.Log($"Aktualna tura {turn} a rozmiar listy {quequeHeroes.Count}");
         // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
-        turnQueue.Peek().GetComponent<unitController>().selectUnit();
+        checkGameState();
+        if(isFinished){
+            nextTurn();
+        }
+        else{
+            turnQueue.Peek().GetComponent<unitController>().selectUnit();
+        }
     }
 }

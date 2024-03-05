@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82d694152d5a0e71bcae81a194ec8c4, type: 3}
+  m_Name: Akira
+  m_EditorClassIdentifier: 
+  heroID: 3
+  heroName: Akira
+  heroSprite: {fileID: 21300000, guid: e9dd22acbd25150708fd360b9c05bf6b, type: 3}
+  spellIcons:
+  - {fileID: 21300000, guid: a7af6c08c6610f24aba3b78606e5bd0c, type: 3}
+  - {fileID: 21300000, guid: aea96299ca32ecb45ab39a612d739be6, type: 3}
+  entryDialog: UwU
+  defeatDialog: Uwuuuu
+  spellOne: {fileID: 11400000, guid: 0f7935fc74d2e4a74867258485082c9c, type: 2}
+  spellTwo: {fileID: 11400000, guid: fc7c386fe41ab182e89c250e5ebd59e6, type: 2}

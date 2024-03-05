@@ -211,9 +211,6 @@ public void disableClickable(){
     enemyTarget=null;
     turnbaseScript script = GameObject.FindObjectOfType<turnbaseScript>();
     tileDetector.StopDetector();
-    turnbaseScript turnScript = GameObject.FindAnyObjectByType<turnbaseScript>();
-        Debug.Log($"Checking game state {turnScript.getTurn()} {turnScript.checkIsFinished()}");
-        turnScript.checkGameState();
     script.nextTurn();
 }
 

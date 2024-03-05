@@ -128,7 +128,7 @@ public class CityManager : MonoBehaviour
             SceneManager.LoadScene("mainMap");
         }
         else{
-            gameMessagebox.createMessageBox("Units","Przed wyruszeniem w droge zbierz druzyne oraz bohatera");
+            gameMessagebox.createMessageBox("Units","Before going to adventure recruit units in BARRACKS and hire hero from TAVERN");
         }
     }
     private void OnEnable()
