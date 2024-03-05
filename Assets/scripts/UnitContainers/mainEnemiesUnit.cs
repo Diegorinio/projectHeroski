@@ -63,5 +63,6 @@ public static mainEnemiesUnit Instance{get;private set;}
 
     public void removeFromUnits(Unit _unit){
         playerTeam.Remove(_unit);
+        Debug.Log($" MainEnemiesUnit Unit removed ${_unit.name}");
     }
 }

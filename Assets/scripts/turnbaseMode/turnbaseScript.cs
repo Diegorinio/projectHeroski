@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,18 +11,17 @@ public class turnbaseScript : MonoBehaviour
     public static Tile selectedTile;
     //Wybrany statyczny obiekt dostepny do wszystkich klas
     public static GameObject selectedGameObject;
-    //chwilowy obiekt zeby sprawdzic czy dziala w inspektorze
-    public GameObject temp_gameobject;
+
+
     //sprawdzenei czy obiekt jest wybrany
     public static bool isSelected;
-    //chwilowa zmienan zeby sprawdzic w inspektorze
-    public bool selectedCheck;
     [SerializeField]
     //dana tura 
     private int turn;
     // [SerializeField]
     //Lista Obiektow w kolejce
     private List<GameObject> quequeHeroes= new List<GameObject>();
+    private Queue<GameObject> turnQueue = new Queue<GameObject>();
     [SerializeField]
     // private Text turnText;
     // [SerializeField]
@@ -72,29 +72,45 @@ public class turnbaseScript : MonoBehaviour
         checkGameState();
         if(!isFinished){
         Debug.Log($"Queque heroes size: {quequeHeroes.Count} and id is {turn}");
-        if(turn>=quequeHeroes.Count-1){
-            turn=0;
+        if(turnQueue.Count==0){
             round++;
-        }
-        else{
-            turn++;
-        }
-        // turnText.text = round.ToString();
-        // Debug.Log($"state 2 {turn}");
-        if(turn==0){
             StartCoroutine(roundStart());
         }
         else{
-        setTurn();
+            GameObject nextUnit = turnQueue.Dequeue();
+            turnQueue.Enqueue(nextUnit);
+            setTurn();
         }
+        // if(turnQueue.Count==0){
+        //     round++;
+        // }
+        // else{
+        //     turn++;
+        // }
+        // // turnText.text = round.ToString();
+        // // Debug.Log($"state 2 {turn}");
+        // if(turn==0){
+        //     StartCoroutine(roundStart());
+        // }
+        // else{
+        // setTurn();
+        // }
+        // }
+        // else{
+        //     if(isWin){
+        //         Debug.Log($"Koniec gry player wins");
+        //         _gui.gameStateGameOver("Win");
+        //     }
+        //     else{
+        //         Debug.Log($"Koniec gry enemies win");
+        //         _gui.gameStateGameOver("Lose");
+        //     }
         }
         else{
             if(isWin){
-                Debug.Log($"Koniec gry player wins");
                 _gui.gameStateGameOver("Win");
             }
             else{
-                Debug.Log($"Koniec gry enemies win");
                 _gui.gameStateGameOver("Lose");
             }
         }
@@ -108,18 +124,30 @@ public class turnbaseScript : MonoBehaviour
     //Ustawia ture, odpala metode selectUnit z kontrolera danej jednostki
     public void setTurn(){
             if(!selectedGameObject)
-                selectedGameObject=quequeHeroes[turn];
+                selectedGameObject=turnQueue.Peek();
             if(IsHeroTurn())
                 BattleManager.spellButtonsEnable(true);
             else
                 BattleManager.spellButtonsEnable(false);
             StartCoroutine(waitForNextUnit(0.5f));
-            // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
     }
 
     //Usun GameObject jednostki z tury
     public void removeFromQueque(GameObject gObj){
         quequeHeroes.Remove(gObj);
+        int indexToRemove=-1;
+        for(int i=0;i<turnQueue.Count;i++){
+            if(turnQueue.ElementAt(i)==gObj){
+                indexToRemove=i;
+                break;
+            }
+        }
+        if(indexToRemove!=-1){
+            List<GameObject> tmp = turnQueue.ToList();
+            tmp.RemoveAt(indexToRemove);
+            turnQueue=new Queue<GameObject>(tmp);
+        }
+        // turnQueue = new Queue<GameObject>(quequeHeroes);
     }
 
     //Odpowiada za wyswietelenie panelu startu tury 
@@ -128,7 +156,12 @@ public class turnbaseScript : MonoBehaviour
         _gui.showPanel(true);
         yield return new WaitForSeconds(_gui.panelShowTime);
         _gui.showPanel(false);
-        setTurn();
+        if(quequeHeroes.Count>0){
+            foreach(GameObject unit in quequeHeroes){
+                turnQueue.Enqueue(unit);
+            }
+            setTurn();
+        }
     }
 
     //Sprawdza czy w grze są nadaj jednostki przeciwnika i gracza, jezeli ktorejs juz nie ma to koniec gry
@@ -166,6 +199,7 @@ public class turnbaseScript : MonoBehaviour
         // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
         yield return new WaitForSeconds(timer);
         Debug.Log($"Aktualna tura {turn} a rozmiar listy {quequeHeroes.Count}");
-        quequeHeroes[turn].GetComponent<unitController>().selectUnit();
+        // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
+        turnQueue.Peek().GetComponent<unitController>().selectUnit();
     }
 }

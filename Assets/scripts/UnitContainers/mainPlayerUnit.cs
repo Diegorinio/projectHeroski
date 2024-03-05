@@ -122,6 +122,7 @@ public class mainPlayerUnit : MonoBehaviour
         int tier = _unit.getUnitTier();
         if(playerUnits.ContainsKey(tier)){
             playerUnits[tier].Remove(_unit);
+            Debug.Log($" mainPlayerUnit Unit removed ${_unit.name}");
         }
     }
 }
