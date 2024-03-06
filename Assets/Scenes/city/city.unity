@@ -857,10 +857,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 2015504226}
   m_HandleRect: {fileID: 749194666}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 250
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3234,10 +3234,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 763281697}
   m_HandleRect: {fileID: 979593086}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 250
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3324,10 +3324,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1779334688}
   m_HandleRect: {fileID: 1818039442}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 250
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4664,10 +4664,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1731808933}
   m_HandleRect: {fileID: 547707884}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 250
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5149,6 +5149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 369206998}
   - component: {fileID: 369206999}
+  - component: {fileID: 369207000}
   m_Layer: 0
   m_Name: closeTier3
   m_TagString: Untagged
@@ -5193,10 +5194,22 @@ MonoBehaviour:
   amount_input: {fileID: 809704458}
   buyBtn: {fileID: 473652280}
   collectBtn: {fileID: 204145254}
-  unitTier: 0
-  unitType: 0
   _complitionTime: {fileID: 1211680554}
   cheatBtn: {fileID: 1739663632}
+--- !u!114 &369207000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369206997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33d611991279bdd958c18aae565cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitTier: 2
+  unitType: 2
 --- !u!1 &375427397
 GameObject:
   m_ObjectHideFlags: 0
@@ -8736,6 +8749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 619901137}
   - component: {fileID: 619901138}
+  - component: {fileID: 619901139}
   m_Layer: 0
   m_Name: closeTier2
   m_TagString: Untagged
@@ -8780,10 +8794,22 @@ MonoBehaviour:
   amount_input: {fileID: 186229976}
   buyBtn: {fileID: 550780545}
   collectBtn: {fileID: 866637719}
-  unitTier: 0
-  unitType: 0
   _complitionTime: {fileID: 552149776}
   cheatBtn: {fileID: 1739663632}
+--- !u!114 &619901139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619901136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33d611991279bdd958c18aae565cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitTier: 1
+  unitType: 2
 --- !u!1 &623958851
 GameObject:
   m_ObjectHideFlags: 0
@@ -10345,6 +10371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 764462879}
   - component: {fileID: 764462880}
+  - component: {fileID: 764462881}
   m_Layer: 0
   m_Name: distanceTier1
   m_TagString: Untagged
@@ -10389,10 +10416,22 @@ MonoBehaviour:
   amount_input: {fileID: 297966228}
   buyBtn: {fileID: 1894575393}
   collectBtn: {fileID: 1635907750}
-  unitTier: 0
-  unitType: 0
   _complitionTime: {fileID: 721126379}
   cheatBtn: {fileID: 1739663632}
+--- !u!114 &764462881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764462878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33d611991279bdd958c18aae565cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitTier: 0
+  unitType: 0
 --- !u!1 &771247759
 GameObject:
   m_ObjectHideFlags: 0
@@ -11667,6 +11706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 859269384}
   - component: {fileID: 859269385}
+  - component: {fileID: 859269386}
   m_Layer: 0
   m_Name: cavaleryTier3
   m_TagString: Untagged
@@ -11711,10 +11751,22 @@ MonoBehaviour:
   amount_input: {fileID: 1839640197}
   buyBtn: {fileID: 536226101}
   collectBtn: {fileID: 1090285591}
-  unitTier: 0
-  unitType: 0
   _complitionTime: {fileID: 850319773}
   cheatBtn: {fileID: 1739663632}
+--- !u!114 &859269386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859269383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33d611991279bdd958c18aae565cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitTier: 2
+  unitType: 1
 --- !u!1 &859584859
 GameObject:
   m_ObjectHideFlags: 0
@@ -12958,10 +13010,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 263316859}
   m_HandleRect: {fileID: 485306434}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 250
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13132,6 +13184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1006120254}
   - component: {fileID: 1006120255}
+  - component: {fileID: 1006120256}
   m_Layer: 0
   m_Name: distanceTier3
   m_TagString: Untagged
@@ -13176,10 +13229,22 @@ MonoBehaviour:
   amount_input: {fileID: 1470206243}
   buyBtn: {fileID: 1429170418}
   collectBtn: {fileID: 1627298303}
-  unitTier: 0
-  unitType: 0
   _complitionTime: {fileID: 590599444}
   cheatBtn: {fileID: 1739663632}
+--- !u!114 &1006120256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006120253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33d611991279bdd958c18aae565cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitTier: 2
+  unitType: 0
 --- !u!1 &1010394235
 GameObject:
   m_ObjectHideFlags: 0
@@ -13263,10 +13328,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 94178221}
   m_HandleRect: {fileID: 278879336}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 250
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13450,6 +13515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1043448904}
   - component: {fileID: 1043448905}
+  - component: {fileID: 1043448906}
   m_Layer: 0
   m_Name: cavaleryTier1
   m_TagString: Untagged
@@ -13494,10 +13560,22 @@ MonoBehaviour:
   amount_input: {fileID: 1674542234}
   buyBtn: {fileID: 1003575796}
   collectBtn: {fileID: 721807557}
-  unitTier: 0
-  unitType: 0
   _complitionTime: {fileID: 1666743881}
   cheatBtn: {fileID: 1739663632}
+--- !u!114 &1043448906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043448903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33d611991279bdd958c18aae565cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitTier: 0
+  unitType: 1
 --- !u!1 &1047201583
 GameObject:
   m_ObjectHideFlags: 0
@@ -14913,10 +14991,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1927414080}
   m_HandleRect: {fileID: 312962474}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 250
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16681,6 +16759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1368705084}
   - component: {fileID: 1368705085}
+  - component: {fileID: 1368705086}
   m_Layer: 0
   m_Name: cavaleryTier2
   m_TagString: Untagged
@@ -16725,10 +16804,22 @@ MonoBehaviour:
   amount_input: {fileID: 335548411}
   buyBtn: {fileID: 1113169566}
   collectBtn: {fileID: 191756994}
-  unitTier: 0
-  unitType: 0
   _complitionTime: {fileID: 1328982011}
   cheatBtn: {fileID: 1739663632}
+--- !u!114 &1368705086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368705083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33d611991279bdd958c18aae565cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitTier: 1
+  unitType: 1
 --- !u!1 &1372135833
 GameObject:
   m_ObjectHideFlags: 0
@@ -16983,6 +17074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1419698092}
   - component: {fileID: 1419698093}
+  - component: {fileID: 1419698094}
   m_Layer: 0
   m_Name: closeTier1
   m_TagString: Untagged
@@ -17027,10 +17119,22 @@ MonoBehaviour:
   amount_input: {fileID: 2037791425}
   buyBtn: {fileID: 559430815}
   collectBtn: {fileID: 890730902}
-  unitTier: 0
-  unitType: 0
   _complitionTime: {fileID: 740563281}
   cheatBtn: {fileID: 1739663632}
+--- !u!114 &1419698094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419698091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33d611991279bdd958c18aae565cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitTier: 0
+  unitType: 2
 --- !u!1 &1428715892
 GameObject:
   m_ObjectHideFlags: 0
@@ -17800,10 +17904,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 541667005}
   m_HandleRect: {fileID: 1158487773}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 250
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -21307,10 +21411,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1596569798}
   m_HandleRect: {fileID: 1519095838}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 250
   m_WholeNumbers: 1
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -21324,6 +21428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1827655210}
   - component: {fileID: 1827655211}
+  - component: {fileID: 1827655212}
   m_Layer: 0
   m_Name: distanceTier2
   m_TagString: Untagged
@@ -21368,10 +21473,22 @@ MonoBehaviour:
   amount_input: {fileID: 829107223}
   buyBtn: {fileID: 702307583}
   collectBtn: {fileID: 2085878649}
-  unitTier: 0
-  unitType: 0
   _complitionTime: {fileID: 395752250}
   cheatBtn: {fileID: 1739663632}
+--- !u!114 &1827655212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1827655209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e33d611991279bdd958c18aae565cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitTier: 1
+  unitType: 0
 --- !u!1 &1834236591
 GameObject:
   m_ObjectHideFlags: 0

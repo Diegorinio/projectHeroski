@@ -26,25 +26,43 @@ public static class GridMap
 
     //Zwróć wszystkie kwadraty z mapy w zasięgu obiektu
     public static List<Tile> calculateMapTiles(Vector2Int startingPoint,Vector2Int distance){
-        List<Tile> availableTiles = new List<Tile>();
-        for(int x=Math.Max(0,startingPoint.x-distance.x);x<=Mathf.Min(gridMap.GetLength(0)-1,startingPoint.x+distance.x);x++){
-            for(int y=Mathf.Max(0,startingPoint.y-distance.y);y<=Mathf.Min(gridMap.GetLength(1)-1,startingPoint.y+distance.y);y++){
-                Tile currentTile = gridMap[x,y];
-                if(!(currentTile is obstacleTile))
-                    availableTiles.Add(currentTile);
+            List<Tile> reachableTiles = new List<Tile>();
+
+    // Początkowy tile
+    Tile startTile = gridMap[startingPoint.x, startingPoint.y];
+
+    // Kolejka do przechowywania pól do sprawdzenia
+    Queue<Tile> queue = new Queue<Tile>();
+    queue.Enqueue(startTile);
+
+    // Słownik przechowujący odległość od początkowego pola
+    Dictionary<Tile, int> distances = new Dictionary<Tile, int>();
+    distances[startTile] = 0;
+
+    while (queue.Count > 0)
+    {
+        Tile currentTile = queue.Dequeue();
+        int currentDistance = distances[currentTile];
+
+        // Sprawdź sąsiadów aktualnego pola
+        foreach (Tile neighbor in currentTile.getNeighbours())
+        {
+            if (neighbor == null || distances.ContainsKey(neighbor)) continue; // Pomijaj już odwiedzone pola
+
+            int neighborDistance = currentDistance + 1;
+
+            // Jeśli odległość do sąsiada w każdym wymiarze jest mniejsza lub równa maksymalnej odległości
+            if (Mathf.Abs(neighbor.getPosition().x - startTile.getPosition().x) <= distance.x &&
+                Mathf.Abs(neighbor.getPosition().y - startTile.getPosition().y) <= distance.y)
+            {
+                distances[neighbor] = neighborDistance;
+                queue.Enqueue(neighbor);
+                reachableTiles.Add(neighbor);
             }
         }
-        List<Tile> movableTiles = new List<Tile>();
-        foreach(Tile t in gridMap){
-            if(t==null)
-                continue;
-            List<Tile> path = FindShortestPath(gridMap[startingPoint.x,startingPoint.y],t,distance,availableTiles);
-            if(path.Count>1){
-                movableTiles.Add(t);
-            }
-        }
-        gridMap[startingPoint.x,startingPoint.y].isActive=false;
-        return movableTiles;
+    }
+
+    return reachableTiles;
     }
 
 //Główny skrypt zwracajacy liste <tile> z drogą

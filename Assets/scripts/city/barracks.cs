@@ -16,8 +16,8 @@ public class barracks : MonoBehaviour
 
     public GameObject collectBtn;
 
-    public unitSpawner.tier unitTier;
-    public unitSpawner.unitType unitType;
+    private unitSpawner.tier unitTier;
+    private unitSpawner.unitType unitType;
     //recruiment
     private string unitName;
     private int lastRecruitSoldiers;
@@ -34,11 +34,15 @@ public class barracks : MonoBehaviour
 
     void Start()
     {
+        unitSetUpBarracks unitSettings = gameObject.GetComponent<unitSetUpBarracks>();
+        unitTier = unitSettings.getUnitTier();
+        unitType = unitSettings.getUnitType();
         //cheat button
         cheatBtn.onClick.AddListener(cheat);
         //
         amount_slider.onValueChanged.AddListener(changeSlider);
         amount_input.onValueChanged.AddListener(changeInput);
+        amount_input.text="1";
         buyBtn.onClick.AddListener(buyUnit);
         // buyBtn.onClick.AddListener(buyUnitTier);
         collectBtn.GetComponent<Button>().onClick.AddListener(recruitUnitTier);
