@@ -81,30 +81,6 @@ public class turnbaseScript : MonoBehaviour
             turnQueue.Enqueue(nextUnit);
             setTurn();
         }
-        // if(turnQueue.Count==0){
-        //     round++;
-        // }
-        // else{
-        //     turn++;
-        // }
-        // // turnText.text = round.ToString();
-        // // Debug.Log($"state 2 {turn}");
-        // if(turn==0){
-        //     StartCoroutine(roundStart());
-        // }
-        // else{
-        // setTurn();
-        // }
-        // }
-        // else{
-        //     if(isWin){
-        //         Debug.Log($"Koniec gry player wins");
-        //         _gui.gameStateGameOver("Win");
-        //     }
-        //     else{
-        //         Debug.Log($"Koniec gry enemies win");
-        //         _gui.gameStateGameOver("Lose");
-        //     }
         }
         else{
             if(isWin){

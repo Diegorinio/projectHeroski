@@ -67,7 +67,7 @@ public static class GridMap
 
 //Główny skrypt zwracajacy liste <tile> z drogą
 //Args: tile startowy, tile docelowy, zasieg ruchu/wyszukiwania, szukanie po wykrytych Tile`
-public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vector2Int searchRadius, List<Tile> searchArea)
+public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vector2Int searchRadius)
 {
     // Lista do przechowywania odwiedzonych pól
     List<Tile> visited = new List<Tile>();
@@ -108,11 +108,11 @@ public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vecto
                 {
                     Tile neighbor = gridMap[neighborX, neighborY];
 
-                    // Sprawdz, czy sąsiadujące pole nie jest wodą lub przeszkodą, ale jeśli nie ma innej alternatywnej ścieżki to uwzględniamy te pola
-                    if (!(neighbor is waterTile || neighbor is obstacleTile) || (neighbor == targetTile && !parentMap.ContainsKey(neighbor)))
+                    // Sprawdź, czy sąsiadujące pole nie jest przeszkodą
+                    if (!(neighbor is obstacleTile))
                     {
                         float distance = Vector2Int.Distance(currentTile.getPosition(), neighbor.getPosition());
-                        if (distance <= 1 && !neighbor.isBusy() && searchArea.Contains(neighbor)) //zmiana o 1 bo suzkanie w x,y
+                        if (distance <= 1 && !neighbor.isBusy()) //zmiana o 1 bo szukanie w x,y
                         {
                             // Koszt dojazdu do sąsiada
                             float newCost = costSoFar[currentTile] + distance;
@@ -145,7 +145,6 @@ public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vecto
 
     return path;
 }
-
 private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector2Int searchRadius, List<Tile> searchArea)
 {
     // Kolejka dla pól do odwiedzenia
@@ -227,7 +226,7 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
     public static List<Tile> getPathToTile(GameObject source,GameObject target){
         Tile targetTile = target.GetComponent<Tile>();
         unitController sourceController = source.GetComponent<unitController>();
-        List<Tile> movePath = FindShortestPath(sourceController.getAssignedTile(),targetTile,sourceController.getUnitDistance(),sourceController.getDetector().getMovementTiles());
+        List<Tile> movePath = FindShortestPath(sourceController.getAssignedTile(),targetTile,sourceController.getUnitDistance());
         return movePath;
     }
 
@@ -237,7 +236,7 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
         unitController sourceController = source.GetComponent<unitController>();
         Tile targetTile = targetController.getAssignedTile();
         Tile neighbour = FindNeighborOfTarget(sourceController.getAssignedTile(),targetTile,sourceController.getBaseUnitDistance(),sourceController.getDetector().getMovementTiles());
-        List<Tile> movePath = FindShortestPath(sourceController.getAssignedTile(),neighbour,sourceController.getBaseUnitDistance(),sourceController.getDetector().getMovementTiles());
+        List<Tile> movePath = FindShortestPath(sourceController.getAssignedTile(),neighbour,sourceController.getBaseUnitDistance());
         return movePath;
     }
 

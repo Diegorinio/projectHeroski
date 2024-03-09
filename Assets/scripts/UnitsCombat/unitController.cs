@@ -80,7 +80,7 @@ public void setNormalDistance(){
 //Do rozstawiania na planszy na poczatku gry
 //Takze jako glowny skrypt do poruszania sie 
 
-public void characterMove(GameObject _newTransform,bool isStart){
+public void characterMove(GameObject _newTransform,bool isStart=false){
     if(assignedTile!=null){
         moveFromTile();
     }
@@ -110,29 +110,6 @@ public void characterMovePerTile(Tile _targetTile){
     Action a = ()=>disableClickable();
     StartCoroutine(characterMoveTroughList(movePath,a));
 }
-
-//Ruch do tile ale obok wybraneego Tile 
-// zastowanie do ruchu blisko przeciwnika
-// private IEnumerator characterMoveTroughList(List<Tile> tiles){
-//     if(tiles.Count>0){
-//     Tile current_tile=tiles[0];
-//     for(int x=1;x<tiles.Count;x++){
-//         characterMove(tiles[x].gameObject,true);
-//         if(tiles[x] is waterTile){
-//             current_tile=tiles[x];
-//             break;
-//         }
-//         else{
-//             current_tile=tiles[x];
-//         }
-//         yield return new WaitForSeconds(0.2f);
-//     }
-
-//     current_tile.makeBusy();
-//     current_tile.castTileBehaviour();
-//     // disableClickable();
-//     }
-// }
 
 //Z mozliwoscia odpalenia eventu na koncu
 private IEnumerator characterMoveTroughList(List<Tile> tiles,Action lastEvent){

@@ -60,19 +60,19 @@ public class otherGridManager : MonoBehaviour
                         mapTiles[x-1,y].AddComponent<obstacleTile>();
                     }
                 }
-                else if(rnd>=60&&rnd<69){
-                    mapTiles[x,y].AddComponent<waterTile>();
-                    int rndWaterSize=Random.Range(1,3);
-                    for(int i=0;i<rndWaterSize;i++){
-                        for(int j=0;j<rndWaterSize;j++){
-                            if(x+i<width&&y+j<height){
-                                if(mapTiles[x+i,y+j].GetComponent<waterTile>()==null&&mapTiles[x+i,y+j].GetComponent<Tile>()==null){
-                                    mapTiles[x+i,y+j].AddComponent<waterTile>();
-                                }
-                            }
-                        }
-                    }
-                }
+                // else if(rnd>=60&&rnd<69){
+                //     mapTiles[x,y].AddComponent<waterTile>();
+                //     int rndWaterSize=Random.Range(1,3);
+                //     for(int i=0;i<rndWaterSize;i++){
+                //         for(int j=0;j<rndWaterSize;j++){
+                //             if(x+i<width&&y+j<height){
+                //                 if(mapTiles[x+i,y+j].GetComponent<waterTile>()==null&&mapTiles[x+i,y+j].GetComponent<Tile>()==null){
+                //                     mapTiles[x+i,y+j].AddComponent<waterTile>();
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
                 else{
                     mapTiles[x,y].AddComponent<grassTile>();
                 }
