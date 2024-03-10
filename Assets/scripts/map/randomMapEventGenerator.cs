@@ -10,6 +10,7 @@ public class randomMapEventGenerator : MonoBehaviour
 {
     //Lista przeciwnikow
     private List<GameObject> Enemies = new List<GameObject>();
+    private GameObject enemyHero;
 
     //Ilosc przeciwnikow
     int amountOfEventUnits=0;
@@ -28,6 +29,8 @@ public class randomMapEventGenerator : MonoBehaviour
         newEnemy.transform.SetParent(mainEnemiesUnit.Instance.gameObject.transform);
         newEnemy.transform.localPosition=Vector3.zero;
         Enemies.Add(newEnemy);
+        enemyHero = heroSpawner.spawnHeroGameObject(0,heroSpawner.HeroController.Enemy);
+
         }
     }
 
@@ -40,6 +43,7 @@ public class randomMapEventGenerator : MonoBehaviour
             Unit _unit = e.GetComponent<Unit>();
             mainEnemiesUnit.Instance.addUnitsToTeam(_unit);
         }
+        mainEnemiesUnit.Instance.assignHeroToTeam(enemyHero.GetComponent<Hero>());
         SceneManager.LoadSceneAsync(biom);
         }
         else{
