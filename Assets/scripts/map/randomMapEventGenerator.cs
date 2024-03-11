@@ -18,6 +18,7 @@ public class randomMapEventGenerator : MonoBehaviour
     //Na starcie ustaw ilosc typow jednostek przeciwnika od 1 do 5
     void Start(){
         amountOfEventUnits = Random.Range(1,5);
+        gameObject.AddComponent<LoadingScene>();
     }
 
     //Ustaw jednostki
@@ -44,10 +45,22 @@ public class randomMapEventGenerator : MonoBehaviour
             mainEnemiesUnit.Instance.addUnitsToTeam(_unit);
         }
         mainEnemiesUnit.Instance.assignHeroToTeam(enemyHero.GetComponent<Hero>());
-        SceneManager.LoadSceneAsync(biom);
+        // SceneManager.LoadSceneAsync(biom);
+        LoadingScene.LoadScene(3);
+
         }
         else{
             
         }
     }
+
+    // void PrepareUnits(){
+    //     setEventUnits();
+    //     Debug.Log($"Random event generator!");
+    //     foreach(var e in Enemies){
+    //         Unit _unit = e.GetComponent<Unit>();
+    //         mainEnemiesUnit.Instance.addUnitsToTeam(_unit);
+    //     }
+    //     mainEnemiesUnit.Instance.assignHeroToTeam(enemyHero.GetComponent<Hero>());
+    // }
 }
