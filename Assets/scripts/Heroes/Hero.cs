@@ -53,6 +53,35 @@ public class Hero : MonoBehaviour
             secondSpell.castSpellGlobal(getTargetTag());
         }
     }
+    
+
+    //Cast spela na cel bez wyboru
+
+    public void castFirstSpell(GameObject target){
+        if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Target){
+            // firstSpell.castSpell()
+            // battleManager.isSelectingTarget=true;
+            // StartCoroutine(waitUntilTargetIsSelected());
+            firstSpell.castSpell(target);
+
+        }
+        else if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Global){
+            firstSpell.castSpellGlobal(getTargetTag());
+        }
+    }
+    public void castSecondSpell(GameObject target){
+        if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Target){
+            // battleManager.isSelectingTarget=true;
+            // StartCoroutine(waitUntilTargetIsSelected());
+            secondSpell.castSpell(target);
+
+        }
+        else if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Global){
+            secondSpell.castSpellGlobal(getTargetTag());
+        }
+    }
+
+
     public void thirdSpell(){
         Debug.Log($"3 spell");
     }

@@ -15,7 +15,7 @@ MonoBehaviour:
   spellName: Zew dupy
   SpellType: 0
   SpellRange: 0
-  DamageType: 1
+  DamageType: 0
   spellCastPercent: 99
   spellCastFixed: 50
   HealType: 0

@@ -12,6 +12,8 @@ public class turnbaseScript : MonoBehaviour
     //Wybrany statyczny obiekt dostepny do wszystkich klas
     public static GameObject selectedGameObject;
 
+    public GameObject _testSelectedGameObject;
+
 
     //sprawdzenei czy obiekt jest wybrany
     public static bool isSelected;
@@ -101,11 +103,12 @@ public class turnbaseScript : MonoBehaviour
     public void setTurn(){
             if(!selectedGameObject)
                 selectedGameObject=turnQueue.Peek();
-            if(IsHeroTurn())
+            if(IsHeroTurn()){
                 BattleManager.spellButtonsEnable(true);
-            else
+            }
+            else{
                 BattleManager.spellButtonsEnable(false);
-
+            }
             if(!IsHeroTurn()){
                 checkGameState();
             }
@@ -176,16 +179,18 @@ public class turnbaseScript : MonoBehaviour
     }
 
     IEnumerator waitForNextUnit(float timer){
-        // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
         yield return new WaitForSeconds(timer);
         Debug.Log($"Aktualna tura {turn} a rozmiar listy {quequeHeroes.Count}");
-        // quequeHeroes[turn].GetComponent<unitController>().selectUnit();
         checkGameState();
         if(isFinished){
             nextTurn();
         }
         else{
             turnQueue.Peek().GetComponent<unitController>().selectUnit();
+            if(!IsHeroTurn()){
+            EnemyHeroBehaviour.Instance.CastRandomSpell();
+            EnemyHeroBehaviour.Instance.setIsEnemyCasted(false);
+            }
         }
     }
 }

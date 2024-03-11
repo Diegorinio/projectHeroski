@@ -6,20 +6,31 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 public class battleManager: MonoBehaviour
 {
-    public static GameObject battleAnimPanel;
+
+    //Dla Gracza
+    // public static GameObject battleAnimPanel;
     public static bool isSelectingTarget;
     public static GameObject selectedTargetForSpell;
-    public GameObject _battleAnimPanel;
-    public Image playerSpriteTmp;
-    public TextMeshProUGUI playerNameTmp;
+    public Image playerHeroSprite;
+    public TextMeshProUGUI playerHeroNameText;
     public Button[] spellButtons;
+
+
+    //Dla przeciwnika
+    public Image enemyHeroSprite;
+    public TextMeshProUGUI enemyHeroNameText;
     // Start is called before the first frame update
     void Start()
     {
-        battleAnimPanel = _battleAnimPanel;
+        // battleAnimPanel = _battleAnimPanel;
+        SetHeroForPlayer();
+        SetHeroForEnemy();
+    }
+
+    private void SetHeroForPlayer(){
         Hero _assignedPlayerHero = mainPlayerUnit.Instance.getSelectedHero();
-        playerSpriteTmp.sprite = _assignedPlayerHero.getHeroSprite();
-        playerNameTmp.text = _assignedPlayerHero.getHeroName();
+        playerHeroSprite.sprite = _assignedPlayerHero.getHeroSprite();
+        playerHeroNameText.text = _assignedPlayerHero.getHeroName();
         Sprite[] spellIcons = _assignedPlayerHero.getSpellImages();
         spellButtons[0].GetComponent<Image>().sprite = spellIcons[0];
         // spellButtons[0].onClick.AddListener(_assignedPlayerHero.castFirstSpell);
@@ -28,6 +39,12 @@ public class battleManager: MonoBehaviour
         spellButtons[1].GetComponent<Image>().sprite = spellIcons[1];
         // spellButtons[1].onClick.AddListener(_assignedPlayerHero.castSecondSpell);
         spellButtons[1].onClick.AddListener(()=>{spellButtonEnable(1,false);_assignedPlayerHero.castSecondSpell();});
+    }
+
+    private void SetHeroForEnemy(){
+        Hero _assignedEnemyHero = mainEnemiesUnit.Instance.getSelectedHero();
+        enemyHeroSprite.sprite = _assignedEnemyHero.getHeroSprite();
+        enemyHeroNameText.text = _assignedEnemyHero.getHeroName();
     }
 
     public void spellButtonsEnable(bool state){
