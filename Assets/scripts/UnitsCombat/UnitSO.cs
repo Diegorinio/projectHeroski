@@ -14,4 +14,10 @@ public class UnitSO :ScriptableObject
     public int unitBaseDamage;
 
     public int gridDistanceX,gridDistanceY;
+
+    public Sprite[] attackAnimationSprites;
+
+    public Sprite[] getAttackSprites(){
+        return attackAnimationSprites;
+    }
 }

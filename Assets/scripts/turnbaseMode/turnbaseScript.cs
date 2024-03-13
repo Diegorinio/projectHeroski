@@ -96,7 +96,12 @@ public class turnbaseScript : MonoBehaviour
 
     //Sprawdz czy dana jednostka nalezy do gracza
     public static bool IsHeroTurn(){
+        if(selectedGameObject!=null){
         return selectedGameObject.CompareTag("Player");
+        }
+        else{
+            return false;
+        }
     }
 
     //Ustawia ture, odpala metode selectUnit z kontrolera danej jednostki
@@ -168,6 +173,14 @@ public class turnbaseScript : MonoBehaviour
             isFinished=true;
             isWin=true;
         }
+        if(isFinished){
+        if(isWin){
+                _gui.gameStateGameOver("Win");
+            }
+            else{
+                _gui.gameStateGameOver("Lose");
+            }
+        }
     }
 
     //Po opusczzeniu walki dezaktywuje jednostki gracza( glownie zeby nie byly widoczne)
@@ -188,8 +201,11 @@ public class turnbaseScript : MonoBehaviour
         else{
             turnQueue.Peek().GetComponent<unitController>().selectUnit();
             if(!IsHeroTurn()){
+                int rnd = Random.Range(0,6);
+            if(rnd>=6){
             EnemyHeroBehaviour.Instance.CastRandomSpell();
             EnemyHeroBehaviour.Instance.setIsEnemyCasted(false);
+            }
             }
         }
     }

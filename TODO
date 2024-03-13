@@ -9,22 +9,22 @@
     #remove resources folder?
     #change some method and script names
     #deal damage animation is playing after dealing damage and setting new turn //kidna fixed?
-    #pathfinding works but not good
+    #pathfinding works but not good//fixed by removing water
     #Tile activation is sometimes fucked up
-    #enemyAI is not enabling sometimes
-    #game state is detected only after moveement of last unit
-    #unit dont move when clicked Tile in movement range but without possible path
+    #enemyAI is not enabling sometimes / ?? sometimes idk why
+    #game state is detected only after moveement of last unit //fixed
+    #unit dont move when clicked Tile in movement range but without possible path / ?? sometimes idk maybe in gridMap scrips for range?
     #tavern panel is showing collect even without launched timer
     #tavern tier changer is too fast or too slow ( random or depend on cpu)
-    #Cannot exit map
-    #can start level without hero selected
-    #Random map generator sometimes generate spawn point which is blocking any path so unit is stuck
+    #Cannot exit map //solved
+    #can start level without hero selected // solved
+    #Random map generator sometimes generate spawn point which is blocking any path so unit is stuck // ?? sometimes todo: make some logic to tiles generator
     #Enemy units cannot find path when blocked
     #REsources panel is rolling down when started
     #Resources panel sometimes hide over screen
-    #After buying units and coming back to collect collected units are set to 0 ( value is set to slider value)
-    # There is no difference between player units and enemy Units
-    # After defeating all enemies game is not over until someone makes move
+    #After buying units and coming back to collect collected units are set to 0 ( value is set to slider value) // solved?
+    # There is no difference between player units and enemy Units // added "card" background for player and enemy units
+    # After defeating all enemies game is not over until someone makes move //solved but based on tests sometimes appears when its last unit?
     # After killing unit with spells game is not over until someone makes move
     # After enemy turn activated Tiles fo enemy don't dissapear
 

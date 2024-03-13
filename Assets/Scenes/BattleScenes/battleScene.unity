@@ -2682,6 +2682,7 @@ MonoBehaviour:
   spellButtons:
   - {fileID: 24778621}
   - {fileID: 1680847554}
+  _battleAnimPanel: {fileID: 1301617812}
   enemyHeroSprite: {fileID: 1227729250}
   enemyHeroNameText: {fileID: 728546707}
 --- !u!114 &1195370496
@@ -3150,7 +3151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackerImageSpace: {fileID: 2135589882}
   victimImageSpace: {fileID: 607968298}
-  attackerSourceImage: {fileID: 0}
   victimSourceImage: {fileID: 0}
   m_SpriteArray:
   - {fileID: -192672540, guid: 589452b806a0458489a85953efa5bb99, type: 3}

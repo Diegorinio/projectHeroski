@@ -8,8 +8,6 @@ public class SpiteAnimator : MonoBehaviour
     public Image attackerImageSpace;
     public Image victimImageSpace;
     [SerializeField]
-    private Image attackerSourceImage;
-    [SerializeField]
     private Image victimSourceImage;
 
     public Sprite[] m_SpriteArray;
@@ -56,9 +54,10 @@ public class SpiteAnimator : MonoBehaviour
         victimSourceImage = img;
         victimImageSpace.sprite=img.sprite;
     }
-    private void setAttackerImage(Image img){
-        attackerSourceImage = img;
-        attackerImageSpace.sprite = img.sprite;
+    private void setAttackerImageSequence(Sprite[] img){
+        for(int x=0;x<img.Length;x++){
+            m_SpriteArray[x]=img[x];
+        }
     }
     void Start(){
         // Debug.Log("animation play");
@@ -69,8 +68,8 @@ public class SpiteAnimator : MonoBehaviour
         damageText = dmg;
     }
 
-    public void setAnimator(Image attackerImage,Image victimImage,int dmg){
-        setAttackerImage(attackerImage);
+    public void setAnimator(Sprite[] attackerImage,Image victimImage,int dmg){
+        setAttackerImageSequence(attackerImage);
         setVictimImage(victimImage);
         setDamageText(dmg);
     }

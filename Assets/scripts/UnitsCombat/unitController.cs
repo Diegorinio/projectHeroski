@@ -126,7 +126,7 @@ private IEnumerator characterMoveTroughList(List<Tile> tiles,Action lastEvent){
         }
         yield return new WaitForSeconds(0.1f);
     }
-    lastEvent();
+    lastEvent?.Invoke();
     current_tile.makeBusy();
     current_tile.castTileBehaviour();
     // lastEvent();
@@ -143,14 +143,14 @@ public void playerHitSelectedTarget(GameObject target){
         if(enemyTarget==target){
             if(_unit is IDistance){
                 _unit.dealDamageTo(target);
-                disableClickable();
+                // disableClickable();
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
             Action a = ()=>_unit.dealDamageTo(target);
             StartCoroutine(characterMoveTroughList(movePath,a));
-            disableClickable();
-            // _unit.dealDamageTo(target);
+            // disableClickable();
+            _unit.dealDamageTo(target);
             }
         }
         else if(enemyTarget==null || enemyTarget!=target){
@@ -170,14 +170,14 @@ public void playerHitSelectedTarget(GameObject target){
 public void goToNearestTileAndDealDamage(GameObject target){
     if(_unit is IDistance){
                 _unit.dealDamageTo(target);
-                disableClickable();
+                // disableClickable();
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
             Action a  =()=>_unit.dealDamageTo(target);
             StartCoroutine(characterMoveTroughList(movePath,a));
             // _unit.dealDamageTo(target);
-            disableClickable();
+            // disableClickable();
             }
 }
 

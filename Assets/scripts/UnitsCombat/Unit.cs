@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 // Skrypt okreslajacy jednostke
 public class Unit : MonoBehaviour
@@ -19,6 +20,7 @@ public class Unit : MonoBehaviour
     //do usuniecia
     protected Vector2Int gridAttackDistance;
     protected unitGUI _gui{get;set;}
+    protected UnitSO _SO;
 
     // public virtual void Awake(){}
     public void unitInitialize(int _tier,UnitSO _unit){
@@ -29,11 +31,16 @@ public class Unit : MonoBehaviour
         gridMoveDistance = new Vector2Int(_unit.gridDistanceX,_unit.gridDistanceY);
         gridAttackDistance = new Vector2Int(2,4);
         unitSprite = _unit.unitSprite;
+        _SO=_unit;
     }
     // Start gierze UniGUI ktore wyswietla ilosc jednostek
     void Start()
     {
         _gui=gameObject.GetComponent<unitGUI>();
+    }
+
+    public UnitSO getUnitSO(){
+        return _SO;
     }
 
     public Sprite getUnitSprite(){
@@ -89,8 +96,6 @@ public class Unit : MonoBehaviour
     //Do walki jednostek
     public virtual void getHit(int dmg,GameObject attacker){
         int lost = (int)(dmg/unitBaseHealth);
-        // _gui.displayGuiEvent($"-{lost.ToString()}");
-        // _gui.displayAnimEvent(lost,attacker,gameObject);
         _gui.displayGuiEvent(lost.ToString());
         lostUnits(lost);
     }
@@ -114,7 +119,8 @@ public class Unit : MonoBehaviour
     //Metoda obliczajac ilosc straconych jednostek, jezeli po straceniu będzie <0 to usun jednostke z gry
     private void lostUnits(int amount){
         if(unitAmount-amount<=0){
-            GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
+            turnbaseScript TBS = GameObject.FindFirstObjectByType<turnbaseScript>();
+            TBS.removeFromQueque(gameObject);
             gameObject.SetActive(false);
             if(gameObject.CompareTag("Player")){
                 mainPlayerUnit.Instance.removeFromUnits(this);
@@ -123,6 +129,7 @@ public class Unit : MonoBehaviour
                 mainEnemiesUnit.Instance.removeFromUnits(this);
             }
             gameObject.GetComponent<unitController>().moveFromTile();
+            TBS.checkGameState();
             Destroy(gameObject);
         }
         else{
@@ -148,11 +155,19 @@ public class Unit : MonoBehaviour
     //Metoda zadajaca obrazenia do danej jednostki
     // Brany jest gameObject reprezentujacy jednostke i zadaje obrazenia przez komponent <Unit>
     public virtual void dealDamageTo(GameObject _target){
+
+        
         int dmg = getTotalDamage();
-        _target.GetComponent<Unit>().getHit(dmg,gameObject);
-        Unit atakujacy = this;
-        Unit ofiara = _target.GetComponent<Unit>();
-        Debug.Log($"hit {dmg} to {_target.name}");
+        //akcja na zakonczenie animacji 
+        Action AnimationFinish = ()=>{
+            _target.GetComponent<Unit>().getHit(dmg,gameObject);
+            gameObject.GetComponent<unitController>().disableClickable();
+        };
+        _gui.displayAnimEvent(dmg,gameObject,_target,AnimationFinish);
+        // _target.GetComponent<Unit>().getHit(dmg,gameObject);
+        // Unit atakujacy = this;
+        // Unit ofiara = _target.GetComponent<Unit>();
+        // Debug.Log($"hit {dmg} to {_target.name}");
     }
     //Tutaj mozna wwalic obliczanie damage
 }

@@ -15,6 +15,9 @@ public class battleManager: MonoBehaviour
     public TextMeshProUGUI playerHeroNameText;
     public Button[] spellButtons;
 
+    public static GameObject battleAnimPanel;
+    public GameObject _battleAnimPanel;
+
 
     //Dla przeciwnika
     public Image enemyHeroSprite;
@@ -22,7 +25,7 @@ public class battleManager: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // battleAnimPanel = _battleAnimPanel;
+        battleAnimPanel = _battleAnimPanel;
         SetHeroForPlayer();
         SetHeroForEnemy();
     }
