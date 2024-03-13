@@ -150,7 +150,7 @@ public void playerHitSelectedTarget(GameObject target){
             Action a = ()=>_unit.dealDamageTo(target);
             StartCoroutine(characterMoveTroughList(movePath,a));
             // disableClickable();
-            _unit.dealDamageTo(target);
+            // _unit.dealDamageTo(target);
             }
         }
         else if(enemyTarget==null || enemyTarget!=target){
