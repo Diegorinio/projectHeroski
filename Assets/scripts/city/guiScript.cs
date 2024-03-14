@@ -11,46 +11,14 @@ using UnityEngine.UI;
 // Zmiana lokalizacji panelu
 public class guiScript : MonoBehaviour
 {
-    List<Unit> unitlist;
-    public GameObject unitListElementTemplate;
-    GameObject playerTemp;
-    [SerializeField]
-    private List<GameObject> imagesList = new List<GameObject>();
-
-    public void Start(){
-    }
-    public void showUnits(){
-        foreach(var u in unitlist){
-            GameObject newImage = Instantiate(unitListElementTemplate,gameObject.transform.position,Quaternion.identity);
-            newImage.transform.SetParent(playerTemp.transform);
-            newImage.GetComponent<Image>().sprite = u.getUnitSprite();
-            newImage.GetComponent<RectTransform>().localScale = Vector3.one;
-            imagesList.Add(newImage);
+    public GameObject ImagePrefab;
+    public List<GameObject> displayedUnitsList = new List<GameObject>();
+    public void OnEnable(){
+        List<Unit> unitList = mainPlayerUnit.Instance.getUnitListByTier(1);
+        foreach(var unit in unitList){
+            GameObject tempImageContainer = Instantiate(ImagePrefab,ImagePrefab.transform.position,Quaternion.identity);
+            displayedUnitsList.Add(tempImageContainer);
         }
-    }
 
-    void OnEnable(){
-        if(imagesList.Count>0){
-            foreach(GameObject image in imagesList){
-            Destroy(image.transform.parent);
-        }
-        imagesList.Clear();
-        }
-        playerTemp = new GameObject("temporarary container");
-        playerTemp.AddComponent<RectTransform>();
-        playerTemp.AddComponent<GridLayoutGroup>();
-        playerTemp.transform.SetParent(gameObject.transform);
-        GridLayoutGroup _grid = playerTemp.GetComponent<GridLayoutGroup>();
-        _grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        _grid.constraintCount = 7;
-        _grid.spacing = new Vector2(30,60);
-        playerTemp.GetComponent<RectTransform>().localScale = Vector3.one;
-        // playerTemp.GetComponent
-        unitlist = mainPlayerUnit.Instance.getUnitsList();
-        showUnits();
-    }
-
-    public void Update(){
-        // showUnits();
     }
 }

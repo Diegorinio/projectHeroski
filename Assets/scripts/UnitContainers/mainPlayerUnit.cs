@@ -50,6 +50,10 @@ public class mainPlayerUnit : MonoBehaviour
     }
 
     public void assignHeroToTeam(Hero hero){
+        if(selectedHero!=null){
+            Destroy(selecteHeroG);
+            selectedHero=null;
+        }
         selectedHero = hero;
         selecteHeroG=hero.gameObject;
         selecteHeroG.transform.SetParent(gameObject.transform);
@@ -115,6 +119,21 @@ public class mainPlayerUnit : MonoBehaviour
         }
         return allUnits;
     }
+
+    public List<Unit> getUnitListByTier(int tier){
+        List<Unit> unitsList = getUnitsList();
+        List<Unit> foundUnits = new List<Unit>();
+        foreach(var _unit in unitsList){
+            if(_unit.getUnitTier()==tier){
+                foundUnits.Add(_unit);
+            }
+        }
+        return foundUnits;
+    }
+
+    public Dictionary<int,List<Unit>> getUnitsDictionary(){
+        return playerUnits;
+    } 
 
     //Usun jednostke z druzyny instancji
     public void removeFromUnits(Unit _unit){
