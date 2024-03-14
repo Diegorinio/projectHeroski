@@ -53,7 +53,7 @@ public class barracks : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
+        print((int)unitTier);
         if (UnitToReadyTime >= DateTime.Now && !isRecrutable)
         {
             amount_slider.interactable = false;
@@ -93,10 +93,10 @@ public class barracks : MonoBehaviour
     }
 
     private void buyUnit(){
-
+        if (amount_slider.value <= 0) return;
         DateTime UnitBoughtTime = DateTime.Now;
 
-        UnitToReadyTime = UnitBoughtTime.AddSeconds((int)amount_slider.value*2);
+        UnitToReadyTime = UnitBoughtTime.AddSeconds((int)amount_slider.value*0.5);
         lastRecruitSoldiers = (int)amount_slider.value;
         isRecrutable = false;
         isFirstTime = true;
@@ -105,7 +105,7 @@ public class barracks : MonoBehaviour
     }
 
     private void buyUnitTier(){
-        Debug.Log("Kupienie jednostek CHCHCHCHHCHCUI!!!1");
+        //za surowce kupujesz i golda  koszt podstawowy plus tier*modyfikator
         GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitTier,unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
@@ -120,6 +120,7 @@ public class barracks : MonoBehaviour
             mainPlayerUnit.Instance.addUnitsToTeam(_unit);
             Destroy(rndUnit);
         }
+
         isRecrutable=true;
         amount_slider.interactable = true;
         amount_input.interactable = true;
