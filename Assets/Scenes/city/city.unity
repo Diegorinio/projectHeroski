@@ -11332,7 +11332,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -339, y: -977}
+  m_AnchoredPosition: {x: -339, y: -943}
   m_SizeDelta: {x: 119.2, y: 67.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &841516001
@@ -22556,6 +22556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTeam: []
+  selectedEnemyHeroG: {fileID: 0}
 --- !u!114 &1899607863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24739,7 +24740,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 295, y: -979}
+  m_AnchoredPosition: {x: 295, y: -945}
   m_SizeDelta: {x: 146.8, y: 152.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2110626101

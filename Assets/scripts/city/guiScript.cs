@@ -23,7 +23,7 @@ public class guiScript : MonoBehaviour
         foreach(var u in unitlist){
             GameObject newImage = Instantiate(unitListElementTemplate,gameObject.transform.position,Quaternion.identity);
             newImage.transform.SetParent(playerTemp.transform);
-            newImage.GetComponent<Image>().sprite = u.getUnitSprite();
+            newImage.GetComponent<Image>().sprite = u.unitSprite;
             newImage.GetComponent<RectTransform>().localScale = Vector3.one;
             imagesList.Add(newImage);
         }

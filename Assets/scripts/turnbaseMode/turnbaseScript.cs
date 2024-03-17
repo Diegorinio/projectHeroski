@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,6 +52,7 @@ public class turnbaseScript : MonoBehaviour
        quequeHeroes.AddRange(findPlayer);
         GameObject[] findEnemies=mainEnemiesUnit.Instance.getUnitsAsGameObject();
         quequeHeroes.AddRange(findEnemies);
+        quequeHeroes = quequeHeroes.OrderBy(x=>Guid.NewGuid()).ToList();
         BattleManager = gameObject.GetComponent<battleManager>();
 
     }
@@ -117,6 +119,8 @@ public class turnbaseScript : MonoBehaviour
             if(!IsHeroTurn()){
                 checkGameState();
             }
+            _gui.setUpTurnPanel(turnQueue.ToList());
+            Debug.Log(turnQueue.Peek().transform.name);
             StartCoroutine(waitForNextUnit(0.5f));
     }
 
@@ -201,12 +205,16 @@ public class turnbaseScript : MonoBehaviour
         else{
             turnQueue.Peek().GetComponent<unitController>().selectUnit();
             if(!IsHeroTurn()){
-                int rnd = Random.Range(0,6);
+                int rnd = UnityEngine.Random.Range(0,6);
             if(rnd>=6){
             EnemyHeroBehaviour.Instance.CastRandomSpell();
             EnemyHeroBehaviour.Instance.setIsEnemyCasted(false);
             }
             }
         }
+    }
+
+    IEnumerator startingBattleScreen(float timer){
+        yield return new WaitForSeconds(timer);
     }
 }

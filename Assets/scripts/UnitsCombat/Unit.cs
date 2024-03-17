@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 // Skrypt okreslajacy jednostke
 public class Unit : MonoBehaviour
@@ -11,7 +12,7 @@ public class Unit : MonoBehaviour
     [SerializeField]
     public string unitName{get;set;}
     [SerializeField]
-    public Sprite unitSprite;
+    public Sprite unitSprite{get;set;}
     [SerializeField]
     private int unitAmount;
     protected int unitBaseHealth;
@@ -42,10 +43,6 @@ public class Unit : MonoBehaviour
     public UnitSO getUnitSO(){
         return _SO;
     }
-
-    public Sprite getUnitSprite(){
-        return unitSprite;
-    }
     public Image getUnitImage(){
         return transform.Find("hero_canvas").transform.Find("unit_sprite").GetComponent<Image>();
     }
@@ -73,10 +70,6 @@ public class Unit : MonoBehaviour
     //Dodaj jednostki do aktualnej ilosci jednostek
     public void addUnits(int amount){
         unitAmount+=amount;
-    }
-    //wiadomo
-    public void setUnitName(string name){
-        unitName=name;
     }
     //Zwroc damage ktory zadaje przez ilosc jednostek * atak per jednostka
     public int getTotalDamage(){
@@ -119,9 +112,19 @@ public class Unit : MonoBehaviour
     //Metoda obliczajac ilosc straconych jednostek, jezeli po straceniu będzie <0 to usun jednostke z gry
     private void lostUnits(int amount){
         if(unitAmount-amount<=0){
+            UnitDestroyed();
+        }
+        else{
+            unitAmount-=amount;
+            Debug.Log($"Stracono {amount} jednostek");
+        }
+    }
+
+    private void UnitDestroyed(){
             turnbaseScript TBS = GameObject.FindFirstObjectByType<turnbaseScript>();
             TBS.removeFromQueque(gameObject);
-            gameObject.SetActive(false);
+            _gui.setUnitTextVal("");
+            // gameObject.SetActive(false);
             if(gameObject.CompareTag("Player")){
                 mainPlayerUnit.Instance.removeFromUnits(this);
             }
@@ -130,14 +133,24 @@ public class Unit : MonoBehaviour
             }
             gameObject.GetComponent<unitController>().moveFromTile();
             TBS.checkGameState();
-            Destroy(gameObject);
-        }
-        else{
-            unitAmount-=amount;
-            Debug.Log($"Stracono {amount} jednostek");
-        }
+            RemoveComponents();
+            // Destroy(gameObject);
+
     }
 
+    private void RemoveComponents(){
+        switch(gameObject.transform.tag){
+            case "Player":
+            unitSpawner.removeController(unitSpawner.controllers.Player,gameObject);
+            break;
+            case "Enemy":
+            unitSpawner.removeController(unitSpawner.controllers.Enemy,gameObject);
+            break;
+        }
+        Destroy(gameObject.GetComponent<unitController>());
+        // Destroy(gameObject.GetComponent<unitGUI>());
+        Destroy(gameObject.GetComponent<Unit>());
+    }
     //Leczenie jednostki przez dodawanie na podstawie stalej 
     public virtual void healUnit(int heal){
         int toHeal = (int)(heal/unitBaseHealth);
@@ -164,10 +177,6 @@ public class Unit : MonoBehaviour
             gameObject.GetComponent<unitController>().disableClickable();
         };
         _gui.displayAnimEvent(dmg,gameObject,_target,AnimationFinish);
-        // _target.GetComponent<Unit>().getHit(dmg,gameObject);
-        // Unit atakujacy = this;
-        // Unit ofiara = _target.GetComponent<Unit>();
-        // Debug.Log($"hit {dmg} to {_target.name}");
     }
     //Tutaj mozna wwalic obliczanie damage
 }

@@ -13,7 +13,6 @@ public class unitGUI : MonoBehaviour
     private  Text eventText;
     private Text unitAmountText;
     private Image unitImageSprite;
-    bool isMoveFinished=false;
     // Start is called before the first frame update
     public virtual void Awake()
     {
@@ -22,7 +21,11 @@ public class unitGUI : MonoBehaviour
         unitAmountText = heroCanvas.transform.Find("unitAmountText").GetComponent<Text>();
         eventText=heroCanvas.transform.Find("eventText").GetComponent<Text>();
         unitImageSprite = heroCanvas.transform.Find("unit_sprite").GetComponent<Image>();
-        unitImageSprite.sprite = _unit.getUnitSprite();
+        unitImageSprite.sprite = _unit.unitSprite;
+    }
+
+    public void setUnitTextVal(string txt){
+        unitAmountText.text = txt;
     }
 
     //Pokazuje ilosc jednostek, mozna to pozniej zmienic na metode wywolujaca zmiane ale mi sie nie chce

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,9 +23,13 @@ public class turnBaseScriptGUI : MonoBehaviour
     // czas przez ktory panel startu rundy jest widoczny
     public float panelShowTime;
 
+    public GameObject turnQueuePanel;
+    private List<GameObject> turnQueueElements;
+
     void Awake(){
         roundTextGameUI=GameObject.Find("roundText").GetComponent<Text>();
         roundTextPanelUI=roundStartPanel.transform.Find("roundTextPanel").GetComponent<Text>();
+        turnQueueElements = new List<GameObject>();
     }
 
     //Ustaw wartosci rund
@@ -34,6 +40,25 @@ public class turnBaseScriptGUI : MonoBehaviour
     //Pokaz panel
     public void showPanel(bool state){
         roundStartPanel.SetActive(state);
+    }
+
+    public void setUpTurnPanel(List<GameObject> unitsList){
+        if(turnQueueElements.Count()>0){
+            clearTurnQuequeList();
+        }
+        for(int id=0;id<unitsList.Count;id++){
+            GameObject _unitTurnImage = new GameObject($"TurnElemnt {id}");
+            _unitTurnImage.AddComponent<Image>().sprite = unitsList[id].GetComponent<Unit>().getUnitImage().sprite;
+            _unitTurnImage.transform.SetParent(turnQueuePanel.transform);
+            _unitTurnImage.GetComponent<RectTransform>().localScale = Vector3.one;
+            turnQueueElements.Add(_unitTurnImage);
+        }
+    }
+
+    private void clearTurnQuequeList(){
+        for(int id=0;id<turnQueueElements.Count();id++){
+            Destroy(turnQueueElements[id]);
+        }
     }
 
     

@@ -18,7 +18,7 @@ MonoBehaviour:
   spellIcons:
   - {fileID: 21300000, guid: 1a31eb1e9a673ae3ca7bc5d464270d8b, type: 3}
   - {fileID: 21300000, guid: c236b5c7a61fa1548ba479b2674cf18a, type: 3}
-  entryDialog: test111
-  defeatDialog: test222
+  entryDialog: Masz jakis tyton?
+  defeatDialog: Bagienne ziele
   spellOne: {fileID: 11400000, guid: 0f7935fc74d2e4a74867258485082c9c, type: 2}
   spellTwo: {fileID: 11400000, guid: fc7c386fe41ab182e89c250e5ebd59e6, type: 2}
