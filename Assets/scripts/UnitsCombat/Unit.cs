@@ -133,8 +133,8 @@ public class Unit : MonoBehaviour
             }
             gameObject.GetComponent<unitController>().moveFromTile();
             TBS.checkGameState();
-            RemoveComponents();
-            // Destroy(gameObject);
+            // RemoveComponents();
+            Destroy(gameObject);
 
     }
 

@@ -22,14 +22,13 @@ public class turnBaseScriptGUI : MonoBehaviour
     // [SerializeField]
     // czas przez ktory panel startu rundy jest widoczny
     public float panelShowTime;
-
-    public GameObject turnQueuePanel;
-    private List<GameObject> turnQueueElements;
+    public battleMangerUI battleUI;
 
     void Awake(){
         roundTextGameUI=GameObject.Find("roundText").GetComponent<Text>();
         roundTextPanelUI=roundStartPanel.transform.Find("roundTextPanel").GetComponent<Text>();
-        turnQueueElements = new List<GameObject>();
+        battleUI = GetComponent<battleMangerUI>();
+        // turnQueueElements = new List<GameObject>();
     }
 
     //Ustaw wartosci rund
@@ -42,24 +41,24 @@ public class turnBaseScriptGUI : MonoBehaviour
         roundStartPanel.SetActive(state);
     }
 
-    public void setUpTurnPanel(List<GameObject> unitsList){
-        if(turnQueueElements.Count()>0){
-            clearTurnQuequeList();
-        }
-        for(int id=0;id<unitsList.Count;id++){
-            GameObject _unitTurnImage = new GameObject($"TurnElemnt {id}");
-            _unitTurnImage.AddComponent<Image>().sprite = unitsList[id].GetComponent<Unit>().getUnitImage().sprite;
-            _unitTurnImage.transform.SetParent(turnQueuePanel.transform);
-            _unitTurnImage.GetComponent<RectTransform>().localScale = Vector3.one;
-            turnQueueElements.Add(_unitTurnImage);
-        }
-    }
+    // public void setUpTurnPanel(List<GameObject> unitsList){
+    //     if(turnQueueElements.Count()>0){
+    //         clearTurnQuequeList();
+    //     }
+    //     for(int id=0;id<unitsList.Count;id++){
+    //         GameObject _unitTurnImage = new GameObject($"TurnElemnt {id}");
+    //         _unitTurnImage.AddComponent<Image>().sprite = unitsList[id].GetComponent<Unit>().getUnitImage().sprite;
+    //         _unitTurnImage.transform.SetParent(turnQueuePanel.transform);
+    //         _unitTurnImage.GetComponent<RectTransform>().localScale = Vector3.one;
+    //         turnQueueElements.Add(_unitTurnImage);
+    //     }
+    // }
 
-    private void clearTurnQuequeList(){
-        for(int id=0;id<turnQueueElements.Count();id++){
-            Destroy(turnQueueElements[id]);
-        }
-    }
+    // private void clearTurnQuequeList(){
+    //     for(int id=0;id<turnQueueElements.Count();id++){
+    //         Destroy(turnQueueElements[id]);
+    //     }
+    // }
 
     
     //Pokaz ekran konca gry i kto wygral

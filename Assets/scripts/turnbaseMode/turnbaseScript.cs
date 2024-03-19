@@ -119,7 +119,7 @@ public class turnbaseScript : MonoBehaviour
             if(!IsHeroTurn()){
                 checkGameState();
             }
-            _gui.setUpTurnPanel(turnQueue.ToList());
+            _gui.battleUI.setUpTurnPanel(turnQueue.ToList());
             Debug.Log(turnQueue.Peek().transform.name);
             StartCoroutine(waitForNextUnit(0.5f));
     }

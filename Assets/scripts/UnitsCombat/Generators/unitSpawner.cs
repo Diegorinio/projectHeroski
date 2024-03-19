@@ -197,6 +197,16 @@ public class unitSpawner : MonoBehaviour
         }
     }
 
+    public static Color colorCardByTag(GameObject obj){
+        string tag = obj.transform.tag;
+        if(tag=="Player"){
+            return Color.green;
+        }
+        else{
+            return Color.red;
+        }
+    }
+
     //Utworz lososwy typ jednostki z wyborem czy to jednostka przeciwna czy gracza
     public static GameObject spawnRandomUnitToGameObject(controllers controller){
         GameObject _newUnit = spawnRandomUnitToGameObject();
