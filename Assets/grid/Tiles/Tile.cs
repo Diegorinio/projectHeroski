@@ -112,7 +112,7 @@ public abstract class Tile : MonoBehaviour,IPointerDownHandler
         if (turnbaseScript.isSelected && isActive && !isTaken)
         {
             //Wez daną jednostę z tury i przypisz go do Tile
-            GameObject player = turnbaseScript.selectedGameObject;;
+            GameObject player = turnbaseScript.selectedGameObject;
             if(turnbaseScript.selectedTile==this){
                 player.GetComponent<unitController>().characterMovePerTile(this);
             }
@@ -123,6 +123,8 @@ public abstract class Tile : MonoBehaviour,IPointerDownHandler
             }
         }
     }
+
+    
     public bool isBusy()
     {
         return isTaken;

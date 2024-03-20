@@ -141,26 +141,27 @@ public void playerHitSelectedTarget(GameObject target){
     if(targets.Contains(target)){
         Debug.Log($"{enemyTarget==target}");
         if(enemyTarget==target){
+            List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
             if(_unit is IDistance){
                 _unit.dealDamageTo(target);
                 // disableClickable();
             }
             else{
-            List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
             Action a = ()=>_unit.dealDamageTo(target);
             StartCoroutine(characterMoveTroughList(movePath,a));
-            // disableClickable();
-            // _unit.dealDamageTo(target);
             }
         }
         else if(enemyTarget==null || enemyTarget!=target){
             enemyTarget=target;
+            List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
+            if(movePath.Count>0){
             if((_unit is IDistance)){
                 GridMap.enableTile(target.GetComponent<unitController>().getAssignedTile(),Color.red);
             }
             else{
                 GridMap.ShowPathNearGameObject(gameObject,target);
             Debug.Log($"Found path to target and clicked 1 time");
+            }
             }
         }
     }

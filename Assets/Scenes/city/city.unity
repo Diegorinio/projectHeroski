@@ -14344,8 +14344,8 @@ GameObject:
   - component: {fileID: 1144835335}
   - component: {fileID: 1144835337}
   - component: {fileID: 1144835336}
-  - component: {fileID: 1144835338}
   - component: {fileID: 1144835339}
+  - component: {fileID: 1144835340}
   m_Layer: 5
   m_Name: team_panel
   m_TagString: Untagged
@@ -14411,20 +14411,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144835334}
   m_CullTransparentMesh: 1
---- !u!114 &1144835338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144835334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb51120c39e3765489d4c12d17294883, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitListElementTemplate: {fileID: 8202030269593601775, guid: 23c728cba2217679d9e75103eea0e0a7, type: 3}
-  imagesList: []
 --- !u!114 &1144835339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14449,6 +14435,20 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1144835340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144835334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb51120c39e3765489d4c12d17294883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImagePrefab: {fileID: 1271889181}
+  displayedUnitsList: []
 --- !u!1 &1145330352
 GameObject:
   m_ObjectHideFlags: 0
@@ -16124,6 +16124,11 @@ MonoBehaviour:
   TimerText: {fileID: 648671915}
   multiplier: 10
   whatLvlHaveBuilding: 0
+--- !u!1 &1271889181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8202030269593601775, guid: 23c728cba2217679d9e75103eea0e0a7, type: 3}
+  m_PrefabInstance: {fileID: 2056701501740517761}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1283066330
 GameObject:
   m_ObjectHideFlags: 0
@@ -18233,7 +18238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 541.2, y: -105.80005}
+  m_AnchoredPosition: {x: 541.2, y: -105.799805}
   m_SizeDelta: {x: 977, y: -520.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1570109810
@@ -24360,7 +24365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3234005631662962699, guid: 123c39692ec55e34892de5870c11b230, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -885.0001
+      value: -885
       objectReference: {fileID: 0}
     - target: {fileID: 3234005631662962699, guid: 123c39692ec55e34892de5870c11b230, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
