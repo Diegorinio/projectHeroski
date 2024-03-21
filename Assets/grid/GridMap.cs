@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -67,6 +68,7 @@ public static class GridMap
 
 //Główny skrypt zwracajacy liste <tile> z drogą
 //Args: tile startowy, tile docelowy, zasieg ruchu/wyszukiwania, szukanie po wykrytych Tile`
+//Tak ukradłem z internetu i pomógł chatGPT
 public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vector2Int searchRadius)
 {
     // Lista do przechowywania odwiedzonych pól
@@ -145,6 +147,9 @@ public static List<Tile> FindShortestPath(Tile startTile, Tile targetTile, Vecto
 
     return path;
 }
+
+//Metoda do znalezienia sasiedniego pola celu
+//Zgadza sie ukradlem z internetu a do tego mała pomoc ChatGTP
 private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector2Int searchRadius, List<Tile> searchArea)
 {
     // Kolejka dla pól do odwiedzenia
@@ -212,17 +217,20 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
     return null;
 }
 
-
+    //Pokaz sciezke do celu 
+    //glownie do pokazania ruchu po tile danej jednostki
     public static void ShowPathToTile(GameObject source, GameObject target){
         List<Tile> movePath = getPathToTile(source,target);
         enableListTiles(movePath,Color.blue);
     }
 
+    //Wyswietl sciezke do najbliszego pola obok celu
     public static void ShowPathNearGameObject(GameObject source, GameObject target){
         List<Tile> movePath = getPathToNeighbourObject(source,target);
         enableListTiles(movePath,Color.red);
     }
 
+    //Zwroc liste Tile sciezko do danego Tile
     public static List<Tile> getPathToTile(GameObject source,GameObject target){
         Tile targetTile = target.GetComponent<Tile>();
         unitController sourceController = source.GetComponent<unitController>();
@@ -240,8 +248,23 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
         return movePath;
     }
 
+    public static int getDistanceBetweenTiles(Tile source, Tile target){
+        return calculateDistanceBetweenPoints(source,target);
+    }
 
+    public static int getDistanceBetweenUnits(GameObject source,GameObject target){
+        Tile sourceTile = source.GetComponent<unitController>().getAssignedTile();
+        Tile targetTile = target.GetComponent<unitController>().getAssignedTile();
+        return calculateDistanceBetweenPoints(sourceTile,targetTile);
+    }
 
+    private static int calculateDistanceBetweenPoints(Tile source,Tile target){
+        Vector2Int[] distances = {source.getPosition(),target.getPosition()};
+        int p1 = (distances[1].x-distances[0].x);
+        int p2 = (distances[1].y-distances[0].y);
+        int res = (int)Math.Sqrt(p1+p2);
+        return res;
+    }
 
     //Z daje listy Tile zwroc liste wolnych Tile gdzie nie sa zajete
     public static List<Tile> findMovementTiles(List<Tile> tiles){
@@ -290,6 +313,7 @@ private static Tile FindNeighborOfTarget(Tile startTile, Tile targetTile, Vector
         tile.GetComponent<Image>().color=color;
     }
 
+    //Lista tile zostaje aktywowana z kolorem
     public static void enableListTiles(List<Tile> tiles, Color color){
         foreach(var t in tiles){
             t.isActive=true;

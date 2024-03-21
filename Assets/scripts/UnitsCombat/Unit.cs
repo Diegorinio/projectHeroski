@@ -137,20 +137,7 @@ public class Unit : MonoBehaviour
             Destroy(gameObject);
 
     }
-
-    private void RemoveComponents(){
-        switch(gameObject.transform.tag){
-            case "Player":
-            unitSpawner.removeController(unitSpawner.controllers.Player,gameObject);
-            break;
-            case "Enemy":
-            unitSpawner.removeController(unitSpawner.controllers.Enemy,gameObject);
-            break;
-        }
-        Destroy(gameObject.GetComponent<unitController>());
-        // Destroy(gameObject.GetComponent<unitGUI>());
-        Destroy(gameObject.GetComponent<Unit>());
-    }
+    
     //Leczenie jednostki przez dodawanie na podstawie stalej 
     public virtual void healUnit(int heal){
         int toHeal = (int)(heal/unitBaseHealth);

@@ -37,15 +37,7 @@ public class DestructionSpell : Spell
     }
     //metoda do zadawania okresloneych obrazen wszystkim jednostkom z tagiem
     private void FixedSpellDamage(int dmg, string tag){
-        List<Unit> unitList = new List<Unit>();
-        switch(tag){
-            case "Player":
-            unitList = mainPlayerUnit.Instance.getUnitsList();
-            break;
-            case "Enemy":
-            unitList = mainEnemiesUnit.Instance.getUnitsList();
-            break;
-        }
+        List<Unit> unitList = getUnitsListByTag(tag);
         foreach(var u in unitList){
             u.getHit(dmg);
         }
@@ -58,15 +50,7 @@ public class DestructionSpell : Spell
 
     //procentowy damage wszystkim jednostek
     private void PercentagetSpellDamage(float dmg,string tag){
-        List<Unit> unitList = new List<Unit>();
-        switch(tag){
-            case "Player":
-            unitList = mainPlayerUnit.Instance.getUnitsList();
-            break;
-            case "Enemy":
-            unitList = mainEnemiesUnit.Instance.getUnitsList();
-            break;
-        }
+        List<Unit> unitList = getUnitsListByTag(tag);
         foreach(var u in unitList){
             u.getHit(dmg);
         }

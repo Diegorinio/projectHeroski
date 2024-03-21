@@ -21,4 +21,4 @@ MonoBehaviour:
   entryDialog: "Nie interesuje mnie kim jeste\u015B"
   defeatDialog: "To by\u0142a dobra walka"
   spellOne: {fileID: 11400000, guid: fc7c386fe41ab182e89c250e5ebd59e6, type: 2}
-  spellTwo: {fileID: 11400000, guid: fc7c386fe41ab182e89c250e5ebd59e6, type: 2}
+  spellTwo: {fileID: 11400000, guid: 5b6ab922a0705b5e69039ddee134ca08, type: 2}

@@ -122,7 +122,6 @@ public class Hero : MonoBehaviour
             addedComponent = gameObject.AddComponent<DestructionSpell>();
             break;
         }
-        // gameObject.GetComponent<Spell>().assignSpellSO(_spellSO);
         addedComponent.assignSpellSO(_spellSO);
         return addedComponent;
     }

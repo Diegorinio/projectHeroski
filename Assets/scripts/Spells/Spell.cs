@@ -11,7 +11,16 @@ public abstract class Spell : MonoBehaviour
     protected SpellSO assignedSpellSO;
     protected GameObject selectedTarget;
     protected bool isTargeting;
-
+    protected List<Unit> getUnitsListByTag(string tag){
+        switch(tag){
+            case "Player":
+            return mainPlayerUnit.Instance.getUnitsList();
+            case "Enemy":
+            return mainEnemiesUnit.Instance.getUnitsList();
+            default:
+            return new List<Unit>();
+        }
+    }
     public void assignSpellSO(SpellSO _spellSO){
         assignedSpellSO = _spellSO;
         spellName = _spellSO.spellName;
@@ -21,4 +30,5 @@ public abstract class Spell : MonoBehaviour
 
     //castuj spell na wiele celow o okreslonym tagu
     public abstract void castSpellGlobal(string tag);
+
 }

@@ -36,11 +36,9 @@ public class battleManager: MonoBehaviour
         playerHeroNameText.text = _assignedPlayerHero.getHeroName();
         Sprite[] spellIcons = _assignedPlayerHero.getSpellImages();
         spellButtons[0].GetComponent<Image>().sprite = spellIcons[0];
-        // spellButtons[0].onClick.AddListener(_assignedPlayerHero.castFirstSpell);
         spellButtons[0].onClick.AddListener(()=>{spellButtonEnable(0,false);_assignedPlayerHero.castFirstSpell();});
         
         spellButtons[1].GetComponent<Image>().sprite = spellIcons[1];
-        // spellButtons[1].onClick.AddListener(_assignedPlayerHero.castSecondSpell);
         spellButtons[1].onClick.AddListener(()=>{spellButtonEnable(1,false);_assignedPlayerHero.castSecondSpell();});
     }
 

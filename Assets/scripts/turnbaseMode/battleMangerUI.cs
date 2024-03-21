@@ -26,7 +26,6 @@ public class battleMangerUI : MonoBehaviour
             _unitImage.transform.SetParent(_unitTurnCardImage.transform);
             _unitTurnCardImage.GetComponent<RectTransform>().localScale = Vector3.one;
             turnQueueElements.Add(_unitTurnCardImage);
-            // _unitTurnImage.transform.SetParent
         }
     }
 

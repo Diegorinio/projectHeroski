@@ -26,7 +26,6 @@
     # There is no difference between player units and enemy Units // added "card" background for player and enemy units
     # After defeating all enemies game is not over until someone makes move //solved but based on tests sometimes appears when its last unit?
     # After killing unit with spells game is not over until someone makes move
-    # After enemy turn activated Tiles fo enemy don't dissapear
 
 
 
