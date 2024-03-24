@@ -20,5 +20,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 63b591ec03a35dcd7a465ccd3b2a541b, type: 3}
   entryDialog: Jestem Thred Ripper
   defeatDialog: essa wariacie
-  spellOne: {fileID: 11400000, guid: fc7c386fe41ab182e89c250e5ebd59e6, type: 2}
+  spellOne: {fileID: 11400000, guid: 0a99dfa1640328d8096f0182927fa46b, type: 2}
   spellTwo: {fileID: 11400000, guid: 5b6ab922a0705b5e69039ddee134ca08, type: 2}

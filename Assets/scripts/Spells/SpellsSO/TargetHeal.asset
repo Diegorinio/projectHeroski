@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6250215baf6b52141845bc55e47347f5, type: 3}
   m_Name: TargetHeal
   m_EditorClassIdentifier: 
-  spellName: 
+  spellName: target heal
   SpellType: 0
   SpellRange: 0
   DamageType: 0
   spellCastPercent: 0
-  spellCastFixed: 0
+  spellCastFixed: 50
   HealType: 0

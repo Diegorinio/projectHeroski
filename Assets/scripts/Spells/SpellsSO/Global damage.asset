@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6250215baf6b52141845bc55e47347f5, type: 3}
   m_Name: Global damage
   m_EditorClassIdentifier: 
-  spellName: 
+  spellName: global damage
   SpellType: 0
-  SpellRange: 0
-  DamageType: 0
-  spellCastPercent: 0
+  SpellRange: 1
+  DamageType: 1
+  spellCastPercent: 20
   spellCastFixed: 0
   HealType: 0
