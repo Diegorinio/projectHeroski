@@ -111,10 +111,12 @@ public class turnbaseScript : MonoBehaviour
             if(!selectedGameObject)
                 selectedGameObject=turnQueue.Peek();
             if(IsHeroTurn()){
-                BattleManager.spellButtonsEnable(true);
+                // BattleManager.spellButtonsEnable(true);
+                PlayerHeroBehaviour.Instance.spellButtonsEnable(true);
             }
             else{
-                BattleManager.spellButtonsEnable(false);
+                // BattleManager.spellButtonsEnable(false);
+                PlayerHeroBehaviour.Instance.spellButtonsEnable(false);
             }
             if(!IsHeroTurn()){
                 checkGameState();

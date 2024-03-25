@@ -37,12 +37,12 @@ public class enemyDetector : Detector{
 
     //Jezeli aktualna tura to gracz to po nacisnieciu na przeciwnika zadaj obrazenia
     public void OnMouseDown(){
-        if(turnbaseScript.IsHeroTurn() && !battleManager.isSelectingTarget){
+        if(turnbaseScript.IsHeroTurn() && !PlayerHeroBehaviour.Instance.isSelectingTarget){
             Debug.Log($"Enemy pressed and set to attack");
             turnbaseScript.selectedGameObject.GetComponent<unitController>().playerHitSelectedTarget(gameObject);
         }
-        else if(battleManager.isSelectingTarget){
-            battleManager.selectedTargetForSpell = gameObject;
+        else if(PlayerHeroBehaviour.Instance.isSelectingTarget){
+            PlayerHeroBehaviour.Instance.selectedTargetForSpell = gameObject;
         }
     }
 }

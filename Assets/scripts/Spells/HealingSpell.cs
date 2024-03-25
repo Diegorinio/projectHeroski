@@ -49,4 +49,16 @@ public class HealingSpell : Spell
         }
     }
 
+    protected override List<Unit> getUnitsListByTag(string tag)
+    {
+        switch(tag){
+            case "Player":
+            return mainPlayerUnit.Instance.getUnitsList();
+            case "Enemy":
+            return mainEnemiesUnit.Instance.getUnitsList();
+            default:
+            return new List<Unit>();
+        }
+    }
+
 }

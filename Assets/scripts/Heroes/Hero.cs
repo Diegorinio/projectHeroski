@@ -33,24 +33,23 @@ public class Hero : MonoBehaviour
     }
     public void castFirstSpell(){
         if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Target){
-            // firstSpell.castSpell()
-            battleManager.isSelectingTarget=true;
+            PlayerHeroBehaviour.Instance.isSelectingTarget=true;
             StartCoroutine(waitUntilTargetIsSelected());
 
         }
         else if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Global){
-            firstSpell.castSpellGlobal(getTargetTag());
+            firstSpell.castSpellGlobal(getHeroTag());
         }
     }
 
     public void castSecondSpell(){
         if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Target){
-            battleManager.isSelectingTarget=true;
+            PlayerHeroBehaviour.Instance.isSelectingTarget=true;
             StartCoroutine(waitUntilTargetIsSelected());
 
         }
         else if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Global){
-            secondSpell.castSpellGlobal(getTargetTag());
+            secondSpell.castSpellGlobal(getHeroTag());
         }
     }
     
@@ -59,25 +58,20 @@ public class Hero : MonoBehaviour
 
     public void castFirstSpell(GameObject target){
         if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Target){
-            // firstSpell.castSpell()
-            // battleManager.isSelectingTarget=true;
-            // StartCoroutine(waitUntilTargetIsSelected());
             firstSpell.castSpell(target);
 
         }
         else if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Global){
-            firstSpell.castSpellGlobal(getTargetTag());
+            firstSpell.castSpellGlobal(getHeroTag());
         }
     }
     public void castSecondSpell(GameObject target){
         if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Target){
-            // battleManager.isSelectingTarget=true;
-            // StartCoroutine(waitUntilTargetIsSelected());
             secondSpell.castSpell(target);
 
         }
         else if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Global){
-            secondSpell.castSpellGlobal(getTargetTag());
+            secondSpell.castSpellGlobal(getHeroTag());
         }
     }
 
@@ -94,12 +88,6 @@ public class Hero : MonoBehaviour
     }
     public string getHeroTag(){
         return HeroTag;
-    }
-    private string getTargetTag(){
-        if(HeroTag=="Player")
-            return "Enemy";
-        else
-            return "Player";
     }
     public heroSO getHeroSO(){
         return _heroSO;
@@ -131,8 +119,8 @@ public class Hero : MonoBehaviour
     }
 
     private IEnumerator waitUntilTargetIsSelected(){
-        yield return new WaitUntil(()=>battleManager.selectedTargetForSpell!=null);
-        firstSpell.castSpell(battleManager.selectedTargetForSpell);
-        battleManager.resetSpellTarget();
+        yield return new WaitUntil(()=>PlayerHeroBehaviour.Instance.selectedTargetForSpell!=null);
+        firstSpell.castSpell(PlayerHeroBehaviour.Instance.selectedTargetForSpell);
+        PlayerHeroBehaviour.Instance.resetSpellTarget();
     }
 }

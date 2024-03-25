@@ -11,12 +11,12 @@ public abstract class Spell : MonoBehaviour
     protected SpellSO assignedSpellSO;
     protected GameObject selectedTarget;
     protected bool isTargeting;
-    protected List<Unit> getUnitsListByTag(string tag){
+    protected virtual List<Unit> getUnitsListByTag(string tag){
         switch(tag){
             case "Player":
-            return mainPlayerUnit.Instance.getUnitsList();
-            case "Enemy":
             return mainEnemiesUnit.Instance.getUnitsList();
+            case "Enemy":
+            return mainPlayerUnit.Instance.getUnitsList();
             default:
             return new List<Unit>();
         }
