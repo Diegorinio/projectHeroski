@@ -215,7 +215,7 @@ public void addToTargets(List<GameObject> trgs){
 public void clearTargets(){
     targets.Clear();
 }
-
+                                                        
 
 //Przypisanie Tile do jednostki
 public void setTile(Tile tile){
