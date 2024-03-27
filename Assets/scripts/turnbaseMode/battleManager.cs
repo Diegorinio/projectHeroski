@@ -22,6 +22,15 @@ public class battleManager: MonoBehaviour
     //Dla przeciwnika
     public Image enemyHeroSprite;
     public TextMeshProUGUI enemyHeroNameText;
+
+    HeroEventsManager heroEventsManager;
+
+    UnityEvent boxEvent;
+    UnityEvent dialogEvent;
+
+    void Awake(){
+        heroEventsManager = GetComponent<HeroEventsManager>();
+    }
     // Start is called before the first frame update
     void Start()
     {

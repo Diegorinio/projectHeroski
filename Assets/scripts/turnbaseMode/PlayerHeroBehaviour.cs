@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,10 +24,18 @@ public class PlayerHeroBehaviour : MonoBehaviour
         _assignedPlayerHero = mainPlayerUnit.Instance.getSelectedHero();
         Sprite[] spellIcons = _assignedPlayerHero.getSpellImages();
         spellButtons[0].GetComponent<Image>().sprite = spellIcons[0];
-        spellButtons[0].onClick.AddListener(()=>{spellButtonEnable(0,false);_assignedPlayerHero.castFirstSpell();});
+        spellButtons[0].onClick.AddListener(()=>{
+            spellButtonEnable(0,false);
+            _assignedPlayerHero.castFirstSpell();
+            });
         
         spellButtons[1].GetComponent<Image>().sprite = spellIcons[1];
-        spellButtons[1].onClick.AddListener(()=>{spellButtonEnable(1,false);_assignedPlayerHero.castSecondSpell();});
+        spellButtons[1].onClick.AddListener(()=>{
+            HeroEventsManager.BoxEventComplete += ()=>{Debug.Log($"Spell used");};
+            StartCoroutine(GetComponent<HeroEventsManager>().createBoxEvent(spellIcons[1]));
+            spellButtonEnable(1,false);
+            _assignedPlayerHero.castSecondSpell();
+            });
     }
 
     public void spellButtonsEnable(bool state){

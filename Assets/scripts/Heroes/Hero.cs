@@ -31,6 +31,13 @@ public class Hero : MonoBehaviour
     public string getHeroName(){
         return heroName;
     }
+
+    public string getHeroEntryDialog(){
+        return entryDialog;
+    }
+    public string getHeroDefeatDialog(){
+        return defeatDialog;
+    }
     public void castFirstSpell(){
         if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Target){
             PlayerHeroBehaviour.Instance.isSelectingTarget=true;

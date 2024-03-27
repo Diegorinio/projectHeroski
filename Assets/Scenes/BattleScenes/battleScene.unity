@@ -3210,6 +3210,7 @@ GameObject:
   - component: {fileID: 1195370496}
   - component: {fileID: 1195370497}
   - component: {fileID: 1195370498}
+  - component: {fileID: 1195370499}
   m_Layer: 0
   m_Name: --GAME_CONTROLERS--
   m_TagString: Untagged
@@ -3321,9 +3322,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9716e487fdb3c39a6f07badf198b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSelectingTarget: 0
+  selectedTargetForSpell: {fileID: 0}
   spellButtons:
   - {fileID: 24778621}
   - {fileID: 1680847554}
+--- !u!114 &1195370499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195370491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee021db01716b91981250b79c28cd31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assignedHero: {fileID: 0}
+  heroEventBox: {fileID: 603085596}
+  heroDialogBox: {fileID: 822547796}
 --- !u!1 &1227729248
 GameObject:
   m_ObjectHideFlags: 0

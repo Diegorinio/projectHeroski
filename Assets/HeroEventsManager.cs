@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class HeroEventsManager : MonoBehaviour
 {
+    public delegate void boxEventComplete();
+    public static event boxEventComplete BoxEventComplete;
 
     public Hero assignedHero;
     public GameObject heroEventBox;
@@ -13,11 +15,30 @@ public class HeroEventsManager : MonoBehaviour
     public GameObject heroDialogBox;
     private GameObject heroDialogText;
 
+    public IEnumerator createBoxEvent(Sprite eventImage){
+        CreateBoxEvent(eventImage);
+        yield return new WaitForSeconds(2);
+        disableEventBox();
+    }
 
-    public void setEventBox(Image img){
+    private void OnBoxEventComplete(){
+        BoxEventComplete?.Invoke();
+    }
+
+    public void CreateBoxEvent(Sprite eventSprite){
+        setEventBox(eventSprite);
+    }
+
+    public void CreateDialogEvent(Hero _hero){
+        string tekst = _hero.getHeroEntryDialog();
+        setDialogBox(tekst);
+    }
+
+
+    private void setEventBox(Sprite img){
         enableEventBox();
         if(heroEventImage!=null){
-            heroEventImage.GetComponent<Image>().sprite = img.sprite;
+            heroEventImage.GetComponent<Image>().sprite = img;
         }
     }
 
@@ -25,6 +46,12 @@ public class HeroEventsManager : MonoBehaviour
         heroEventBox.SetActive(true);
         heroEventImage = findEventImage();
     }
+
+    private void disableEventBox(){
+        heroEventBox.SetActive(false);
+    }
+
+
     private GameObject findEventImage(){
         if(heroEventBox.activeInHierarchy){
             return heroEventBox.transform.Find("eventImage").gameObject;
@@ -35,7 +62,7 @@ public class HeroEventsManager : MonoBehaviour
     }
 
 
-    public void setDialogBox(string text){
+    private void setDialogBox(string text){
         enableDialogBox();
         if(heroDialogText!=null){
             heroDialogText.GetComponent<TextMeshProUGUI>().text = text;
@@ -45,6 +72,10 @@ public class HeroEventsManager : MonoBehaviour
     private void enableDialogBox(){
         heroDialogBox.SetActive(true);
         heroDialogText = findDialogText();
+    }
+
+    private void disableDialogBox(){
+        heroEventBox.SetActive(false);
     }
 
     private GameObject findDialogText(){
