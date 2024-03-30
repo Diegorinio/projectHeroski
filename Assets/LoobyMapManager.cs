@@ -10,11 +10,20 @@ public class LoobyMapManager : MonoBehaviour
     private GameObject lastActivated;
     public int disabvlelvlfrom;
     public Sprite[] stars = new Sprite[4];
+    private void OnEnable()
+    {
+        if (PlayerPrefs.HasKey("PositionOfMap"))
+        {
+            GameObject.Find("Map").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, PlayerPrefs.GetFloat("PositionOfMap"));
+            print(PlayerPrefs.GetFloat("PositionOfMap"));
+        }
+    }
     void Awake()
     {
         if (PlayerPrefs.HasKey("ActivatedLVLS"))
         {
             disabvlelvlfrom = PlayerPrefs.GetInt("ActivatedLVLS");
+
         }
         else
         {
@@ -25,7 +34,6 @@ public class LoobyMapManager : MonoBehaviour
         {
             if (GameObject.Find($"LVL {i}") != null)
             {
-                LVLButtons[i] = GameObject.Find($"LVL{i}");
                 GameObject.Find($"LVL {i}").SetActive(false);
             }
         }
