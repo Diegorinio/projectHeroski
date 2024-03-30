@@ -77,22 +77,19 @@ public class TierChangerHandler : MonoBehaviour
         if(firsttime){ oldposition = LateTierUsed.transform.position.x;firsttime = false;}
 
                 for (double i = LateTierUsed.transform.position.x; i <= oldposition+5.5; i += 0.30)
-                for (double i = LateTierUsed.transform.position.x; i <= oldposition+5.5; i += 0.40)
                 {
                     LateTierUsed.transform.position = new Vector3((float)i, LateTierUsed.transform.position.y, LateTierUsed.transform.position.z);
                     yield return new WaitForSecondsRealtime(0.005f);
-                    // yield return new WaitForSecondsRealtime(0.005f);
                 }
                 yield return StartCoroutine(littleBitOfWaitingNewTier(GoodTier));
 
                 if(!lastOpenTier== LateTierUsed) LateTierUsed.SetActive(false);
 
     }
-    IEnumerator littleBitOfWaitingNewTier(GameObject NewTier)
+     IEnumerator littleBitOfWaitingNewTier(GameObject NewTier)
     {
             NewTier.SetActive(true);
             NewTier.transform.position = new Vector3(-5, NewTier.transform.position.y, NewTier.transform.position.z);
-            for (double i = NewTier.transform.position.x; i <= oldposition; i += 0.40)
             for (double i = NewTier.transform.position.x; i <= oldposition; i += 0.40)
             {
                 NewTier.transform.position = new Vector3((float)i, NewTier.transform.position.y, NewTier.transform.position.z);
