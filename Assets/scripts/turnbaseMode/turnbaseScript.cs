@@ -59,6 +59,24 @@ public class turnbaseScript : MonoBehaviour
 
     //Na starcie uruchom kurtyne odpowiedzialna za wyswietlanie panelu rundy
     void Start(){
+        // GetComponent<HeroEventsManager>().CreateDialogEvent(mainEnemiesUnit.Instance.getSelectedHero());
+        // GetComponent<HeroEventsManager>().CreateDialogEvent(mainPlayerUnit.Instance.getSelectedHero());
+        DialogOne();
+        // StartCoroutine(roundStart());
+    }
+
+    void DialogOne(){
+        HeroEventsManager.DialogEventComplete += DialogTwo;
+        GetComponent<HeroEventsManager>().CreateDialogEvent(mainEnemiesUnit.Instance.getSelectedHero());
+    }
+
+    void DialogTwo(){
+        HeroEventsManager.DialogEventComplete -=DialogTwo;
+        HeroEventsManager.DialogEventComplete += StartGame;
+        GetComponent<HeroEventsManager>().CreateDialogEvent(mainPlayerUnit.Instance.getSelectedHero());
+    }
+
+    void StartGame(){
         StartCoroutine(roundStart());
     }
 

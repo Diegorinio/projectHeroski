@@ -6,32 +6,52 @@ using UnityEngine.UI;
 
 public class HeroEventsManager : MonoBehaviour
 {
-    public delegate void boxEventComplete();
-    public static event boxEventComplete BoxEventComplete;
+    public delegate void boxEventCompleteHandle();
+    public static event boxEventCompleteHandle BoxEventComplete;
 
-    public Hero assignedHero;
-    public GameObject heroEventBox;
+    public delegate void dialogEventCompleteHandle();
+    public static event dialogEventCompleteHandle DialogEventComplete;
+
+    //player
+    public GameObject playerEventBox;
+    //Enemy
+    public GameObject enemyEventBox;
+
     private GameObject heroEventImage;
-    public GameObject heroDialogBox;
+    private GameObject tmpEventBox;
+
+    public GameObject enemyDialogBox;
+    public GameObject playerDialogBox;
     private GameObject heroDialogText;
+    private GameObject tmpDialogBox;
 
-    public IEnumerator createBoxEvent(Sprite eventImage){
-        CreateBoxEvent(eventImage);
-        yield return new WaitForSeconds(2);
+    public enum casterType{Player,Enemy};
+
+
+    //EVENT BOX
+
+    public void CreateBoxEvent(casterType heroCastType,Sprite eventSprite){
+        switch(heroCastType){
+            case casterType.Player:
+            tmpEventBox = playerEventBox;
+            break;
+            case casterType.Enemy:
+            tmpEventBox = enemyEventBox;
+            break;
+        }
+        StartCoroutine(createBoxEvent(eventSprite));
+    }
+
+
+    private IEnumerator createBoxEvent(Sprite eventImage){
+        createBox(eventImage);
+        yield return new WaitForSeconds(1.8f);
         disableEventBox();
+        OnBoxEventComplete();
     }
 
-    private void OnBoxEventComplete(){
-        BoxEventComplete?.Invoke();
-    }
-
-    public void CreateBoxEvent(Sprite eventSprite){
+    private void createBox(Sprite eventSprite){
         setEventBox(eventSprite);
-    }
-
-    public void CreateDialogEvent(Hero _hero){
-        string tekst = _hero.getHeroEntryDialog();
-        setDialogBox(tekst);
     }
 
 
@@ -43,25 +63,56 @@ public class HeroEventsManager : MonoBehaviour
     }
 
     private void enableEventBox(){
-        heroEventBox.SetActive(true);
+        tmpEventBox.SetActive(true);
         heroEventImage = findEventImage();
     }
 
     private void disableEventBox(){
-        heroEventBox.SetActive(false);
+        tmpEventBox.SetActive(false);
     }
 
-
     private GameObject findEventImage(){
-        if(heroEventBox.activeInHierarchy){
-            return heroEventBox.transform.Find("eventImage").gameObject;
+        if(tmpEventBox.activeInHierarchy){
+            return tmpEventBox.transform.Find("eventImage").gameObject;
         }
         else{
             return null;
         }
     }
 
+    private void OnBoxEventComplete(){
+        BoxEventComplete?.Invoke();
+    }
 
+
+    //DIALOG BOX
+
+
+    public void CreateDialogEvent(Hero _hero){
+        string _heroTag = _hero.getHeroTag();
+        switch(_heroTag){
+            case "Player":
+            tmpDialogBox = playerDialogBox;
+            break;
+            case "Enemy":
+            tmpDialogBox = enemyDialogBox;
+            break;
+        }
+        string tekst = _hero.getHeroEntryDialog();
+        setDialogBox(tekst);
+        StartCoroutine(createDialogEvent(tekst));
+    }
+
+    private IEnumerator createDialogEvent(string txt){
+        createDialog(txt);
+        yield return new WaitForSeconds(1.8f);
+        disableDialogBox();
+        OnDialogEventComplete();
+    }
+
+    private void createDialog(string txt){
+        setDialogBox(txt);
+    }
     private void setDialogBox(string text){
         enableDialogBox();
         if(heroDialogText!=null){
@@ -70,20 +121,24 @@ public class HeroEventsManager : MonoBehaviour
     }
 
     private void enableDialogBox(){
-        heroDialogBox.SetActive(true);
+        tmpDialogBox.SetActive(true);
         heroDialogText = findDialogText();
     }
 
     private void disableDialogBox(){
-        heroEventBox.SetActive(false);
+        tmpDialogBox.SetActive(false);
     }
 
     private GameObject findDialogText(){
-        if(heroDialogBox.activeInHierarchy){
-            return heroDialogBox.transform.Find("dialogText").gameObject;
+        if(tmpDialogBox.activeInHierarchy){
+            return tmpDialogBox.transform.Find("dialogText").gameObject;
         }
         else{
             return null;
         }
+    }
+
+    private void OnDialogEventComplete(){
+        DialogEventComplete?.Invoke();
     }
 }

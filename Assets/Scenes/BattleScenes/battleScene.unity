@@ -1372,11 +1372,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 732945392}
-  m_Father: {fileID: 894958548}
+  m_Father: {fileID: 991296084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 196.65997, y: -163.00012}
+  m_AnchoredPosition: {x: 164.65999, y: -0.000076293945}
   m_SizeDelta: {x: 329.32, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &555992739
@@ -2527,7 +2527,6 @@ RectTransform:
   - {fileID: 728546706}
   - {fileID: 1814947397}
   - {fileID: 991296084}
-  - {fileID: 555992738}
   m_Father: {fileID: 1363497528}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -2830,6 +2829,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 298835765}
+  - {fileID: 555992738}
   m_Father: {fileID: 894958548}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -2857,9 +2857,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee021db01716b91981250b79c28cd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assignedHero: {fileID: 0}
-  heroEventBox: {fileID: 298835764}
-  heroDialogBox: {fileID: 555992737}
+  playerEventBox: {fileID: 0}
+  playerDialogBox: {fileID: 0}
+  enemyEventBox: {fileID: 0}
+  enemyDialogBox: {fileID: 0}
 --- !u!1 &1023206926
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,9 +3340,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee021db01716b91981250b79c28cd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assignedHero: {fileID: 0}
-  heroEventBox: {fileID: 603085596}
-  heroDialogBox: {fileID: 822547796}
+  playerEventBox: {fileID: 603085596}
+  playerDialogBox: {fileID: 822547796}
+  enemyEventBox: {fileID: 298835764}
+  enemyDialogBox: {fileID: 555992737}
 --- !u!1 &1227729248
 GameObject:
   m_ObjectHideFlags: 0
@@ -3910,8 +3912,8 @@ RectTransform:
   - {fileID: 1023206927}
   - {fileID: 1296350492}
   - {fileID: 1301617813}
-  - {fileID: 894958548}
   - {fileID: 1526087710}
+  - {fileID: 894958548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5076,9 +5078,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee021db01716b91981250b79c28cd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assignedHero: {fileID: 0}
-  heroEventBox: {fileID: 0}
-  heroDialogBox: {fileID: 0}
+  playerEventBox: {fileID: 0}
+  playerDialogBox: {fileID: 0}
+  enemyEventBox: {fileID: 0}
+  enemyDialogBox: {fileID: 0}
 --- !u!222 &2004971448
 CanvasRenderer:
   m_ObjectHideFlags: 0

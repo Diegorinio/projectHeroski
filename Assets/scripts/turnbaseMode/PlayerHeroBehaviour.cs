@@ -25,15 +25,16 @@ public class PlayerHeroBehaviour : MonoBehaviour
         Sprite[] spellIcons = _assignedPlayerHero.getSpellImages();
         spellButtons[0].GetComponent<Image>().sprite = spellIcons[0];
         spellButtons[0].onClick.AddListener(()=>{
-            spellButtonEnable(0,false);
+            spellButtonsEnable(false);
+            GetComponent<HeroEventsManager>().CreateBoxEvent(HeroEventsManager.casterType.Player,spellIcons[0]);
             _assignedPlayerHero.castFirstSpell();
             });
         
         spellButtons[1].GetComponent<Image>().sprite = spellIcons[1];
         spellButtons[1].onClick.AddListener(()=>{
             HeroEventsManager.BoxEventComplete += ()=>{Debug.Log($"Spell used");};
-            StartCoroutine(GetComponent<HeroEventsManager>().createBoxEvent(spellIcons[1]));
-            spellButtonEnable(1,false);
+            GetComponent<HeroEventsManager>().CreateBoxEvent(HeroEventsManager.casterType.Player,spellIcons[1]);
+            spellButtonsEnable(false);
             _assignedPlayerHero.castSecondSpell();
             });
     }
