@@ -33,26 +33,26 @@ public class DestructionSpell : Spell
 
     //metoda do zadawania okreslonych obrazen na jednostke
     private void FixedSpellDamage(GameObject target,int dmg){
-        target.GetComponent<Unit>().getHit(dmg);
+        target.GetComponent<Unit>().getHitBySpell(dmg);
     }
     //metoda do zadawania okresloneych obrazen wszystkim jednostkom z tagiem
     private void FixedSpellDamage(int dmg, string tag){
         List<Unit> unitList = getUnitsListByTag(tag);
         foreach(var u in unitList){
-            u.getHit(dmg);
+            u.getHitBySpell(dmg);
         }
     }
 
     //procentowy damage jednostce
     private void PercentagetSpellDamage(GameObject target,float dmg){
-        target.GetComponent<Unit>().getHit(dmg);
+        target.GetComponent<Unit>().getHitBySpell(dmg);
     }
 
     //procentowy damage wszystkim jednostek
     private void PercentagetSpellDamage(float dmg,string tag){
         List<Unit> unitList = getUnitsListByTag(tag);
         foreach(var u in unitList){
-            u.getHit(dmg);
+            u.getHitBySpell(dmg);
         }
     }
 

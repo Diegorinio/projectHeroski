@@ -15,8 +15,8 @@ public class Unit : MonoBehaviour
     public Sprite unitSprite{get;set;}
     [SerializeField]
     private int unitAmount;
-    protected int unitBaseHealth;
-    protected int unitBaseDamage;
+    public int unitBaseHealth{get;private set;}
+    public int unitBaseDamage{get;private set;}
     protected  Vector2Int gridMoveDistance;
     //do usuniecia
     protected Vector2Int gridAttackDistance;
@@ -87,22 +87,24 @@ public class Unit : MonoBehaviour
     // dla przeciwnika mainPlayerUnit, dla uzytkownika mainEnemiesUnit
 
     //Do walki jednostek
-    public virtual void getHit(int dmg,GameObject attacker){
-        int lost = (int)(dmg/unitBaseHealth);
-        _gui.displayGuiEvent(lost.ToString());
-        lostUnits(lost);
+    //Jednostka atakuje jednostke
+    public virtual void getHit(int dmg){
+        // int lost = (int)(dmg/unitBaseHealth);
+        _gui.displayGuiEvent(dmg.ToString());
+        // lostUnits(lost);
+        lostUnits(dmg);
     }
 
 
     //Do czarow
     //Czary na bazie procenta damage
-    public virtual void getHit(float procent_dmg){
+    public virtual void getHitBySpell(float procent_dmg){
         int lost = (int)(procent_dmg/100*unitAmount);
         _gui.displayGuiEvent(lost.ToString());
         lostUnits(lost);
     }
     //Czary na bazie stalego damage
-    public void getHit(int dmg){
+    public virtual void getHitBySpell(int dmg){
         int lost = (int)(dmg/unitBaseHealth);
         _gui.displayGuiEvent(lost.ToString());
         lostUnits(lost);
@@ -157,10 +159,10 @@ public class Unit : MonoBehaviour
     public virtual void dealDamageTo(GameObject _target){
 
         
-        int dmg = getTotalDamage();
+        int dmg = BattleSystem.getDealtDamage(this,_target.GetComponent<Unit>());
         //akcja na zakonczenie animacji 
         Action AnimationFinish = ()=>{
-            _target.GetComponent<Unit>().getHit(dmg,gameObject);
+            _target.GetComponent<Unit>().getHit(dmg);
             gameObject.GetComponent<unitController>().disableClickable();
         };
         _gui.displayAnimEvent(dmg,gameObject,_target,AnimationFinish);

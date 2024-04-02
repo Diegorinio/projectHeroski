@@ -57,7 +57,6 @@ public class barracks : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        print((int)unitTier);
         if (UnitToReadyTime >= DateTime.Now && !isRecrutable)
         {
             amount_slider.interactable = false;

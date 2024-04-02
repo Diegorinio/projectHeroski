@@ -52,7 +52,7 @@ public class unitGUI : MonoBehaviour
         // battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().setDamageText(dmg);
         battleManager.battleAnimPanel.SetActive(true);
         // SpiteAnimator animatorSprite = battleManager.battleAnimPanel.GetComponent<SpiteAnimator>();
-        battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().Func_PlayUIAnim();
+        battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().playAnim();
         // animatorSprite.
         yield return new WaitUntil(()=>battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().isAnimDone());
         battleManager.battleAnimPanel.SetActive(false);
@@ -65,12 +65,9 @@ public class unitGUI : MonoBehaviour
 
         SpiteAnimator animatorSprite = battleManager.battleAnimPanel.GetComponent<SpiteAnimator>();
         Sprite[] _attacker = attacker.GetComponent<Unit>().getUnitSO().getAttackSprites();
-        //  _victim.sprite = victim.GetComponent<Unit>().getUnitSprite();
         Image _victim = victim.GetComponent<Unit>().getUnitImage();
         animatorSprite.setAnimator(_attacker,_victim,dmg);
-        // battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().setDamageText(dmg);
         StartCoroutine(showAnimEvent(AnimationFinish));
-        // attacker.GetComponent<unitController>().disableClickable();
     }
 
 }

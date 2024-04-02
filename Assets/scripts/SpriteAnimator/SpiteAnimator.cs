@@ -19,31 +19,34 @@ public class SpiteAnimator : MonoBehaviour
     private int m_IndexSprite;
     [SerializeField]
     private bool isDone;
-    public void Func_PlayUIAnim()
+    public void playAnim()
     {
         Debug.Log("animation play");
         isDone=false;
         // damageText = 0;
         damageTextUI.text = "";
         m_IndexSprite=0;
-        StartCoroutine(Func_PlayAnimUI());
+        StartCoroutine(_playAnim());
     }
-    IEnumerator Func_PlayAnimUI()
+    IEnumerator _playAnim()
     {
         yield return new WaitForSeconds(m_Speed);
         if(m_IndexSprite>=m_SpriteArray.Length){
             m_IndexSprite=m_SpriteArray.Length-1;
-            damageTextUI.text = damageText.ToString();
             isDone=true;
+        }
+        if(m_IndexSprite==m_SpriteArray.Length-1){
+            damageTextUI.text = damageText.ToString();
         }
         if(!isDone){
         attackerImageSpace.sprite = m_SpriteArray[m_IndexSprite];
         m_IndexSprite++;
-        StartCoroutine(Func_PlayAnimUI());
+        StartCoroutine(_playAnim());
         }
         else{
+            yield return new WaitForSeconds(1);
             gameObject.SetActive(false);
-            StopCoroutine(Func_PlayAnimUI());
+            StopCoroutine(_playAnim());
         }
     }
     public bool isAnimDone(){
@@ -58,10 +61,6 @@ public class SpiteAnimator : MonoBehaviour
         for(int x=0;x<img.Length;x++){
             m_SpriteArray[x]=img[x];
         }
-    }
-    void Start(){
-        // Debug.Log("animation play");
-        // Func_PlayUIAnim();
     }
 
     public void setDamageText(int dmg){
