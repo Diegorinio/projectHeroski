@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,11 @@ public class unitGUI : MonoBehaviour
         unitAmountText = heroCanvas.transform.Find("unitAmountText").GetComponent<Text>();
         eventText=heroCanvas.transform.Find("eventText").GetComponent<Text>();
         unitImageSprite = heroCanvas.transform.Find("unit_sprite").GetComponent<Image>();
-        unitImageSprite.sprite = _unit.getUnitSprite();
+        unitImageSprite.sprite = _unit.unitSprite;
+    }
+
+    public void setUnitTextVal(string txt){
+        unitAmountText.text = txt;
     }
 
     //Pokazuje ilosc jednostek, mozna to pozniej zmienic na metode wywolujaca zmiane ale mi sie nie chce
@@ -34,6 +39,7 @@ public class unitGUI : MonoBehaviour
         eventText.enabled=true;
         yield return new WaitForSeconds(time);
         eventText.enabled=false;
+        // gameObject.GetComponent<unitController>().disableClickable(); 
     }
 
     //Metoda glowna do wyswietlania eventu
@@ -41,4 +47,27 @@ public class unitGUI : MonoBehaviour
         eventText.text=eventVal;
         StartCoroutine(showGuiEvent(2));
     }
+
+    IEnumerator showAnimEvent(Action AnimationFinish){
+        // battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().setDamageText(dmg);
+        battleManager.battleAnimPanel.SetActive(true);
+        // SpiteAnimator animatorSprite = battleManager.battleAnimPanel.GetComponent<SpiteAnimator>();
+        battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().playAnim();
+        // animatorSprite.
+        yield return new WaitUntil(()=>battleManager.battleAnimPanel.GetComponent<SpiteAnimator>().isAnimDone());
+        battleManager.battleAnimPanel.SetActive(false);
+        // isMoveFinished=true;
+        // atk.disableClickable();
+        AnimationFinish?.Invoke();
+        Debug.Log("Koniec scenki przejscie do nastepnego gracza");
+    }
+    public void displayAnimEvent(int dmg,GameObject attacker, GameObject victim,Action AnimationFinish){
+
+        SpiteAnimator animatorSprite = battleManager.battleAnimPanel.GetComponent<SpiteAnimator>();
+        Sprite[] _attacker = attacker.GetComponent<Unit>().getUnitSO().getAttackSprites();
+        Image _victim = victim.GetComponent<Unit>().getUnitImage();
+        animatorSprite.setAnimator(_attacker,_victim,dmg);
+        StartCoroutine(showAnimEvent(AnimationFinish));
+    }
+
 }

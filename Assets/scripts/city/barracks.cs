@@ -16,8 +16,8 @@ public class barracks : MonoBehaviour
 
     public GameObject collectBtn;
 
-    public unitSpawner.tier unitTier;
-    public unitSpawner.unitType unitType;
+    private unitSpawner.tier unitTier;
+    private unitSpawner.unitType unitType;
     //recruiment
     private string unitName;
     private int lastRecruitSoldiers;
@@ -34,14 +34,18 @@ public class barracks : MonoBehaviour
 
     void Start()
     {
+        unitSetUpBarracks unitSettings = gameObject.GetComponent<unitSetUpBarracks>();
+        unitTier = unitSettings.getUnitTier();
+        unitType = unitSettings.getUnitType();
         //cheat button
         cheatBtn.onClick.AddListener(cheat);
         //
         amount_slider.onValueChanged.AddListener(changeSlider);
         amount_input.onValueChanged.AddListener(changeInput);
+        amount_input.text="1";
         buyBtn.onClick.AddListener(buyUnit);
         // buyBtn.onClick.AddListener(buyUnitTier);
-        collectBtn.GetComponent<Button>().onClick.AddListener(buyUnitTier);
+        collectBtn.GetComponent<Button>().onClick.AddListener(recruitUnitTier);
         if(isRecrutable)isRecrutable = true;
         if((PlayerPrefs.GetInt($"isFirstTime {unitName}") != 0)==false) isFirstTime = false;
         else isFirstTime = true;
@@ -53,7 +57,6 @@ public class barracks : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        print((int)unitTier);
         if (UnitToReadyTime >= DateTime.Now && !isRecrutable)
         {
             amount_slider.interactable = false;
@@ -95,17 +98,18 @@ public class barracks : MonoBehaviour
     private void buyUnit(){
         if (amount_slider.value <= 0) return;
         DateTime UnitBoughtTime = DateTime.Now;
-
-        UnitToReadyTime = UnitBoughtTime.AddSeconds((int)amount_slider.value*0.5);
+        if((int)amount_slider.value>0){
+        UnitToReadyTime = UnitBoughtTime.AddSeconds((int)amount_slider.value*2);
         lastRecruitSoldiers = (int)amount_slider.value;
         isRecrutable = false;
         isFirstTime = true;
         buyBtn.gameObject.SetActive(false);
-        
+        }
     }
 
-    private void buyUnitTier(){
-        //za surowce kupujesz i golda  koszt podstawowy plus tier*modyfikator
+    private void recruitUnitTier(){
+        if((int)amount_slider.value>0){
+        Debug.Log("Kupienie jednostek CHCHCHCHHCHCUI!!!1");
         GameObject rndUnit = unitSpawner.spawnUnitGameObject(unitTier,unitType,unitSpawner.controllers.Player,(int)amount_slider.value);
         Unit _unit = rndUnit.GetComponent<Unit>();
         rndUnit.transform.SetParent(mainPlayerUnit.Instance.transform);
@@ -126,6 +130,7 @@ public class barracks : MonoBehaviour
         amount_input.interactable = true;
         buyBtn.gameObject.SetActive(true);
         collectBtn.gameObject.SetActive(false);
+        }
     }
 
     // private void RecruitUnit()

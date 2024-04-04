@@ -19,13 +19,13 @@ public class obstacleTile : grassTile
     //Nadpisz metode klikania do pierwsze zniszczenia a dopiero pozniej mozliwosc ruchu na ten Tile
     public override void OnMouseDown()
     {
-        if(obstacleHealth>0){
-            checkObstacleHealth();
-        }
-        else{
-            isTaken=false;
-            base.OnMouseDown();
-        }
+        // if(obstacleHealth>0){
+        //     checkObstacleHealth();
+        // }
+        // else{
+        //     isTaken=false;
+        //     base.OnMouseDown();
+        // }
     }
 
     //Sprawdz stan przeszkody

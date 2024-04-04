@@ -1,33 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class SpiteAnimator : MonoBehaviour
 {
-public Image m_Image;
+    public Image attackerImageSpace;
+    public Image victimImageSpace;
+    [SerializeField]
+    private Image victimSourceImage;
 
     public Sprite[] m_SpriteArray;
+    public TextMeshProUGUI damageTextUI;
+    [SerializeField]
+    private int damageText;
     public float m_Speed = .02f;
-
+    [SerializeField]
     private int m_IndexSprite;
-    public void Func_PlayUIAnim()
+    [SerializeField]
+    private bool isDone;
+    public void playAnim()
     {
-        // IsDone = false;
-        StartCoroutine(Func_PlayAnimUI());
+        Debug.Log("animation play");
+        isDone=false;
+        // damageText = 0;
+        damageTextUI.text = "";
+        m_IndexSprite=0;
+        StartCoroutine(_playAnim());
     }
-    IEnumerator Func_PlayAnimUI()
+    IEnumerator _playAnim()
     {
         yield return new WaitForSeconds(m_Speed);
         if(m_IndexSprite>=m_SpriteArray.Length){
             m_IndexSprite=m_SpriteArray.Length-1;
+            isDone=true;
         }
-        m_Image.sprite = m_SpriteArray[m_IndexSprite];
+        if(m_IndexSprite==m_SpriteArray.Length-1){
+            damageTextUI.text = damageText.ToString();
+        }
+        if(!isDone){
+        attackerImageSpace.sprite = m_SpriteArray[m_IndexSprite];
         m_IndexSprite++;
-        StartCoroutine(Func_PlayAnimUI());
+        StartCoroutine(_playAnim());
+        }
+        else{
+            yield return new WaitForSeconds(1);
+            gameObject.SetActive(false);
+            StopCoroutine(_playAnim());
+        }
+    }
+    public bool isAnimDone(){
+        return isDone;
     }
 
-    void Start(){
-        Debug.Log("animation play");
-        Func_PlayUIAnim();
+    private void setVictimImage(Image img){
+        victimSourceImage = img;
+        victimImageSpace.sprite=img.sprite;
+    }
+    private void setAttackerImageSequence(Sprite[] img){
+        for(int x=0;x<img.Length;x++){
+            m_SpriteArray[x]=img[x];
+        }
+    }
+
+    public void setDamageText(int dmg){
+        damageText = dmg;
+    }
+
+    public void setAnimator(Sprite[] attackerImage,Image victimImage,int dmg){
+        setAttackerImageSequence(attackerImage);
+        setVictimImage(victimImage);
+        setDamageText(dmg);
     }
 }

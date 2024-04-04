@@ -19,3 +19,8 @@ MonoBehaviour:
   unitBaseDamage: 7
   gridDistanceX: 4
   gridDistanceY: 5
+  attackAnimationSprites:
+  - {fileID: -192672540, guid: 589452b806a0458489a85953efa5bb99, type: 3}
+  - {fileID: -1184950267, guid: 589452b806a0458489a85953efa5bb99, type: 3}
+  - {fileID: 2038839315, guid: 589452b806a0458489a85953efa5bb99, type: 3}
+  - {fileID: -1541243363, guid: 589452b806a0458489a85953efa5bb99, type: 3}

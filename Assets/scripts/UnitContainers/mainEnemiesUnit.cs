@@ -14,6 +14,8 @@ public class mainEnemiesUnit : MonoBehaviour
 public static mainEnemiesUnit Instance{get;private set;}
 [SerializeField]
     private List<Unit> playerTeam;
+    private Hero selectedEnemyHero;
+    public GameObject selectedEnemyHeroG;
     void Awake(){
         if(Instance==null){
         Instance=this;
@@ -29,6 +31,15 @@ public static mainEnemiesUnit Instance{get;private set;}
         else{
             playerTeam.Add(_unit);
         }
+    }
+    public Hero getSelectedHero(){
+        return selectedEnemyHero;
+    }
+
+    public void assignHeroToTeam(Hero hero){
+        selectedEnemyHero=hero;
+        selectedEnemyHeroG = hero.gameObject;
+        selectedEnemyHeroG.transform.SetParent(gameObject.transform);
     }
 
     public Unit getExistingUnit(Unit _unit){
@@ -59,9 +70,11 @@ public static mainEnemiesUnit Instance{get;private set;}
         }
         }
         playerTeam.Clear();
+        Destroy(selectedEnemyHeroG);
     }
 
     public void removeFromUnits(Unit _unit){
         playerTeam.Remove(_unit);
+        Debug.Log($" MainEnemiesUnit Unit removed ${_unit.name}");
     }
 }

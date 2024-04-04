@@ -86,7 +86,7 @@ public class TierChangerHandler : MonoBehaviour
                 if(!lastOpenTier== LateTierUsed) LateTierUsed.SetActive(false);
 
     }
-    IEnumerator littleBitOfWaitingNewTier(GameObject NewTier)
+     IEnumerator littleBitOfWaitingNewTier(GameObject NewTier)
     {
             NewTier.SetActive(true);
             NewTier.transform.position = new Vector3(-5, NewTier.transform.position.y, NewTier.transform.position.z);

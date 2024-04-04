@@ -5,6 +5,7 @@ using UnityEngine;
 public class DestructionSpell : Spell
 {
 
+    //castuj spell na wygraną jednostkę
     public override void castSpell(GameObject target)
     {
         switch(assignedSpellSO.DamageType){
@@ -17,6 +18,7 @@ public class DestructionSpell : Spell
         }
     }
 
+    //castuj spell na wszystkie jednostki z tagiem
     public override void castSpellGlobal(string tag)
     {
         switch(assignedSpellSO.DamageType){
@@ -29,38 +31,28 @@ public class DestructionSpell : Spell
         }
     }
 
+    //metoda do zadawania okreslonych obrazen na jednostke
     private void FixedSpellDamage(GameObject target,int dmg){
-        target.GetComponent<Unit>().getHit(dmg);
+        target.GetComponent<Unit>().getHitBySpell(dmg);
     }
+    //metoda do zadawania okresloneych obrazen wszystkim jednostkom z tagiem
     private void FixedSpellDamage(int dmg, string tag){
-        List<Unit> unitList = new List<Unit>();
-        switch(tag){
-            case "Player":
-            unitList = mainPlayerUnit.Instance.getUnitsList();
-            break;
-            case "Enemy":
-            unitList = mainEnemiesUnit.Instance.getUnitsList();
-            break;
-        }
+        List<Unit> unitList = getUnitsListByTag(tag);
         foreach(var u in unitList){
-            u.getHit(dmg);
+            u.getHitBySpell(dmg);
         }
     }
+
+    //procentowy damage jednostce
     private void PercentagetSpellDamage(GameObject target,float dmg){
-        target.GetComponent<Unit>().getHit(dmg);
+        target.GetComponent<Unit>().getHitBySpell(dmg);
     }
+
+    //procentowy damage wszystkim jednostek
     private void PercentagetSpellDamage(float dmg,string tag){
-        List<Unit> unitList = new List<Unit>();
-        switch(tag){
-            case "Player":
-            unitList = mainPlayerUnit.Instance.getUnitsList();
-            break;
-            case "Enemy":
-            unitList = mainEnemiesUnit.Instance.getUnitsList();
-            break;
-        }
+        List<Unit> unitList = getUnitsListByTag(tag);
         foreach(var u in unitList){
-            u.getHit(dmg);
+            u.getHitBySpell(dmg);
         }
     }
 

@@ -60,19 +60,19 @@ public class otherGridManager : MonoBehaviour
                         mapTiles[x-1,y].AddComponent<obstacleTile>();
                     }
                 }
-                else if(rnd>=60&&rnd<69){
-                    mapTiles[x,y].AddComponent<waterTile>();
-                    int rndWaterSize=Random.Range(1,3);
-                    for(int i=0;i<rndWaterSize;i++){
-                        for(int j=0;j<rndWaterSize;j++){
-                            if(x+i<width&&y+j<height){
-                                if(mapTiles[x+i,y+j].GetComponent<waterTile>()==null&&mapTiles[x+i,y+j].GetComponent<Tile>()==null){
-                                    mapTiles[x+i,y+j].AddComponent<waterTile>();
-                                }
-                            }
-                        }
-                    }
-                }
+                // else if(rnd>=60&&rnd<69){
+                //     mapTiles[x,y].AddComponent<waterTile>();
+                //     int rndWaterSize=Random.Range(1,3);
+                //     for(int i=0;i<rndWaterSize;i++){
+                //         for(int j=0;j<rndWaterSize;j++){
+                //             if(x+i<width&&y+j<height){
+                //                 if(mapTiles[x+i,y+j].GetComponent<waterTile>()==null&&mapTiles[x+i,y+j].GetComponent<Tile>()==null){
+                //                     mapTiles[x+i,y+j].AddComponent<waterTile>();
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
                 else{
                     mapTiles[x,y].AddComponent<grassTile>();
                 }
@@ -104,28 +104,28 @@ public class otherGridManager : MonoBehaviour
                     if(!isInList(newTileComponent.getNeighbours(),gridMapTiles[x-1,y])&& !gridMapTiles[x-1,y].isBusy()){
                     newTileComponent.addNeighbour(gridMapTiles[x-1,y]);
                     gridMapTiles[x-1,y].addNeighbour(newTileComponent);
-                    Debug.Log($"Tile {newTileComponent.name} lewy sasiad {gridMapTiles[x-1,y].name}");
+                    // Debug.Log($"Tile {newTileComponent.name} lewy sasiad {gridMapTiles[x-1,y].name}");
                     }
                 }
                 if(x<width-1){//prawo
                 if(!isInList(newTileComponent.getNeighbours(),gridMapTiles[x+1,y])&& !gridMapTiles[x+1,y].isBusy()){
                     newTileComponent.addNeighbour(gridMapTiles[x+1,y]);
                     gridMapTiles[x+1,y].addNeighbour(newTileComponent);
-                    Debug.Log($"Tile {newTileComponent.name} prawy sasiad {gridMapTiles[x+1,y].name}");
+                    // Debug.Log($"Tile {newTileComponent.name} prawy sasiad {gridMapTiles[x+1,y].name}");
                     }
                 }
                 if(y>0){//dol
                 if(!isInList(newTileComponent.getNeighbours(),gridMapTiles[x,y-1])&& !gridMapTiles[x,y-1].isBusy()){
                     newTileComponent.addNeighbour(gridMapTiles[x,y-1]);
                     gridMapTiles[x,y-1].addNeighbour(newTileComponent);
-                    Debug.Log($"Tile {newTileComponent.name} dolny sasiad {gridMapTiles[x,y-1].name}");
+                    // Debug.Log($"Tile {newTileComponent.name} dolny sasiad {gridMapTiles[x,y-1].name}");
                     }
                 }
                 if(y<height-1){//gora
                 if(!isInList(newTileComponent.getNeighbours(),gridMapTiles[x,y+1])&& !gridMapTiles[x,y+1].isBusy()){
                     newTileComponent.addNeighbour(gridMapTiles[x,y+1]);
                     gridMapTiles[x,y+1].addNeighbour(newTileComponent);
-                    Debug.Log($"Tile {newTileComponent.name} gorny sasiad {gridMapTiles[x,y+1].name}");
+                    // Debug.Log($"Tile {newTileComponent.name} gorny sasiad {gridMapTiles[x,y+1].name}");
                     }
                 }
             }

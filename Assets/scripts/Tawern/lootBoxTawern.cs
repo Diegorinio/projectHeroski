@@ -9,6 +9,7 @@ public class lootBoxTawern : MonoBehaviour
     Object[] heroesList;
     heroSO randomHero;
     public GameObject randomHeroImage;
+    int rndHeroID;
     void Start(){
         heroesList = Resources.LoadAll("Heroes",typeof(heroSO));
         Debug.Log($"heroesList len {heroesList.Length}");
@@ -17,8 +18,11 @@ public class lootBoxTawern : MonoBehaviour
     void OnMouseDown(){
         Debug.Log($"Chest click");
         randomHeroImage.SetActive(true);
-        randomHero = heroesList[Random.Range(0,heroesList.Length)] as heroSO;
+        rndHeroID = Random.Range(0,heroesList.Length);
+        randomHero = heroSpawner.getHeroSoByID(rndHeroID);
         randomHeroImage.GetComponent<Image>().sprite = randomHero.heroSprite;
+        randomHeroImage.GetComponent<tawernHero>().heroID = rndHeroID;
+        Destroy(gameObject);
     }
 
 }

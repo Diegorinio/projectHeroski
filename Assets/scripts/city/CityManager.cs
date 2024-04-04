@@ -124,11 +124,11 @@ public class CityManager : MonoBehaviour
     }
 
     public void goToMainMap(){
-        if(mainPlayerUnit.Instance.getUnits().Length>0 || mainPlayerUnit.Instance.getSelectedHero()!=null){
+        if(mainPlayerUnit.Instance.getUnits().Length>0 && mainPlayerUnit.Instance.getSelectedHero()!=null){
             SceneManager.LoadScene("mainMap");
         }
         else{
-            gameMessagebox.createMessageBox("Units","Przed wyruszeniem w droge zbierz druzyne oraz bohatera");
+            gameMessagebox.createMessageBox("Units","Before going to adventure recruit units in BARRACKS and hire hero from TAVERN");
         }
     }
     private void OnEnable()

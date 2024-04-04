@@ -16,11 +16,12 @@ public class enemyDetector : Detector{
     public override void setTiles(){
         Tile _assignedTile = assignedController.getAssignedTile();
         List<Tile> rangeTiles = GridMap.calculateMapTiles(_assignedTile.getPosition(),assignedController.getUnitDistance());
-        Debug.Log($"Enemy list tiles {rangeTiles.Count}");
+        // Debug.Log($"Enemy list tiles {rangeTiles.Count}");
         movementTilesList = GridMap.findMovementTiles(rangeTiles);
-        Debug.Log($"set tiles enemy {movementTilesList.Count}");
+        // Debug.Log($"set tiles enemy {movementTilesList.Count}");
         enemyUnitList = GridMap.findGameObjectsOnTiles(_assignedTile.getPosition(),assignedController.getUnitDistance(),"Player");
         assignedController.addToTargets(enemyUnitList);
+        Debug.Log($"Enemy moveList: {movementTilesList.Count}, targetList {enemyUnitList.Count}");
     }
 
     //Startuje wykrywanie, wykryte Tile i GameObject przekazuje do AI a nastepnie wykonuje losowa akcje z AI
@@ -28,21 +29,20 @@ public class enemyDetector : Detector{
         assignedController = gameObject.GetComponent<unitController>();
         setTiles();
         GridMap.enableListTiles(movementTilesList);
-        // base.StartDetector();
         aI=gameObject.GetComponent<enemyAI>();
-        setTiles();
         aI.changeCollidersMovement(movementTilesList);
         aI.changeCollidersCharacters(enemyUnitList);
         aI.randomAction();
-        Debug.Log($"Enemy end starting detector detector");
     }
 
     //Jezeli aktualna tura to gracz to po nacisnieciu na przeciwnika zadaj obrazenia
     public void OnMouseDown(){
-        Debug.Log($"Enemy pressed");
-        if(turnbaseScript.IsHeroTurn()){
+        if(turnbaseScript.IsHeroTurn() && !PlayerHeroBehaviour.Instance.isSelectingTarget){
             Debug.Log($"Enemy pressed and set to attack");
             turnbaseScript.selectedGameObject.GetComponent<unitController>().playerHitSelectedTarget(gameObject);
+        }
+        else if(PlayerHeroBehaviour.Instance.isSelectingTarget){
+            PlayerHeroBehaviour.Instance.selectedTargetForSpell = gameObject;
         }
     }
 }

@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using System;
+using Unity.VisualScripting;
 
 // Skrypt okreslajacy jednostke
 public class Unit : MonoBehaviour
@@ -9,14 +12,16 @@ public class Unit : MonoBehaviour
     [SerializeField]
     public string unitName{get;set;}
     [SerializeField]
-    public Sprite unitSprite;
+    public Sprite unitSprite{get;set;}
     [SerializeField]
     private int unitAmount;
-    protected int unitBaseHealth;
-    protected int unitBaseDamage;
+    public int unitBaseHealth{get;private set;}
+    public int unitBaseDamage{get;private set;}
     protected  Vector2Int gridMoveDistance;
+    //do usuniecia
     protected Vector2Int gridAttackDistance;
     protected unitGUI _gui{get;set;}
+    protected UnitSO _SO;
 
     // public virtual void Awake(){}
     public void unitInitialize(int _tier,UnitSO _unit){
@@ -27,6 +32,7 @@ public class Unit : MonoBehaviour
         gridMoveDistance = new Vector2Int(_unit.gridDistanceX,_unit.gridDistanceY);
         gridAttackDistance = new Vector2Int(2,4);
         unitSprite = _unit.unitSprite;
+        _SO=_unit;
     }
     // Start gierze UniGUI ktore wyswietla ilosc jednostek
     void Start()
@@ -34,8 +40,11 @@ public class Unit : MonoBehaviour
         _gui=gameObject.GetComponent<unitGUI>();
     }
 
-    public Sprite getUnitSprite(){
-        return unitSprite;
+    public UnitSO getUnitSO(){
+        return _SO;
+    }
+    public Image getUnitImage(){
+        return transform.Find("hero_canvas").transform.Find("unit_sprite").GetComponent<Image>();
     }
 
 
@@ -51,10 +60,6 @@ public class Unit : MonoBehaviour
     public Vector2Int getUnitMoveDistance(){
         return gridMoveDistance;
     }
-
-    public Vector2Int getAttackDistance(){
-        return gridAttackDistance;
-    }
     public void setTier(int _tier){
         tier=_tier;
     }
@@ -65,10 +70,6 @@ public class Unit : MonoBehaviour
     //Dodaj jednostki do aktualnej ilosci jednostek
     public void addUnits(int amount){
         unitAmount+=amount;
-    }
-    //wiadomo
-    public void setUnitName(string name){
-        unitName=name;
     }
     //Zwroc damage ktory zadaje przez ilosc jednostek * atak per jednostka
     public int getTotalDamage(){
@@ -84,52 +85,69 @@ public class Unit : MonoBehaviour
     // usun ze sceny
     // usun z managera ktory trzyma jednostki miedzy scenami
     // dla przeciwnika mainPlayerUnit, dla uzytkownika mainEnemiesUnit
+
+    //Do walki jednostek
+    //Jednostka atakuje jednostke
     public virtual void getHit(int dmg){
-        int lost = (int)(dmg/unitBaseHealth);
-        _gui.displayGuiEvent($"-{lost.ToString()}");
-        if(unitAmount-lost<=0){
-            GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
-            gameObject.SetActive(false);
-            if(gameObject.CompareTag("Player")){
-                mainPlayerUnit.Instance.removeFromUnits(this);
-            }
-            else if(gameObject.CompareTag("Enemy")){
-                mainEnemiesUnit.Instance.removeFromUnits(this);
-            }
-            gameObject.GetComponent<unitController>().moveFromTile();
-            Destroy(gameObject);
-        }
-        else{
-            unitAmount-=lost;
-            Debug.Log($"Stracono {lost} jednostek");
-        }
+        // int lost = (int)(dmg/unitBaseHealth);
+        _gui.displayGuiEvent(dmg.ToString());
+        // lostUnits(lost);
+        lostUnits(dmg);
     }
-    public virtual void getHit(float procent_dmg){
+
+
+    //Do czarow
+    //Czary na bazie procenta damage
+    public virtual void getHitBySpell(float procent_dmg){
         int lost = (int)(procent_dmg/100*unitAmount);
-        _gui.displayGuiEvent($"-{lost.ToString()}");
-        if(unitAmount-lost<=0){
-            GameObject.FindFirstObjectByType<turnbaseScript>().removeFromQueque(gameObject);
-            gameObject.SetActive(false);
-            if(gameObject.CompareTag("Player")){
-                mainPlayerUnit.Instance.removeFromUnits(this);
-            }
-            else if(gameObject.CompareTag("Enemy")){
-                mainEnemiesUnit.Instance.removeFromUnits(this);
-            }
-            gameObject.GetComponent<unitController>().moveFromTile();
-            Destroy(gameObject);
+        _gui.displayGuiEvent(lost.ToString());
+        lostUnits(lost);
+    }
+    //Czary na bazie stalego damage
+    public virtual void getHitBySpell(int dmg){
+        int lost = (int)(dmg/unitBaseHealth);
+        _gui.displayGuiEvent(lost.ToString());
+        lostUnits(lost);
+    }
+
+
+    //Metoda obliczajac ilosc straconych jednostek, jezeli po straceniu będzie <0 to usun jednostke z gry
+    private void lostUnits(int amount){
+        if(unitAmount-amount<=0){
+            UnitDestroyed();
         }
         else{
-            unitAmount-=lost;
-            Debug.Log($"Stracono {lost} jednostek");
+            unitAmount-=amount;
+            Debug.Log($"Stracono {amount} jednostek");
         }
     }
 
+    private void UnitDestroyed(){
+            turnbaseScript TBS = GameObject.FindFirstObjectByType<turnbaseScript>();
+            TBS.removeFromQueque(gameObject);
+            _gui.setUnitTextVal("");
+            // gameObject.SetActive(false);
+            if(gameObject.CompareTag("Player")){
+                mainPlayerUnit.Instance.removeFromUnits(this);
+            }
+            else if(gameObject.CompareTag("Enemy")){
+                mainEnemiesUnit.Instance.removeFromUnits(this);
+            }
+            gameObject.GetComponent<unitController>().moveFromTile();
+            TBS.checkGameState();
+            // RemoveComponents();
+            Destroy(gameObject);
+
+    }
+    
+    //Leczenie jednostki przez dodawanie na podstawie stalej 
     public virtual void healUnit(int heal){
         int toHeal = (int)(heal/unitBaseHealth);
         unitAmount+=toHeal;
         _gui.displayGuiEvent($"+{heal.ToString()}");
     }
+
+    //Leczenie jednostki przez dodawanie na podstawie procenta ilosci jednostki
     public virtual void healUnit(float procent_heal){
         int toHeal = (int)(procent_heal/100*unitAmount);
         unitAmount+=toHeal;
@@ -139,8 +157,16 @@ public class Unit : MonoBehaviour
     //Metoda zadajaca obrazenia do danej jednostki
     // Brany jest gameObject reprezentujacy jednostke i zadaje obrazenia przez komponent <Unit>
     public virtual void dealDamageTo(GameObject _target){
-        int dmg = getTotalDamage();
-        _target.GetComponent<Unit>().getHit(dmg);
-        Debug.Log($"hit {dmg} to {_target.name}");
+
+        
+        int dmg = BattleSystem.getDealtDamage(this,_target.GetComponent<Unit>());
+        //akcja na zakonczenie animacji 
+        Action AnimationFinish = ()=>{
+            _target.GetComponent<Unit>().getHit(dmg);
+            gameObject.GetComponent<unitController>().disableClickable();
+        };
+        _gui.displayAnimEvent(dmg,gameObject,_target,AnimationFinish);
     }
+    //Tutaj mozna wwalic obliczanie damage
 }
+

@@ -19,14 +19,46 @@ public class HealingSpell : Spell
 
     public override void castSpellGlobal(string tag)
     {
-        throw new System.NotImplementedException();
+        switch(assignedSpellSO.DamageType){
+            case SpellSO.damageType.Fixed:
+            FixedSpellHeal(assignedSpellSO.spellCastFixed,tag);
+            break;
+            case SpellSO.damageType.Percentage:
+            PercentagetSpellHeal(assignedSpellSO.spellCastPercent,tag);
+            break;
+        }
     }
 
     private void FixedSpellHeal(GameObject target,int heal){
         target.GetComponent<Unit>().healUnit(heal);
     }
+
+    private void FixedSpellHeal(int heal, string tag){
+        List<Unit> unitList = getUnitsListByTag(tag);
+        foreach(var u in unitList){
+            u.healUnit(heal);
+        }
+    }
     private void PercentagetSpellHeal(GameObject target,float heal){
         target.GetComponent<Unit>().healUnit(heal);
+    }
+    private void PercentagetSpellHeal(float heal,string tag){
+        List<Unit> unitList = getUnitsListByTag(tag);
+        foreach(var u in unitList){
+            u.healUnit(heal);
+        }
+    }
+
+    protected override List<Unit> getUnitsListByTag(string tag)
+    {
+        switch(tag){
+            case "Player":
+            return mainPlayerUnit.Instance.getUnitsList();
+            case "Enemy":
+            return mainEnemiesUnit.Instance.getUnitsList();
+            default:
+            return new List<Unit>();
+        }
     }
 
 }

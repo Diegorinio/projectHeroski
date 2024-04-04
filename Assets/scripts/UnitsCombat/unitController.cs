@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,7 +43,7 @@ public class unitController : MonoBehaviour
         turnbaseScript.selectedGameObject = gameObject;
         enemyTarget=null;
         tileDetector.StartDetector();
-        Debug.Log($"{_unit.name} actived");
+        Debug.Log($"{_unit.name} selected");
 }
 
 //Zworc Tile na ktorym znajduje sie jednostka
@@ -50,10 +51,6 @@ public Tile getAssignedTile(){
     return assignedTile;
 }
 
-//Zwroc typ jednostki 
-public Unit getAssignedUnit(){
-    return _unit;
-}
 
 public Vector2Int getUnitDistance(){
     return dist;
@@ -75,6 +72,7 @@ public void setNormalDistance(){
     setUnitDistance(_unit.getUnitMoveDistance());
 }
 
+//glowna metoda do ruchu
 // Metoda ruchu gracza na tile
 // Jezeli tile jest przypisany to ustaw na null
 // Pozniej Przenies na Tile i przypisz jednostke do danego Tile
@@ -82,14 +80,13 @@ public void setNormalDistance(){
 //Do rozstawiania na planszy na poczatku gry
 //Takze jako glowny skrypt do poruszania sie 
 
-public void characterMove(GameObject _newTransform,bool isStart){
+public void characterMove(GameObject _newTransform,bool isStart=false){
     if(assignedTile!=null){
         moveFromTile();
     }
     Transform trns = (Transform)_newTransform.GetComponent<RectTransform>();
     Vector3 gObj = trns.position;
     gameObject.transform.position = new Vector3(gObj.x, gObj.y, -1);
-    Debug.Log($"Chuj dupa cipa {gObj.x},{gObj.y}");
     assignedTile=_newTransform.GetComponent<Tile>();
     assignedTile.SetGameObjectOnTile(gameObject);
     if(!isStart)
@@ -99,7 +96,7 @@ public void characterMove(GameObject _newTransform,bool isStart){
 //
 
 
-//Przy ruchu usun wlasnosci tile na ktory poprzednio stala jednostka
+//Przy ruchu usun wlasnosci tile na ktorym poprzednio stala jednostka
 public void moveFromTile(){
     assignedTile.unMakeBusy();
     assignedTile.SetGameObjectOnTile(null);
@@ -108,23 +105,15 @@ public void moveFromTile(){
 
 //Ruch jednostki ale po każdym Tile po kolei
 //do ruchu po tile
-public void characterMove(Tile _targetTile){
+public void characterMovePerTile(Tile _targetTile){
     List<Tile> movePath = GridMap.getPathToTile(gameObject,_targetTile.gameObject);
-    for(int x=1;x<movePath.Count;x++){
-        characterMove(movePath[x].gameObject,true);
-        if(movePath[x] is waterTile){
-            _targetTile=movePath[x];
-            break;
-        }
-    }
-    _targetTile.makeBusy();
-    _targetTile.castTileBehaviour();
-    disableClickable();
+    Action a = ()=>disableClickable();
+    StartCoroutine(characterMoveTroughList(movePath,a));
 }
 
-//Ruch do tile ale obok wybraneego Tile 
-// zastowanie do ruchu blisko przeciwnika
-private void characterMoveTroughList(List<Tile> tiles){
+//Z mozliwoscia odpalenia eventu na koncu
+private IEnumerator characterMoveTroughList(List<Tile> tiles,Action lastEvent){
+    if(tiles.Count>0){
     Tile current_tile=tiles[0];
     for(int x=1;x<tiles.Count;x++){
         characterMove(tiles[x].gameObject,true);
@@ -135,19 +124,13 @@ private void characterMoveTroughList(List<Tile> tiles){
         else{
             current_tile=tiles[x];
         }
+        yield return new WaitForSeconds(0.1f);
     }
-
+    lastEvent?.Invoke();
     current_tile.makeBusy();
     current_tile.castTileBehaviour();
-    disableClickable();
-}
-
-
-//Metoda sprawdza czy dany cel jest w liscie wykrytych celow, jezeli tak to moze zaatakowac, glowne uzycie do AI przeciwnika
-public void hitToSelectedTarget(GameObject target){
-    if(targets.Contains(target)){
-    _unit.dealDamageTo(target);
-    disableClickable();
+    // lastEvent();
+    // disableClickable();
     }
 }
 
@@ -158,18 +141,20 @@ public void playerHitSelectedTarget(GameObject target){
     if(targets.Contains(target)){
         Debug.Log($"{enemyTarget==target}");
         if(enemyTarget==target){
+            List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
             if(_unit is IDistance){
                 _unit.dealDamageTo(target);
-                disableClickable();
+                // disableClickable();
             }
             else{
-            List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
-            _unit.dealDamageTo(target);
-            characterMoveTroughList(movePath);
+            Action a = ()=>_unit.dealDamageTo(target);
+            StartCoroutine(characterMoveTroughList(movePath,a));
             }
         }
         else if(enemyTarget==null || enemyTarget!=target){
             enemyTarget=target;
+            List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
+            if(movePath.Count>0){
             if((_unit is IDistance)){
                 GridMap.enableTile(target.GetComponent<unitController>().getAssignedTile(),Color.red);
             }
@@ -177,19 +162,23 @@ public void playerHitSelectedTarget(GameObject target){
                 GridMap.ShowPathNearGameObject(gameObject,target);
             Debug.Log($"Found path to target and clicked 1 time");
             }
+            }
         }
     }
 }
 
+//Dla enemy AI
 public void goToNearestTileAndDealDamage(GameObject target){
     if(_unit is IDistance){
                 _unit.dealDamageTo(target);
-                disableClickable();
+                // disableClickable();
             }
             else{
             List<Tile> movePath = GridMap.getPathToNeighbourObject(gameObject,target);
-            _unit.dealDamageTo(target);
-            characterMoveTroughList(movePath);
+            Action a  =()=>_unit.dealDamageTo(target);
+            StartCoroutine(characterMoveTroughList(movePath,a));
+            // _unit.dealDamageTo(target);
+            // disableClickable();
             }
 }
 
@@ -222,3 +211,5 @@ public void setTile(Tile tile){
     assignedTile=tile;
 }
 }
+
+

@@ -109,13 +109,12 @@ public abstract class Tile : MonoBehaviour,IPointerDownHandler
     //gdy mozna sie poruszyc to uruchom zachowanie Tile
     public virtual void OnMouseDown()
     {
-        Debug.Log($"Pressed {name}");
         if (turnbaseScript.isSelected && isActive && !isTaken)
         {
             //Wez daną jednostę z tury i przypisz go do Tile
-            GameObject player = turnbaseScript.selectedGameObject;;
+            GameObject player = turnbaseScript.selectedGameObject;
             if(turnbaseScript.selectedTile==this){
-                player.GetComponent<unitController>().characterMove(this);
+                player.GetComponent<unitController>().characterMovePerTile(this);
             }
             else if(turnbaseScript.selectedTile!=null||turnbaseScript.selectedTile==null){
                 player.GetComponent<Detector>().StartDetector();
@@ -123,11 +122,9 @@ public abstract class Tile : MonoBehaviour,IPointerDownHandler
                 GridMap.ShowPathToTile(player,gameObject);
             }
         }
-        else
-        {
-            Debug.Log("NIE");
-        }
     }
+
+    
     public bool isBusy()
     {
         return isTaken;

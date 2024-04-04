@@ -117,17 +117,26 @@ public class unitSpawner : MonoBehaviour
 
     // Dodaj komponenty potrzebne jednostce gracza
     private static void assignPlayerAttributes(GameObject obj){
-        // obj.transform.Find("tileDetector").AddComponent<Detector>();
         obj.AddComponent<Detector>();
+    }
+
+    private static void removePlayerAttributes(GameObject obj){
+        Destroy(obj.GetComponent<Detector>());
     }
 
     // Dodaj komponenety potrzebne jednostce przeciwnika
     private static void assignEnemyAttributes(GameObject obj){
         obj.AddComponent<enemyAI>();
         obj.AddComponent<Enemy>();
-        // obj.transform.Find("tileDetector").AddComponent<enemyDetector>();
         obj.AddComponent<enemyDetector>();
+        obj.transform.Find("hero_canvas").transform.Find("cardColor").GetComponent<Image>().color=Color.red;
         obj.transform.tag="Enemy";
+    }
+
+    private static void removeEnemyAttributes(GameObject obj){
+        Destroy(obj.GetComponent<enemyAI>());
+        Destroy(obj.GetComponent<Enemy>());
+        Destroy(obj.GetComponent<enemyDetector>());
     }
 
 
@@ -174,6 +183,27 @@ public class unitSpawner : MonoBehaviour
             case controllers.Enemy:
             assignEnemyAttributes(obj);
             break;
+        }
+    }
+
+    public static void removeController(controllers controller, GameObject obj){
+        switch(controller){
+            case controllers.Player:
+            removePlayerAttributes(obj);
+            break;
+            case controllers.Enemy:
+            removeEnemyAttributes(obj);
+            break;
+        }
+    }
+
+    public static Color colorCardByTag(GameObject obj){
+        string tag = obj.transform.tag;
+        if(tag=="Player"){
+            return Color.green;
+        }
+        else{
+            return Color.red;
         }
     }
 

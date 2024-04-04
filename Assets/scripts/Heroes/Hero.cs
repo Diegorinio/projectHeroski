@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -30,23 +31,58 @@ public class Hero : MonoBehaviour
     public string getHeroName(){
         return heroName;
     }
+
+    public string getHeroEntryDialog(){
+        return entryDialog;
+    }
+    public string getHeroDefeatDialog(){
+        return defeatDialog;
+    }
     public void castFirstSpell(){
         if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Target){
+            PlayerHeroBehaviour.Instance.isSelectingTarget=true;
+            StartCoroutine(waitUntilTargetIsSelected());
 
         }
         else if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Global){
-            firstSpell.castSpellGlobal(getTargetTag());
+            firstSpell.castSpellGlobal(getHeroTag());
         }
     }
 
     public void castSecondSpell(){
         if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Target){
+            PlayerHeroBehaviour.Instance.isSelectingTarget=true;
+            StartCoroutine(waitUntilTargetIsSelected());
 
         }
         else if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Global){
-            secondSpell.castSpellGlobal(getTargetTag());
+            secondSpell.castSpellGlobal(getHeroTag());
         }
     }
+    
+
+    //Cast spela na cel bez wyboru
+
+    public void castFirstSpell(GameObject target){
+        if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Target){
+            firstSpell.castSpell(target);
+
+        }
+        else if(_heroSO.spellOne.getSpellRange()==SpellSO.spellRange.Global){
+            firstSpell.castSpellGlobal(getHeroTag());
+        }
+    }
+    public void castSecondSpell(GameObject target){
+        if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Target){
+            secondSpell.castSpell(target);
+
+        }
+        else if(_heroSO.spellTwo.getSpellRange()==SpellSO.spellRange.Global){
+            secondSpell.castSpellGlobal(getHeroTag());
+        }
+    }
+
+
     public void thirdSpell(){
         Debug.Log($"3 spell");
     }
@@ -59,12 +95,6 @@ public class Hero : MonoBehaviour
     }
     public string getHeroTag(){
         return HeroTag;
-    }
-    private string getTargetTag(){
-        if(HeroTag=="Player")
-            return "Enemy";
-        else
-            return "Player";
     }
     public heroSO getHeroSO(){
         return _heroSO;
@@ -87,12 +117,17 @@ public class Hero : MonoBehaviour
             addedComponent = gameObject.AddComponent<DestructionSpell>();
             break;
         }
-        // gameObject.GetComponent<Spell>().assignSpellSO(_spellSO);
         addedComponent.assignSpellSO(_spellSO);
         return addedComponent;
     }
 
     public Sprite[] getSpellImages(){
         return spellIcons;
+    }
+
+    private IEnumerator waitUntilTargetIsSelected(){
+        yield return new WaitUntil(()=>PlayerHeroBehaviour.Instance.selectedTargetForSpell!=null);
+        firstSpell.castSpell(PlayerHeroBehaviour.Instance.selectedTargetForSpell);
+        PlayerHeroBehaviour.Instance.resetSpellTarget();
     }
 }
