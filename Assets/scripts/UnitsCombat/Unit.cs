@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 // Skrypt okreslajacy jednostke
 public class Unit : MonoBehaviour
 {
+    protected int UnitType; 
     protected int tier;
     [SerializeField]
     public string unitName{get;set;}
@@ -46,7 +47,11 @@ public class Unit : MonoBehaviour
     public Image getUnitImage(){
         return transform.Find("hero_canvas").transform.Find("unit_sprite").GetComponent<Image>();
     }
-
+    public void SetUnitType(int unittype)
+    {
+        UnitType = unittype;
+    }
+    public int getUnitType() { return UnitType;}
 
     public int getUnitTier(){
         return tier;

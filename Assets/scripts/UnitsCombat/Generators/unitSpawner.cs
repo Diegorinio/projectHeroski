@@ -34,6 +34,7 @@ public class unitSpawner : MonoBehaviour
         }
         newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
+        newUnit.GetComponent<Unit>().SetUnitType((int)type);
         newUnit.AddComponent<unitGUI>();
         newUnit.name=$"{type} {amount}";
         return newUnit;
@@ -53,6 +54,7 @@ public class unitSpawner : MonoBehaviour
             newUnit.AddComponent<cavaleryU>();
             break;
         }
+        newUnit.GetComponent<Unit>().SetUnitType((int)type);
         assignController(controller, newUnit);
         newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
@@ -76,6 +78,7 @@ public class unitSpawner : MonoBehaviour
             newUnit.AddComponent<cavaleryU>();
             break;
         }
+        newUnit.GetComponent<Unit>().SetUnitType((int)type);
         newUnit.GetComponent<Unit>().unitInitialize(getTier(_tier),_wantedUnitSO);
         assignController(controller, newUnit);
         newUnit.transform.Find("hero_canvas").transform.Find("unit_sprite").GetComponent<Image>().sprite= newUnit.GetComponent<Unit>().unitSprite;
