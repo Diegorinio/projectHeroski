@@ -10,7 +10,15 @@ public class heroSpawner : MonoBehaviour
 
     public static void LoadHeroes(){
         heroesSO = Resources.LoadAll("Heroes",typeof(heroSO)).ToList();
-        Debug.Log($"HeroesSO len chuj2137 {heroesSO.Count}");
+    }
+
+    public static List<heroSO> getHeroesSOList(){
+        LoadHeroes();
+        List<heroSO> _list = new List<heroSO>();
+        foreach(var o in heroesSO){
+            _list.Add((heroSO)o);
+        }
+        return _list;
     }
 
     public static heroSO getHeroSoByID(int id)

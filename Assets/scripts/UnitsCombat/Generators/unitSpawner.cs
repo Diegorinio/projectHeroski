@@ -34,7 +34,6 @@ public class unitSpawner : MonoBehaviour
         }
         newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
         newUnit.GetComponent<Unit>().setUnitAmount(amount);
-        newUnit.GetComponent<Unit>().SetUnitType((int)type);
         newUnit.AddComponent<unitGUI>();
         newUnit.name=$"{type} {amount}";
         return newUnit;

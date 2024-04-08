@@ -18,4 +18,4 @@ MonoBehaviour:
   DamageType: 0
   spellCastPercent: 0
   spellCastFixed: 50
-  HealType: 0
+  HealType: 1

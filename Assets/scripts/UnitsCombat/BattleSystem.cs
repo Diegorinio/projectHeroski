@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,9 +7,12 @@ public class BattleSystem : MonoBehaviour
 {
 //0-range 1-kon 2-piechota typy
     private static int calculateDamage(Unit dealer,Unit victim){
-        double widelki = new System.Random().Next(80, 101);
-        double dmg_from_dealer = (GetCritChange(dealer, victim) ? 1.5:1*(IsCounter(dealer,victim)? 1.5:1*dealer.getTotalDamage()))*((double)widelki/100);
-        double returnDmg = (int)dmg_from_dealer/victim.unitBaseHealth;
+        // int widelki = new System.Random().Next(80, 101);
+        int widelki = Random.Range(80,101);
+        double dmg_from_dealer = (GetCritChange(dealer, victim) ? 1.5:1*(IsCounter(dealer,victim)? 1.5:1));
+        Debug.Log($"Dmg from dealer {dmg_from_dealer}");
+// dealer.getTotalDamage()))*((double)widelki/100)
+        int returnDmg = (int)(dmg_from_dealer*(dealer.getTotalDamage()*((double)widelki/100)/victim.unitBaseHealth));
         return (int)returnDmg;
     }
 

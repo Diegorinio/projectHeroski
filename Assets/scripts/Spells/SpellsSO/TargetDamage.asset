@@ -15,7 +15,7 @@ MonoBehaviour:
   spellName: targetDamage
   SpellType: 0
   SpellRange: 0
-  DamageType: 0
+  DamageType: 1
   spellCastPercent: 0
   spellCastFixed: 100
   HealType: 0

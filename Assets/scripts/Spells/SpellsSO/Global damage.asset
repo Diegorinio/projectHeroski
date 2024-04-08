@@ -17,5 +17,5 @@ MonoBehaviour:
   SpellRange: 1
   DamageType: 1
   spellCastPercent: 20
-  spellCastFixed: 0
+  spellCastFixed: 20
   HealType: 0

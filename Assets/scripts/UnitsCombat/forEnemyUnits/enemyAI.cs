@@ -88,7 +88,7 @@ public class enemyAI : MonoBehaviour
         if(_collidersCharacters.Count>0){
         int id=Random.Range(0,_collidersCharacters.Count-1);
         GameObject selectedHero=_collidersCharacters[id].transform.gameObject;
-        Debug.Log($"Przeciwnik aatakowal {selectedHero.name} AI");
+        Debug.Log($"Przeciwnik aatakowal {selectedHero.name}");
         gameObject.GetComponent<unitController>().goToNearestTileAndDealDamage(selectedHero);
         }
     }

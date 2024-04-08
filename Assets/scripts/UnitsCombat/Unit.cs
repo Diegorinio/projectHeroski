@@ -8,6 +8,7 @@ using Unity.VisualScripting;
 // Skrypt okreslajacy jednostke
 public class Unit : MonoBehaviour
 {
+    [SerializeField]
     protected int UnitType; 
     protected int tier;
     [SerializeField]
@@ -27,6 +28,7 @@ public class Unit : MonoBehaviour
     // public virtual void Awake(){}
     public void unitInitialize(int _tier,UnitSO _unit){
         tier=_tier;
+        UnitType = _unit.unitType;
         unitName=_unit.unitName;
         unitBaseDamage=_unit.unitBaseDamage;
         unitBaseHealth=_unit.unitBaseHealth;
@@ -170,6 +172,7 @@ public class Unit : MonoBehaviour
             _target.GetComponent<Unit>().getHit(dmg);
             gameObject.GetComponent<unitController>().disableClickable();
         };
+        Debug.Log($"Zadanie obrazenia: {dmg}");
         _gui.displayAnimEvent(dmg,gameObject,_target,AnimationFinish);
     }
     //Tutaj mozna wwalic obliczanie damage

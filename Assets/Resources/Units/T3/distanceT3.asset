@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: distsance tier 3
   unitSprite: {fileID: 21300000, guid: 8eea995076da2367a9ae0ad948653fc0, type: 3}
+  unitType: 2
   tier: 2
   unitBaseHealth: 9
   unitBaseDamage: 8
