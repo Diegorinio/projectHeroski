@@ -12,4 +12,5 @@ public class heroSO : ScriptableObject
     public string defeatDialog;
     public SpellSO spellOne;
     public SpellSO spellTwo;
+    public int heroPrice;
 }

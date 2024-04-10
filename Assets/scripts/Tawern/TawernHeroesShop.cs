@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class TawernHeroesShop : MonoBehaviour
 {
+    public TawernShopHeroInfoPanel tawernShop;
     public GameObject heroImagePrefab;
     private List<heroSO> heoresSOLists;
     private List<GameObject> _listOfImages= new List<GameObject>();
@@ -17,6 +18,7 @@ public class TawernHeroesShop : MonoBehaviour
             GameObject newImage = Instantiate(heroImagePrefab,transform.position,Quaternion.identity,gameObject.transform);
             _listOfImages.Add(newImage);
             newImage.GetComponent<Image>().sprite = hero.heroSprite;
+            newImage.GetComponent<Button>().onClick.AddListener(()=>{ShowInTawernInfoPanel(hero);});
         }
     }
 
@@ -27,5 +29,9 @@ public class TawernHeroesShop : MonoBehaviour
         for(int i=0;i<_listOfImages.Count;i++){
             Destroy(_listOfImages[i]);
         }
+    }
+
+    private void ShowInTawernInfoPanel(heroSO hero){
+        tawernShop.SetUpTawerShopHero(hero);
     }
 }
