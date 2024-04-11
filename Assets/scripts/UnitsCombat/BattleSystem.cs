@@ -29,7 +29,7 @@ public class BattleSystem : MonoBehaviour
 
 
     }
-    private static bool IsCounter(Unit dealer,Unit victim)
+    public static bool IsCounter(Unit dealer,Unit victim)
     {
         if (dealer.getUnitType() == 0 && victim.getUnitType() == 2) { return true; }
         if(dealer.getUnitType()==2 &&victim.getUnitType()==1) { return true; }

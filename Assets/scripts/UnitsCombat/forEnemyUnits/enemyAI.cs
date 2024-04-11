@@ -16,6 +16,7 @@ public class enemyAI : MonoBehaviour
     //List GameObject jednostek gracza
     [SerializeField]
     private List<GameObject> _collidersCharacters = new List<GameObject>();
+    private List<GameObject> _colliderCharactersCountered = new List<GameObject>();
 
     //Dany typ jednostki
     private Unit assignedEnemy;
@@ -33,6 +34,12 @@ public class enemyAI : MonoBehaviour
     //Przypisz/Zmien liste przeciwnikow(Jednostek gracza) ktorej zostaly wykryte i mozliwe do zaatakwaonia
     public void changeCollidersCharacters(List<GameObject> colliders){
         _collidersCharacters=colliders;
+        for(int x = 0; x < colliders.Count-1; x++)
+        {
+            if (BattleSystem.IsCounter(gameObject.GetComponent<Unit>(),colliders[x].GetComponent<Unit>())) {
+                _colliderCharactersCountered.Add(colliders[x]);
+            }
+        }
     }
 
     //Wyczysc movement i wykrytych jednostek
@@ -88,6 +95,7 @@ public class enemyAI : MonoBehaviour
         if(_collidersCharacters.Count>0){
         int id=Random.Range(0,_collidersCharacters.Count-1);
         GameObject selectedHero=_collidersCharacters[id].transform.gameObject;
+        BattleSystem.IsCounter(gameObject.GetComponent<Unit>(),selectedHero.GetComponent<Unit>());
         Debug.Log($"Przeciwnik aatakowal {selectedHero.name} AI");
         gameObject.GetComponent<unitController>().goToNearestTileAndDealDamage(selectedHero);
         }
