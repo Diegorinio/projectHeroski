@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
+    public enum EnemyType {agresive, normal,passive };
+    public EnemyType typeOfGeneral;
+
     private int heroID;
     private string heroName;
     private Sprite heroSprite;
@@ -16,6 +19,13 @@ public class Hero : MonoBehaviour
     private Spell firstSpell;
     private Spell secondSpell;
 
+    private void Awake()
+    {
+        //
+        var rand= new System.Random().Next(0,3);
+        typeOfGeneral = (EnemyType)rand;
+
+    }
     public void assignHeroSO(heroSO _hero){
         _heroSO = _hero;
         heroID=_hero.heroID;
@@ -26,6 +36,10 @@ public class Hero : MonoBehaviour
         defeatDialog=_hero.defeatDialog;
         firstSpell = getSpellBySO(_hero.spellOne);
         secondSpell = getSpellBySO(_hero.spellTwo);
+    }
+    public EnemyType getTypeOfGeneral()
+    {
+        return typeOfGeneral;
     }
 
     public string getHeroName(){
