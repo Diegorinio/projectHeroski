@@ -8,7 +8,8 @@ using Unity.VisualScripting;
 // Skrypt okreslajacy jednostke
 public class Unit : MonoBehaviour
 {
-    [SerializeField]
+
+
     protected int UnitType; 
     protected int tier;
     [SerializeField]
