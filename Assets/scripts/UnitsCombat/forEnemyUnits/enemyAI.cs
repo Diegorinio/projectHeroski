@@ -70,7 +70,9 @@ public class enemyAI : MonoBehaviour
         enemyGeneral.getTypeOfGeneral();
         print(enemyGeneral.getTypeOfGeneral());
         print((int)enemyGeneral.getTypeOfGeneral());
+        print(_collidersMovement);
         print("sadasdasdasd");
+        int change = Random.Range(0, 4);
         if ((int)enemyGeneral.getTypeOfGeneral() == 0)
         {//agresywny
             if (_collidersCharacters.Count > 0)
@@ -106,9 +108,13 @@ public class enemyAI : MonoBehaviour
             }
         else
         {//pasywny
-            if (_colliderCharactersCountered.Count > 0)
+            if (_colliderCharactersCountered.Count > 0&&change<=2)
             {
             attackDamageToRandomPlayer();
+            }
+            else if (_collidersCharacters.Count>0&&change>2)
+            {
+                attackPlayerUnit();
             }
             else
             {
@@ -131,7 +137,19 @@ public class enemyAI : MonoBehaviour
 
     //Zaatakauj losowa jednostke gracza jesli jest to kontruje atack kontrowana
     public void attackDamageToRandomPlayer(){
-        if ((int)enemyGeneral.getTypeOfGeneral() == 0 || (int)enemyGeneral.getTypeOfGeneral() == 1)
+        if((int)enemyGeneral.getTypeOfGeneral() == 0)
+        {
+            int change = Random.Range(0, 2);
+            if (change > 1)
+            {
+                attackPlayerUnitCountered();
+            }
+            else
+            {
+                attackPlayerUnit();
+            }
+        }
+        if ( (int)enemyGeneral.getTypeOfGeneral() == 1)
         {
             if (_collidersCharacters.Count > 0)
             {
@@ -165,7 +183,6 @@ public class enemyAI : MonoBehaviour
     private void attackPlayerUnitCountered()
     {
         int id=Random.Range(0,_colliderCharactersCountered.Count-1);
-        print("XDDDDDDDDDDDDDDDDDDDDDDDDDDDD123321");
         GameObject selectedHero=_colliderCharactersCountered[id].transform.gameObject;
         BattleSystem.IsCounter(gameObject.GetComponent<Unit>(),selectedHero.GetComponent<Unit>());
         Debug.Log($"Przeciwnik aatakowal {selectedHero.name} AI");
