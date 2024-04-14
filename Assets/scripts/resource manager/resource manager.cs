@@ -33,15 +33,15 @@ public class resourcemanager : MonoBehaviour
         }
         //wczytanie save
         gold=PlayerPrefs.GetInt("GoldInMenu");
-        iron=PlayerPrefs.GetInt("IronInMenu");
-        wood+=PlayerPrefs.GetInt("WoodInMenu", wood);
-        steel+=PlayerPrefs.GetInt("SteelInMenu", steel);
-        X+=PlayerPrefs.GetInt("XInMenu", X);
+        //iron=PlayerPrefs.GetInt("IronInMenu");
+        //wood+=PlayerPrefs.GetInt("WoodInMenu", wood);
+        //steel+=PlayerPrefs.GetInt("SteelInMenu", steel);
+        //X+=PlayerPrefs.GetInt("XInMenu", X);
         GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(gold.ToString());
-        GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
-        GameObject.Find("WoodLabel").GetComponent<TextMeshPro>().SetText("Wood: " + wood.ToString());
-        GameObject.Find("SteelLabel").GetComponent<TextMeshPro>().SetText("Steel: " + steel.ToString());
-        GameObject.Find("XlLabel").GetComponent<TextMeshPro>().SetText("X: " + X.ToString());
+        //GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
+        //GameObject.Find("WoodLabel").GetComponent<TextMeshPro>().SetText("Wood: " + wood.ToString());
+        //GameObject.Find("SteelLabel").GetComponent<TextMeshPro>().SetText("Steel: " + steel.ToString());
+        //GameObject.Find("XlLabel").GetComponent<TextMeshPro>().SetText("X: " + X.ToString());
     }
     public void ManagerOnClick()
     {
@@ -58,48 +58,48 @@ public class resourcemanager : MonoBehaviour
             menuIsOn = false;
         }
     }
-    public void CheatGold() 
-    {
-        gold +=1111111;
-        GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(gold.ToString());
-    }
-    public void CheatIron()
-    {
-        iron += 1111111;
-        GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
-    }
+    //public void CheatGold() 
+    //{
+    //    gold +=1111111;
+    //    GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(gold.ToString());
+    //}
+    //public void CheatIron()
+    //{
+    //    iron += 1111111;
+    //    GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
+    //}
 
-    public void ActivateCheats()
-    {
-        if(GameObject.Find("cheatButton0")==null){
-            return;
-        }
-        print("sasdasd");
-        activateCheat += 1;
-        if (activateCheat > 10)
-        {
-            for (int i = 0; i < cheatbuttons.Length; i++)
-            {
-                cheatbuttons[i].SetActive(true);
-            }
-        }
-        else
-        {
-            return;
-        }
-    }
+    //public void ActivateCheats()
+    //{
+    //    if(GameObject.Find("cheatButton0")==null){
+    //        return;
+    //    }
+    //    print("sasdasd");
+    //    activateCheat += 1;
+    //    if (activateCheat > 10)
+    //    {
+    //        for (int i = 0; i < cheatbuttons.Length; i++)
+    //        {
+    //            cheatbuttons[i].SetActive(true);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        return;
+    //    }
+    //}
     public void CheckifChange()
     {
         GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(gold.ToString());
-        GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
-        GameObject.Find("WoodLabel").GetComponent<TextMeshPro>().SetText("Wood: "+wood.ToString());
-        GameObject.Find("SteelLabel").GetComponent<TextMeshPro>().SetText("Steel: "+steel.ToString());
-        GameObject.Find("XlLabel").GetComponent<TextMeshPro>().SetText("X: "+X.ToString());
+        //GameObject.Find("Iron_Counter").GetComponent<TextMeshPro>().SetText(iron.ToString());
+        //GameObject.Find("WoodLabel").GetComponent<TextMeshPro>().SetText("Wood: "+wood.ToString());
+        //GameObject.Find("SteelLabel").GetComponent<TextMeshPro>().SetText("Steel: "+steel.ToString());
+        //GameObject.Find("XlLabel").GetComponent<TextMeshPro>().SetText("X: "+X.ToString());
         PlayerPrefs.SetInt("GoldInMenu", gold);
-        PlayerPrefs.SetInt("IronInMenu", iron);
-        PlayerPrefs.SetInt("WoodInMenu", wood);
-        PlayerPrefs.SetInt("SteelInMenu", steel);
-        PlayerPrefs.SetInt("XInMenu", X);
+        //PlayerPrefs.SetInt("IronInMenu", iron);
+        //PlayerPrefs.SetInt("WoodInMenu", wood);
+        //PlayerPrefs.SetInt("SteelInMenu", steel);
+        //PlayerPrefs.SetInt("XInMenu", X);
 
 
 

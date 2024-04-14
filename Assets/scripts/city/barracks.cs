@@ -99,7 +99,8 @@ public class barracks : MonoBehaviour
         if (amount_slider.value <= 0) return;
         DateTime UnitBoughtTime = DateTime.Now;
         if((int)amount_slider.value>0){
-        UnitToReadyTime = UnitBoughtTime.AddSeconds((int)amount_slider.value*2);
+        UnitToReadyTime = UnitBoughtTime.AddSeconds(5);
+                //UnitBoughtTime.AddSeconds((int)amount_slider.value*2);
         lastRecruitSoldiers = (int)amount_slider.value;
         isRecrutable = false;
         isFirstTime = true;
