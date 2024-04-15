@@ -107,10 +107,10 @@ public class turnbaseScript : MonoBehaviour
         }
         else{
             if(isWin){
-                _gui.gameStateGameOver("Win");
+                _gui.gameStateGameOver("Win",round);
             }
             else{
-                _gui.gameStateGameOver("Lose");
+                _gui.gameStateGameOver("Lose",round);
             }
         }
     }
@@ -200,10 +200,10 @@ public class turnbaseScript : MonoBehaviour
         }
         if(isFinished){
         if(isWin){
-                _gui.gameStateGameOver("Win");
+                _gui.gameStateGameOver("Win",round);
             }
             else{
-                _gui.gameStateGameOver("Lose");
+                _gui.gameStateGameOver("Lose",round);
             }
         }
     }

@@ -2858,9 +2858,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerEventBox: {fileID: 0}
-  playerDialogBox: {fileID: 0}
   enemyEventBox: {fileID: 0}
   enemyDialogBox: {fileID: 0}
+  playerDialogBox: {fileID: 0}
 --- !u!1 &1023206926
 GameObject:
   m_ObjectHideFlags: 0
@@ -3262,6 +3262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a0114ca2812aeed8956cf4ddfebce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 1876855470}
   gameStatePanel: {fileID: 1296350491}
   roundStartPanel: {fileID: 1620484103}
   roundTextGameUI: {fileID: 0}
@@ -3341,9 +3342,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerEventBox: {fileID: 603085596}
-  playerDialogBox: {fileID: 822547796}
   enemyEventBox: {fileID: 298835764}
   enemyDialogBox: {fileID: 555992737}
+  playerDialogBox: {fileID: 822547796}
 --- !u!1 &1227729248
 GameObject:
   m_ObjectHideFlags: 0
@@ -4722,7 +4723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1876855469
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5079,9 +5080,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerEventBox: {fileID: 0}
-  playerDialogBox: {fileID: 0}
   enemyEventBox: {fileID: 0}
   enemyDialogBox: {fileID: 0}
+  playerDialogBox: {fileID: 0}
 --- !u!222 &2004971448
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -83,8 +83,15 @@ public class barracks : MonoBehaviour
         lastRecruitSoldiers = PlayerPrefs.GetInt($"{unitName}: amount");
         isRecrutable= (PlayerPrefs.GetInt($"isRecrutable {unitName}") != 0);
         if (!isRecrutable)
-        collectBtn.SetActive(false);
-        else buyBtn.gameObject.SetActive(true);
+        {
+            collectBtn.SetActive(false);
+            buyBtn.gameObject.SetActive(true);
+        }
+        else
+        {
+            buyBtn.gameObject.SetActive(true);
+            collectBtn.SetActive(false);
+        }
 
     }
     private void OnDisable()

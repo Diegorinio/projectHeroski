@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class turnBaseScriptGUI : MonoBehaviour
 {
+    public Text text;
     //Panel konca gry
     [SerializeField]
     GameObject gameStatePanel;
@@ -62,9 +63,20 @@ public class turnBaseScriptGUI : MonoBehaviour
 
     
     //Pokaz ekran konca gry i kto wygral
-    public void gameStateGameOver(string winner){
+    public void gameStateGameOver(string winner,int round){
         Text state = gameStatePanel.transform.Find("gameStateText").gameObject.GetComponent<Text>();
         // GameObject.Find("movement_panel").SetActive(false);
+        int gwiazki = 4 - round;
+        if (gwiazki <= 0 || gwiazki>3)gwiazki = 1;
+        text.gameObject.SetActive(true);
+        text.GetComponent<Text>().text = $"ZDOBY£EŒ {gwiazki} Gwiazdek GRATULUJE";
+        if (PlayerPrefs.GetInt($"LVL 1 Stars") <= gwiazki) // PlayerPrefs.GetInt($"{this.name} Stars"); syntax dawanie gwiazdek 0,1,2,3|| 3 to  3 gwiazki
+        {//                       ^ TEN lvl1 to placeholder! TRZEBA ZMIENIÆ BY BRA£O JAKI LVL ZOSTA£ WYBRANY  
+            PlayerPrefs.SetInt($"LVL 1 Stars", gwiazki);
+            //odblokowuje kolejny poziom XD
+
+        }
+        else PlayerPrefs.SetInt($"LVL 1 Stars", 3);
         state.text = winner;
         gameStatePanel.SetActive(true);
     }

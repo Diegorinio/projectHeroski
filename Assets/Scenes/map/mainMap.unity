@@ -226,7 +226,7 @@ MonoBehaviour:
   Lock: {fileID: 0}
   stars: 0
   Starplace: {fileID: 1430912254}
-  StarFrom: {fileID: 0}
+  StarFrom: {fileID: 1412309589}
 --- !u!114 &168580392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,7 +709,7 @@ MonoBehaviour:
   Lock: {fileID: 0}
   stars: 0
   Starplace: {fileID: 1949160860}
-  StarFrom: {fileID: 0}
+  StarFrom: {fileID: 1412309589}
 --- !u!114 &454998474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   Lock: {fileID: 0}
   stars: 0
   Starplace: {fileID: 1485033046}
-  StarFrom: {fileID: 0}
+  StarFrom: {fileID: 1412309589}
 --- !u!114 &667451346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,7 +1232,7 @@ MonoBehaviour:
   Lock: {fileID: 0}
   stars: 0
   Starplace: {fileID: 2035753972}
-  StarFrom: {fileID: 0}
+  StarFrom: {fileID: 1412309589}
 --- !u!114 &689065600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2347,7 +2347,7 @@ MonoBehaviour:
   Lock: {fileID: 0}
   stars: 0
   Starplace: {fileID: 1693834599}
-  StarFrom: {fileID: 0}
+  StarFrom: {fileID: 1412309589}
 --- !u!114 &1666987047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,7 +2842,7 @@ MonoBehaviour:
   Lock: {fileID: 1863216447}
   stars: 0
   Starplace: {fileID: 206659940}
-  StarFrom: {fileID: 0}
+  StarFrom: {fileID: 1412309589}
 --- !u!114 &1878497317
 MonoBehaviour:
   m_ObjectHideFlags: 0
