@@ -31,15 +31,19 @@ public class TierChangerHandler : MonoBehaviour
         animation = false;
         if (citymanager.GetComponent<CityManager>().lvlKoszar != 0)
         {
-            if ((int)citymanager.GetComponent<CityManager>().lvlKoszar < 4)
-            {
-                T4B.interactable = false; print("1");
-                if ((int)citymanager.GetComponent<CityManager>().lvlKoszar < 3)
-                {
-                    T3B.interactable = false; print("2");
-                    if ((int)citymanager.GetComponent<CityManager>().lvlKoszar < 2) { T2B.interactable = false; print("3"); }
-                }
-            }
+            T1B.interactable = true;
+            T2B.interactable = false;
+            T3B.interactable = false;
+            T4B.interactable = false;
+            //if ((int)citymanager.GetComponent<CityManager>().lvlKoszar < 4)
+            //{
+            //    T4B.interactable = false;
+            //    if ((int)citymanager.GetComponent<CityManager>().lvlKoszar < 3)
+            //    {
+            //        T3B.interactable = false;
+            //        if ((int)citymanager.GetComponent<CityManager>().lvlKoszar < 2) { T2B.interactable = false; }
+            //    }
+            //}
         }
 
     }
@@ -99,15 +103,15 @@ public class TierChangerHandler : MonoBehaviour
         }
         lastOpenTier = NewTier;
         T1B.interactable = true;
-        if ((int)citymanager.GetComponent<CityManager>().lvlKoszar >= 2)
-        {
-            T2B.interactable = true;
-            if ((int)citymanager.GetComponent<CityManager>().lvlKoszar >= 3)
-            {
-                T3B.interactable = true;
-                if ((int)citymanager.GetComponent<CityManager>().lvlKoszar >= 4)T4B.interactable = true; 
-            }
-        }
+        //if ((int)citymanager.GetComponent<CityManager>().lvlKoszar >= 2)
+        //{
+        //    T2B.interactable = true;
+        //    if ((int)citymanager.GetComponent<CityManager>().lvlKoszar >= 3)
+        //    {
+        //        T3B.interactable = true;
+        //        if ((int)citymanager.GetComponent<CityManager>().lvlKoszar >= 4)T4B.interactable = true; 
+        //    }
+        //}
         
     }
     private void OnDisable()
