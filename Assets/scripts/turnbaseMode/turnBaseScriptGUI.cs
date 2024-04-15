@@ -70,14 +70,14 @@ public class turnBaseScriptGUI : MonoBehaviour
         if (gwiazki <= 0 || gwiazki>3)gwiazki = 1;
         text.gameObject.SetActive(true);
         text.GetComponent<Text>().text = $"ZDOBY£EŒ {gwiazki} Gwiazdek GRATULUJE";
+        //bierze gwiazdki od rund bym zmieni³ bo rundy d³ugo traja chyba xd
         if (PlayerPrefs.GetInt($"LVL 1 Stars") <= gwiazki) // PlayerPrefs.GetInt($"{this.name} Stars"); syntax dawanie gwiazdek 0,1,2,3|| 3 to  3 gwiazki
         {//                       ^ TEN lvl1 to placeholder! TRZEBA ZMIENIÆ BY BRA£O JAKI LVL ZOSTA£ WYBRANY  
             PlayerPrefs.SetInt($"LVL 1 Stars", gwiazki);
             //odblokowuje kolejny poziom XD
 
         }
-        else PlayerPrefs.SetInt($"LVL 1 Stars", 3);
-        state.text = winner;
+        state.text = $"ZDOBY£EŒ {gwiazki} Gwiazdek GRATULUJE";;
         gameStatePanel.SetActive(true);
     }
 
