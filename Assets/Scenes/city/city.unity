@@ -4121,6 +4121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldPerUnit: 0
   amount_slider: {fileID: 266788786}
   amount_input: {fileID: 809704458}
   buyBtn: {fileID: 473652280}
@@ -7099,6 +7100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldPerUnit: 0
   amount_slider: {fileID: 1190914763}
   amount_input: {fileID: 186229976}
   buyBtn: {fileID: 550780545}
@@ -8721,6 +8723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldPerUnit: 10
   amount_slider: {fileID: 1823326699}
   amount_input: {fileID: 297966228}
   buyBtn: {fileID: 1894575393}
@@ -10176,6 +10179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldPerUnit: 0
   amount_slider: {fileID: 1516404795}
   amount_input: {fileID: 1839640197}
   buyBtn: {fileID: 536226101}
@@ -11594,6 +11598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldPerUnit: 0
   amount_slider: {fileID: 996312352}
   amount_input: {fileID: 1470206243}
   buyBtn: {fileID: 1429170418}
@@ -11925,6 +11930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldPerUnit: 15
   amount_slider: {fileID: 324072681}
   amount_input: {fileID: 1674542234}
   buyBtn: {fileID: 1003575796}
@@ -15175,6 +15181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldPerUnit: 0
   amount_slider: {fileID: 1010394237}
   amount_input: {fileID: 335548411}
   buyBtn: {fileID: 1113169566}
@@ -15490,6 +15497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldPerUnit: 5
   amount_slider: {fileID: 263354558}
   amount_input: {fileID: 2037791425}
   buyBtn: {fileID: 559430815}
@@ -19479,6 +19487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldPerUnit: 0
   amount_slider: {fileID: 85977286}
   amount_input: {fileID: 829107223}
   buyBtn: {fileID: 702307583}

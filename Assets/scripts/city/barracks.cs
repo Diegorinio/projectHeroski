@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,6 +9,8 @@ using UnityEngine.UI;
 
 public class barracks : MonoBehaviour
 {
+    private resourcemanager manager;
+    public int goldPerUnit;
     [SerializeField]
     Slider amount_slider;
     [SerializeField]
@@ -79,6 +82,7 @@ public class barracks : MonoBehaviour
 
     private void OnEnable()
     {
+        manager=GameObject.Find("resourceManager").GetComponent<resourcemanager>();
         UnitToReadyTime = DateTime.Parse(PlayerPrefs.GetString($"{unitName}: recruitment time"));
         lastRecruitSoldiers = PlayerPrefs.GetInt($"{unitName}: amount");
         isRecrutable= (PlayerPrefs.GetInt($"isRecrutable {unitName}") != 0);
@@ -107,6 +111,9 @@ public class barracks : MonoBehaviour
         DateTime UnitBoughtTime = DateTime.Now;
         if((int)amount_slider.value>0){
         UnitToReadyTime = UnitBoughtTime.AddSeconds(5);
+        int goldToBuy= (int)amount_slider.value*goldPerUnit;
+        manager.gold-=goldToBuy;
+        manager.CheckifChange();
                 //UnitBoughtTime.AddSeconds((int)amount_slider.value*2);
         lastRecruitSoldiers = (int)amount_slider.value;
         isRecrutable = false;
