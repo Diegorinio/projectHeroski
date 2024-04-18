@@ -108,6 +108,10 @@ public class barracks : MonoBehaviour
 
     private void buyUnit(){
         if (amount_slider.value <= 0) return;
+        if (manager.gold < (int)amount_slider.value*goldPerUnit) {
+            //wyœwietl nie masz z³ota biedaku
+            return;
+        }
         DateTime UnitBoughtTime = DateTime.Now;
         if((int)amount_slider.value>0){
         UnitToReadyTime = UnitBoughtTime.AddSeconds(5);
