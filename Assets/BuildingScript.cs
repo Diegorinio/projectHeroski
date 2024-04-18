@@ -31,7 +31,7 @@ public class BuildingScript : MonoBehaviour
            case "KoszaryEntryButton":
               whatLvlHaveBuilding = GameObject.Find("CityManager").GetComponent<CityManager>().lvlKoszar; break;
         }
-
+    
     }
     private void OnEnable()
     {
