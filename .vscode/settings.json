@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "projectHeroski.sln"
+    "dotnet.defaultSolution": "heroski.sln"
 }

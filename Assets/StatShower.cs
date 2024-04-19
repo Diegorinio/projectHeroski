@@ -6,8 +6,9 @@ using TMPro;
 
 public class StatShower : MonoBehaviour
 {
-    public Unit assignedUnit;
+    public UnitSO assignedUnit;
     public GameObject cringe;
+    private Image unitImage;
     private TextMeshProUGUI unitName;
     private TextMeshProUGUI unitBasehp;
     private TextMeshProUGUI unitBaseDmg;
@@ -16,8 +17,9 @@ public class StatShower : MonoBehaviour
 
     private void Awake()
     {
-        cringe = GameObject.Find("StatShow");
+        // cringe = GameObject.Find("StatShow");
         cringe.SetActive(false);
+        findComponents();
     }
     public void showStatMenu()
     {
@@ -31,19 +33,22 @@ public class StatShower : MonoBehaviour
         unitBaseDmg = findComponentFromParent("unit_base_dmg");
         unitTier = findComponentFromParent("unit_tier");
         unitMoveDistance = findComponentFromParent("unit_movement_distance_x_y");
+        unitImage = cringe.transform.Find("unit_image").GetComponent<Image>();
         setUpComponentsValues(assignedUnit);
     }
 
-    private void setUpComponentsValues(Unit _unit){
+    private void setUpComponentsValues(UnitSO _unit){
         unitName.text = _unit.unitName;
         unitBaseDmg.text = _unit.unitBaseDamage.ToString();
         unitBasehp.text = _unit.unitBaseHealth.ToString();
-        unitTier.text = _unit.getUnitTier().ToString();
-        Vector2 moveDistance = _unit.getUnitMoveDistance();
-        unitMoveDistance.text = $"{moveDistance.x},{moveDistance.y}";
+        unitTier.text = _unit.tier.ToString();
+        Vector2 moveDistance = new Vector2(_unit.gridDistanceX,_unit.gridDistanceY);
+        unitMoveDistance.text = $"X:{moveDistance.x},Y:{moveDistance.y}";
+        unitImage.sprite = _unit.unitSprite;
+        
     }
     private TextMeshProUGUI findComponentFromParent(string cmp_name){
-        TextMeshProUGUI found = transform.parent.Find(cmp_name).gameObject.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI found = cringe.transform.Find(cmp_name).gameObject.GetComponent<TextMeshProUGUI>();
         if(found ==null){
             return null;
         }
