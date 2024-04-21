@@ -87,7 +87,7 @@ public class CityManager : MonoBehaviour
         else lvlKoszar = 1;
         //jeśoi wiekszy niż 1 trzeba w osobbnej funkcji
         if (lvlRatusza >= 2) GameObject.Find("RatuszEntryButton").GetComponent<Image>().color = new Color32(155, 55, 190, 255);
-        if (lvlkopalni >= 2) GameObject.Find("KopalniaEntryButton").GetComponent<Image>().color = new Color32(241, 255, 0, 255);
+        //if (lvlkopalni >= 2) GameObject.Find("KopalniaEntryButton").GetComponent<Image>().color = new Color32(241, 255, 0, 255);
         //
         P1 = GameObject.Find("RatuszPanel");
         P2 = GameObject.Find("KopalniaPanel");
@@ -135,7 +135,7 @@ public class CityManager : MonoBehaviour
     {
         //wczytanie ile mineło czasu XD / przez ile na 1 staka
         lastTimeIncity = DateTime.Parse(PlayerPrefs.GetString("Last Time login Town"));
-        Debug.Log($"Ostatni pobyt{lastTimeIncity}");
+        //Debug.Log($"Ostatni pobyt{lastTimeIncity}");
         TimeSpan howManySecPassed= DateTime.Now - lastTimeIncity;
         if ((int)howManySecPassed.TotalSeconds >= TimerToNextReward)
         {
