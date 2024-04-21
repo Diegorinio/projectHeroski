@@ -45,6 +45,7 @@ public class LVL : MonoBehaviour
             }
         }
         //tu przechodzi do walki i mo�e animacja
+        PlayerPrefs.SetString("BattleNow", this.name);
         print($"WALKA : {this.name}");
         _rndevent.goToFight("battleScene");
 
