@@ -9,6 +9,7 @@ using UnityEngine.UI;
 //Prefab MessageBox 
 public class MessageBox : MonoBehaviour
 {
+    public List<Sprite> charactersImages;
     //Wartosci takie jak tytyl i wiadomosc
     [SerializeField]
     private TextMeshProUGUI messageTitle;
@@ -23,9 +24,12 @@ public class MessageBox : MonoBehaviour
         messageTitle = gameObject.transform.Find("messageTitle").GetComponent<TextMeshProUGUI>();
         messageContent = gameObject.transform.Find("messageContent").GetComponent<TextMeshProUGUI>();
         okButton = gameObject.transform.Find("okButton").gameObject;
+        gameObject.transform.Find("Image").GetComponent<Image>().sprite = getRandomImage();
 
     }
-
+    private Sprite getRandomImage(){
+        return charactersImages[Random.Range(0,charactersImages.Count)];
+    }
     //Metody do ustawiania tytulu,wiadomosci albo wszystkiego naraz
     //Metoda odpowiedzialna za klikniecie buttona OK
     public void setMessageTitle(string title){

@@ -21,7 +21,7 @@ MonoBehaviour:
   gridDistanceX: 2
   gridDistanceY: 2
   attackAnimationSprites:
-  - {fileID: -192672540, guid: 589452b806a0458489a85953efa5bb99, type: 3}
-  - {fileID: 21300000, guid: 15457ce00b8b012bf8fe4967badea49f, type: 3}
-  - {fileID: 21300000, guid: d15ff440194ae65b68d47a35e346abc8, type: 3}
-  - {fileID: 21300000, guid: a7af6c08c6610f24aba3b78606e5bd0c, type: 3}
+  - {fileID: -1667007411, guid: 712a4a32c1964284ea784b1d2b37ef35, type: 3}
+  - {fileID: 530232509, guid: 712a4a32c1964284ea784b1d2b37ef35, type: 3}
+  - {fileID: -1713848146, guid: 712a4a32c1964284ea784b1d2b37ef35, type: 3}
+  - {fileID: 1830925360, guid: 712a4a32c1964284ea784b1d2b37ef35, type: 3}

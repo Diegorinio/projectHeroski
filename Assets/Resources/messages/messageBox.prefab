@@ -492,7 +492,7 @@ RectTransform:
   m_GameObject: {fileID: 2567304395272664774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.88769, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3239456925481971872}
@@ -504,8 +504,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.799988, y: -47.599976}
-  m_SizeDelta: {x: -171.20001, y: -904.1}
+  m_AnchoredPosition: {x: -64.62485, y: -47.599976}
+  m_SizeDelta: {x: -116.2817, y: -904.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3759458748966889237
 CanvasRenderer:
@@ -557,6 +557,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acec3f6278dbc0a4da20f2ee833bbafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charactersImages:
+  - {fileID: 21300000, guid: 6c589d2ea6a6f29b788780a080240693, type: 3}
+  - {fileID: 21300000, guid: 75af9c2ce36a70f45bf39aae379f3ed3, type: 3}
   messageTitle: {fileID: 1363132087097791747}
   messageContent: {fileID: 8111963188475700398}
 --- !u!1 &6519980967754740405
@@ -624,7 +627,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: sdsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -720,7 +723,7 @@ RectTransform:
   m_GameObject: {fileID: 6697774556350043218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5622, y: 1.5622, z: 1.5622}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6842804463200488811}

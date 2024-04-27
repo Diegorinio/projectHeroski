@@ -18,8 +18,8 @@ public class StatShower : MonoBehaviour
     private void Awake()
     {
         // cringe = GameObject.Find("StatShow");
-        cringe.SetActive(false);
         findComponents();
+        cringe.SetActive(false);
     }
     public void showStatMenu()
     {

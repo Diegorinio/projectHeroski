@@ -20,5 +20,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loading/loading_screen.unity
     guid: 998f55911b59b4f978c12eb166d6968b
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/tutorial.unity
+    guid: e8dd6ff15a563d487b199b123b4696c0
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/battle_tutorial.unity
+    guid: d9ae24e69f3858546a4c5e728074cb08
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: b12abb20669e7f742af94ad8e47a4e97, type: 2}

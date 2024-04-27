@@ -22,3 +22,4 @@ MonoBehaviour:
   defeatDialog: "To by\u0142a dobra walka"
   spellOne: {fileID: 11400000, guid: 0a99dfa1640328d8096f0182927fa46b, type: 2}
   spellTwo: {fileID: 11400000, guid: 5b6ab922a0705b5e69039ddee134ca08, type: 2}
+  heroPrice: 300

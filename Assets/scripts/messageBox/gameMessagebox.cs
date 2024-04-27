@@ -36,11 +36,9 @@ public class gameMessagebox : MonoBehaviour
         newxd.sizeDelta = refxd.sizeDelta;
         Button okBtn = messageBox.transform.GetComponentInChildren<Button>();
         messageBox.GetComponent<MessageBox>().setMessageBox(title,content);
-        if(okButtonClick==null){
-            okBtn.onClick.AddListener(()=>okButtonOnClickEvent(messageBox));
-        }
-        else{
+        if(okButtonClick!=null){
             okBtn.onClick.AddListener(()=>okButtonClick());
         }
+        okBtn.onClick.AddListener(()=>okButtonOnClickEvent(messageBox));
     }
 }

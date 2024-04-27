@@ -8,18 +8,12 @@ public class TawernHeroesShop : MonoBehaviour
     public GameObject heroImagePrefab;
     private List<heroSO> heoresSOLists;
     private List<GameObject> _listOfImages= new List<GameObject>();
-    // Start is called before the first frame update
     void Awake(){
         heoresSOLists = heroSpawner.getHeroesSOList();
     }
     void OnEnable()
     {
-        foreach(var hero in heoresSOLists){
-            GameObject newImage = Instantiate(heroImagePrefab,transform.position,Quaternion.identity,gameObject.transform);
-            _listOfImages.Add(newImage);
-            newImage.GetComponent<Image>().sprite = hero.heroSprite;
-            newImage.GetComponent<Button>().onClick.AddListener(()=>{ShowInTawernInfoPanel(hero);});
-        }
+        SetUpHeroesList();
     }
 
     void OnDisable(){
@@ -28,6 +22,29 @@ public class TawernHeroesShop : MonoBehaviour
     private void clearImagesList(){
         for(int i=0;i<_listOfImages.Count;i++){
             Destroy(_listOfImages[i]);
+        }
+    }
+
+    public void LoadAgain(){
+        clearImagesList();
+        SetUpHeroesList();
+    }
+
+    private void SetUpHeroesList(){
+        int hiredHeroID = -1;
+        if(mainPlayerUnit.Instance.getSelectedHero()!=null){
+            hiredHeroID = mainPlayerUnit.Instance.getSelectedHero().getHeroSO().heroID;
+        }
+
+        foreach(var hero in heoresSOLists){
+            GameObject newImage = Instantiate(heroImagePrefab,transform.position,Quaternion.identity,gameObject.transform);
+            _listOfImages.Add(newImage);
+            newImage.SetActive(true);
+            newImage.GetComponent<Image>().sprite = hero.heroSprite;
+            newImage.GetComponent<Button>().onClick.AddListener(()=>{ShowInTawernInfoPanel(hero);});
+            if(hero.heroID!=hiredHeroID){
+                newImage.transform.Find("hired_mark").gameObject.SetActive(false);
+            }
         }
     }
 
