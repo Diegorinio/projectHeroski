@@ -17,6 +17,7 @@ public class gameMessagebox : MonoBehaviour
         setBox(title,content,okButtonClick);
     }
     private static void okButtonOnClickEvent(GameObject obj){
+        showEntities(true);
         Destroy(obj);
     }
 
@@ -39,6 +40,20 @@ public class gameMessagebox : MonoBehaviour
         if(okButtonClick!=null){
             okBtn.onClick.AddListener(()=>okButtonClick());
         }
+        showEntities(false);
         okBtn.onClick.AddListener(()=>okButtonOnClickEvent(messageBox));
+    }
+
+    public static void  showEntities(bool state){
+        if(mainEnemiesUnit.Instance.getUnitsAsGameObject()!=null){
+            foreach(var u in mainEnemiesUnit.Instance.getUnitsAsGameObject()){
+                u.GetComponent<Image>().enabled=state;
+            }
+        }
+        if(mainPlayerUnit.Instance.getUnitsAsGameObject()!=null){
+            foreach(var u in mainPlayerUnit.Instance.getUnitsAsGameObject()){
+                u.GetComponent<Image>().enabled=state;
+            }
+        }
     }
 }

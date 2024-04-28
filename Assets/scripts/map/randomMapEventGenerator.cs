@@ -30,7 +30,7 @@ public class randomMapEventGenerator : MonoBehaviour
         newEnemy.transform.SetParent(mainEnemiesUnit.Instance.gameObject.transform);
         newEnemy.transform.localPosition=Vector3.zero;
         Enemies.Add(newEnemy);
-        enemyHero = heroSpawner.spawnHeroGameObject(0,heroSpawner.HeroController.Enemy);
+        enemyHero = heroSpawner.spawnRandomHeroGameObject(heroSpawner.HeroController.Enemy);
 
         }
     }

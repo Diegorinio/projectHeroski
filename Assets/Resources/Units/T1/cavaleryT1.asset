@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: cavaleryT1
   m_EditorClassIdentifier: 
   unitName: cavalery t1
-  unitSprite: {fileID: 21300000, guid: 38a922da8801a33119068b1560c677dc, type: 3}
+  unitSprite: {fileID: -945803519, guid: 60d9f6b806429deb19f3eb88049a76f3, type: 3}
   unitType: 0
   tier: 0
   unitBaseHealth: 5

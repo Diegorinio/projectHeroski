@@ -20,7 +20,7 @@ public class turnbaseScript : MonoBehaviour
     public static bool isSelected;
     [SerializeField]
     //dana tura 
-    private int turn;
+    public int turn;
     // [SerializeField]
     //Lista Obiektow w kolejce
     private List<GameObject> quequeHeroes= new List<GameObject>();
@@ -29,7 +29,7 @@ public class turnbaseScript : MonoBehaviour
     // private Text turnText;
     // [SerializeField]
     //zmienan odpowiedzialna za runde
-    private int round=1;
+    public int round=1;
     //GUI do skryptu wyswietlajace informacje
     turnBaseScriptGUI _gui;
 
@@ -96,7 +96,7 @@ public class turnbaseScript : MonoBehaviour
         if(!isFinished){
         Debug.Log($"Queque heroes size: {quequeHeroes.Count} and id is {turn}");
         if(turnQueue.Count==0){
-            round++;
+            
             StartCoroutine(roundStart());
         }
         else{
@@ -140,8 +140,8 @@ public class turnbaseScript : MonoBehaviour
             if(!IsHeroTurn()){
                 checkGameState();
             }
+            turn++;
             _gui.battleUI.setUpTurnPanel(turnQueue.ToList());
-            Debug.Log(turnQueue.Peek().transform.name);
             StartCoroutine(waitForNextUnit(0.5f));
     }
 
