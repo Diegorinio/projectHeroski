@@ -149,9 +149,11 @@ public class otherGridManager : MonoBehaviour
             spawnTile.makeBusy();
             Vector3 nPos = gridMapTiles[rnd,0].transform.position;
             Debug.Log($"Tile Transform {nPos.x},{nPos.y}");
-            hero.transform.position= new Vector3(nPos.x,nPos.y,-1);
+            
+            Debug.Log(hero.transform.position);
             hero.SetActive(true);
             hero.GetComponent<unitController>().characterMove(spawnTile.gameObject,true);
+            hero.transform.position= new Vector3(nPos.x,nPos.y,-1000);
         }
     }
 
@@ -165,9 +167,8 @@ public class otherGridManager : MonoBehaviour
             spawnTile.makeBusy();
             enemy.GetComponent<unitController>().setTile(spawnTile);
             Vector3 nPos = gridMapTiles[rnd,height-1].transform.position;
-            enemy.transform.position = new Vector3(nPos.x,nPos.y,-1);
-            // enemy.GetComponent<unitController>().characterMoveToTile(spawnTile.gameObject);
             enemy.GetComponent<unitController>().characterMove(spawnTile.gameObject,true);
+            enemy.transform.position = new Vector3(nPos.x,nPos.y,-1000);
             enemy.SetActive(true);
         }
     }

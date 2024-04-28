@@ -45,11 +45,11 @@ public class goToSceneClick : MonoBehaviour
     void setEventUnits(){
         for(int x=0;x<1;x++){
         // GameObject newEnemy = unitSpawner.spawnRandomUnitToGameObject(unitSpawner.controllers.Enemy);
-        GameObject newEnemy = unitSpawner.spawnRandomUnitGameObject(unitSpawner.tier.T1,unitSpawner.controllers.Enemy,Random.Range(100,300));
+        GameObject newEnemy = unitSpawner.spawnRandomUnitGameObject(unitSpawner.tier.T1,unitSpawner.controllers.Enemy,Random.Range(5,50));
         newEnemy.transform.SetParent(mainEnemiesUnit.Instance.gameObject.transform);
         newEnemy.transform.localPosition=Vector3.zero;
         Enemies.Add(newEnemy);
-        enemyHero = heroSpawner.spawnHeroGameObject(0,heroSpawner.HeroController.Enemy);
+        enemyHero = heroSpawner.spawnRandomHeroGameObject(heroSpawner.HeroController.Enemy);
 
         }
     }

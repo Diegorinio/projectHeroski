@@ -65,6 +65,7 @@ public class turnBaseScriptGUI : MonoBehaviour
     
     //Pokaz ekran konca gry i kto wygral
     public void gameStateGameOver(string winner,int round){
+        hideUnits();
         Text state = gameStatePanel.transform.Find("gameStateText").gameObject.GetComponent<Text>();
         // GameObject.Find("movement_panel").SetActive(false);
         int gwiazki = 4 - round;
@@ -77,15 +78,15 @@ public class turnBaseScriptGUI : MonoBehaviour
         }
         if (gwiazki <= 0 || gwiazki>3)gwiazki = 1;
         text.gameObject.SetActive(true);
-        text.GetComponent<Text>().text = $"ZDOBY£EŒ {gwiazki} Gwiazdek GRATULUJE";
-        //bierze gwiazdki od rund bym zmieni³ bo rundy d³ugo traja chyba xd
+        text.GetComponent<Text>().text = $"SCORE: {gwiazki}";
+        //bierze gwiazdki od rund bym zmieniï¿½ bo rundy dï¿½ugo traja chyba xd
         if (PlayerPrefs.GetInt($"{poziom} Stars") <= gwiazki) // PlayerPrefs.GetInt($"{this.name} Stars"); syntax dawanie gwiazdek 0,1,2,3|| 3 to  3 gwiazki
-        {//                       ^ TEN lvl1 to placeholder! TRZEBA ZMIENIÆ BY BRA£O JAKI LVL ZOSTA£ WYBRANY  
+        {//                       ^ TEN lvl1 to placeholder! TRZEBA ZMIENIï¿½ BY BRAï¿½O JAKI LVL ZOSTAï¿½ WYBRANY  
             PlayerPrefs.SetInt($"{poziom} Stars", gwiazki);
             //odblokowuje kolejny poziom XD
 
         }
-        state.text = $"ZDOBY£EŒ {gwiazki} Gwiazdek GRATULUJE";;
+        state.text = $"ZDOBYï¿½Eï¿½ {gwiazki} Gwiazdek GRATULUJE";;
         gameStatePanel.SetActive(true);
     }
 
@@ -94,5 +95,19 @@ public class turnBaseScriptGUI : MonoBehaviour
         roundStartPanel.SetActive(true);
         yield return new WaitForSeconds(time);
         roundStartPanel.SetActive(false);
+    }
+
+    //Nie chce mi sie wie zrobie tak XD
+    void hideUnits(){
+        if(mainPlayerUnit.Instance.getUnitsAsGameObject().Length>0){
+            foreach(var u in mainPlayerUnit.Instance.getUnitsAsGameObject()){
+                u.transform.position = new Vector3(0,0,-1000);
+            }
+        }
+        if(mainEnemiesUnit.Instance.getUnitsAsGameObject().Length>0){
+            foreach(var u in mainEnemiesUnit.Instance.getUnitsAsGameObject()){
+                u.transform.position = new Vector3(0,0,-1000);
+            }
+        }
     }
 }
