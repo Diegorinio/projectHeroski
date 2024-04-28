@@ -58,6 +58,7 @@ public class SpiteAnimator : MonoBehaviour
         victimImageSpace.sprite=img.sprite;
     }
     private void setAttackerImageSequence(Sprite[] img){
+        m_SpriteArray = new Sprite[img.Length];
         for(int x=0;x<img.Length;x++){
             m_SpriteArray[x]=img[x];
         }
