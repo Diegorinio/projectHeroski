@@ -18,6 +18,16 @@ public class LoobyMapManager : MonoBehaviour
             print(PlayerPrefs.GetFloat("PositionOfMap"));
         }
     }
+    private void Update()
+    {
+
+        if (GameObject.Find("Map").GetComponent<RectTransform>().anchoredPosition.y > 1335)
+        {
+            print("SADFSDFSDF");
+            GameObject.Find("Map").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 1334);
+
+        }
+    }
     void Awake()
     {
         if (PlayerPrefs.HasKey("ActivatedLVLS"))
