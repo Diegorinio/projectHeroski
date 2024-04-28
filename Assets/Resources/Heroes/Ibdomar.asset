@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ibdomar
   m_EditorClassIdentifier: 
   heroID: 2
-  heroName: TEst
-  heroSprite: {fileID: 21300000, guid: c236b5c7a61fa1548ba479b2674cf18a, type: 3}
+  heroName: Arthur
+  heroSprite: {fileID: 21300000, guid: 5825f6e53e31d604ebe4bf1a4f28f8ef, type: 3}
   spellIcons:
   - {fileID: 21300000, guid: 1a31eb1e9a673ae3ca7bc5d464270d8b, type: 3}
   - {fileID: 21300000, guid: c236b5c7a61fa1548ba479b2674cf18a, type: 3}
