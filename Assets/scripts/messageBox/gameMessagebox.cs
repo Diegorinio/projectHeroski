@@ -47,12 +47,12 @@ public class gameMessagebox : MonoBehaviour
     public static void  showEntities(bool state){
         if(mainEnemiesUnit.Instance.getUnitsAsGameObject()!=null){
             foreach(var u in mainEnemiesUnit.Instance.getUnitsAsGameObject()){
-                u.GetComponent<Image>().enabled=state;
+                u.transform.Find("hero_canvas").gameObject.SetActive(state);
             }
         }
         if(mainPlayerUnit.Instance.getUnitsAsGameObject()!=null){
             foreach(var u in mainPlayerUnit.Instance.getUnitsAsGameObject()){
-                u.GetComponent<Image>().enabled=state;
+                u.transform.Find("hero_canvas").gameObject.SetActive(state);
             }
         }
     }

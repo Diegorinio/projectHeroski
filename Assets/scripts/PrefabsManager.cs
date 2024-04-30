@@ -17,4 +17,5 @@ public class PrefabsManager : MonoBehaviour
         int afterAddition = current+amount;
         PlayerPrefs.SetInt("GoldInBuilding",afterAddition);
     }
+    
 }

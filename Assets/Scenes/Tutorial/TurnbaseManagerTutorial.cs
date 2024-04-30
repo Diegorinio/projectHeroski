@@ -65,8 +65,20 @@ public class TurnbaseManagerTutorial : MonoBehaviour
     }
 
     void ShowAboutBattle_Part2(){
-        // isShowing=true;
-        gameMessagebox.createDialogBox("Units combat", "You attack with units by double clicking on enemy unit if there any in unit attack range");
+        isShowing=true;
+        gameMessagebox.createDialogBox("Units combat", "You attack with units by double clicking on enemy unit if there any in unit attack range",ShowAboutBattle_Units);
+    }
+
+    void ShowAboutBattle_Units(){
+        gameMessagebox.createDialogBox("Unit combat pt2", "Units deal damage based on their amount, try to get closed to enemy and attack",ShowAboutBattle_SpellsCombat);
+    }
+
+    void ShowAboutBattle_SpellsCombat(){
+        gameMessagebox.createDialogBox("Spells", "Each turn you can use one of your spell",ShowAboutBattle_Final);
+    }
+
+    void ShowAboutBattle_Final(){
+        gameMessagebox.createDialogBox("Just fight", "I think that's all, now go and fight this battle!");
     }
 
     private void ShowArrow(GameObject arrow){
