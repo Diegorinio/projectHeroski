@@ -86,7 +86,7 @@ public class turnBaseScriptGUI : MonoBehaviour
             //odblokowuje kolejny poziom XD
 
         }
-        state.text = $"You gain {gwiazki} THATS AWESOME";;
+        state.text = $"You gain {gwiazki} THATS AWESOME";
         gameStatePanel.SetActive(true);
     }
 

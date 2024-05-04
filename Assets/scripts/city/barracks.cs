@@ -75,6 +75,7 @@ public class barracks : MonoBehaviour
         else
         {
             if (isRecrutable || !isFirstTime) return;
+            _complitionTime.SetText("");
         
             buyBtn.interactable = true;
             if(!isRecrutable&& isFirstTime) { collectBtn.SetActive(true); 

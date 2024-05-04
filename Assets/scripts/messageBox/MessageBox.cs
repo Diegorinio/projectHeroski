@@ -22,12 +22,31 @@ public class MessageBox : MonoBehaviour
     {
         //Znajdz teksty i poustawiaj wartosci
         messageTitle = gameObject.transform.Find("messageTitle").GetComponent<TextMeshProUGUI>();
+        messageTitle.color = Color.white;
+        messageTitle.fontStyle=FontStyles.Bold;
         messageContent = gameObject.transform.Find("messageContent").GetComponent<TextMeshProUGUI>();
+        messageContent.color = Color.white;
+        messageContent.fontStyle=FontStyles.Bold;
         okButton = gameObject.transform.Find("okButton").gameObject;
         background = GameObject.Find("messageBox(Clone)");
         GameObject city = GameObject.Find("CityManager");
         background.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
 
+    }
+    private void OnEnable()
+    {
+        GameObject msgTitle = GameObject.Find("messageTitle");
+        msgTitle.GetComponent<RectTransform>().anchoredPosition3D = new Vector3((float)-1.5,383,0);
+
+        GameObject msgContent = GameObject.Find("messageContent");
+        msgContent.GetComponent<RectTransform>().anchoredPosition3D = new Vector3((float)-1.5,-200,0);
+        okButton.GetComponent<RectTransform>().anchoredPosition3D=new Vector3(0,-300,0);
+        okButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("BTN1");
+        okButton.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+
+
+
+        
     }
 
     //Metody do ustawiania tytulu,wiadomosci albo wszystkiego naraz
