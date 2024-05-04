@@ -16,6 +16,7 @@ public class MessageBox : MonoBehaviour
     private TextMeshProUGUI messageContent;
     //Button zamykajacy
     private GameObject okButton;
+    private GameObject background;
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,6 +24,9 @@ public class MessageBox : MonoBehaviour
         messageTitle = gameObject.transform.Find("messageTitle").GetComponent<TextMeshProUGUI>();
         messageContent = gameObject.transform.Find("messageContent").GetComponent<TextMeshProUGUI>();
         okButton = gameObject.transform.Find("okButton").gameObject;
+        background = GameObject.Find("messageBox(Clone)");
+        GameObject city = GameObject.Find("CityManager");
+        background.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
 
     }
 

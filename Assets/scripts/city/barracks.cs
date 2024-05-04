@@ -154,7 +154,7 @@ public class barracks : MonoBehaviour
 
         isRecrutable=true;
         amount_slider.interactable = true;
-        amount_input.interactable = true;
+        amount_input.interactable = false;
         buyBtn.gameObject.SetActive(true);
         collectBtn.gameObject.SetActive(false);
         }

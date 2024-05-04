@@ -86,7 +86,7 @@ public class turnBaseScriptGUI : MonoBehaviour
             //odblokowuje kolejny poziom XD
 
         }
-        state.text = $"ZDOBY�E� {gwiazki} Gwiazdek GRATULUJE";;
+        state.text = $"You gain {gwiazki} THATS AWESOME";;
         gameStatePanel.SetActive(true);
     }
 
