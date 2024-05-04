@@ -19,6 +19,8 @@ public class TawernShopHeroInfoPanel : MonoBehaviour
         HeroImageSprite.enabled = false;
         HeroNameText.enabled = false;
         HeroPriceText.enabled = false;
+
+
     }
     public void SetUpTawerShopHero(heroSO _hero){
         HeroImageSprite.enabled=true;

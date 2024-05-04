@@ -10,6 +10,9 @@ using UnityEngine.UI;
 public class barracks : MonoBehaviour
 {
     private resourcemanager manager;
+    [SerializeField]
+    private resourcemanager resource;
+
     public int goldPerUnit;
     [SerializeField]
     Slider amount_slider;
@@ -82,6 +85,11 @@ public class barracks : MonoBehaviour
 
     private void OnEnable()
     {
+        //maks slider value
+        amount_slider.maxValue = resource.gold / goldPerUnit;
+
+
+
         manager=GameObject.Find("resourceManager").GetComponent<resourcemanager>();
         UnitToReadyTime = DateTime.Parse(PlayerPrefs.GetString($"{unitName}: recruitment time"));
         lastRecruitSoldiers = PlayerPrefs.GetInt($"{unitName}: amount");

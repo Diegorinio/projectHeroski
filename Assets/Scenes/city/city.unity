@@ -3236,7 +3236,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 297966229}
   m_TextComponent: {fileID: 1402494023}
   m_Placeholder: {fileID: 325235616}
@@ -4256,6 +4256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 266788786}
   amount_input: {fileID: 809704458}
@@ -7862,6 +7863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 1190914763}
   amount_input: {fileID: 186229976}
@@ -9694,6 +9696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 1346698665}
   goldPerUnit: 10
   amount_slider: {fileID: 1823326699}
   amount_input: {fileID: 297966228}
@@ -11313,6 +11316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 1516404795}
   amount_input: {fileID: 1839640197}
@@ -12807,6 +12811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 996312352}
   amount_input: {fileID: 1470206243}
@@ -13139,6 +13144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 1346698665}
   goldPerUnit: 15
   amount_slider: {fileID: 324072681}
   amount_input: {fileID: 1674542234}
@@ -16390,6 +16396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 1010394237}
   amount_input: {fileID: 335548411}
@@ -16840,6 +16847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 1346698665}
   goldPerUnit: 5
   amount_slider: {fileID: 263354558}
   amount_input: {fileID: 2037791425}
@@ -19306,7 +19314,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1674542235}
   m_TextComponent: {fileID: 666546606}
   m_Placeholder: {fileID: 100356473}
@@ -20891,6 +20899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 85977286}
   amount_input: {fileID: 829107223}
@@ -23356,7 +23365,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2037791426}
   m_TextComponent: {fileID: 623958853}
   m_Placeholder: {fileID: 1522580781}
