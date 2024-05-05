@@ -6,5 +6,9 @@ using UnityEngine;
 public class TileSO : ScriptableObject
 {
     public string tileName;
-    public Sprite tileSprite;
+    public Sprite[] tileSprites;
+
+    public Sprite getRandomSprite(){
+        return tileSprites[Random.Range(0,tileSprites.Length)];
+    }
 }

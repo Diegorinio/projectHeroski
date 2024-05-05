@@ -16,6 +16,9 @@ public class UnitSO :ScriptableObject
 
     public int gridDistanceX,gridDistanceY;
 
+    public AudioClip attackClip;
+    public AudioClip walkClip;
+
     public Sprite[] attackAnimationSprites;
 
     public Sprite[] getAttackSprites(){

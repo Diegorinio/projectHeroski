@@ -25,6 +25,7 @@ public class Unit : MonoBehaviour
     protected Vector2Int gridAttackDistance;
     protected unitGUI _gui{get;set;}
     protected UnitSO _SO;
+    protected AudioSource _audioSrc;
 
     // public virtual void Awake(){}
     public void unitInitialize(int _tier,UnitSO _unit){
@@ -42,6 +43,7 @@ public class Unit : MonoBehaviour
     void Start()
     {
         _gui=gameObject.GetComponent<unitGUI>();
+        _audioSrc = gameObject.GetComponent<AudioSource>();
     }
 
     public UnitSO getUnitSO(){

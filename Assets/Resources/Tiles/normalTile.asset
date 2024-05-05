@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: normalTile
   m_EditorClassIdentifier: 
   tileName: grass
-  tileSprite: {fileID: 21300000, guid: 83d2c99963d0afa4a833a5ca9272c45d, type: 3}
+  tileSprites:
+  - {fileID: -1324339165, guid: e6656b04c0b0ed34e9bcc0cd9df9611b, type: 3}
+  - {fileID: -1324339165, guid: e6656b04c0b0ed34e9bcc0cd9df9611b, type: 3}

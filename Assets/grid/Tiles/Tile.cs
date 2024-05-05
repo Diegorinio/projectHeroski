@@ -43,8 +43,9 @@ public abstract class Tile : MonoBehaviour,IPointerDownHandler
 
     //Zaladuj preset
     protected virtual void setPreset(){
-        setTilePreset("normalTile");
+        setTilePreset("normalTile",true);
     }
+    private Sprite tileSprite;
     //Zaladuj preset na Awake
     private void Awake(){
         setPreset();
@@ -54,7 +55,8 @@ public abstract class Tile : MonoBehaviour,IPointerDownHandler
     private void Start()
     {
         render=gameObject.GetComponent<Image>();
-        render.sprite = tilePreset.tileSprite;
+        render.sprite = tileSprite;
+        
     }
     //Zaladuj preset
     protected void setTilePreset(string presetName){
@@ -66,10 +68,12 @@ public abstract class Tile : MonoBehaviour,IPointerDownHandler
         if(reload){
         tilePreset = Resources.Load<TileSO>($"Tiles/{presetName}");
         render=gameObject.GetComponent<Image>();
-        Debug.Log(render.sprite.name+" : "+tilePreset.tileSprite.name);
-        render.sprite=tilePreset.tileSprite;
+        // render.sprite=getRandomSprite(tilePreset);
+        tileSprite = tilePreset.getRandomSprite();
         }
     }
+
+
     // Update ( trzeba to przepisac na zwykla funkcje aktywyjaca)
     // Jak narazie brak wplywu na wydajnosc ale to moze sie zmienic z czasem
     void Update()

@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 147.81506, y: 277.047}
+  m_AnchoredPosition: {x: 89, y: 706}
   m_SizeDelta: {x: 288.0658, y: 275.2827}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &106388103849085841
@@ -107,10 +107,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6842804463200488811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: 479}
-  m_SizeDelta: {x: 908.8, y: 197.9}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.000030517578, y: -269}
+  m_SizeDelta: {x: -55.200012, y: 197.90002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2601106716224362998
 CanvasRenderer:
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 102.54614, y: 0, z: 81.39783, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -243,10 +243,10 @@ RectTransform:
   - {fileID: 2169228086864945317}
   m_Father: {fileID: 6842804463200488811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -502}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 246}
+  m_SizeDelta: {x: -804, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5593323309192894931
 CanvasRenderer:
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 03e720e211bf17f449f2a6f326a6c793, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -557,9 +557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acec3f6278dbc0a4da20f2ee833bbafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersImages:
-  - {fileID: 21300000, guid: 6c589d2ea6a6f29b788780a080240693, type: 3}
-  - {fileID: 21300000, guid: 75af9c2ce36a70f45bf39aae379f3ed3, type: 3}
   messageTitle: {fileID: 1363132087097791747}
   messageContent: {fileID: 8111963188475700398}
 --- !u!1 &6519980967754740405
@@ -594,10 +591,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6842804463200488811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: -138.8}
-  m_SizeDelta: {x: 908.8, y: 861.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.000030517578, y: -886.8}
+  m_SizeDelta: {x: -55.200012, y: 861.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1967915207572994098
 CanvasRenderer:
@@ -636,8 +633,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -661,7 +658,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -690,7 +687,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 283.99466, y: -67.324585, z: 25.868103, w: 139.8872}
+  m_margin: {x: 107.027054, y: -67.324585, z: 102.77753, w: 139.8872}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

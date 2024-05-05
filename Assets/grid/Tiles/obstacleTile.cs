@@ -13,7 +13,7 @@ public class obstacleTile : grassTile
     private bool isDestroyed=false;
     protected override void setPreset()
     {
-        setTilePreset("obstacleTile");
+        setTilePreset("obstacleTile",true);
         isTaken=true;
     }
     //Nadpisz metode klikania do pierwsze zniszczenia a dopiero pozniej mozliwosc ruchu na ten Tile

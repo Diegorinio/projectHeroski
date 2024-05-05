@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: blockadeTile
   m_EditorClassIdentifier: 
   tileName: blockade
-  tileSprite: {fileID: 21300000, guid: aea96299ca32ecb45ab39a612d739be6, type: 3}
+  tileSprites:
+  - {fileID: 21300000, guid: 4a8a9afbd0165be4badba5d08118c117, type: 3}
