@@ -44,20 +44,20 @@ public class MessageBox : MonoBehaviour
             background1 = GameObject.Find("dialogBox(Clone)");
             background1.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
         }
-        print("123488888");
+        //print("123488888");
     }
 
     private void OnEnable()
     {
-        GameObject msgTitle = GameObject.Find("messageTitle");
-        msgTitle.GetComponent<RectTransform>().anchoredPosition3D = new Vector3((float)-1.5,383,0);
+        //GameObject msgTitle = GameObject.Find("messageTitle");
+        //msgTitle.GetComponent<RectTransform>().anchoredPosition3D = new Vector3((float)-1.5,383,0);
 
-        GameObject msgContent = GameObject.Find("messageContent");
-        msgContent.GetComponent<RectTransform>().anchoredPosition3D = new Vector3((float)-1.5,-200,0);
-        okButton.GetComponent<RectTransform>().anchoredPosition3D=new Vector3(0,-300,0);
-        okButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("BTN1");
-        okButton.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
-        print("1234");
+        //GameObject msgContent = GameObject.Find("messageContent");
+        //msgContent.GetComponent<RectTransform>().anchoredPosition3D = new Vector3((float)-1.5,-200,0);
+        //okButton.GetComponent<RectTransform>().anchoredPosition3D=new Vector3(0,-300,0);
+        //okButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("BTN1");
+        //okButton.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+        //print("1234");
 
 
 
