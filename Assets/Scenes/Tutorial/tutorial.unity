@@ -1274,6 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 717784065}
   amount_input: {fileID: 703345256}
@@ -3307,6 +3308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 15
   amount_slider: {fileID: 569108649}
   amount_input: {fileID: 2006625306}
@@ -3331,7 +3333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &313509104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4610,8 +4612,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: bb5b79af49f3a374f928d9c627783c92, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6335,6 +6337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 1730526747}
   amount_input: {fileID: 1003189086}
@@ -7176,6 +7179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 5
   amount_slider: {fileID: 226631054}
   amount_input: {fileID: 1481535161}
@@ -9351,6 +9355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 193665710}
   amount_input: {fileID: 118304004}
@@ -10842,6 +10847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 1699626136}
   amount_input: {fileID: 169361257}
@@ -14253,6 +14259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 1504671157}
   amount_input: {fileID: 666433647}
@@ -15021,7 +15028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1286378802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17999,6 +18006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 10
   amount_slider: {fileID: 2071817812}
   amount_input: {fileID: 761969070}
@@ -19532,7 +19540,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05f7178ed090fff4da1d978ab7524823, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c728a980695668943aa4aaeb7cd54a35, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23106,6 +23114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45d03d022e41ad629eb264e74a7c60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resource: {fileID: 0}
   goldPerUnit: 0
   amount_slider: {fileID: 2107811079}
   amount_input: {fileID: 1202963807}
@@ -24982,7 +24991,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2081463488
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25128,6 +25137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaca179c5fbe2a141a32444caf8099f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tablica: {fileID: 21300000, guid: bb5b79af49f3a374f928d9c627783c92, type: 3}
   GOLDPERTIMER: 500
   IronPERTIMER: 300
   WoodPERTIMER: 100

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -17,6 +18,8 @@ public class MessageBox : MonoBehaviour
     //Button zamykajacy
     private GameObject okButton;
     private GameObject background;
+
+    private GameObject background1;
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,11 +31,22 @@ public class MessageBox : MonoBehaviour
         messageContent.color = Color.white;
         messageContent.fontStyle=FontStyles.Bold;
         okButton = gameObject.transform.Find("okButton").gameObject;
-        background = GameObject.Find("messageBox(Clone)");
-        GameObject city = GameObject.Find("CityManager");
-        background.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
+        if (GameObject.Find("messageBox(Clone)") != null)
+        {
+            background = GameObject.Find("messageBox(Clone)");
+            GameObject city = GameObject.Find("CityManager");
+             background.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
+        }
 
+        if (GameObject.Find("dialogBox(Clone)") != null)
+        {
+            GameObject city = GameObject.Find("CityManager");
+            background1 = GameObject.Find("dialogBox(Clone)");
+            background1.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
+        }
+        print("123488888");
     }
+
     private void OnEnable()
     {
         GameObject msgTitle = GameObject.Find("messageTitle");
@@ -43,6 +57,7 @@ public class MessageBox : MonoBehaviour
         okButton.GetComponent<RectTransform>().anchoredPosition3D=new Vector3(0,-300,0);
         okButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("BTN1");
         okButton.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+        print("1234");
 
 
 
