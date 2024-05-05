@@ -245,7 +245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -188}
+  m_AnchoredPosition: {x: 0, y: -336}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5593323309192894931
@@ -491,7 +491,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2567304395272664774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 50.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -504,8 +504,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -12.691895, y: -142}
-  m_SizeDelta: {x: -157.4161, y: -1646.113}
+  m_AnchoredPosition: {x: -30.664661, y: 33.37854}
+  m_SizeDelta: {x: -121.46932, y: -1295.3569}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3759458748966889237
 CanvasRenderer:
@@ -557,9 +557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acec3f6278dbc0a4da20f2ee833bbafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersImages:
-  - {fileID: 21300000, guid: 75af9c2ce36a70f45bf39aae379f3ed3, type: 3}
-  - {fileID: 21300000, guid: 6c589d2ea6a6f29b788780a080240693, type: 3}
   messageTitle: {fileID: 1363132087097791747}
   messageContent: {fileID: 8111963188475700398}
 --- !u!1 &6519980967754740405
@@ -735,7 +732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.100006, y: 78}
+  m_AnchoredPosition: {x: -10.100006, y: 159}
   m_SizeDelta: {x: 350, y: 1071.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5372371897854878849
@@ -759,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

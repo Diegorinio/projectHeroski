@@ -55,8 +55,8 @@ public class MessageBox : MonoBehaviour
         //GameObject msgContent = GameObject.Find("messageContent");
         //msgContent.GetComponent<RectTransform>().anchoredPosition3D = new Vector3((float)-1.5,-200,0);
         //okButton.GetComponent<RectTransform>().anchoredPosition3D=new Vector3(0,-300,0);
-        //okButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("BTN1");
-        //okButton.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
+        okButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("BTN1");
+        okButton.GetComponentInChildren<TextMeshProUGUI>().color = Color.white;
         //print("1234");
 
 
