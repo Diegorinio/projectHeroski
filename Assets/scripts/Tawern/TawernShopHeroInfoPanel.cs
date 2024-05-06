@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class TawernShopHeroInfoPanel : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject infoPanel;
     public Image HeroImageSprite;
     public TextMeshProUGUI HeroNameText;
     public TextMeshProUGUI HeroPriceText;
@@ -19,6 +21,20 @@ public class TawernShopHeroInfoPanel : MonoBehaviour
         HeroImageSprite.enabled = false;
         HeroNameText.enabled = false;
         HeroPriceText.enabled = false;
+        if(mainPlayerUnit.Instance.getSelectedHero()!=null){
+            heroSO _so = mainPlayerUnit.Instance.getSelectedHero().getHeroSO();
+            SetUpTawerShopHero(_so);
+            HireButton.enabled=false;
+            Debug.Log("JEST KUPIONY");
+            infoPanel.SetActive(true);
+        }
+        else{
+            Debug.Log("NIE JEST KUPIONY");
+            infoPanel.SetActive(false);
+        }
+    }
+
+    void Start(){
     }
     public void SetUpTawerShopHero(heroSO _hero){
         HeroImageSprite.enabled=true;
@@ -31,11 +47,28 @@ public class TawernShopHeroInfoPanel : MonoBehaviour
         spellIcons[1].sprite = _hero.spellIcons[1];
         HeroPriceText.text = _hero.heroPrice.ToString();
         HireButton.onClick.AddListener(()=>{HireHeroToTeam(_HeroSO);});
+        if(!isHeroAlreadyHired(_hero))
+            HireButton.enabled=true;
+        infoPanel.SetActive(true);
+    }
+
+    private bool isHeroAlreadyHired(heroSO newHeroSO){
+        if(mainPlayerUnit.Instance.isHeroAssigned()){
+        int hiredID = mainPlayerUnit.Instance.getSelectedHero().getHeroSO().heroID;
+        if(newHeroSO.heroID==hiredID)
+            return true;
+        else
+            return false;
+        }
+        else{
+            return false;
+        }
     }
     private void HireHeroToTeam(heroSO hero){
         GameObject spawnedHero = heroSpawner.spawnHeroGameObject(hero.heroID,heroSpawner.HeroController.Player);
         Hero _heroInTawern = spawnedHero.GetComponent<Hero>();
         mainPlayerUnit.Instance.assignHeroToTeam(_heroInTawern);
+        HireButton.enabled=false;
         shop.LoadAgain();
     }
 }

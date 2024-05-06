@@ -17,6 +17,8 @@ kt�re b�dzie trzyma� w sobie
  */
 public class CityManager : MonoBehaviour
 {
+    public Sprite tablica;
+
     public int GOLDPERTIMER;
     public int IronPERTIMER;
     public int WoodPERTIMER;

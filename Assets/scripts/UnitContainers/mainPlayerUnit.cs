@@ -70,6 +70,15 @@ public class mainPlayerUnit : MonoBehaviour
         playerUnits[_tier].Add(_unit);
         }
     }
+
+    public bool isHeroAssigned(){
+        if(getSelectedHero()==null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     
     //Zworc jednostke ktora istnieje
     public Unit getExistingUnit(Unit _unit){

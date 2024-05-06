@@ -13,6 +13,7 @@ public class TutorialMainScript : MonoBehaviour
     {
         Tutorial_City_LaunchDialog();
     }
+
     private void  Tutorial_City_LaunchDialog(){
         gameMessagebox.createDialogBox("Welcome","Welcome in Dueling Clash, i'm {name} let me show you basics",Tutorial_City_About_City);
     }

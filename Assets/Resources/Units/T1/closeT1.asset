@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: closeT1
   m_EditorClassIdentifier: 
   unitName: closeT1
-  unitSprite: {fileID: 21300000, guid: 9a1083476f1e547b7a5ad65205aec035, type: 3}
+  unitSprite: {fileID: -2056264882, guid: 021c045021e59005cb17bdeac90bf489, type: 3}
   unitType: 1
   tier: 0
   unitBaseHealth: 4
   unitBaseDamage: 4
   gridDistanceX: 2
   gridDistanceY: 2
+  attackClip: {fileID: 0}
+  walkClip: {fileID: 8300000, guid: b7e996777e8434ac98b6d410ce743b6a, type: 3}
   attackAnimationSprites:
-  - {fileID: -1667007411, guid: 712a4a32c1964284ea784b1d2b37ef35, type: 3}
-  - {fileID: 530232509, guid: 712a4a32c1964284ea784b1d2b37ef35, type: 3}
-  - {fileID: -1713848146, guid: 712a4a32c1964284ea784b1d2b37ef35, type: 3}
-  - {fileID: 1830925360, guid: 712a4a32c1964284ea784b1d2b37ef35, type: 3}
+  - {fileID: -898667863, guid: 021c045021e59005cb17bdeac90bf489, type: 3}
+  - {fileID: 46542265, guid: 021c045021e59005cb17bdeac90bf489, type: 3}
+  - {fileID: -1007885324, guid: 021c045021e59005cb17bdeac90bf489, type: 3}
+  - {fileID: 809470182, guid: 021c045021e59005cb17bdeac90bf489, type: 3}
+  - {fileID: -999898985, guid: 021c045021e59005cb17bdeac90bf489, type: 3}

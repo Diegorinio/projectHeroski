@@ -10,6 +10,9 @@ using UnityEngine.UI;
 public class barracks : MonoBehaviour
 {
     private resourcemanager manager;
+    [SerializeField]
+    private resourcemanager resource;
+
     public int goldPerUnit;
     [SerializeField]
     Slider amount_slider;
@@ -31,6 +34,8 @@ public class barracks : MonoBehaviour
     
     protected DateTime UnitToReadyTime;
     protected DateTime rightNowTime;
+
+    public TMP_Text priceText;
 
     //Do cheat buttona, !pamietac wywalic na release
     public Button cheatBtn;
@@ -56,6 +61,7 @@ public class barracks : MonoBehaviour
     private void Awake()
     {
         unitName = this.gameObject.name;
+        priceText.text = goldPerUnit.ToString();
 
     }
     private void FixedUpdate()
@@ -72,6 +78,7 @@ public class barracks : MonoBehaviour
         else
         {
             if (isRecrutable || !isFirstTime) return;
+            _complitionTime.SetText("");
         
             buyBtn.interactable = true;
             if(!isRecrutable&& isFirstTime) { collectBtn.SetActive(true); 
@@ -82,6 +89,11 @@ public class barracks : MonoBehaviour
 
     private void OnEnable()
     {
+        //maks slider value
+        amount_slider.maxValue = resource.gold / goldPerUnit;
+
+
+
         manager=GameObject.Find("resourceManager").GetComponent<resourcemanager>();
         UnitToReadyTime = DateTime.Parse(PlayerPrefs.GetString($"{unitName}: recruitment time"));
         lastRecruitSoldiers = PlayerPrefs.GetInt($"{unitName}: amount");
@@ -109,7 +121,8 @@ public class barracks : MonoBehaviour
     private void buyUnit(){
         if (amount_slider.value <= 0) return;
         if (manager.gold < (int)amount_slider.value*goldPerUnit) {
-            //wyœwietl nie masz z³ota biedaku
+            //wyï¿½wietl nie masz zï¿½ota biedaku
+            gameMessagebox.createDialogBox("Gold","Not enough gold");
             return;
         }
         DateTime UnitBoughtTime = DateTime.Now;
@@ -124,6 +137,10 @@ public class barracks : MonoBehaviour
         isFirstTime = true;
         buyBtn.gameObject.SetActive(false);
         }
+    }
+
+    private int getPrice(){
+        return (int)amount_slider.value*goldPerUnit;
     }
 
     private void recruitUnitTier(){
@@ -146,7 +163,7 @@ public class barracks : MonoBehaviour
 
         isRecrutable=true;
         amount_slider.interactable = true;
-        amount_input.interactable = true;
+        amount_input.interactable = false;
         buyBtn.gameObject.SetActive(true);
         collectBtn.gameObject.SetActive(false);
         }
@@ -177,6 +194,7 @@ public class barracks : MonoBehaviour
     private void changeSlider(float v ){
         int r = (int)v;
         amount_input.text = r.ToString();
+        priceText.text = getPrice().ToString();
     }
 
     private void changeInput(string s){

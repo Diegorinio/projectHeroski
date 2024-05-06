@@ -32,7 +32,7 @@ public class TawernHeroesShop : MonoBehaviour
 
     private void SetUpHeroesList(){
         int hiredHeroID = -1;
-        if(mainPlayerUnit.Instance.getSelectedHero()!=null){
+        if(mainPlayerUnit.Instance.isHeroAssigned()){
             hiredHeroID = mainPlayerUnit.Instance.getSelectedHero().getHeroSO().heroID;
         }
 

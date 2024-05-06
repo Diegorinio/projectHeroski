@@ -71,22 +71,27 @@ public class turnBaseScriptGUI : MonoBehaviour
         int gwiazki = 4 - round;
         string poziom = PlayerPrefs.GetString("BattleNow");
         int doOdblokowania = Int32.Parse(poziom.Substring(4));
-        print(doOdblokowania);
-        if (doOdblokowania < 5)
-        {
-            PlayerPrefs.SetInt("ActivatedLVLS", doOdblokowania + 2);
-        }
-        if (gwiazki <= 0 || gwiazki>3)gwiazki = 1;
-        text.gameObject.SetActive(true);
-        text.GetComponent<Text>().text = $"SCORE: {gwiazki}";
-        //bierze gwiazdki od rund bym zmieni� bo rundy d�ugo traja chyba xd
-        if (PlayerPrefs.GetInt($"{poziom} Stars") <= gwiazki) // PlayerPrefs.GetInt($"{this.name} Stars"); syntax dawanie gwiazdek 0,1,2,3|| 3 to  3 gwiazki
-        {//                       ^ TEN lvl1 to placeholder! TRZEBA ZMIENI� BY BRA�O JAKI LVL ZOSTA� WYBRANY  
-            PlayerPrefs.SetInt($"{poziom} Stars", gwiazki);
-            //odblokowuje kolejny poziom XD
+        
+        if (winner == "Win")
+        {        
+            if (doOdblokowania < 5)
+            {
+                PlayerPrefs.SetInt("ActivatedLVLS", doOdblokowania + 2);
+            }
+            if (gwiazki <= 0 || gwiazki>3)gwiazki = 1;
+            text.gameObject.SetActive(true);
+            text.GetComponent<Text>().text = $"SCORE: {gwiazki}";
+            //bierze gwiazdki od rund bym zmieni� bo rundy d�ugo traja chyba xd
+            if (PlayerPrefs.GetInt($"{poziom} Stars") <= gwiazki) // PlayerPrefs.GetInt($"{this.name} Stars"); syntax dawanie gwiazdek 0,1,2,3|| 3 to  3 gwiazki
+            {//                       ^ TEN lvl1 to placeholder! TRZEBA ZMIENI� BY BRA�O JAKI LVL ZOSTA� WYBRANY  
+                PlayerPrefs.SetInt($"{poziom} Stars", gwiazki);
+                //odblokowuje kolejny poziom XD
 
+            }
+
+        state.text = $"You gained {gwiazki} Stars!";
         }
-        state.text = $"ZDOBY�E� {gwiazki} Gwiazdek GRATULUJE";;
+        else { state.text = "Better luck next Time"; }
         gameStatePanel.SetActive(true);
     }
 

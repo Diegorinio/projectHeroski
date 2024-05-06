@@ -26,6 +26,7 @@ public class unitController : MonoBehaviour
     Vector2Int dist;
     [SerializeField]
     private GameObject enemyTarget;
+    private AudioSource audioController;
     //Znajdz komponent Detector dla gracza lub przeciwnika
     void Start()
     {
@@ -33,6 +34,7 @@ public class unitController : MonoBehaviour
         _unit = gameObject.GetComponent<Unit>();
         dist = _unit.getUnitMoveDistance();
         tileDetector=gameObject.GetComponent<Detector>();
+        audioController = gameObject.GetComponent<AudioSource>();
     }
 
     //Metoda aktywujaca dana jednostke
@@ -87,6 +89,7 @@ public void characterMove(GameObject _newTransform,bool isStart=false){
     Transform trns = (Transform)_newTransform.GetComponent<RectTransform>();
     Vector3 gObj = trns.position;
     gameObject.transform.position = new Vector3(gObj.x, gObj.y, -1);
+    audioController.PlayOneShot(_unit.getUnitSO().walkClip);
     assignedTile=_newTransform.GetComponent<Tile>();
     assignedTile.SetGameObjectOnTile(gameObject);
     if(!isStart)

@@ -13,17 +13,19 @@ MonoBehaviour:
   m_Name: cavaleryT1
   m_EditorClassIdentifier: 
   unitName: cavalery t1
-  unitSprite: {fileID: -945803519, guid: 60d9f6b806429deb19f3eb88049a76f3, type: 3}
+  unitSprite: {fileID: -2140303181, guid: f4a8703a8a94e2214a857f8c2837bb38, type: 3}
   unitType: 0
   tier: 0
   unitBaseHealth: 5
   unitBaseDamage: 5
   gridDistanceX: 2
   gridDistanceY: 4
+  attackClip: {fileID: 0}
+  walkClip: {fileID: 8300000, guid: b7e996777e8434ac98b6d410ce743b6a, type: 3}
   attackAnimationSprites:
-  - {fileID: -1124021407, guid: 1c4e963b8ea0d984a81dcb8a647364c7, type: 3}
-  - {fileID: 2078397654, guid: 1c4e963b8ea0d984a81dcb8a647364c7, type: 3}
-  - {fileID: -761494270, guid: 1c4e963b8ea0d984a81dcb8a647364c7, type: 3}
-  - {fileID: 960718043, guid: 1c4e963b8ea0d984a81dcb8a647364c7, type: 3}
-  - {fileID: -1793043534, guid: 1c4e963b8ea0d984a81dcb8a647364c7, type: 3}
-  - {fileID: 1574690930, guid: 1c4e963b8ea0d984a81dcb8a647364c7, type: 3}
+  - {fileID: -2140303181, guid: f4a8703a8a94e2214a857f8c2837bb38, type: 3}
+  - {fileID: 1162226329, guid: f4a8703a8a94e2214a857f8c2837bb38, type: 3}
+  - {fileID: -1248155768, guid: f4a8703a8a94e2214a857f8c2837bb38, type: 3}
+  - {fileID: 1784333840, guid: f4a8703a8a94e2214a857f8c2837bb38, type: 3}
+  - {fileID: -591593650, guid: f4a8703a8a94e2214a857f8c2837bb38, type: 3}
+  - {fileID: 1050020588, guid: f4a8703a8a94e2214a857f8c2837bb38, type: 3}
