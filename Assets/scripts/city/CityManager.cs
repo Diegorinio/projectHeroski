@@ -62,6 +62,7 @@ public class CityManager : MonoBehaviour
 
     private void Awake()
     {
+        //LAdowanie prefsow 
         //COUNTERY DO BUDYNK�W
         GoldB_counter = GameObject.Find("GoldB_counter");
         //IronB_counter = GameObject.Find("IronB_counter");

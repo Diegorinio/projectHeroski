@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f82d694152d5a0e71bcae81a194ec8c4, type: 3}
   m_Name: Abduin
   m_EditorClassIdentifier: 
-  heroID: 1
+  heroID: 2
   heroName: Sumiko
   heroSprite: {fileID: 21300000, guid: 0934ac117d8f2874d96cc7b7834b3b92, type: 3}
   spellIcons:
-  - {fileID: 21300000, guid: a97a97a115a9c2942afc4ada30c88110, type: 3}
-  - {fileID: 21300000, guid: 63b591ec03a35dcd7a465ccd3b2a541b, type: 3}
+  - {fileID: 21300000, guid: e1424d9433c8f6bd9b3834f9cd754658, type: 3}
+  - {fileID: 21300000, guid: 4ff6320e39185fcf5af35d034bd95385, type: 3}
   entryDialog: Go with gods!
   defeatDialog: i have failed!
   spellOne: {fileID: 11400000, guid: 0a99dfa1640328d8096f0182927fa46b, type: 2}
-  spellTwo: {fileID: 11400000, guid: 5b6ab922a0705b5e69039ddee134ca08, type: 2}
+  spellTwo: {fileID: 11400000, guid: c58a429ce20123aa081ea30a7626dcda, type: 2}
   heroPrice: 100

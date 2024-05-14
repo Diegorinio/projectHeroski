@@ -46,7 +46,9 @@ public class Hero : MonoBehaviour
     public string getHeroName(){
         return heroName;
     }
-
+    public int getHeroID(){
+        return heroID;
+    }
     public string getHeroEntryDialog(){
         return entryDialog;
     }

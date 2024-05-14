@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285928d9a7cfbdd41b24ba94687cd0bc, type: 3}
   m_Name: closeT1
   m_EditorClassIdentifier: 
-  unitName: closeT1
+  unitName: Knight
   unitSprite: {fileID: -2056264882, guid: 021c045021e59005cb17bdeac90bf489, type: 3}
   unitType: 1
   tier: 0

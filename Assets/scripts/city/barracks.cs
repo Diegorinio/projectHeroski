@@ -90,8 +90,14 @@ public class barracks : MonoBehaviour
     private void OnEnable()
     {
         //maks slider value
-        amount_slider.maxValue = resource.gold / goldPerUnit;
-
+        if((resource.gold/goldPerUnit)<=0){
+            amount_slider.maxValue=1;
+            amount_slider.interactable=false;
+        }
+        else{
+            amount_slider.interactable=true;
+            amount_slider.maxValue = (resource.gold / goldPerUnit);
+        }
 
 
         manager=GameObject.Find("resourceManager").GetComponent<resourcemanager>();
@@ -160,6 +166,7 @@ public class barracks : MonoBehaviour
             mainPlayerUnit.Instance.addUnitsToTeam(_unit);
             Destroy(rndUnit);
         }
+        PrefsManager.saveUnitstoPrefs();
 
         isRecrutable=true;
         amount_slider.interactable = true;

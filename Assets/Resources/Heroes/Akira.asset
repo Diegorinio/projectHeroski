@@ -16,10 +16,10 @@ MonoBehaviour:
   heroName: Akira
   heroSprite: {fileID: 21300000, guid: d8d14e99f680f1d4f9639f7df1277945, type: 3}
   spellIcons:
-  - {fileID: 21300000, guid: a7af6c08c6610f24aba3b78606e5bd0c, type: 3}
-  - {fileID: 21300000, guid: aea96299ca32ecb45ab39a612d739be6, type: 3}
+  - {fileID: 21300000, guid: b010625c95b26d6c7853e6460e400fc5, type: 3}
+  - {fileID: 21300000, guid: c829fcccdda3cd6fdae1ebb05f094c01, type: 3}
   entryDialog: I will end this fast
   defeatDialog: Next time creature
   spellOne: {fileID: 11400000, guid: 0a99dfa1640328d8096f0182927fa46b, type: 2}
-  spellTwo: {fileID: 11400000, guid: 5b6ab922a0705b5e69039ddee134ca08, type: 2}
+  spellTwo: {fileID: 11400000, guid: c58a429ce20123aa081ea30a7626dcda, type: 2}
   heroPrice: 200

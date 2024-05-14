@@ -45,7 +45,7 @@ public class heroSpawner : MonoBehaviour
     }
     public static GameObject spawnRandomHeroGameObject(HeroController controller){
         LoadHeroes();
-        int rndHero = Random.Range(0,heroesSO.Count);
+        int rndHero = Random.Range(1,heroesSO.Count);
         return spawnHeroGameObject(rndHero,controller);
     }
 }

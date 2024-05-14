@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285928d9a7cfbdd41b24ba94687cd0bc, type: 3}
   m_Name: cavaleryT1
   m_EditorClassIdentifier: 
-  unitName: cavalery t1
+  unitName: Cavalery
   unitSprite: {fileID: -2140303181, guid: f4a8703a8a94e2214a857f8c2837bb38, type: 3}
   unitType: 0
   tier: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   spellName: Global heal
   SpellType: 1
   SpellRange: 1
-  DamageType: 1
+  DamageType: 2
   spellCastPercent: 50
   spellCastFixed: 5
   HealType: 1

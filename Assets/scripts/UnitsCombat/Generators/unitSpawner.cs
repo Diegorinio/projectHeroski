@@ -39,28 +39,7 @@ public class unitSpawner : MonoBehaviour
         return newUnit;
     }
 
-    //Zespawnij jednostke jako gameObject z wyborem kontrolera(player, enemy) i iloscia jednostek
-    public static GameObject spawnUnitGameObject(unitType type, controllers controller,int amount){
-        GameObject newUnit = Instantiate(unitTemplate,new Vector3(0,0,0),Quaternion.identity);
-        switch(type){
-            case unitType.Distance:
-            newUnit.AddComponent<distanceU>();
-            break;
-            case unitType.Close:
-            newUnit.AddComponent<closeU>();
-            break;
-            case unitType.Cavalery:
-            newUnit.AddComponent<cavaleryU>();
-            break;
-        }
-        newUnit.GetComponent<Unit>().SetUnitType((int)type);
-        assignController(controller, newUnit);
-        newUnit.transform.Find("unit_sprite").GetComponent<SpriteRenderer>().sprite = newUnit.GetComponent<Unit>().unitSprite;
-        newUnit.GetComponent<Unit>().setUnitAmount(amount);
-        newUnit.AddComponent<unitGUI>();
-        newUnit.name=$"{type} {amount}";
-        return newUnit;
-    }
+
 
     //Jednostka z tierem //uzywane glownie do spawnu jednostek gracza
     public static GameObject spawnUnitGameObject(tier _tier,unitType type, controllers controller,int amount){

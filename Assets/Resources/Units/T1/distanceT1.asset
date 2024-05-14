@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285928d9a7cfbdd41b24ba94687cd0bc, type: 3}
   m_Name: distanceT1
   m_EditorClassIdentifier: 
-  unitName: distance tier1
+  unitName: Archer
   unitSprite: {fileID: 1484059073, guid: 4973af4e4f3a8ee99b263b4401d08f16, type: 3}
   unitType: 2
   tier: 0

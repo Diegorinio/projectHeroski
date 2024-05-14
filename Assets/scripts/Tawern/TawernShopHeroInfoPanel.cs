@@ -69,6 +69,7 @@ public class TawernShopHeroInfoPanel : MonoBehaviour
         Hero _heroInTawern = spawnedHero.GetComponent<Hero>();
         mainPlayerUnit.Instance.assignHeroToTeam(_heroInTawern);
         HireButton.enabled=false;
+        PrefsManager.saveGeneral(_heroInTawern);
         shop.LoadAgain();
     }
 }

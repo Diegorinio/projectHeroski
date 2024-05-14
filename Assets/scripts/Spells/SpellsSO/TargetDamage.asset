@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TargetDamage
   m_EditorClassIdentifier: 
   spellName: targetDamage
-  SpellType: 0
+  SpellType: 1
   SpellRange: 0
   DamageType: 1
   spellCastPercent: 0

@@ -19,11 +19,12 @@ public class guiScript : MonoBehaviour
     private List<GameObject> imagesList = new List<GameObject>();
     private GameObject createUnitElement(Unit _unit){
         GameObject newUnitElement = Instantiate(unitListElementTemplate,gameObject.transform.position,Quaternion.identity);
-        TextMeshProUGUI unitAmountText = newUnitElement.transform.Find("amount_nr").GetComponent<TextMeshProUGUI>();
-        TextMeshProUGUI unitTierText = newUnitElement.transform.Find("tier_nr").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI unitAmountText = newUnitElement.transform.Find("unit_amount").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI unitNameText = newUnitElement.transform.Find("unit_name").GetComponent<TextMeshProUGUI>();
         newUnitElement.GetComponent<Image>().sprite = _unit.getUnitImage().sprite;
         unitAmountText.text = _unit.getUnitAmount().ToString();
-        unitTierText.text = _unit.getUnitTier().ToString();
+        unitNameText.text = _unit.unitName;
+        newUnitElement.transform.localScale = Vector3.one*2.5f;
         return newUnitElement;
     }
     // public void showUnits(){
@@ -48,7 +49,7 @@ public class guiScript : MonoBehaviour
     void attachImagesToParent(){
         foreach(var i in imagesList){
             i.transform.parent = gameObject.transform;
-            i.transform.localScale = Vector3.one;
+            i.transform.localScale = Vector3.one*2f;
         }
     }
     // void MakeStart(){

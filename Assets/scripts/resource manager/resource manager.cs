@@ -32,7 +32,7 @@ public class resourcemanager : MonoBehaviour
             }
         }
          //Ustaw gold na w duzo // do testow
-        PlayerPrefs.SetInt("GoldInMenu",99999);
+        PlayerPrefs.SetInt("GoldInMenu",9999);
         //wczytanie save
         gold=PlayerPrefs.GetInt("GoldInMenu");
         //iron=PlayerPrefs.GetInt("IronInMenu");

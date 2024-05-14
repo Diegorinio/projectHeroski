@@ -11,10 +11,10 @@ public class mainPlayerUnit : MonoBehaviour
 {
     //instacja klasy
     public static mainPlayerUnit Instance{get;private set;}
-    [SerializeField]
     //Lista przetrzymujaca jednostki gracza w instancji
     // private List<Unit> playerTeam;
     // [SerializeField]
+    [SerializeField]
     private Dictionary<int,List<Unit>> playerUnits = new Dictionary<int, List<Unit>>();
     [SerializeField]
     private Hero selectedHero;
@@ -28,6 +28,8 @@ public class mainPlayerUnit : MonoBehaviour
         // playerTeam = new List<Unit>();
         playerUnits = new Dictionary<int, List<Unit>>();
         DontDestroyOnLoad(gameObject);
+        PrefsManager.setPlayerUnitsFromPrefs();
+        PrefsManager.loadSavedGeneral();
         }
     }
 
@@ -46,6 +48,11 @@ public class mainPlayerUnit : MonoBehaviour
             int tier=_unit.getUnitTier();
             // playerUnits[tier]=new List<Unit> {_unit};
             addKeyToDictionary(tier,_unit);
+        }
+
+        Unit[] _units = getUnits();
+        for(int i=0;i<_units.Length;i++){
+            PrefsManager.saveUnit(_units[i]);
         }
     }
 
@@ -150,6 +157,8 @@ public class mainPlayerUnit : MonoBehaviour
         int tier = _unit.getUnitTier();
         if(playerUnits.ContainsKey(tier)){
             playerUnits[tier].Remove(_unit);
+            PrefsManager.resetUnitPref(_unit);
         }
+
     }
 }
