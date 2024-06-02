@@ -9,9 +9,12 @@ public class TutorialMainScript : MonoBehaviour
     public GameObject showBarracksArrow;
     public GameObject showEQArrow;
     public GameObject battleArrow;
+    public GameObject CityHallArrow;
     void Start()
     {
+        PrefsManager.clearPrefs();
         Tutorial_City_LaunchDialog();
+        PrefsManager.addGold(1000);
     }
 
     private void  Tutorial_City_LaunchDialog(){
@@ -22,11 +25,16 @@ public class TutorialMainScript : MonoBehaviour
     }
     private void Tuotorial_City_About_Gold(){
         ShowArrow(showGoldArrow);
-        gameMessagebox.createMessageBox("Gold","There is panel with gold that you have, you can spend gold on new generals and units. Here you go, get some gold to start",Tutorial_City_About_Tawern);
+        gameMessagebox.createMessageBox("Gold","There is panel with gold that you have, you can spend gold on new generals and units. Here you go, get some gold to start",Tutorial_City_CityHall);
+    }
+    private void Tutorial_City_CityHall(){
+        ShowArrow(CityHallArrow);
+        HideArrow(showGoldArrow);
+        gameMessagebox.createMessageBox("City Hall","Enter city hall to get collected gold from mine",Tutorial_City_About_Tawern);
     }
 
     private void Tutorial_City_About_Tawern(){
-        HideArrow(showGoldArrow);
+        HideArrow(CityHallArrow);
         ShowArrow(showTawernArrow);
         gameMessagebox.createDialogBox("Tawern","Tawern is right here, inside you can hire generals for your team to fight alongside your team",Tutorial_City_About_Barracks);
     }
@@ -52,6 +60,8 @@ public class TutorialMainScript : MonoBehaviour
     private void Tutorial_City_Ending(){
         HideArrow(battleArrow);
         gameMessagebox.createMessageBox("Get ready","Hire general from Tawer, recruit units from Barracks and go take some fight");
+        PlayerPrefs.SetInt("isTutorialComplete",1);
+        Debug.Log($"Status tutorial: {PlayerPrefs.GetInt("isTutorialComplete")}");
     }
 
     private void ShowArrow(GameObject arrow){

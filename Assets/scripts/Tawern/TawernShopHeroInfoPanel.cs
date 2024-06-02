@@ -37,6 +37,7 @@ public class TawernShopHeroInfoPanel : MonoBehaviour
     void Start(){
     }
     public void SetUpTawerShopHero(heroSO _hero){
+        HireButton.onClick.RemoveAllListeners();
         HeroImageSprite.enabled=true;
         HeroNameText.enabled=true;
         HeroPriceText.enabled=true;
@@ -65,11 +66,19 @@ public class TawernShopHeroInfoPanel : MonoBehaviour
         }
     }
     private void HireHeroToTeam(heroSO hero){
-        GameObject spawnedHero = heroSpawner.spawnHeroGameObject(hero.heroID,heroSpawner.HeroController.Player);
-        Hero _heroInTawern = spawnedHero.GetComponent<Hero>();
-        mainPlayerUnit.Instance.assignHeroToTeam(_heroInTawern);
-        HireButton.enabled=false;
-        PrefsManager.saveGeneral(_heroInTawern);
-        shop.LoadAgain();
+        int price = hero.heroPrice;
+        if(PrefsManager.isGoldEnough(price)){
+            Debug.Log($"GOLD: {PrefsManager.getGold()}");
+            GameObject spawnedHero = heroSpawner.spawnHeroGameObject(hero.heroID,heroSpawner.HeroController.Player);
+            Hero _heroInTawern = spawnedHero.GetComponent<Hero>();
+            mainPlayerUnit.Instance.assignHeroToTeam(_heroInTawern);
+            HireButton.enabled=false;
+            PrefsManager.saveGeneral(_heroInTawern);
+            shop.LoadAgain();
+            PrefsManager.removeGold(price);
+        }
+        else{
+            gameMessagebox.createMessageBox("Gold", "Not enough gold");
+        }
     }
 }

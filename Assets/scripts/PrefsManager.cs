@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PrefsManager : MonoBehaviour
@@ -14,10 +15,41 @@ public class PrefsManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public static int getGold(){
+        return PlayerPrefs.GetInt("GoldInMenu");
+    }
+
     public static void addGold(int amount){
-        int current = PlayerPrefs.GetInt("GoldInBuilding");
+        int current = PlayerPrefs.GetInt("GoldInMenu");
         int afterAddition = current+amount;
-        PlayerPrefs.SetInt("GoldInBuilding",afterAddition);
+        PlayerPrefs.SetInt("GoldInMenu",afterAddition);
+        if(findGoldObject()){
+        GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(afterAddition.ToString());
+        }
+    }
+
+    public static void removeGold(int amount){
+        int current = getGold();
+        int after = current-amount;
+        PlayerPrefs.SetInt("GoldInMenu",after);
+        if(findGoldObject()){
+        GameObject.Find("Gold_counter").GetComponent<TextMeshPro>().SetText(after.ToString());
+        }
+    }
+
+    private static GameObject findGoldObject(){
+        GameObject goldObj = GameObject.Find("Gold_counter");
+        return goldObj;
+    }
+
+    public static bool isGoldEnough(int amount){
+        int current = getGold();
+        if(current>=amount){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public static void saveUnit(Unit unit){

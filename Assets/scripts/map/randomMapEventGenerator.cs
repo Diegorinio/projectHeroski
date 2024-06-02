@@ -17,7 +17,7 @@ public class randomMapEventGenerator : MonoBehaviour
 
     //Na starcie ustaw ilosc typow jednostek przeciwnika od 1 do 5
     void Start(){
-        amountOfEventUnits = Random.Range(1,5);
+        amountOfEventUnits = Random.Range(2,5);
         gameObject.AddComponent<LoadingScene>();
     }
 
@@ -26,7 +26,7 @@ public class randomMapEventGenerator : MonoBehaviour
     void setEventUnits(){
         for(int x=0;x<amountOfEventUnits;x++){
         // GameObject newEnemy = unitSpawner.spawnRandomUnitToGameObject(unitSpawner.controllers.Enemy);
-        GameObject newEnemy = unitSpawner.spawnRandomUnitGameObject(unitSpawner.tier.T1,unitSpawner.controllers.Enemy,Random.Range(100,300));
+        GameObject newEnemy = unitSpawner.spawnRandomUnitGameObject(unitSpawner.tier.T1,unitSpawner.controllers.Enemy,Random.Range(250,1000));
         newEnemy.transform.SetParent(mainEnemiesUnit.Instance.gameObject.transform);
         newEnemy.transform.localPosition=Vector3.zero;
         Enemies.Add(newEnemy);

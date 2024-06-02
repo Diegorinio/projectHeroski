@@ -31,8 +31,10 @@ public class resourcemanager : MonoBehaviour
                 cheatbuttons[i].SetActive(false);
             }
         }
+        if(!PlayerPrefs.HasKey("GoldInMenu")){
+            PrefsManager.addGold(500);
+        }
          //Ustaw gold na w duzo // do testow
-        PlayerPrefs.SetInt("GoldInMenu",9999);
         //wczytanie save
         gold=PlayerPrefs.GetInt("GoldInMenu");
         //iron=PlayerPrefs.GetInt("IronInMenu");
