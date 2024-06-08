@@ -24,13 +24,14 @@ public class MessageBox : MonoBehaviour
     void Awake()
     {
         //Znajdz teksty i poustawiaj wartosci
-        messageTitle = gameObject.transform.Find("messageTitle").GetComponent<TextMeshProUGUI>();
+        Transform alignPanel = gameObject.transform.Find("alignPanel").transform;
+        messageTitle = alignPanel.Find("messageTitle").GetComponent<TextMeshProUGUI>();
         messageTitle.color = Color.white;
-        messageTitle.fontStyle=FontStyles.Bold;
-        messageContent = gameObject.transform.Find("messageContent").GetComponent<TextMeshProUGUI>();
+        // messageTitle.fontStyle=FontStyles.Bold;
+        messageContent = alignPanel.Find("messageContent").GetComponent<TextMeshProUGUI>();
         messageContent.color = Color.white;
-        messageContent.fontStyle=FontStyles.Bold;
-        okButton = gameObject.transform.Find("okButton").gameObject;
+        // messageContent.fontStyle=FontStyles.Bold;
+        okButton = alignPanel.Find("okButton").gameObject;
         if (GameObject.Find("messageBox(Clone)") != null)
         {
             background = GameObject.Find("messageBox(Clone)");

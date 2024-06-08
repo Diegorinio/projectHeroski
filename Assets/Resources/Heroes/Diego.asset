@@ -22,4 +22,4 @@ MonoBehaviour:
   defeatDialog: Your belonging are mine
   spellOne: {fileID: 11400000, guid: 0a99dfa1640328d8096f0182927fa46b, type: 2}
   spellTwo: {fileID: 11400000, guid: c58a429ce20123aa081ea30a7626dcda, type: 2}
-  heroPrice: 300
+  heroPrice: 680

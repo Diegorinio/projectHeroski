@@ -35,7 +35,7 @@ public class gameMessagebox : MonoBehaviour
         newxd.anchorMin = refxd.anchorMin;
         newxd.anchoredPosition = refxd.anchoredPosition;
         newxd.sizeDelta = refxd.sizeDelta;
-        Button okBtn = messageBox.transform.GetComponentInChildren<Button>();
+        Button okBtn = messageBox.transform.Find("alignPanel").transform.GetComponentInChildren<Button>();
         messageBox.GetComponent<MessageBox>().setMessageBox(title,content);
         if(okButtonClick!=null){
             okBtn.onClick.AddListener(()=>okButtonClick());
