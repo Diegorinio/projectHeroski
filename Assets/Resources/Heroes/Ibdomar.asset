@@ -18,8 +18,8 @@ MonoBehaviour:
   spellIcons:
   - {fileID: 21300000, guid: 4b143df7a0f19f74ba343c85740a4c30, type: 3}
   - {fileID: 21300000, guid: b7eddfbf7397a30d89cdaf471731d30d, type: 3}
-  entryDialog: Masz jakis tyton?
-  defeatDialog: Bagienne zieleeeee
+  entryDialog: I will crush you
+  defeatDialog: Nooooo!
   spellOne: {fileID: 11400000, guid: 0a99dfa1640328d8096f0182927fa46b, type: 2}
   spellTwo: {fileID: 11400000, guid: c58a429ce20123aa081ea30a7626dcda, type: 2}
   heroPrice: 1200
