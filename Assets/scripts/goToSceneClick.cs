@@ -27,14 +27,12 @@ public class goToSceneClick : MonoBehaviour
 
             if(mainPlayerUnit.Instance.getUnits().Length>0){
         setEventUnits();
-        Debug.Log($"Random event generator!");
         foreach(var e in Enemies){
             Unit _unit = e.GetComponent<Unit>();
             mainEnemiesUnit.Instance.addUnitsToTeam(_unit);
         }
         mainEnemiesUnit.Instance.assignHeroToTeam(enemyHero.GetComponent<Hero>());
         SceneManager.LoadSceneAsync(sceneID, LoadSceneMode.Single);
-        
         }
     }
      else{
@@ -43,14 +41,10 @@ public class goToSceneClick : MonoBehaviour
         }
     }
     void setEventUnits(){
-        for(int x=0;x<1;x++){
-        // GameObject newEnemy = unitSpawner.spawnRandomUnitToGameObject(unitSpawner.controllers.Enemy);
         GameObject newEnemy = unitSpawner.spawnRandomUnitGameObject(unitSpawner.tier.T1,unitSpawner.controllers.Enemy,Random.Range(5,50));
         newEnemy.transform.SetParent(mainEnemiesUnit.Instance.gameObject.transform);
         newEnemy.transform.localPosition=Vector3.zero;
         Enemies.Add(newEnemy);
         enemyHero = heroSpawner.spawnRandomHeroGameObject(heroSpawner.HeroController.Enemy);
-
-        }
     }
 }

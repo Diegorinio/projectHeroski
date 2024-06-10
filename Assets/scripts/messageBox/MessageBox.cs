@@ -32,19 +32,19 @@ public class MessageBox : MonoBehaviour
         messageContent.color = Color.white;
         // messageContent.fontStyle=FontStyles.Bold;
         okButton = alignPanel.Find("okButton").gameObject;
-        if (GameObject.Find("messageBox(Clone)") != null)
-        {
-            background = GameObject.Find("messageBox(Clone)");
-            GameObject city = GameObject.Find("CityManager");
-             background.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
-        }
+        // if (GameObject.Find("messageBox(Clone)") != null)
+        // {
+        //     background = GameObject.Find("messageBox(Clone)");
+        //     GameObject city = GameObject.Find("CityManager");
+        //      background.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
+        // }
 
-        if (GameObject.Find("dialogBox(Clone)") != null)
-        {
-            GameObject city = GameObject.Find("CityManager");
-            background1 = GameObject.Find("dialogBox(Clone)");
-            background1.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
-        }
+        // if (GameObject.Find("dialogBox(Clone)") != null)
+        // {
+        //     GameObject city = GameObject.Find("CityManager");
+        //     background1 = GameObject.Find("dialogBox(Clone)");
+        //     background1.GetComponent<Image>().sprite = city.GetComponent<CityManager>().tablica;
+        // }
         //print("123488888");
     }
 

@@ -73,6 +73,7 @@ public class enemyAI : MonoBehaviour
         print(_collidersMovement);
         print("sadasdasdasd");
         int change = Random.Range(0, 4);
+        Debug.Log($"Zminna change: {change}");
         if ((int)enemyGeneral.getTypeOfGeneral() == 0)
         {//agresywny
             if (_collidersCharacters.Count > 0)
@@ -89,7 +90,7 @@ public class enemyAI : MonoBehaviour
         else if ((int)enemyGeneral.getTypeOfGeneral()==1)
         {//normalny
             if(_collidersCharacters.Count>0){
-                        int r = Random.Range(0,2);
+                int r = Random.Range(0,2);
             Debug.Log($"{assignedEnemy.transform.name} enemyAI selected action {r}");
             switch (r){
                 case 0:

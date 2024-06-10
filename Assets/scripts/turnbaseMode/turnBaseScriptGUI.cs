@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class turnBaseScriptGUI : MonoBehaviour
@@ -66,12 +67,26 @@ public class turnBaseScriptGUI : MonoBehaviour
     //Pokaz ekran konca gry i kto wygral
     public void gameStateGameOver(string winner,int round){
         hideUnits();
+        if(SceneManager.GetActiveScene().name=="battle_tutorial"){
+            GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+            mainPlayerUnit.Instance.clearPlayerInstance();
+            foreach(var u in allEnemies){
+                Destroy(u);
+            }
+            foreach(var u in allPlayers){
+                Destroy(u);
+            }
+            gameMessagebox.createDialogBox("That's all","That's all for the tutorial, now go to the city and fight your way to be the greatest general",()=>{
+                SceneManager.LoadSceneAsync(1);
+            });
+        }
         Text state = gameStatePanel.transform.Find("gameStateText").gameObject.GetComponent<Text>();
         // GameObject.Find("movement_panel").SetActive(false);
         int gwiazki = 4 - round;
         string poziom = PlayerPrefs.GetString("BattleNow");
         int doOdblokowania = Int32.Parse(poziom.Substring(4));
-        
+        //Na potrzeby tutoriala
         if (winner == "Win")
         {        
             if (doOdblokowania < 5)

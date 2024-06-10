@@ -70,6 +70,8 @@ public static mainEnemiesUnit Instance{get;private set;}
         }
         }
         playerTeam.Clear();
+        playerTeam = new List<Unit>();
+        Destroy(selectedEnemyHero);
         Destroy(selectedEnemyHeroG);
     }
 

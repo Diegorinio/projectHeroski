@@ -161,4 +161,11 @@ public class mainPlayerUnit : MonoBehaviour
         }
 
     }
+
+    public void clearPlayerInstance(){
+        selectedHero = null;
+        selecteHeroG=null;
+        playerUnits = new Dictionary<int, List<Unit>>();
+        Destroy(this);
+    }
 }

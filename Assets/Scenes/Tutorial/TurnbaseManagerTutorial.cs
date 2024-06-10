@@ -21,7 +21,6 @@ public class TurnbaseManagerTutorial : MonoBehaviour
                 case 0:
                 if(!firstStep)
                 ShowStartInfo();
-                // isShowing=true;
                 break;
             }
             if(turnbaseScript.IsHeroTurn()){
@@ -33,54 +32,55 @@ public class TurnbaseManagerTutorial : MonoBehaviour
                     isShowing=true;
                 }
             }
-            Debug.Log($"TEstowa: {mainTurnScript.turn}");
         }
     }
 
-    void ShowStartInfo(){
-        isShowing=true;
-        gameMessagebox.createDialogBox("Battle","This is battle screen, let me show you some  things", ()=>{
-            ShowArrow(showPlayerGeneralArrow);
-            gameMessagebox.createDialogBox("Your General", "This is your general",()=>{
-                HideArrow(showPlayerGeneralArrow);
-                ShowArrow(showEnemyGeneralInfo);
-                gameMessagebox.createDialogBox("Enemy General", "This is enemy general which control enemy units, sometimes with some weird magic he can morph to your general", ShowSpellsInfo);
-            });
+   void ShowStartInfo(){
+    isShowing = true;
+    gameMessagebox.createDialogBox("Battle", "This is the battle screen. Let me show you some things.", () => {
+        ShowArrow(showPlayerGeneralArrow);
+        gameMessagebox.createDialogBox("Your General", "This is your general.", () => {
+            HideArrow(showPlayerGeneralArrow);
+            ShowArrow(showEnemyGeneralInfo);
+            gameMessagebox.createDialogBox("Enemy General", "This is the enemy general who controls enemy units. Sometimes, with some weird magic, he can morph into your general.", ShowSpellsInfo);
         });
-    }
-    void ShowSpellsInfo(){
-        HideArrow(showEnemyGeneralInfo);
-        ShowArrow(showSpellsArrow);
-        gameMessagebox.createDialogBox("Spells", "Every general have 2 skills, you can check them in Tawern",ShowAboutSpells);
-    }
-    void ShowAboutSpells(){
-        gameMessagebox.createDialogBox("Spells", "There are 2 types of spells, Destructable which cause damage and Blessings which cause boost for units controlled by general", ShowAboutBattle_Part1);
-    }
+    });
+}
 
-    void ShowAboutBattle_Part1(){
-        gameMessagebox.createDialogBox("Battle","Your units have certain distance of movement and attack, let's start with moving your unit. Double click on any of green highlighted tile", ()=>{
-            firstStep=true;
-            isShowing=false;
-        });
-    }
+void ShowSpellsInfo(){
+    HideArrow(showEnemyGeneralInfo);
+    ShowArrow(showSpellsArrow);
+    gameMessagebox.createDialogBox("Spells", "Every general has 2 skills. You can check them in the Tavern.", ShowAboutSpells);
+}
 
-    void ShowAboutBattle_Part2(){
-        isShowing=true;
-        gameMessagebox.createDialogBox("Units combat", "You attack with units by double clicking on enemy unit if there any in unit attack range",ShowAboutBattle_Units);
-    }
+void ShowAboutSpells(){
+    HideArrow(showSpellsArrow);
+    gameMessagebox.createDialogBox("Spells", "There are 2 types of spells: Destructive, which cause damage, and Blessings, which boost units controlled by the general.", ShowAboutBattle_Part1);
+}
 
-    void ShowAboutBattle_Units(){
-        gameMessagebox.createDialogBox("Unit combat pt2", "Units deal damage based on their amount, try to get closed to enemy and attack",ShowAboutBattle_SpellsCombat);
-    }
+void ShowAboutBattle_Part1(){
+    gameMessagebox.createDialogBox("Battle", "Your units have a certain distance for movement and attack. Let's start with moving your unit. Double click on any of the green highlighted tiles.", () => {
+        firstStep = true;
+        isShowing = false;
+    });
+}
 
-    void ShowAboutBattle_SpellsCombat(){
-        gameMessagebox.createDialogBox("Spells", "Each turn you can use one of your spell",ShowAboutBattle_Final);
-    }
+void ShowAboutBattle_Part2(){
+    isShowing = true;
+    gameMessagebox.createDialogBox("Units Combat", "You attack with units by double clicking on an enemy unit if there is any in your unit's attack range.", ShowAboutBattle_Units);
+}
 
-    void ShowAboutBattle_Final(){
-        gameMessagebox.createDialogBox("Just fight", "I think that's all, now go and fight this battle!");
-    }
+void ShowAboutBattle_Units(){
+    gameMessagebox.createDialogBox("Unit Combat pt2", "Units deal damage based on their amount. Try to get close to the enemy and attack.", ShowAboutBattle_SpellsCombat);
+}
 
+void ShowAboutBattle_SpellsCombat(){
+    gameMessagebox.createDialogBox("Spells", "Each turn, you can use one of your spells.", ShowAboutBattle_Final);
+}
+
+void ShowAboutBattle_Final(){
+    gameMessagebox.createDialogBox("Just Fight", "I think that's all. Now go and fight this battle!");
+}
     private void ShowArrow(GameObject arrow){
         arrow.SetActive(true);
     }
