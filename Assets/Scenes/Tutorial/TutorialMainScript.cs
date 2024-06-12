@@ -22,7 +22,7 @@ public class TutorialMainScript : MonoBehaviour
     }
 
     private void  Tutorial_City_LaunchDialog(){
-        gameMessagebox.createDialogBox("Welcome","Welcome in Dual Chash, i'm Justine and  let me show you basics",Tutorial_City_About_City);
+        gameMessagebox.createDialogBox("Welcome","Welcome in Dual Clash, i'm Justine and  let me show you basics",Tutorial_City_About_City);
     }
     private void Tutorial_City_About_City(){
         gameMessagebox.createDialogBox("City","We are in city right now, you can find some buildings here, let me show you and talk about them",Tuotorial_City_About_Gold);
